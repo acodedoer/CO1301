@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lab Template</title>
+    <style>
+        img{
+            max-width: 100%;
+            max-height: 40vh;
+        }
+
+        .hint{
+            display:none
+        }
+
+        .hint-div, .instruction-item{
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <header>
+                <h1>Getting Started with the TL-Engine</h1>
+            </header>
+            <p class= "instruction-item">
+                    The ‘TL-Engine’ is a special Game Engine to help teach games programming. It has been developed at the University of Central Lancashire specifically for teaching games programming. The TL-Engine has been written by Laurent Noel. Essentially it is a library of functions which can be called from within a C++ program. In this module, you will be writing C++ programs which call the TL-Engine to make 3D games. We will be using the latest version of the TL-Engine (V2.3 beta 6) with Visual Studio 2019 for this module. These tools are installed on the Games Lab machines on campus, however while working from home you need to install them on your personal machines.
+            </p>
+        </section>
+        <section>
+            <h2>Installing the Tl-Engine</h2>
+            <div class="section_instrcutions">
+                <ol>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">You need to first <a href="https://www.microsoft.com/en-gb/download/details.aspx?id=6812"  target="_blank">download and install the DirectX SDK</a> from https://www.microsoft.com/en-gb/download/details.aspx?id=6812 </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">You also need to <a href="https://visualstudio.microsoft.com/downloads/"  target="_blank">install Visual Studio 2019</a> from https://visualstudio.microsoft.com/downloads/</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Finally, <a href="http://gamesnorthwest.net/resources/tl_engine/downloads.html"  target="_blank">download and install the latest version of the TL-Engine</a> from Gamesnorthwest.net.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>Creating a TL-Engine Project</h2>
+            <div class="section_instrcutions">
+                <ol>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">First make a new folder for your work on the desktop and give it a unique name so you can identify it easily.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">At the end of each session in the games lab you must save your work to a pen drive or a copy it to your account via "Remote Access". Do not assume that your work will be safe on the computer for later. </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Furthermore, since your work is stored locally on the hard-drive of the machine, anything you leave there is accessible by anyone else who logs onto the machine. BE CAREFUL not to leave assignment work there for others to steal!</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Navigate to the TL-Engine through the start menu, or search “TL-Engine” in the taskbar search box</p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">‘Create New TL-Engine Project’ should be visible, click on it</p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">A TL-Engine dialog box will appear, type a descriptive name for your project in the ‘Name’ edit box and browse to the folder you made earlier in the ‘Location’ edit box. Visual Studio 2019 is selected by default.
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Click OK to create your project.
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>Running the Project</h2>
+            <div class="section_introduction">
+            </div>
+            <div class="section_instrcutions">
+                <ol>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">The TL-Engine wizard creates a fully working Visual Studio project to use a 3D engine. 
+                                    You can see the project structure in the “Solution Explorer” window on the left. 
+                                    </p>
+                            <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Expand the project structure by clicking on the arrow-head icon to the left of the project name in the solution explorer pane.
+                            </p>
+                            <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">View the program code by double-clicking the on the file ending in ‘.cpp’ (this is a C++ source file). </p>
+                            <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">You can run the program straight away by clicking the green coloured play icon near the menus at the top of the screen (or press F5) 
+                            </p>
+                            <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">The program will compile and run… </p>
+                            <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">First a console window appears and tells you what is happening </p>
+                            <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Then a second blank grey window appears - this second window is a 3D engine showing an empty scene </p>
+                            <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Press ‘Alt’+F4 to close this window, and return to the code </p>
+                            <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </main>
+    <script>
+        divs = document.querySelectorAll(".hint-div")
+        divs.forEach(element=>{
+            let hint_msg = element.childNodes[3]
+            let hint_pic = element.childNodes[5]
+            let link = element.childNodes[1]
+            link.addEventListener('click', function(){
+                if(hint_msg.style.display != "block" && hint_pic.style.display != "block"){
+                    hint_msg.style.display = "block"
+                    hint_pic.style.display = "block"
+                }
+                else{
+                    hint_msg.style.display = "none"
+                    hint_pic.style.display = "none"
+                }
+            });
+            }
+        )
+    </script>
+</body>
+</html>

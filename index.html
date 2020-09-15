@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lab Template</title>
+    <style>
+        img{
+            max-width: 50%;
+        }
+
+        .hint{
+            display:none
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week X Lab</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Section Title</h2>
+            <div class="section_introduction">
+                <p>
+
+                </p>
+            </div>
+            <div class="section_instrcutions">
+                <ol>
+                    <li >
+                        <div class="list-div">
+                            <p>List item <a href="#">HINT</a></p>
+                            <div class="hint">
+                                <p></p>
+                                <img src ="hint1.PNG"/>
+                            </div>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p>List item <a href="#">HINT</a></p>
+                            <div class="hint">
+                                <p></p>
+                                <img src ="hint2.PNG"/>
+                            </div>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p>List item <a href="#">HINT</a></p>
+                            <div class="hint">
+                                <p></p>
+                                <img src ="hint3.PNG"/>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </main>
+    <script>
+        divs = document.querySelectorAll(".list-div")
+        divs.forEach(element=>{
+            let hint = element.childNodes[3]
+            let link = element.childNodes[1].childNodes[1]
+            link.addEventListener('click', function(){
+                if(hint.style.display != "block"){
+                    hint.style.display = "block"
+                }
+                else{
+                    hint.style.display = "none"
+                }
+            });
+            }
+        )
+    </script>
+</body>
+</html>
