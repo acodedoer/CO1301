@@ -1,0 +1,44 @@
+
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
+        body{
+            width: 60vw;
+            margin: auto;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .video_icon{
+            max-width: 2em;
+        }
+        h1,h2,h3,h4,h5,h6{
+            font-family: 'Roboto', sans-serif;
+        }
+        .link-div{
+            width:100%;
+            text-align: right;
+        }
+        img{
+            max-width: 100%;
+            max-height: 40vh;
+        }
+        .hint-div{
+            display:none
+        }
+        .hint-link, .instruction-item{
+            display: inline;
+        }
+        pre { font-family: monospace; }
+        pre, code{
+            white-space:pre-line;
+        }
+        p{
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+        .list-div{
+            margin-bottom: 1em;
+        }
+
+        img{
+            margin-top: 5px;
+            max-width: 50%;
+        }

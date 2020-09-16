@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../assets/highlight/styles/default.css">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 2 - Input and Control</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br> Worksheet 2 - Input and Control</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                                <span><p class= "instruction-item">
+                                    Last week we introduced the TL-Engine and used it to manipulate some simple 3D graphics. In this session you will use keyboard input to move objects within the game world.
+                               </p></span>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                It is useful for you to keep a copy of the code that you write. You can set up a working directory (folder) on your university cloud storage to contain your work.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>2. Keyboard Input</h2>
+            <div class="section_introduction">
+            </div>
+            <div class="section_instrcutions">
+                <ol>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">The 3D engine monitors the keyboard and mouse input for its own window. We can ask the engine if particular keys or mouse buttons have been pressed, the methods to do this are:
+                                    <pre><code class="plaintext">// Returns true when a given key or button is first pressed down.
+                                            bool KeyHit( EKeyCode );
+                                            // Example usage:
+                                            // if (myEngine->KeyHit( Key_A )) { Do something }
+                                            // Returns true as long as a given key or button is held down.
+                                            bool KeyHeld( EKeyCode );
+                                            // Example usage:
+                                            // if (myEngine->KeyHeld( Mouse_LButton )) { Do something }
+                                    </code></pre>
+                            Note: The above code snippets show the method’s signatures – the return type of the method (bool in both cases), the method name (e.g. KeyHit), and the parameter type (EKeyCode). You should not copy the method signature into your program (otherwise the compiler will think you are trying to re-define the methods!).
+
+                            When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an “if” statement, and you must pass in a parameter of the required type. The example usage (in the green comments above) show this later use of the methods.
+                             </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">You must supply a special key code to indicate which key (or button) you want to test (I used ‘Key_A’ and ‘Mouse_Lbutton’ in the examples). The full list of key codes can be found at <a href=" http://www.gamesnorthwest.net/resources/tl_engine/downloads.html" target="_blank">GamesNorthWest.net</a>, Under Documentation -> Appendix 2: Key Codes</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Notice that mouse buttons are considered to be ‘keys’ also.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">There is a slight difference between the two input methods provided above. The first (‘KeyHit’) returns true once, when the key is first pressed, then it return false until you let go of the key and press it again.
+                           </p>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">The second method (‘KeyHeld’) will always return true as long as the key is held down. We will see how this difference is important soon.
+                           </p>
+                       </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h2>3. Using the 'If' Statement</h2>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Selection is the ability to execute code only if some condition is met. Selection is choice.
+                            <ul>
+                                <li>A block of code may be executed (if the condition is true).</li>
+                                <li>A block of code may not be executed (if the condition is not true).</li>
+                            </ul>
+                           </p>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">In C++ you can exercise this control through the use of the word "if". The general form of an "if" statement is:
+                           </p>
+                           <pre><code class="plaintext">if (conditional)
+                                {
+                                // conditional exectution
+                                }
+                        </code></pre>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">The conditional is a programming statement. It is any statement which equates to either true or false. Any expression which equates to a number can also be used.
+                           </p>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Note that a conditional statement does not execute a command. It is used to enable decision making in programs.<br/>
+                           </p>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                            Try using the 'if' statement by typing the code below into the ‘scene update’ area:
+                            <pre><code class="plaintext">if ( myEngine->KeyHit( Key_Escape ))
+                                    {
+                                    myEngine->Stop();
+                                    }
+                            </code></pre>
+                            This code tests if the escape key has been pressed and quits the engine (and program) if it has. You may want to add this to all your projects so you don’t need to use ‘Alt+F4’.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <div class="section_instrcutions">
+                <h2>4. Exercises - Keyboard Control</h2>
+                <ol>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Add a cube to your scene and use the ‘KeyHeld’ method to move it right when you hold the ‘D’ key (i.e. move it along the X axis).
+                            <br>
+                            Hints: 
+                            <ul>
+                                <li></li>
+                                <li>You need to use an ‘if’ statement to check if the key is held</li>
+                                <li>key code for ‘D’ is ‘Key_D’.</li>
+                            </ul> 
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Try using the ‘KeyHit’ method instead to move the cube - can you see the difference? Now change it back.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Next, make the cube move left when the key ‘A’ is held.
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Now move the cube forwards and backward (Z axis) with the keys ‘W’ and ‘S’.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Finally, move the cube up and down (Y axis) with ‘Q’ and ‘E’.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">You can now fully control the movement of a model. Now we will see what happens when we control the rotation.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Add a new “Grid.x” mesh to your scene and change the cube model from “Cube.x” to “Arrow.x”.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Add code to rotate the arrow left and right when the keys ‘Z’ and ‘X’ are pressed (use the ‘RotateY’ method).</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Run the program and rotate the arrow right about 45°. Now move it left and right with ‘A’ and ‘D’. Rotate it some more and try again. What do you notice about the direction that it moves?</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">What you should notice is that the arrow always moves left and right in the same direction: in the X direction of the large grid. This is called the ‘world’ X direction. Look closely at the arrow model and you can see it has its own grid, and it has its own X direction. This is called the arrow’s ‘local’ X direction. Sometimes we want to move in the local directions, we can do this with these methods:
+                             <pre><code>// Move in the local X direction by the given amount
+                                    void MoveLocalX(const float);
+                                    // E.g arrow->MoveLocalX( 0.1 );
+                                    // Move in the local Y direction by the given amount
+                                    void MoveLocalY(const float);
+                                    // Move in the local Z direction by the given amount
+                                    void MoveLocalZ(const float);
+                            </code></pre></p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">Change all the ‘Move’ methods from the previous exercises to ‘MoveLocal’ methods. Now experiment with rotation and movement together. Can you see the difference?</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>5. Variables</h2>
+            <div class="section_instrcutions">
+                <ol>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">A variable is used to store numbers or other kinds of data. Each variable has a data type. The data type specifies the type of data that the variable can store. C++ uses a number of different data types:
+                                    <pre><code>float myNumber; // floating point- a decimal number
+                                            int anotherNumber; // integer, a whole number
+                                            bool check; // a boolean - can only take the values true and false
+                                    </code></pre></p>
+                                </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">You can assign a value to a variable. Assignment is done using the equals symbol:
+                                <pre><code>int number;
+                                        number = 10; // number is assigned a value of 10
+                                        bool check;
+                                        check = true; // true and false are the two boolean states
+                                </code></pre></p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">Values are placed into a variable using assignment. C++ uses the equals sign to signify the assignment command. Assignment is not equals!</p>
+                                <pre><code>int a;
+                                        a = 10; // a is assigned the value 10
+                                </code></pre>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">The contents of a variable can be changed. The ++ operation increments the value of an integer by 1, for example:</p>                                
+                             <pre><code>int i = 4;
+                                    i++; // i now has a value of 5
+                            </code></pre>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Whenever the variable is subsequently used the value it currently holds is referenced, e.g.
+                                <pre><code>if ( a == b )
+                                        {
+                                        // do something
+                                        }
+                                </code></pre>
+                             </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+    </section>
+    <section>
+        <h2>6. Testing Variables</h2>
+        <div class="section_instrcutions">
+            <ol>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">The following code means "if the firstVariable is equal to the secondVariable " then do the code that is inside the curly brackets.
+                                <pre><code>if ( a == b )
+                                        {
+                                        // do something
+                                        }
+                                </code></pre>
+                             </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">The following code means "if the firstVariable is not equal to the secondVariable " then do the code that is inside the curly brackets.
+                                    <pre><code>if ( a != b )
+                                            {
+                                            // do something
+                                            }
+                                    </code></pre>
+                             </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">The following code means "if the firstVariable is less than the secondVariable " then do the code that is inside the curly brackets.
+                                    <pre><code>if ( a < b )
+                                            {
+                                            // do something
+                                            }
+                                    </code></pre>
+                                </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">The following code means "if the firstVariable is greater than the secondVariable " then do the code that is inside the curly brackets.
+                                    <pre><code>if ( a > b )
+                                            {
+                                            // do something
+                                            }
+                                    </code></pre>
+                                </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>7. Exercises - Working with Variables</h2>
+            <div class="section_instrcutions">
+                <ol>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Load the cube mesh and then create a cube model.
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Declare a variable of type float. The name of the variable should be cubeSpeed.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Assign an appropriate value to cubeSpeed. For this exercise you should declare and initialise the variable before the game loop (not inside it).</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Using the variable which you have just created move the cube to the right, use the ode below:
+                            <pre><code>cube->MoveX( cubeSpeed );
+                            </code></pre>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">You can obtain the current location of a model. For instance, you can obtain the current x coordinate of the cube by using:
+                            <pre><code>xCoordinate = cube->GetX();
+                            </code></pre>
+                            Note that I have used a new variable to store the location of the cube. This new variable is called xCoordinate. The GetX() function returns a value. In other words, it passes a value back and this value can either be used directly or assigned to a variable.
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Now get the cube to stop moving when it reaches 40 along the x axis, i.e. when GetX( ) returns a value of 40.<br/>
+                            Hint: You will have to use the if statement in order to implement the check.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+        <h2>8. Revisiting Exercises from Lab 1</h2>
+            <div class="section_instrcutions">
+                <ol>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Last week you were challenged to write the following that bounces a sphere left and right between X=-40 and X=40. If you haven’t completed this exercise from last week, do so now..<br/>
+                                Hints:
+                                <ul>
+                                    <li>You will need to use the properties of variables in order to implement this</li>
+                                    <li>Can you make the cube roll while it bounces?</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Expand your program so you can use the keyboard in the following way
+                                <ul>
+                                    <li>Whenever the ‘R’ key is pressed, the cube changes direction</li>
+                                    <li>The ‘P’ key acts as a pause button for your “game”.</li>
+                                </ul>
+                            Hint: You will need a variable to implement the pause button.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </main>
+    <script>
+divs = document.querySelectorAll(".list-div")
+console.log(divs)
+        divs.forEach(element=>{
+            let hint, link
+            let hintB = false;
+            let linkB = false;
+            element.childNodes.forEach(node=>{
+                if(node.className=="hint-link"){
+                    link = node;
+                    linkB = true
+                }
+                else if(node.className=="hint-div"){
+                    hint = node
+                    hintB = true
+                }
+            })
+            if(hintB === true && linkB === true){
+                link.addEventListener('click', function(e){
+                    e.preventDefault();
+                if(hint.style.display != "block"){
+                    hint.style.display = "block"
+                }
+                else{
+                    hint.style.display = "none"
+                }
+            });
+            }
+            }
+        )
+    </script>
+</body>
+</html>
