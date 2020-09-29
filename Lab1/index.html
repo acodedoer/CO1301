@@ -79,7 +79,105 @@
             </div>
         </section>
         <section>
-            <h2>2. Game Program Structure</h2>
+            <div class="section_instrcutions">
+                <h2>2. Using C++ Syntax</h2>
+                <ol>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">The TL-Engine (Teaching & Learning Engine) is a C++ API and associated resources designed to provide a simple interface to powerful multimedia facilities.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">C++ is an object-oriented programming (OOP) language that gives programmers a high level of control over system resources and memory. C++ is one of the world's most popular programming languages and it is the language used to build most big console and PC games.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">C++ programming will be taught to you as part of another module. This module, however, will use the TL-Engine to introduce you to the features and concepts of C++ and OOP that are standard in the games development industry. It is important that you get used to these standards early.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">In the four week challenge you used appinventor blocks to initialise variables to store text, numbers, colors etc. You may have also seen variables declared with standard types in C++:</p>
+                                <pre>
+                                <code>int length;
+                                    string name;
+                                    float speed;
+                                    //int, string and float are all standard C++ types
+                            </code></pre>
+                                Or in C#:
+                                <pre>
+                                <code>int length;
+                                        string name;
+                                        float speed;
+                                        //int, string and float are all standard C# types
+                            </code></pre>
+                            Note:
+                            <ul>
+                                <li>There are similarities and differences in the syntax of C# and C++, try to be concious about which langauge you are using at any given time so as to avoid making mistakes.</li>
+                                <li>Concepts (e.g. looping and selection) however,are universal across all programming langauges. Therefore you can apply programming concepts to any language that supports it simply by using the language's syntax which can found in its documentation.</li>
+                            </ul>
+                            <em> 
+                         </em> 
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">While using the TL-Engine you will see variables declared with custom types:.</p>
+                                <pre><code>I3DEngine* myEngine; // I3Dengine is a TL-Engine specific type
+                            </code></pre>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">The type "I3DEngine" is not a C++ type; it is specific to the TL-Engine. Also it is being used with a “pointer” – the symbol ‘*’. You will be introduced to both custom types and pointers later in CO1401. For now just remember that ‘I3DEngine*’ is a type just like an int or a float, but specific to the TL-Engine.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">The TL-Engine has many “functions” that you can use. A function is a block of program code that performs a particular calculation or task. You can use a built-in C++ function in your own code when you want to perform a calculation or task – it saves you from writing the code yourself. There are some C++ functions that you may have seen already:</p>
+                            <pre>
+                                <code>float squareRoot = sqrt(16); // sqrt is a standard C++ function to calculate the square root of a number
+                                system( “pause” ); // system is a function that issues a special system command to the computer
+                            </code></pre>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">In the ‘sqrt’ example notice how the number 16 is “passed” to the function (in brackets) i.e. given as input to the function. Also notice that the ‘sqrt’ function calculates a result – and this result is put into the variable ‘SquareRoot’. </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">In the second example, the string “pause” is passed to the ‘System’ function, but there is no result – this function simply performs a task (waits for a key press).</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">You will see functions like this in the TL-Engine. Some are passed values (sometimes several values), and some are not. Also some return results, although again, some don’t.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">The use of each function will be explained to you in the worksheets, with examples given. You will see functions shortly in CO1404 too.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">Finally, most functions in the TL-Engine must be used through a variable:</p>
+                                <pre><code>I3DEngine* myEngine; // I3Dengine is a TL-Engine specific variable type
+                                    myEngine->DrawScene(); // DrawScene is a function (“method”) of myEngine
+                            </code></pre>
+                            
+                            In the above code, a variable named "myEngine" is declared, then "DrawScene" is used on the variable (notice the use of the ‘->’ symbol to indicate this usage). In plain English, the two lines of code state: "create a 3D engine and call it myEngine, then use myEngine to draw a scene”. Functions like DrawScene() are called methods. Notice the use of the ‘->’ symbol to indicate this usage.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>3. Game Program Structure</h2>
             <div class="section_introduction">
             </div>
             <div class="section_instrcutions">
@@ -96,44 +194,31 @@
                              <p class= "instruction-item">You can see that the TL-Engine wizard provides you with a template source code, don’t delete it – it is useful!</p>
                         </div>
                     </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Before going into what the template code does and how you can add code to it to create games, let us first briefly discuss the basic program structure of games.
+                           </p>
+                       </div>
+                    </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">It contains instructions to start up and shut down the game engine.</p>
+                             <p class= "instruction-item">The code of all games follows a general structure known as the "game code structure".</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">You can run the program (press F5 or the green play button near the top of the screen), but you will only see an empty scene since no models have been added yet (press ALT + F4 to close the program).
-                            </p>
+                             <p class= "instruction-item">The game code structure has three sections to help you setup, run and terminate your game properly. These sections are <em>initialisation</em>, <em>game loop</em>, and <em>termination.</em>
+                             </p>
+                            <ul><br/>
+                                <li>Initialisation: everything that is needed to get the game going is setup in this section. This usally includes loading resources (e.g. models, sounds and images) needed for the game, initialising game engine variables and initialising game object variables (e.g. player name and player score) </li><br/>
+                                <li>The game loop: the code in the game loop section takes over once initialisation is complete. Just as the name implies, code in this section executes in an endless loop (until told to stop). Without the game loop, your game code will execute only once and the game will end in a flash. In each iteration of the game loop, the game checks for the player's input (e.g. whether the right button is pressed), does some calculations (e.g. calculate the avatar's new position after moving one step to the right), outputs the resulting changes to the screen (e.g. displays the avatar in its new position), and starts a new iteration (if game is not over). The game loop's ability to perform several of its iterations every second and display static images called <em>frames</em> creates the animation you see when you play games. Objects change position very slightly from frame to frame but the viewer does not perceive the separate images, and instead sees an animation scene.</li><br/>
+                                <li>Termination: this section executes when the game loop ends and you want to terminate your game. This sections is used to execute code that cleans up after your game, and releases resources. All resources that are taking up precious computer memory must be properly released to the reclaim that memory. For example, memomry allocated for models, images and sounds need to be released by the end of the game</li>
+                            </ul>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Before going into how to work with the code template we have, let us first have a baisc disucssion of how games are displayed.
-                           </p>
-                       </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">A game is displayed in the same way as a film or animation.
-                           </p>
-                       </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">A sequence of static images (called frames) is displayed very quickly.
-                           </p>
-                       </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Objects change position very slightly from frame to frame but the viewer does not perceive the separate images, and instead sees an animation scene.
-                           </p>
-                       </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">All games, at their core have the same basic program structure as shown below:
+                            <p class= "instruction-item">The basic game code structure is shown below:
                            </p>
                            <pre><code class="plaintext">#include < game engine libraries >
                                         Start game engine
@@ -156,112 +241,33 @@
                         </code></pre>
                        </div>
                     </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">The two key sections that you will need to fill are:
-                            <ul>
-                                <li>The Game Setup section - where game objects are loaded and their initital states are defined</li>
-                                <li>The Game Loop section - where the states of objects are updated and the scene is drawn repeatedly until the game ends</li>
-                            </ul>
-                           </p>
-                       </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">Back to our template code, you can see that it also has the basic game progam structure
-                                <ul>
-                                    <li>The Game Setup section - begins where the comment "/**** Set up your scene here ****/" is found. We will be writing code to load all the game objects that we need in this section such as 3D models, sounds, fonts etc, and set their initial positions and settings</li>
-                                    <li>The Game Loop section - is found after the comment "// The main game loop, repeat until engine is stopped". In this section we will be writing code to update the settings and properties of our objetcs</li>
-                                </ul>
-                            </p>
-                        </div>
-                    </li>
                 </ol>
             </div>
         </section>
+            <li>
+                <div class="list-div">
+                    <p class= "instruction-item">After the initialisation sections comes the game loop (also within the main function).
+                   </p>
+               </div>
+            </li>
+            <li>
+                <div class="list-div">
+                    <p class= "instruction-item">Just before the end of the main function is the termination section, which consists of a single line of code. This code will be executed as soon as the game loop is exited.
+                    </p>
+                </div>
+            </li>
         <section>
-            <div class="section_instrcutions">
-                <h2>3. Using New C++ Syntax</h2>
-                <ol>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">To use the TL-Engine we need to introduce some C++ features, and a style called “object-oriented programming”. We will not introduce these features formally yet (these concepts will be taugh as part of another module), but they are the standard in games development so it is important to get used to them early.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">You may have already seen variables declared with standard types:</p>
-                             <pre>
-                                <code>int length; // int is a standard C++ type (along with float, char etc.)
-                            </code></pre>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">In the TL-Engine you will see variables declared with custom types:.</p>
-                             <pre><code>I3DEngine* myEngine; // I3Dengine is a TL-Engine specific type
-                            </code></pre>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">The type "I3DEngine" is not a C++ type; it is specific to the TL-Engine. Also it is being used with a “pointer” – the symbol ‘*’. You will be introduced to both custom types and pointers later in CO1401. For now just remember that ‘I3DEngine*’ is a type just like an int or a float.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">The TL-Engine has many “functions” that you can use. A function is a block of program code that performs a particular calculation or task. You can use a built-in C++ function in your own code when you want to perform a calculation or task – it saves you from writing the code yourself. There are some C++ functions that you may have seen already:</p>
-                             <pre>
-                                    <code>float squareRoot = sqrt( 16 ); // sqrt is a standard C++ function to calculate the square root of a number
-                                    system( “pause” ); // system is a function that issues a special system command to the computer
-                            </code></pre>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">In the ‘sqrt’ example notice how the number 16 is “passed” to the function (in brackets) i.e. given as input to the function. Also notice that the ‘sqrt’ function calculates a result – and this result is put into the variable ‘SquareRoot’. </p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">In the second example, the string “pause” is passed to the ‘System’ function, but there is no result – this function simply performs a task (waits for a key press).</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">You will see functions like this in the TL-Engine. Some are passed values (sometimes several values), and some are not. Also some return results, although again, some don’t.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">The use of each function will be explained to you in the worksheets, with examples given. You will see functions shortly in CO1404 too.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">Finally, most functions in the TL-Engine must be used through a variable:</p>
-                             <pre><code>I3DEngine* myEngine; // I3Dengine is a TL-Engine specific variable type
-                                    myEngine->DrawScene(); // DrawScene is a function (“method”) of myEngine
-                            </code></pre>
-                            
-                            In the above code, a variable named "myEngine" is declared, then "DrawScene" is used on the variable. In plain English it means “use myEngine to draw the scene”. This kind of function is called a “method”. Notice the use of the ‘->’ symbol to indicate this usage.</p>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </section>
-        <section>
-            <h2>4. The TL-Engine Template – Walkthrough</h2>
+            <h2>4. The TL-Engine Template Code – Walkthrough</h2>
             <div class="section_instrcutions">
                 <ol>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">Now let us have a detailed look at the TL-Engine template code:</p>
+                                <p class= "instruction-item">Now let us have a detailed look at the TL-Engine template code and see how it provides the basic game code structure, similar to that shown in the previous section:</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">After the opening comment the TL-Engine file is included, this contains all the information needed to use the engine. Following the include statement is a "using namespace" statement: all of the TL-Engine is “hidden” inside a ‘namespace’ so it does not get mixed up with standard C or other libraries. This statement says that we want to expose the contents of the namespace so we can use its contents easily. These opening lines must begin all programs using the TL-Engine, you do not need to understand their detail, just make sure they are there.</p>
+                                <p class= "instruction-item">After the opening comment the TL-Engine file is included, this contains all the information needed to use the engine. Following the include statement is a "using namespace" statement: all of the TL-Engine is “hidden” inside a ‘namespace’ so it does not get mixed up with standard C++ or other libraries. This statement says that we want to expose the contents of the namespace so we can use its contents easily. These opening lines must begin all programs using the TL-Engine, you do not need to understand their detail, just make sure they are there.</p>
                                 <pre><code>// First Project.cpp: A program using the TL-Engine
                                         #include  < TL-Engine.h > // TL-Engine include file and namespace
                                         using namespace tle;
@@ -278,7 +284,8 @@
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">The first code lines inside ‘main’ prepare a 3D engine for us:</p>                                
+                             <p class= "instruction-item">
+                                    Then main function begins with the initialisation section. The template code initialises an instance of the game engine for you, and initialises the default folder to load resources from (folder path depends on where you installed the TL-Engine). All you need to do is load the reources you need and declare any additional variables.</p>                                
                              <pre><code>// Create a 3D engine (using TLX engine here) and open a window for it
                                     I3DEngine* myEngine = New3DEngine( kTLX );
                                     myEngine->StartWindowed();
