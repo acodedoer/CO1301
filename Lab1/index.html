@@ -285,39 +285,60 @@
                     <li >
                         <div class="list-div">
                              <p class= "instruction-item">
-                                    Then main function begins with the initialisation section. The template code initialises an instance of the game engine for you, and initialises the default folder to load resources from (folder path depends on where you installed the TL-Engine). All you need to do is load the reources you need and declare any additional variables.</p>                                
+                                    Then main function begins with the initialisation section. The template code initialises an instance of the game engine for you, and initialises the default folder to load resources from (folder path depends on where you installed the TL-Engine). All you need to do is load the reources you need, declare any additional variables, and set up your game scene.</p>                                
                              <pre><code>// Create a 3D engine (using TLX engine here) and open a window for it
-                                    I3DEngine* myEngine = New3DEngine( kTLX );
-                                    myEngine->StartWindowed();
+                                I3DEngine* myEngine = New3DEngine( kTLX );
+                                myEngine->StartWindowed();
+                            
+                                // Add default folder for meshes and other media
+                                myEngine->AddMediaFolder( "C:\\ProgramData\\TL-Engine\\Media" );
+                            
+                                /**** Set up your scene here ****/
                             </code></pre>
+                            <p>In code above, first a variable called ‘myEngine’ is declared and its type is an ‘I3DEngine*’. All you need to know now is that the variable ‘myEngine’ will be your interface to the TL-Engine - you will use the TL-Engine's features “through” this variable.</p>
+                            <br/>
+                            <p>After declaring the ‘myEngine’ variable, it is initialised by using a function/method:‘New3DEngine(kTLX)’. In plain English that means “I want to use a 3D engine of the kTLX variety, and I will call it myEngine”</p>
+                            <br/>
+                            <p>The next line is the first use of this new engine we have prepared. See how we use "myEngine->StartWindowed()" to say, “I want myEngine to start up in a window”.</p>
+                            <br/>
+                            <p>The next line tells the engine to look in the folder provided (the folder chosen when TL-Engine was installed) for any files (e.g. 3D objects) that you load later on. Any resources you want to load to your game, should be loaded after this line of code.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">The code above uses one of the new C++ features: a variable called ‘myEngine’ is declared and its type is an ‘I3DEngine*’. All you need to know now is that the variable ‘myEngine’ will be your interface to the TL-Engine - you will use the TL-Engine's features “through” this variable.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">After declaring the ‘myEngine’ variable, it is initialised by using a function/method:‘New3DEngine(TLX)’. In plain English that means “I want to use a 3D engine of the kTLX variety, and I will call it myEngine”</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">The next line is the first use of this new engine we have prepared. See how we use "myEngine->StartWindowed()" to say, “I want myEngine to start up in a window”.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">The next line is:</p>
-                             <pre><code>// Add default folder for meshes and other media
-                                    myEngine->AddMediaFolder( "[Install_Folder]\\TL-Engine\\Media" );
+                            <p class= "instruction-item">Next comes the game loop section of the template code.
+                            <pre><code>	// The main game loop, repeat until engine is stopped
+                                    while (myEngine->IsRunning())
+                                    {
+                                        // Draw the scene
+                                        myEngine->DrawScene();
+                                
+                                        /**** Update your scene each frame here ****/
+                                
+                                    }
                             </code></pre>
-                            where [Install_Folder] is the folder chosen when the TL-Engine was installed. This tells the engine to look in this folder for any files (e.g. 3D objects) that you load later on.
+                            This section contains a ‘while’ loop that repeats until the engine stops (generally, the engine only stops when its window is closed). Currently the only code inisde this loop is code that tells the 3D engine  declared in the initialisation stage (myEngine) to draw the scene.
+                            </p>
                         </div>
                     </li>
-                    </ol>
-                    </div>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">The final section, the termination section is found after the game loop section. It contains a single line of code that deletes the 3D engine that you created at the beginning:
+                            <pre><code>	// Delete the 3D engine now we are finished with it
+                                    myEngine->Delete();
+                            </code></pre>
+                            If we don’t do this then the resources used by the 3D engine will remain in the computer’s memory after the program is finished, but no other program will be able to access them. This is called a memory leak - it will affect the performance of the computer, so this line is important.
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Now that you have some understanding of what the code template does, you will learn to add to it to initialise resources and display them on the screen.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </section>
         <section>
             <h2>5. The TL-Engine Template – Adding your own code</h2>
