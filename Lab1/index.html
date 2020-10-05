@@ -71,14 +71,14 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                If you have already completed the <a href="">Getting Started</a> worksheet, create a new TL-Engine project.
+                                If you have already completed the <a href="">Getting Started</a> worksheet, create a new TL-Engine project and open it in Visual Studio 2019.
                             </p>
                         </div>
                     </li>
                     
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Make sure that the project you have created and all others you will create for your labs are properly named and saved in secure and accessible locations.
+                            <p class= "instruction-item">Make sure that the project you have created and all others you will create for your labs are properly named and saved in a secure and accessible location.
                             </p>
                         </div>
                     </li>
@@ -91,31 +91,37 @@
                 <ol>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">The TL-Engine (Teaching & Learning Engine) is a C++ API and associated resources designed to provide a simple interface to powerful multimedia facilities.</p>
+                                <p class= "instruction-item">The TL-Engine (Teaching & Learning Engine) is a <b>C++</b> API and associated resources designed to provide a simple interface to powerful multimedia facilities. It is designed to allow programming students to create interesting multimedia applications using only simple code.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">C++ is an object-oriented programming (OOP) language that gives programmers high level control over system resources and memory. C++ is one of the world's most popular programming languages and it is the language used to build most big console and PC games.</p>
+                                <p class= "instruction-item"><b>C++</b> is an object-oriented programming (OOP) language that gives programmers high level control over system resources and memory. C++ is one of the world's most popular programming languages and it is the language used to build most big console and PC games.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">C++ programming will be taught to you as part of another module. This module, however, will use the TL-Engine to introduce you to the features and concepts of C++ and OOP that are standard in the games development industry. It is important that you get used to these standards early.</p>
+                                <p class= "instruction-item">C++ programming will be taught to you as part of another module. However, this module will use the TL-Engine to introduce you to the features and concepts of C++ and OOP that are standard in the games development industry. It is important that you get used to these standards early.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">In the four week challenge you used appinventor blocks to initialise variables to store text, numbers, colors etc. In C++ the type of a variable must be specified when declaring it. This is beacuse C++ has different variable types for storing different types of data (int for storing integers (whole numbers), bool for storing boolean values, string for storing text). The syntax for declaring a variable in C++ is: <code>variable_type variable_name;</code>. Examples are shown below:</p>
+                                <p class= "instruction-item">In the four week challenge you used appinventor blocks to initialise variables to store text, numbers, colors etc. You will also be using variables when programming in C++ to store data. However, working with varaibles is done a little differently in C++.</p>
+                            </div>
+                        </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">C++ has different variable types for storing different types of data (int for storing integers (whole numbers), bool for storing boolean values, string for storing text). The data type of a variable must be stated when declaring it to specify the type of data that the variable can store. Examples of variable declaration in C++ are shown below:</p>
                                 <pre>
-                                <code>int length; // a variable named int is declared for storing whole numbers
-                                    string name; // a variable named name is declared for storing text data
-                                    float speed; // a variable named speed is declared for storing very large numbers or numbers with decimals
+                                <code>int length; // an integer variable named length is declared for storing whole numbers
+                                    string name; // a string variable named name is declared for storing text data
+                                    float speed; // a float variable named speed is declared for storing floating point - decimal numbers
+                                    bool check; // a boolean variable named check that can only take the values 'true' and 'false'
                             </code></pre>
                             Note:
                             <ul>
                                 <li>There are similarities and differences in the syntax of C# and C++, try to be concious about which langauge you are using at any given time so as to avoid making mistakes.</li>
-                                <li>Concepts (e.g. looping and selection) however,are universal across all programming langauges. Therefore you can apply programming concepts to any language that supports it simply by using the language's syntax which can found in its documentation.</li>
+                                <li>Concepts (e.g. looping and selection) however,are universal across all programming langauges. Therefore you can apply a programming concept to any language that supports it simply by using the language's syntax which can found in its documentation.</li>
                             </ul>
                             <em> 
                          </em> 
@@ -123,22 +129,44 @@
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">While using the TL-Engine you will be using standard C++ variable types as well as variables declared with custom types. For example:</p>
-                                <pre><code>I3DEngine* myEngine; // I3Dengine is a TL-Engine specific type for storing instances of a 3D engine
+                                <p class= "instruction-item">You can assign a value to a variable. Assignment is done using the equals symbol and can be done when or after declaring a variable.</p>
+                                <pre><code>int number = 10; // number is assigned a value of 10 when declared
+                                    
+                                        bool check;   //check is first declared
+                                        check = true; // then check is assigned a value of true
+                            </code></pre>
+                            Note: Assignment is not equals!
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">The contents of a variable can be changed.</p>
+                                <pre><code>int i = 4;
+                                        i++; // i now has a value of 5, the ++ operatore increments a the value of a variable by 1
+
+                                        bool check = true;
+                                        check = false; // the value of check is changed to false
+
+                                        string name;
+                                        name = "Alex"; // the value of check is Alex
+                                        name = "";    // the value of name is changed to an empty string
                             </code></pre>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">The type "I3DEngine" is not a C++ type; it is specific to the TL-Engine. Also note that it is being used with a “pointer” – the symbol ‘*’. You will be introduced to both custom types and pointers later in CO1401. For now just remember that ‘I3DEngine*’ is a type just like an int or a float, but specific to the TL-Engine.</p>
+                                <p class= "instruction-item">While using the TL-Engine you will be using standard C++ variable types as well as custom variable types. An example of a variable declaration using a custom type is shown below:</p>
+                                <pre><code>I3DEngine* myEngine; // I3Dengine is a TL-Engine specific type for storing instances of a 3D engine
+                            </code></pre>
+                            The type "I3DEngine" is not a C++ type; it is specific to the TL-Engine. Also note that it is being used with a “pointer” – the symbol ‘*’. You will be introduced to both custom types and pointers later in CO1401. For now just remember that ‘I3DEngine*’ is a type just like an int or a float, but specific to the TL-Engine.
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item">The TL-Engine has many “functions” that you can use. A function is a block of program code that performs a particular calculation or task. You can use a built-in C++ function in your own code when you want to perform a calculation or task – it saves you from writing the code yourself. There are some C++ functions that you may have seen already:</p>
                             <pre>
-                                <code>float squareRoot = sqrt(16); // sqrt is a standard C++ function to calculate the square root of a number
-                                system( “pause” ); // system is a function that issues a special system command to the computer
+                                <code>float squareRoot = sqrt(16); // sqrt() is a standard C++ function to calculate the square root of a number
+                                system( “pause” ); // system() is a function that issues a special system command to the computer
                             </code></pre>
                         </div>
                     </li>
@@ -195,7 +223,7 @@
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Before going into what the template code does and how we can add code to it to create games, let us first briefly discuss the basic program structure of games.
+                            <p class= "instruction-item">Before going into what the template code does and how we can add code to it to make it more interesting, let us first briefly discuss the basic program structure of games.
                            </p>
                        </div>
                     </li>
@@ -209,9 +237,9 @@
                              <p class= "instruction-item">The game code structure has three sections to help setup, run and terminate games properly. These sections are <em>initialisation</em>, <em>game loop</em>, and <em>termination.</em>
                              </p>
                             <ul><br/>
-                                <li>Initialisation: everything that is needed to get the game going is setup in this section. This usally includes loading resources (e.g. models, sounds and images) needed for the game, initialising game engine variables and initialising game object variables (e.g. player name and player score).</li><br/>
-                                <li>The game loop: the code in the game loop section takes over once initialisation is complete. Just as the name implies, code in this section executes in an endless loop (until told to stop). Without the game loop, a game will start and end in a flash. In each iteration of the game loop, the game checks for the player's input (e.g. whether the right button is pressed), does some calculations (e.g. calculate the avatar's new position after moving one step to the right), outputs the resulting changes to the screen (e.g. displays the avatar in its new position), and starts a new iteration (if game is not over). The game loop's ability to perform several of its iterations every second and display static images called <em>frames</em> creates the animation seen playing games. Objects change position very slightly from frame to frame but the viewer does not perceive the separate images, and instead sees an animation scene.</li><br/>
-                                <li>Termination: this section executes when the game loop ends and the game is to be terminated. All the game's resources that are taking up precious computer memory must be properly released to the reclaim that memory. Code executed in this section cleans up after the game, and releases resources. For example, memomry allocated for models, images and sounds need to be released by the end of the game</li>
+                                <li>Initialisation: everything that is needed to get the game going is setup in this section. This usally includes loading resources (e.g. models, sounds and images) needed for the game, initialising game engine variables and initialising game object variables (e.g. player name and player score). This section is also called into action when a game is reinitisalised during a restart.</li><br/>
+                                <li>The game loop: the code in the game loop section takes over once initialisation is complete. Just as the name implies, code in this section executes in an endless loop (until told to stop). Without the game loop, a game will start and end in a flash. In each iteration of the game loop, the game checks for the player's input (e.g. whether the right button is pressed), does some calculations (e.g. calculate the avatar's new position after moving one step to the right), outputs the resulting changes to the screen (e.g. displays the avatar in its new position), and starts a new iteration (if game is not over). The game loop's ability to perform several of its iterations every second and display static images called <em>frames</em> creates the animation seen when playing games. Objects change position very slightly from frame to frame but the viewer does not perceive the separate images, and instead sees an animation scene.</li><br/>
+                                <li>Termination: this section executes when the game loop ends and the game is to be terminated. All the game's resources that are taking up precious computer memory must be properly released to reclaim that memory. Code executed in this section cleans up after the game, and releases resources by, for example, releasing memory allocated for models, images and sounds loaded in initialisation.</li>
                             </ul>
                         </div>
                     </li>
@@ -222,21 +250,21 @@
                            <pre><code class="plaintext">#include < game engine libraries >
                                         Start game engine
 
-                                        //game setup section begins
-                                        Load game objects from disk
-                                        Set initial positions for game objects
-                                        //game setup section ends
+                                        //initialisation 
+                                        Load game objects from disk             
+                                        Set initial positions for game objects 
 
-                                        //game loop section begins
-                                        while (game is playing)
+                                        //game loop 
+                                        while (game is playing)                 
                                         {
                                             Draw the game scene on screen
                                             Move/Animate game objects
-                                        }
-                                        //game loop section ends
+                                        }                                       
                                         
-                                        Stop game engine
-                                        End program
+                                        //termination
+                                        Release resources                       
+                                        Stop game engine                        
+                                        End program                             
                         </code></pre>
                        </div>
                     </li>
@@ -249,13 +277,13 @@
                 <ol>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">Now let us have a detailed look at the TL-Engine template code and see how it provides the basic game code structure, similar to that disscussed in the previous section. Make sure have the file with the extension ".cpp" opened in your project</p>
+                                <p class= "instruction-item">Now let us have a detailed look at the TL-Engine template code and see how it provides the basic game code structure, similar to that disscussed in the previous section. Make sure you have the file with the extension ".cpp" opened in your project</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
                                 <p class= "instruction-item">The first line in the file contains a comment, followed by the inclusion of the TL-Engine file which contains all the information needed to use the engine. Following the include statement is a "using namespace" statement: all of the TL-Engine is “hidden” inside a ‘namespace’ so it does not get mixed up with standard C++ or other libraries. This statement says that we want to expose the contents of the namespace so we can use its contents easily. These opening lines must begin all programs using the TL-Engine, you do not need to understand their detail, just make sure they are there.</p>
-                                <pre><code>// First Project.cpp: A program using the TL-Engine
+                                <pre><code>// Lab1.cpp: A program using the TL-Engine
                                         #include  < TL-Engine.h > // TL-Engine include file and namespace
                                         using namespace tle;
                                 </code></pre>
@@ -272,7 +300,7 @@
                     <li >
                         <div class="list-div">
                              <p class= "instruction-item">
-                                    The main function begins with the initialisation section, which has the code provided below:
+                                    The main function begins with the initialisation section, which has the code and comments provided below:
                             </p>                                
                              <pre><code>// Create a 3D engine (using TLX engine here) and open a window for it
                                 I3DEngine* myEngine = New3DEngine( kTLX );
@@ -283,9 +311,9 @@
                             
                                 /**** Set up your scene here ****/
                             </code></pre>
-                            <p>In the code above, a variable called ‘myEngine’ is declared and its type is an ‘I3DEngine*’. All you need to know now is that the variable ‘myEngine’ will be your interface to the TL-Engine - you will use the TL-Engine's features “through” this variable.</p>
+                            <p>In the code above, a variable called ‘myEngine’ is declared and its type is an ‘I3DEngine*’. All you need to know now is that the variable ‘myEngine’ will be your interface to the TL-Engine, meaning you will use the TL-Engine's features “through” this variable.</p>
                             <br/>
-                            <p>After declaring the ‘myEngine’ variable, it is initialised by using a function/method:‘New3DEngine(kTLX)’. In plain English that means “I want to use a 3D engine of the TLX variety, and I will call it myEngine”</p>
+                            <p>After declaring the ‘myEngine’ variable, it is initialised by using a function/method: ‘New3DEngine(kTLX)’. In plain English that means “I want to use a 3D engine of the TLX variety, and I will call it myEngine”.</p>
                             <br/>
                             <p>The next line is the first use of this new engine we have prepared. See how we use "myEngine->StartWindowed()" to say, “I want myEngine to start up in a window”.</p>
                             <br/>
@@ -360,10 +388,10 @@
                             <pre><code>cubeMesh = myEngine->LoadMesh( "Cube.x" );
                                     cube = cubeMesh->CreateModel();
                             </code></pre>
-                            The first line here uses the 3D engine (myEngine) to load a file into our declared mesh variable (cubeMesh). Notice how we need to go ‘through’ the variable ‘myEngine’ again using "->". Think about this as asking myEngine to perform a service for us (loading a mesh) - the 3D engine must do this job, as it needs to keep track of all new meshes. So in English, the code is saying:
-                            “Use myEngine to load a mesh called 'cube.x' and put it in the variable ‘cubeMesh’ ”
+                            The first line here uses the 3D engine (myEngine) to load a file and put it into our declared mesh variable (cubeMesh). Notice how we need to go ‘through’ the variable ‘myEngine’ again using "->". Think about this as asking myEngine to perform a service for us (loading a mesh) - the 3D engine must do this job, as it needs to keep track of all new meshes. So in English, the code is saying:
+                            “Use myEngine to load a mesh called 'cube.x' and put it in the variable ‘cubeMesh’ ”.
                             <br/><br/>
-                            Then the mesh is used as a blueprint to create a real model in the scene. Note that the syntax is similar to what we used to load the mesh using the 3D engine, but this time the mesh is used to create a model. In English, the code is saying: “Use the cubeMesh blueprint to create a model in the scene and put it in the variable ‘cube’ ”</p>
+                            In the second line, the mesh is used as a blueprint to create a model. Note that the syntax is similar to what we used to load the mesh using the 3D engine, but this time the mesh is used to create a model. In English, the code is saying: “Use the cubeMesh blueprint to create a model in the scene and put it in the variable ‘cube’ ”.</p>
                             <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
                             <div class="hint-div">
                                 <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/b391d722-64c1-42b3-8034-ef9fabeee2ba?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe>
@@ -376,7 +404,7 @@
                             <pre><code>ICamera* myCamera;
                                     myCamera = myEngine->CreateCamera( kFPS );
                             </code></pre>
-                            The first line declares a variable named 'myCamera' that will be used hold a camera. The second line of code uses a similar syntax similar to what we have used when loading a mesh and creating a model. In English the code is saying: “Use myEngine to create a camera of type FPS and assign it to the variable myCamera”. FPS is a "first person shooter" camera that can be moved around with the mouse and cursor keys.</p>
+                            The first line declares a variable named 'myCamera' that will be used hold a camera. The second line of code uses a similar syntax similar to what we have used when loading a mesh and creating a model. In English the code is saying: “Use myEngine to create a camera of type FPS and put it in the variable myCamera”. FPS is a "first person shooter" camera that can be moved around with the mouse and cursor keys.</p>
                             <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
                             <div class="hint-div">
                                     <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/f55f2ade-72df-44f7-8f9e-b0ffc9f7caaa?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div></div>
@@ -408,7 +436,7 @@
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Any changes or updates on game objects while the game is executing are performed in the game loop.
+                                Any changes or updates on game objects while the game is executing need to be performed in the game loop.
                             </p>
                         </div>
                     </li>
@@ -423,7 +451,7 @@
                 <ol>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Here is a list of mesh filenames that can be loaded with the ‘LoadMesh’ function that we added above:
+                            <p class= "instruction-item">Here is a list of mesh filenames that can be loaded with the ‘LoadMesh’ function that we used in 5.3 (section 5, task 3).
                                 <ul>
                                     <li>“Cube.x”</li>
                                     <li>"Torus.x”</li>
@@ -435,7 +463,29 @@
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Update the code to display the ‘Torus.x’ mesh instead of ‘Cube.x’. Run the program.
+                            <p class= "instruction-item">Our existing code can be updated to display a sphere instead of a cube by changing the name of the loaded mesh in 5.3 from 'Cube.x' to 'Sphere.x'.
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Update the code to display the a torus using the ‘Torus.x’ mesh and run the program to make sure you have achived the desired result.
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">If we want to load more than one mesh at a time, we need to declare additional IMesh* variable(s) to put the new mesh in. We also need addional IModel* variable(s) for putting model(s) of the new mesh(es). Remember to use sensible and meaningful names when naming your variables.
                             </p>
                             <span class="hint-div">
                                 <a href="#">HINT</a>
@@ -462,10 +512,15 @@
                     <ol>
                         <li >
                             <div class="list-div">
+                                <p class= "instruction-item">Update the code of your program so that it only displays a cube.
+                                </p>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="list-div">
                                 <p class= "instruction-item">When using ‘CreateModel’ you can pass three values to set the initial position of the model, e.g.
                                 </p>
-                                <pre><code>
-                                        cube = cubeMesh->CreateModel( 10, 0, 20 );
+                                <pre><code>cube = cubeMesh->CreateModel( 10, 0, 20 );
                                 </code></pre>
                                 This positions the model using ‘Cartesian coordinates’, with x = 10, y = 0 and z = 20.
                             </div>
@@ -489,7 +544,10 @@
                         </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">Now update the ‘CreateModel’ call for the cube (not for the grid) to pass the values above (10, 0, 20) and run the program again. You will see that the cube is now positioned 10 along the X line and 20 along the Z line (each of these lines is called an ‘axis’, the plural is ‘axes’ – pronounced ‘ack-sees’).
+                                <p class= "instruction-item">Now update the ‘CreateModel’ call for the cube (not for the grid) to pass the values (10, 0, 20) and run the program again.
+                                <pre><code>cube = cubeMesh->CreateModel( 10, 0, 20 );
+                                </code></pre>
+                                You will see that the cube is now positioned 10 along the X line and 20 along the Z line (each of these lines is called an ‘axis’, the plural is ‘axes’ – pronounced ‘ack-sees’).
                                 </p>
                                 <span class="hint-div">
                                     <a href="#">HINT</a>
@@ -511,7 +569,7 @@
                         </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">See if you can stack two cubes on top of each other.
+                                <p class= "instruction-item">Add another cube to your program by declaring a new IModel* variable and putting a cube mesh model into it. Remember that you do not have to declare a new IMesh* variable and load a new cube mesh whenever you want to create an addional cube, you can create as many cube models as you want with the cube mesh you have loaded already (as long as you have the IModel* variables to put them in to).
                                 </p>
                                 <span class="hint-div">
                                     <a href="#">HINT</a>
@@ -522,7 +580,29 @@
                         </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">Now stack two cubes on a sphere.
+                                <p class= "instruction-item">See if you can stack the two cubes you have on top of each other.
+                                </p>
+                                <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                    <p class = "hint"></p>
+                                    <img  class = "hint" src =""/>
+                                </span>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">Add and display a sphere in your program.
+                                </p>
+                                <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                    <p class = "hint"></p>
+                                    <img  class = "hint" src =""/>
+                                </span>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">Now stack two cubes on the sphere.
                                 </p>
                                 <span class="hint-div">
                                     <a href="#">HINT</a>
@@ -544,19 +624,13 @@
                         <ol>
                             <li >
                                 <div class="list-div">
-                                    <p class= "instruction-item">In the Game Loop of the program, we can add code to update the scene. The main use for this is to move our models. If we move a model by a small amount inside the game loop, then it will move continuously as the loop repeats.
+                                    <p class= "instruction-item">Create and open a new TL-Engine project. 
                                     </p>
                                 </div>
                             </li>
                             <li >
                                 <div class="list-div">
-                                    <p class= "instruction-item">Create a new project using the TL-Engine wizard and repeating the steps from earlier. Save and start a new project each time you move to a new section
-                                    </p>
-                                </div>
-                            </li>
-                            <li >
-                                <div class="list-div">
-                                    <p class= "instruction-item">Write code to display a grid and a cube (copy some of your code from the previous project)
+                                    <p class= "instruction-item">Write code to load and display a grid and a cube (copy some of your code from the previous project).
                                     </p>
                                     <span class="hint-div">
                                         <a href="#">HINT</a>
@@ -567,10 +641,15 @@
                             </li>
                             <li >
                                 <div class="list-div">
+                                    <p class= "instruction-item">In the game loop of our program, we can add code to update the scene e.g. to move our models. If we move a model by a small amount inside the game loop, then it will move continuously as the loop repeats.
+                                    </p>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="list-div">
                                     <p class= "instruction-item">Add this line inside the game loop:
                                     </p>
-                                    <pre><code>
-                                        cube->RotateY( 0.05 );
+                                    <pre><code>cube->RotateY( 0.05 );
                                     </code></pre>
                                     This will make the cube rotate by a small amount each time the loop repeats. This effectively spins the cube. Notice the cube spins around its Y-axis as indicated by the name ‘RotateY’.
                                     <span class="hint-div">
@@ -584,8 +663,7 @@
                                 <div class="list-div">
                                     <p class= "instruction-item">Here is a list of some of the movement functions available for models. Note that the word ‘void’ on the left means that these functions don’t calculate a value, they just perform a task. The word ‘float’ in the brackets means you must pass a float value to these functions (the amount to move or rotate). The examples written as comments on the right show how these functions should appear in your code:
                                     </p>
-                                    <pre><code>
-                                            void RotateX( float ); // e.g. cube->RotateX( 0.05 );
+                                    <pre><code>void RotateX( float ); // e.g. cube->RotateX( 0.05 );
                                             void RotateY( float ); // e.g. sphere->RotateY( -0.1 );
                                             void RotateZ( float ); // e.g. torus->RotateZ( 0.3 );
                                             void MoveX( float ); // e.g. torus->MoveX( 0.1 );
@@ -636,18 +714,18 @@
                                 <div class="list-div">
                                     <p class= "instruction-item">There are more functions available for positioning and movement. Note that the Get functions calculate a float value (indicated by the word ‘float’ on the left), look carefully at the example usage:
                                     </p>
-                                    <pre><code>
-                                        // The Set functions allow you to set the X, Y or Z coordinates of a model to a
-                                        // given value
+                                    <pre><code>// The Set functions allow you to set the X, Y or Z coordinates of a model to a given value
                                         void SetX( float ); // e.g. cube1->SetX( -20 );
                                         void SetY( float ); // e.g. cube2->SetY( 10 );
-                                        void SetZ( float ); // etc.
-                                        // Set all axes at once (as CreateModel) e.g. myModel->SetPosition( 20, 0, 10 );
-                                        void SetPosition ( float X, float Y, float Z );
+                                        void SetZ( float ); // e.g. cube2->SetZ( 7.5 );
+
+                                        // Set all axes at once (as CreateModel) 
+                                        void SetPosition ( float X, float Y, float Z ); // e.g. myModel->SetPosition( 20, 0, 10 );
+
                                         // The Get functions return the current X, Y or Z position of a model
                                         float GetX(); // e.g. xpos = sphere->GetX();
                                         float GetY(); // e.g. if (sphere->GetY() > 10)
-                                        float GetZ(); // etc.
+                                        float GetZ(); // e.g. zpos = sphere->GetZ();
                                     </code></pre>
                                     Try to use the functions above to perform the tasks below
                                 </div>
