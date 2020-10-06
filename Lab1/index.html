@@ -465,11 +465,11 @@
                         <div class="list-div">
                             <p class= "instruction-item">Our existing code can be updated to display a sphere instead of a cube by changing the name of the loaded mesh in 5.3 from 'Cube.x' to 'Sphere.x'.
                             </p>
-                            <span class="hint-div">
-                                <a href="#">HINT</a>
-                                <p class = "hint"></p>
-                                <img  class = "hint" src =""/>
-                            </span>
+                            <br/>
+                            <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
+                            <div class="hint-div">
+                                    <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/2065dd30-0985-4dcd-b472-2bd86615d909?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                            </div>
                         </div>
                     </li>
                     <li >
@@ -485,18 +485,18 @@
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">If we want to load more than one mesh at a time, we need to declare additional IMesh* variable(s) to put the new mesh in. We also need addional IModel* variable(s) for putting model(s) of the new mesh(es). Remember to use sensible and meaningful names when naming your variables.
+                            <p class= "instruction-item">If we want to load more than one mesh at a time, we need to declare additional IMesh* variable(s) to put the new mesh in. The video hint below illustartes this by showing how a coin can be added and displayed in our existing scene. 
                             </p>
-                            <span class="hint-div">
-                                <a href="#">HINT</a>
-                                <p class = "hint"></p>
-                                <img  class = "hint" src =""/>
-                            </span>
+                            <br/>
+                            <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
+                            <div class="hint-div">
+                                    <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/6d80cbca-f40d-4373-b747-245501d048b3?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                            </div>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Now display both the ‘Cube.x’ and ‘Torus.x’. You will need to add new mesh and model variables (with sensible new names).
+                            <p class= "instruction-item">Now display both the ‘Cube.x’ and ‘Torus.x’ in your program. Remeber, you will need to add new mesh and model variables (with sensible new names).
                             </p>
                             <span class="hint-div">
                                 <a href="#">HINT</a>
@@ -512,17 +512,8 @@
                     <ol>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">Update the code of your program so that it only displays a cube.
+                                <p class= "instruction-item">All the models we have created so far have been created in the same position in the scene. We can choose to create our models at different positions by using "Cartesian cordinates" to specify exactly where in the scene we want a model to be created.
                                 </p>
-                            </div>
-                        </li>
-                        <li >
-                            <div class="list-div">
-                                <p class= "instruction-item">When using ‘CreateModel’ you can pass three values to set the initial position of the model, e.g.
-                                </p>
-                                <pre><code>cube = cubeMesh->CreateModel( 10, 0, 20 );
-                                </code></pre>
-                                This positions the model using ‘Cartesian coordinates’, with x = 10, y = 0 and z = 20.
                             </div>
                         </li>
                         <li >
@@ -533,7 +524,20 @@
                         </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">Update your solution to question 2 above to display ‘Grid.x’ and ‘Cube.x’. Run the program and you will see a cube placed in the centre of a grid showing ‘Cartesian coordinates’.
+                                <p class= "instruction-item">Save your project, then create and open a new TL-Engine project. 
+                                </p>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">Add code to load and display a grid using the “Grid.x” mesh. You can copy some of your code from the previous project. 
+                                </p>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">When you run your project a grid will be displayed. The grid has lines that are marked with numbers, and each line represents a Cartesian cordsinate axis. <br/><br/>The X axis runs horizontally from left (negative) to right (positive) of the grid; the Y axis runs vertically from down (negative) to up (positive), and  the Z axis goes from the screen (negative) into the scene (positive); these are the three axes (plural form of axis, pronounced ‘ack-sees’) of the Caretsian cordinate system. At the center of the model is the origin, it is marked with 0 because at this point the values of X, Y and Z are all 0. <br/><br/>The figure below shows the grid viewed from an elevated FPS camera:
+                                    <img src="grid.PNG" alt="A snapshot of a grid model showing all its axes"/>
                                 </p>
                                 <span class="hint-div">
                                     <a href="#">HINT</a>
@@ -544,10 +548,37 @@
                         </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">Now update the ‘CreateModel’ call for the cube (not for the grid) to pass the values (10, 0, 20) and run the program again.
+                                <p class= "instruction-item">Now add code to your project to display a cube so that your project displays both the grid and the cube. Run your project.
+                                </p>
+                                <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                    <p class = "hint"></p>
+                                    <img  class = "hint" src =""/>
+                                </span>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">You will notice that the cube is created at the center of the grid, where the 0 marking is i.e. where x = 0, y = 0, and z = 0. This is because whenever the CreateModel method is used to create a model without specifying the intial position of the model, it is created at the origin of the scene. <br/><br/>The figure below shows the position of the cube in the grid viewed from an elevated FPS camera:<br/>
+                                    <img src="grid1.PNG" alt="A snapshot of a grid model showing all its axes"/>
+                                </p>
+                                <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                    <p class = "hint"></p>
+                                    <img  class = "hint" src =""/>
+                                </span>
+                            </div>
+                        </li>
+                        
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">Now update your code by passing three values to set the initial position of the cube  as shown below:
+                                </p>
                                 <pre><code>cube = cubeMesh->CreateModel( 10, 0, 20 );
-                                </code></pre>
-                                You will see that the cube is now positioned 10 along the X line and 20 along the Z line (each of these lines is called an ‘axis’, the plural is ‘axes’ – pronounced ‘ack-sees’).
+                                    </code></pre>
+                                    This positions the model using ‘Cartesian coordinates’, with x = 10, y = 0 and z = 20. Run the project and see the new position of your cube.
+                                    <br/><br/>The figure below shows the position of the cube in the grid viewed from an elevated FPS camera:<br/>
+                                    <img src="grid2.PNG" alt="A snapshot of a grid model showing all its axes"/>
                                 </p>
                                 <span class="hint-div">
                                     <a href="#">HINT</a>
@@ -558,7 +589,7 @@
                         </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">Experiment with a few different x and z positions for cube. Then try altering the y position. Keep all the values less than 50.
+                                <p class= "instruction-item">Experiment with a few different x and z positions for the cube. Then try altering the y position. Keep all the values less than 50.
                                 </p>
                                 <span class="hint-div">
                                     <a href="#">HINT</a>
@@ -570,12 +601,11 @@
                         <li >
                             <div class="list-div">
                                 <p class= "instruction-item">Add another cube to your program by declaring a new IModel* variable and putting a cube mesh model into it. Remember that you do not have to declare a new IMesh* variable and load a new cube mesh whenever you want to create an addional cube, you can create as many cube models as you want with the cube mesh you have loaded already (as long as you have the IModel* variables to put them in to).
-                                </p>
-                                <span class="hint-div">
-                                    <a href="#">HINT</a>
-                                    <p class = "hint"></p>
-                                    <img  class = "hint" src =""/>
-                                </span>
+                                </p><br/>
+                                <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
+                                <div class="hint-div">
+                                        <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/ea0d858e-e4bd-4d1b-a99e-4ba5f35c7ca9?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                                </div>
                             </div>
                         </li>
                         <li >
@@ -651,12 +681,11 @@
                                     </p>
                                     <pre><code>cube->RotateY( 0.05 );
                                     </code></pre>
-                                    This will make the cube rotate by a small amount each time the loop repeats. This effectively spins the cube. Notice the cube spins around its Y-axis as indicated by the name ‘RotateY’.
-                                    <span class="hint-div">
-                                        <a href="#">HINT</a>
-                                        <p class = "hint"></p>
-                                        <img  class = "hint" src =""/>
-                                    </span>
+                                    This will make the cube rotate by a small amount each time the loop repeats. This effectively spins the cube. Notice the cube spins around its Y-axis as indicated by the name ‘RotateY’.<br/>
+                                    <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
+                                    <div class="hint-div">
+                                            <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/c20f29c1-4b8d-4bba-82e5-328a81cf3718?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                                    </div>
                                 </div>
                             </li>
                             <li >
