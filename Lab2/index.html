@@ -35,7 +35,7 @@
             </div>
         </section>
         <section>
-            <h2>2. Keyboard Input</h2>
+            <h2>2. Checking Input</h2>
             <div class="section_introduction">
             </div>
             <div class="section_instrcutions">
@@ -54,13 +54,13 @@
                                     </code></pre>
                             Note: The above code snippets show the method’s signatures – the return type of the method (bool in both cases), the method name (e.g. KeyHit), and the parameter type (EKeyCode). You should not copy the method signature into your program (otherwise the compiler will think you are trying to re-define the methods!).
 
-                            When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an “if” statement, and you must pass in a parameter of the required type. The example usage (in the green comments above) show this later use of the methods.
+                            When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an “if” statement, and you must pass in a parameter of the required type. The example usage (in the comments) showa how the methods are used.
                              </p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">You must supply a special key code to indicate which key (or button) you want to test (I used ‘Key_A’ and ‘Mouse_Lbutton’ in the examples). The full list of key codes can be found at <a href=" http://www.gamesnorthwest.net/resources/tl_engine/downloads.html" target="_blank">GamesNorthWest.net</a>, Under Documentation -> Appendix 2: Key Codes</p>
+                             <p class= "instruction-item">You must supply a special key code to indicate which key (or button) you want to test (I used ‘Key_A’ and ‘Mouse_Lbutton’ in the examples). The full list of key codes can be found at <a href=" http://www.gamesnorthwest.net/resources/tl_engine/downloads.html" target="_blank">the TL-Engine download page</a>, under Documentation -> Appendix 2: Key Codes</p>
                         </div>
                     </li>
                     <li >
@@ -90,12 +90,7 @@
                 <ol>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Selection is the ability to execute code only if some condition is met. Selection is choice.
-                            <ul>
-                                <li>A block of code may be executed (if the condition is true).</li>
-                                <li>A block of code may not be executed (if the condition is not true).</li>
-                            </ul>
-                           </p>
+                            <p class= "instruction-item">Selection is the ability to execute code only if some condition is met. E.g. execute a block of code if the condition is true, or not executed a block of code if the condition is not true.               </p>
                        </div>
                     </li>
                     <li>
@@ -111,26 +106,71 @@
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">The conditional is a programming statement. It is any statement which equates to either true or false. Any expression which equates to a number can also be used.
+                            <p class= "instruction-item">The conditional is a programming statement which equates to either true or false. Any expression which equates to a number can also be used.
                            </p>
                        </div>
+                    </li><li >
+                        <div class="list-div">
+                             <p class= "instruction-item">The following are examples of the use of the if" statement: 
+                                <pre><code>if ( a == b ) //if the firstVariable is equal to the secondVariable
+                                        {
+                                        // do something
+                                        }
+                                </code></pre>
+                                <pre><code>if ( a != b ) //if the firstVariable is not equal to the secondVariable
+                                        {
+                                        // do something
+                                        }
+                                </code></pre>
+                                <pre><code>if ( a < b ) //if the firstVariable is less than the secondVariable
+                                        {
+                                        // do something
+                                        }
+                                </code></pre>
+                                <pre><code>if ( a > b ) //if the firstVariable is greater than the secondVariable
+                                        {
+                                        // do something
+                                        }
+                                </code></pre>
+                                <pre><code>if ( myEngine->KeyHit( [KeyCode] )) //if the key with the provided keycode is hit
+                                        {
+                                            //do something
+                                        }
+                                </code></pre>
+                                <pre><code>if (!myEngine->KeyHeld( [KeyCode] )) //if the key with the provided keycode is NOT held (notice the use of !)
+                                        {
+                                            //do something
+                                        }
+                                </code></pre>
+                                <pre><code>if ( a + b < c) //if the sum of the firstVariable and secondVariable is less than the thirdVariable
+                                        {
+                                        // do something
+                                        }
+                                </code></pre>
+                                <pre><code>if ( a * b > 100) //if the product of the firstVariable and secondVariable is greater than 100
+                                    {
+                                    // do something
+                                    }
+                            </code></pre>
+                            </p>
+                        </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Note that a conditional statement does not execute a command. It is used to enable decision making in programs.<br/>
+                            <p class= "instruction-item">Note that a conditional statement does not execute a command, but used to make decisions about executing commands.<br/>
                            </p>
                        </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                            Try using the 'if' statement by typing the code below into the ‘scene update’ area:
+                            Try using the 'if' statement by typing the code below into the game loop section:
                             <pre><code class="plaintext">if ( myEngine->KeyHit( Key_Escape ))
                                     {
                                     myEngine->Stop();
                                     }
                             </code></pre>
-                            This code tests if the escape key has been pressed and quits the engine (and program) if it has. You may want to add this to all your projects so you don’t need to use ‘Alt+F4’.
+                            This code tests if the escape key has been pressed and quits the engine (and program) if it has. You may want to add this to all your projects so you don’t need to use ‘Alt+F4’. Run your program and test quiting by pressing the escape key.
                             </p>
                         </div>
                     </li>
@@ -147,9 +187,8 @@
                             <br>
                             Hints: 
                             <ul>
-                                <li></li>
-                                <li>You need to use an ‘if’ statement to check if the key is held</li>
-                                <li>key code for ‘D’ is ‘Key_D’.</li>
+                                <li>You need to use an ‘if’ statement to check if the key is held (key code for ‘D’ is ‘Key_D’).</li>
+                                <li>Then move the cube using the approproate moving method (introduced in Lab 1).</li>
                             </ul> 
                             </p>
                         </div>
@@ -215,59 +254,8 @@
                 </ol>
             </div>
         </section>
-    <section>
-        <h2>6. Testing Variables</h2>
-        <div class="section_instrcutions">
-            <ol>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">The following code means "if the firstVariable is equal to the secondVariable " then do the code that is inside the curly brackets.
-                                <pre><code>if ( a == b )
-                                        {
-                                        // do something
-                                        }
-                                </code></pre>
-                             </p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">The following code means "if the firstVariable is not equal to the secondVariable " then do the code that is inside the curly brackets.
-                                    <pre><code>if ( a != b )
-                                            {
-                                            // do something
-                                            }
-                                    </code></pre>
-                             </p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                                <p class= "instruction-item">The following code means "if the firstVariable is less than the secondVariable " then do the code that is inside the curly brackets.
-                                    <pre><code>if ( a < b )
-                                            {
-                                            // do something
-                                            }
-                                    </code></pre>
-                                </p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                                <p class= "instruction-item">The following code means "if the firstVariable is greater than the secondVariable " then do the code that is inside the curly brackets.
-                                    <pre><code>if ( a > b )
-                                            {
-                                            // do something
-                                            }
-                                    </code></pre>
-                                </p>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </section>
         <section>
-            <h2>7. Exercises - Working with Variables</h2>
+            <h2>5. Exercises - Working with Variables</h2>
             <div class="section_instrcutions">
                 <ol>
                     <li >
@@ -288,7 +276,7 @@
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Using the variable which you have just created move the cube to the right, use the ode below:
+                            <p class= "instruction-item">Using the variable which you have just created move the cube to the right, use the code below:
                             <pre><code>cube->MoveX( cubeSpeed );
                             </code></pre>
                         </div>
@@ -311,20 +299,22 @@
             </div>
         </section>
         <section>
-        <h2>8. Revisiting Exercises from Lab 1</h2>
+        <h2>6. Revisiting Exercises from Lab 1</h2>
             <div class="section_instrcutions">
                 <ol>
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item">Last week you were challenged to write the following that bounces a sphere left and right between X=-40 and X=40. If you haven’t completed this exercise from last week, do so now..<br/>
-                                Hints:
-                                <ul>
-                                    <li>You will need to use the properties of variables in order to implement this</li>
-                                    <li>Can you make the cube roll while it bounces?</li>
-                                </ul>
+                                Hint: the most elegant solution is to use a variable to determine the direction of movement.
                             </p>
                         </div>
                     </li>
+                    <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">Can you make the cube roll while it bounces?
+                                </p>
+                            </div>
+                        </li>
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item">Expand your program so you can use the keyboard in the following way
@@ -332,7 +322,11 @@
                                     <li>Whenever the ‘R’ key is pressed, the cube changes direction</li>
                                     <li>The ‘P’ key acts as a pause button for your “game”.</li>
                                 </ul>
-                            Hint: You will need a variable to implement the pause button.
+                            Hints:
+                            <ul>
+                                <li>You will need a variable to implement the pause button.</li>
+                                <li>You will need to use selection to to check the state of your variable</li>
+                            </ul> 
                             </p>
                         </div>
                     </li>
