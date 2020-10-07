@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../assets/highlight/styles/default.css">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 1 - Extra Activities</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br> Lab 1 - Extra Activities</h1></header>
+    <main>
+        <section>
+            <div class="section_instrcutions">
+                <h3>Further Positioning and Movement</h3>
+                <ol>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">There are more functions available for positioning and movement. Note that the Get functions calculate a float value (indicated by the word ‘float’ on the left), look carefully at the example usage:
+                            </p>
+                            <pre><code>// The Set functions allow you to set the X, Y or Z coordinates of a model to a given value
+                                void SetX( float ); // e.g. cube1->SetX( -20 );
+                                void SetY( float ); // e.g. cube2->SetY( 10 );
+                                void SetZ( float ); // e.g. cube2->SetZ( 7.5 );
+
+                                // Set all axes at once (as CreateModel) 
+                                void SetPosition ( float X, float Y, float Z ); // e.g. myModel->SetPosition( 20, 0, 10 );
+
+                                // The Get functions return the current X, Y or Z position of a model
+                                float GetX(); // e.g. xpos = sphere->GetX();
+                                float GetY(); // e.g. if (sphere->GetY() > 10)
+                                float GetZ(); // e.g. zpos = sphere->GetZ();
+                            </code></pre>
+                            Try to use the functions above to perform the tasks below
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Move a cube upwards until its Y reaches 30, then return it to its start position
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Bounce a sphere left and right between X=-40 and X=40
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Can you make the sphere roll while it bounces?
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            </section>
+            </main>
+            </body>
+            </html>

@@ -1,15 +1,10 @@
-
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
 
         body{
-            width: 60vw;
+            width: 80vw;
             margin: auto;
             font-family: 'Open Sans', sans-serif;
         }
-        .commentbox{
-            margin-bottom: 2em;
-        }
-
         .video_icon{
             max-width: 2em;
         }
@@ -19,10 +14,6 @@
         .link-div{
             width:100%;
             text-align: right;
-        }
-        img{
-            max-width: 100%;
-            max-height: 40vh;
         }
         .hint-div{
             display:none
@@ -44,5 +35,25 @@
 
         img{
             margin-top: 5px;
-            max-width: 50%;
+            max-width: 30%;
         }
+
+        @media only screen and (max-width: 900px) {
+            body {
+                width: 90vw;
+            }
+            img{
+                margin-top: 5px;
+                max-width: 50%;
+            }
+          }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                width: 98vw;
+            }
+            img{
+                margin-top: 5px;
+                max-width: 70%;
+            }
+          }

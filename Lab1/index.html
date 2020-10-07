@@ -5,57 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../assets/highlight/styles/default.css">
+    <link rel="stylesheet" href="../assets/style.css">
     <script src="../assets/highlight/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <title>Lab 1 - Introduction to TL-Engine</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
-
-        body{
-            width: 60vw;
-            margin: auto;
-            font-family: 'Open Sans', sans-serif;
-        }
-        .video_icon{
-            max-width: 2em;
-        }
-        h1,h2,h3,h4,h5,h6{
-            font-family: 'Roboto', sans-serif;
-        }
-        .link-div{
-            width:100%;
-            text-align: right;
-        }
-        img{
-            max-width: 100%;
-            max-height: 40vh;
-        }
-        .hint-div{
-            display:none
-        }
-        .hint-link, .instruction-item{
-            display: inline;
-        }
-        pre { font-family: monospace; }
-        pre, code{
-            white-space:pre-line;
-        }
-        p{
-            margin-bottom: 0px;
-            margin-top: 0px;
-        }
-        .list-div{
-            margin-bottom: 1em;
-        }
-
-        img{
-            margin-top: 5px;
-            max-width: 50%;
-        }
-    </style>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br> Worksheet 1 - Introduction to the TL-Engine</h1></header>
+    <header><h1>CO1301: Games Concepts <br> Lab 1 - Introduction to the TL-Engine</h1></header>
     <main>
         <section>
             <h2>1. Starting a new TL-Engine project</h2>
@@ -91,40 +47,28 @@
                 <ol>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">The TL-Engine (Teaching & Learning Engine) is a <b>C++</b> API and associated resources designed to provide a simple interface to powerful multimedia facilities. It is designed to allow programming students to create interesting multimedia applications using only simple code.</p>
+                                <p class= "instruction-item"><b>C++</b> is a programming language that gives programmers high level control over system resources and memory. It is is one of the world's most popular programming languages and the language used to build most big console and PC games.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item"><b>C++</b> is an object-oriented programming (OOP) language that gives programmers high level control over system resources and memory. C++ is one of the world's most popular programming languages and it is the language used to build most big console and PC games.</p>
+                                <p class= "instruction-item">C++ programming will be taught to you as part of another module. However, this module will use the TL-Engine to introduce you to the features and concepts of C++ that are standard in the games development industry.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">C++ programming will be taught to you as part of another module. However, this module will use the TL-Engine to introduce you to the features and concepts of C++ and OOP that are standard in the games development industry. It is important that you get used to these standards early.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                                <p class= "instruction-item">In the four week challenge you used appinventor blocks to initialise variables to store text, numbers, colors etc. You will also be using variables when programming in C++ to store data. However, working with varaibles is done a little differently in C++.</p>
+                                <p class= "instruction-item">In CO1111 you used appinventor blocks to initialise variables for storing text, numbers, colors etc. You will also be using variables when programming in C++. However, working with varaibles is done a little differently in C++.</p>
                             </div>
                         </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">C++ has different variable types for storing different types of data (int for storing integers (whole numbers), bool for storing boolean values, string for storing text). The data type of a variable must be stated when declaring it to specify the type of data that the variable can store. Examples of variable declaration in C++ are shown below:</p>
+                            <p class= "instruction-item">C++ has different variable types for storing different types of data (<b>int</b> for storing integers (whole numbers), <b>bool</b> for storing boolean values, <b>string</b> for storing text). The data type of a variable must be stated when declaring it to specify the type of data that the variable can store. Examples of variable declaration in C++ are shown below:</p>
                                 <pre>
                                 <code>int length; // an integer variable named length is declared for storing whole numbers
                                     string name; // a string variable named name is declared for storing text data
                                     float speed; // a float variable named speed is declared for storing floating point - decimal numbers
                                     bool check; // a boolean variable named check that can only take the values 'true' and 'false'
                             </code></pre>
-                            Note:
-                            <ul>
-                                <li>There are similarities and differences in the syntax of C# and C++, try to be concious about which langauge you are using at any given time so as to avoid making mistakes.</li>
-                                <li>Concepts (e.g. looping and selection) however,are universal across all programming langauges. Therefore you can apply a programming concept to any language that supports it simply by using the language's syntax which can found in its documentation.</li>
-                            </ul>
-                            <em> 
-                         </em> 
                         </div>
                     </li>
                     <li >
@@ -182,12 +126,7 @@
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">You will see functions like this in the TL-Engine. Some are passed values (sometimes several values), and some are not. Also some return results, although again, some don’t.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                                <p class= "instruction-item">The use of each function will be explained to you in the worksheets, with examples given. You will see functions shortly in CO1404 too.</p>
+                                <p class= "instruction-item">You will see functions like this in the TL-Engine. Some are passed values (sometimes several values), and some are not. Also some return results, although again, some don’t. The use of each function will be explained to you in the worksheets, with examples given.</p>
                         </div>
                     </li>
                     <li >
@@ -204,49 +143,21 @@
             </div>
         </section>
         <section>
-            <h2>3. Game Program Structure</h2>
+            <h2>3. The TL-Engine Template Code</h2>
             <div class="section_introduction">
             </div>
             <div class="section_instrcutions">
                 <ol>
                     <li>
-                            <div class="list-div">
-                                <p class= "instruction-item">
-                                    Open your created project in Visual Studio 2019 and open the file with the extension ".cpp" using Visual Studio's "Solution Explorer" to the right of the screen.
-                                </p>
-                            </div>
-                        </li>
-                    <li >
                         <div class="list-div">
-                             <p class= "instruction-item">You can see that the TL-Engine wizard provides you with a template source code, don’t delete it – it is useful!</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Before going into what the template code does and how we can add code to it to make it more interesting, let us first briefly discuss the basic program structure of games.
-                           </p>
-                       </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">The code of all games follows a general structure known as the "game code structure".</p>
+                            <p class= "instruction-item">
+                                Open your created project in Visual Studio 2019 and open the file with the extension ".cpp" using Visual Studio's "Solution Explorer" to the right of the screen. You can see that the TL-Engine wizard provides you with a template source code, don’t delete it – it is useful!</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">The game code structure has three sections to help setup, run and terminate games properly. These sections are <em>initialisation</em>, <em>game loop</em>, and <em>termination.</em>
+                             <p class= "instruction-item">The template follows a structure that is common to game programs known as the "game code structure". The structure provides sections to setup, run and terminate games properly. These sections are <em>initialisation</em>, <em>game loop</em>, and <em>termination</em>; they are also shown in the code snippet below.
                              </p>
-                            <ul><br/>
-                                <li>Initialisation: everything that is needed to get the game going is setup in this section. This usally includes loading resources (e.g. models, sounds and images) needed for the game, initialising game engine variables and initialising game object variables (e.g. player name and player score). This section is also called into action when a game is reinitisalised during a restart.</li><br/>
-                                <li>The game loop: the code in the game loop section takes over once initialisation is complete. Just as the name implies, code in this section executes in an endless loop (until told to stop). Without the game loop, a game will start and end in a flash. In each iteration of the game loop, the game checks for the player's input (e.g. whether the right button is pressed), does some calculations (e.g. calculate the avatar's new position after moving one step to the right), outputs the resulting changes to the screen (e.g. displays the avatar in its new position), and starts a new iteration (if game is not over). The game loop's ability to perform several of its iterations every second and display static images called <em>frames</em> creates the animation seen when playing games. Objects change position very slightly from frame to frame but the viewer does not perceive the separate images, and instead sees an animation scene.</li><br/>
-                                <li>Termination: this section executes when the game loop ends and the game is to be terminated. All the game's resources that are taking up precious computer memory must be properly released to reclaim that memory. Code executed in this section cleans up after the game, and releases resources by, for example, releasing memory allocated for models, images and sounds loaded in initialisation.</li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">The basic game code structure is shown below:
-                           </p>
                            <pre><code class="plaintext">#include < game engine libraries >
                                         Start game engine
 
@@ -268,21 +179,9 @@
                         </code></pre>
                        </div>
                     </li>
-                </ol>
-            </div>
-        </section>
-        <section>
-            <h2>4. The TL-Engine Template Code Walkthrough and Adding New Code</h2>
-            <div class="section_instrcutions">
-                <ol>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">Now let us have a detailed look at the TL-Engine template code and see how it provides the basic game code structure, similar to that disscussed in the previous section. Make sure you have the file with the extension ".cpp" opened in your project</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                                <p class= "instruction-item">The first line in the file contains a comment, followed by the inclusion of the TL-Engine file which contains all the information needed to use the engine. Following the include statement is a "using namespace" statement: all of the TL-Engine is “hidden” inside a ‘namespace’ so it does not get mixed up with standard C++ or other libraries. This statement says that we want to expose the contents of the namespace so we can use its contents easily. These opening lines must begin all programs using the TL-Engine, you do not need to understand their detail, just make sure they are there.</p>
+                                <p class= "instruction-item">Now let us go over our template code. The first line contains a comment, followed by the inclusion of the TL-Engine file which contains all the information needed to use the engine. Following the include statement is a "using namespace" statement: all of the TL-Engine is “hidden” inside a ‘namespace’ so it does not get mixed up with standard C++ or other libraries. This statement says that we want to expose the contents of the namespace so we can use its contents easily. These opening lines must begin all programs using the TL-Engine, you do not need to understand their detail, just make sure they are there.</p>
                                 <pre><code>// Lab1.cpp: A program using the TL-Engine
                                         #include  < TL-Engine.h > // TL-Engine include file and namespace
                                         using namespace tle;
@@ -300,7 +199,7 @@
                     <li >
                         <div class="list-div">
                              <p class= "instruction-item">
-                                    The main function begins with the initialisation section, which has the code and comments provided below:
+                                    The main function begins with the initialisation section. Everything that is needed to get the game going is setup in this section. This includes initialising variables and loading resources (e.g. models and sounds).
                             </p>                                
                              <pre><code>// Create a 3D engine (using TLX engine here) and open a window for it
                                 I3DEngine* myEngine = New3DEngine( kTLX );
@@ -322,7 +221,7 @@
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Next comes the game loop section of the template code.
+                            <p class= "instruction-item">Next comes the game loop section of the template code which executes in a loop until told to stop.</p>
                             <pre><code>	// The main game loop, repeat until engine is stopped
                                     while (myEngine->IsRunning())
                                     {
@@ -333,13 +232,12 @@
                                 
                                     }
                             </code></pre>
-                            This section contains a ‘while’ loop that repeats until the engine stops (generally, the engine only stops when its window is closed). Currently the only code inisde this loop is code that tells the 3D engine  declared in the initialisation stage (myEngine) to draw the scene.
-                            </p>
+                            Currently the only code inisde this game loop is code that tells the 3D engine declared in the initialisation stage (myEngine) to draw the scene. Code can be added to the game loop to check for player input and update game objects in each iteration. The game loop's ability to perform several iterations every second and display updated <em>frames</em> creates the animation seen when playing games.
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">The final section, the termination section is found after the game loop section. It contains a single line of code that deletes the 3D engine that you created at the beginning:
+                            <p class= "instruction-item"> The final section, the termination section cleans up after the game, and releases all the memory resources used by the game. It contains a single line of code that deletes the 3D engine that you created at the beginning:
                             <pre><code>	// Delete the 3D engine now we are finished with it
                                     myEngine->Delete();
                             </code></pre>
@@ -357,7 +255,7 @@
             </div>
         </section>
         <section>
-            <h2>5. TL-Engine Template – Adding your own code</h2>
+            <h2>4. Adding Your Own Code</h2>
             <div class="section_instrcutions">
                 <ol>
                     <li >
@@ -444,26 +342,27 @@
             </div>
         </section>
         <section>
-            <h2>8. Practice Exercises</h2>
+            <h2>5. Practice Exercises</h2>
             The sections that follow contain practice exercises on loading, positioning and movement; please attemp all these exercises. You should be able to complete the first three sections with little to no difficulty, however the last section may require some independent research on a concept (selection) that has not been covered in this lab. 
             <div class="section_instrcutions">
                 <h3>Loading</h3>
                 <ol>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Here is a list of mesh filenames that can be loaded with the ‘LoadMesh’ function that we used in 5.3 (section 5, task 3).
+                            <p class= "instruction-item">Here is a list of mesh filenames that can be loaded with the ‘LoadMesh’ function that we used in 4.3 (section 4, task 3).
                                 <ul>
                                     <li>“Cube.x”</li>
                                     <li>"Torus.x”</li>
                                     <li>“Sphere.x”</li>
                                     <li>“Grid.x”</li>
+                                    <li>“TwoPence.x”</li>
                                 </ul>
                             </p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Our existing code can be updated to display a sphere instead of a cube by changing the name of the loaded mesh in 5.3 from 'Cube.x' to 'Sphere.x'.
+                            <p class= "instruction-item">Our existing code can be updated to display a sphere instead of a cube by changing the name of the loaded mesh in 4.3 from 'Cube.x' to 'Sphere.x'.
                             </p>
                             <br/>
                             <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
@@ -536,7 +435,7 @@
                         </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">When you run your project a grid will be displayed. The grid has lines that are marked with numbers, and each line represents a Cartesian cordsinate axis. <br/><br/>The X axis runs horizontally from left (negative) to right (positive) of the grid; the Y axis runs vertically from down (negative) to up (positive), and  the Z axis goes from the screen (negative) into the scene (positive); these are the three axes (plural form of axis, pronounced ‘ack-sees’) of the Caretsian cordinate system. At the center of the model is the origin, it is marked with 0 because at this point the values of X, Y and Z are all 0. <br/><br/>The figure below shows the grid viewed from an elevated FPS camera:
+                                <p class= "instruction-item">When you run your project a grid will be displayed. The grid has lines that are marked with numbers, and each line represents a Cartesian cordsinate axis. <br/><br/>The X axis runs horizontally from left (negative) to right (positive) of the grid; the Y axis runs vertically from down (negative) to up (positive), and  the Z axis goes from the screen (negative) into the scene (positive); these are the three axes (plural form of axis, pronounced ‘ack-sees’) of the Caretsian cordinate system. At the center of the model is the origin, it is marked with 0 because at this point the values of X, Y and Z are all 0. <br/><br/>The figure below shows the grid viewed from an elevated FPS camera:<br/>
                                     <img src="grid.PNG" alt="A snapshot of a grid model showing all its axes"/>
                                 </p>
                                 <span class="hint-div">
@@ -560,7 +459,7 @@
                         <li >
                             <div class="list-div">
                                 <p class= "instruction-item">You will notice that the cube is created at the center of the grid, where the 0 marking is i.e. where x = 0, y = 0, and z = 0. This is because whenever the CreateModel method is used to create a model without specifying the intial position of the model, it is created at the origin of the scene. <br/><br/>The figure below shows the position of the cube in the grid viewed from an elevated FPS camera:<br/>
-                                    <img src="grid1.PNG" alt="A snapshot of a grid model showing all its axes"/>
+                                    <img src="grid1.PNG" alt="A snapshot of a grid model and a cube positioned at the origin"/>
                                 </p>
                                 <span class="hint-div">
                                     <a href="#">HINT</a>
@@ -578,7 +477,7 @@
                                     </code></pre>
                                     This positions the model using ‘Cartesian coordinates’, with x = 10, y = 0 and z = 20. Run the project and see the new position of your cube.
                                     <br/><br/>The figure below shows the position of the cube in the grid viewed from an elevated FPS camera:<br/>
-                                    <img src="grid2.PNG" alt="A snapshot of a grid model showing all its axes"/>
+                                    <img src="grid2.PNG" alt="A snapshot of a grid model and a cube positioned at (10,0,20)"/>
                                 </p>
                                 <span class="hint-div">
                                     <a href="#">HINT</a>
@@ -737,58 +636,14 @@
                         </ol>
                     </div>
                     <div class="section_instrcutions">
-                        <h3>Further Positioning and Movement</h3>
-                        <ol>
-                            <li >
-                                <div class="list-div">
-                                    <p class= "instruction-item">There are more functions available for positioning and movement. Note that the Get functions calculate a float value (indicated by the word ‘float’ on the left), look carefully at the example usage:
-                                    </p>
-                                    <pre><code>// The Set functions allow you to set the X, Y or Z coordinates of a model to a given value
-                                        void SetX( float ); // e.g. cube1->SetX( -20 );
-                                        void SetY( float ); // e.g. cube2->SetY( 10 );
-                                        void SetZ( float ); // e.g. cube2->SetZ( 7.5 );
+                        <h3>Extra Work? Anyone?</h3>
+                        <ul>
+                            <li>
+                                <a target="_blank" href="Extra.html">Are you done and looking for extra practice acitvities? Click me</a>
+                            </li>
+                        </ul>
+                        </div>
 
-                                        // Set all axes at once (as CreateModel) 
-                                        void SetPosition ( float X, float Y, float Z ); // e.g. myModel->SetPosition( 20, 0, 10 );
-
-                                        // The Get functions return the current X, Y or Z position of a model
-                                        float GetX(); // e.g. xpos = sphere->GetX();
-                                        float GetY(); // e.g. if (sphere->GetY() > 10)
-                                        float GetZ(); // e.g. zpos = sphere->GetZ();
-                                    </code></pre>
-                                    Try to use the functions above to perform the tasks below
-                                </div>
-                            </li>
-                            <li >
-                                <div class="list-div">
-                                    <p class= "instruction-item">Move a cube upwards until its Y reaches 30, then return it to its start position
-                                    </p>
-                                </div>
-                            </li>
-                            <li >
-                                <div class="list-div">
-                                    <p class= "instruction-item">Bounce a sphere left and right between X=-40 and X=40
-                                    </p>
-                                    <span class="hint-div">
-                                        <a href="#">HINT</a>
-                                        <p class = "hint"></p>
-                                        <img  class = "hint" src =""/>
-                                    </span>
-                                </div>
-                            </li>
-                            <li >
-                                <div class="list-div">
-                                    <p class= "instruction-item">Can you make the sphere roll while it bounces?
-                                    </p>
-                                    <span class="hint-div">
-                                        <a href="#">HINT</a>
-                                        <p class = "hint"></p>
-                                        <img  class = "hint" src =""/>
-                                    </span>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
         </section>
     </main>
     <script>
