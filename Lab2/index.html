@@ -11,7 +11,7 @@
     <title>Lab 2 - Input and Control</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br> Worksheet 2 - Input and Control</h1></header>
+    <header><h1>CO1301: Games Concepts <br> Lab 2 - Input and Control</h1></header>
     <main>
         <section>
             <h2>1. Introduction</h2>
@@ -54,13 +54,13 @@
                                     </code></pre>
                             Note: The above code snippets show the method’s signatures – the return type of the method (bool in both cases), the method name (e.g. KeyHit), and the parameter type (EKeyCode). You should not copy the method signature into your program (otherwise the compiler will think you are trying to re-define the methods!).
 
-                            When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an “if” statement, and you must pass in a parameter of the required type. The example usage (in the comments) showa how the methods are used.
+                            When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an “if” statement, and you must pass in a parameter of the required type. The examples provided as comments show how the methods are used.
                              </p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">You must supply a special key code to indicate which key (or button) you want to test (I used ‘Key_A’ and ‘Mouse_Lbutton’ in the examples). The full list of key codes can be found at <a href=" http://www.gamesnorthwest.net/resources/tl_engine/downloads.html" target="_blank">the TL-Engine download page</a>, under Documentation -> Appendix 2: Key Codes</p>
+                             <p class= "instruction-item">You must supply a special key code to indicate which key (or button) you want to test (‘Key_A’ and ‘Mouse_Lbutton’ were used in the examples above). The full list of key codes can be found at <a href=" http://www.gamesnorthwest.net/resources/tl_engine/downloads.html" target="_blank">the TL-Engine download page</a>, under Documentation -> Appendix 2: Key Codes</p>
                         </div>
                     </li>
                     <li >
@@ -183,14 +183,7 @@
                 <ol>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Add a cube to your scene and use the ‘KeyHeld’ method to move it right when you hold the ‘D’ key (i.e. move it along the X axis).
-                            <br>
-                            Hints: 
-                            <ul>
-                                <li>You need to use an ‘if’ statement to check if the key is held (key code for ‘D’ is ‘Key_D’).</li>
-                                <li>Then move the cube using the approproate moving method (introduced in Lab 1).</li>
-                            </ul> 
-                            </p>
+                             <p class= "instruction-item">Add a cube to your scene and use the ‘KeyHeld’ method to move it right when you hold the ‘D’ key (i.e. move it along the X axis). You need to use an ‘if’ statement to check if the key is held (key code for ‘D’ is ‘Key_D’). Then move the cube using the approproate moving method (introduced in Lab 1).
                         </div>
                     </li>
                     <li >
@@ -266,17 +259,12 @@
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Declare a variable of type float. The name of the variable should be cubeSpeed.</p>
+                            <p class= "instruction-item">Declare a variable of type float in the initialisation section (before the game loop) and name it cubeSpeed. Assign an appropriate value to cubeSpeed.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Assign an appropriate value to cubeSpeed. For this exercise you should declare and initialise the variable before the game loop (not inside it).</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                            <p class= "instruction-item">Using the variable which you have just created move the cube to the right, use the code below:
+                            <p class= "instruction-item"> Move the cube to the right using the variable you just created. Use the code below:
                             <pre><code>cube->MoveX( cubeSpeed );
                             </code></pre>
                         </div>
@@ -292,7 +280,7 @@
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item">Now get the cube to stop moving when it reaches 40 along the x axis, i.e. when GetX( ) returns a value of 40.<br/>
-                            Hint: You will have to use the if statement in order to implement the check.</p>
+                            Hint: You will have to declare a variable to store the value returned by GetX() and you will have to use the if statement to check it.</p>
                         </div>
                     </li>
                 </ol>
@@ -304,7 +292,7 @@
                 <ol>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Last week you were challenged to write the following that bounces a sphere left and right between X=-40 and X=40. If you haven’t completed this exercise from last week, do so now..<br/>
+                            <p class= "instruction-item">Last week you were challenged to write code that bounces a sphere left and right between X=-40 and X=40. If you haven’t completed this exercise from last week, do so now.<br/>
                                 Hint: the most elegant solution is to use a variable to determine the direction of movement.
                             </p>
                         </div>
