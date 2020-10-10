@@ -27,7 +27,14 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                It is useful for you to keep a copy of the code that you write. You can set up a working directory (folder) on your university cloud storage to contain your work.
+                                Create a new TL-Engine project named <b>Lab2_Controls_Project</b>, open the project
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Rememeber that it is useful for you to keep a copy of the code that you write. You can set up a working directory (folder) on your university cloud storage to contain your work.
                             </p>
                         </div>
                     </li>
@@ -164,7 +171,30 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                            Try using the 'if' statement by typing the code below into the game loop section:
+                            Now add and display a cube in your scene (you should be able to do this without looking at lab 1 section 5), then try using the 'if' statement by typing the code below into the game loop section:
+                            <pre><code>if ( myEngine->KeyHeld( Key_MouseRButton ))
+                                    {
+                                        cube->MoveX( 0.05 );
+                                    }
+                                    else if ( myEngine->KeyHeld( Key_MouseLButton ))
+                                    {
+                                        cube->MoveX -0.05 );
+                                    }
+                            </code></pre>
+                            This code tests if the right mouse button is held and moves the cube right, else if the left mouse button is held it moves the cube left. Run your project to test this out.<br/><br/>
+                            If you don't want to see a blank scene, make sure you create a camera too.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">Change the code you added in the previous task to use the ‘KeyHit’ method instead of 'KeyHeld' to move the cube - can you see the difference? Now change it back to 'KeyHeld'.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                            Add another 'if' statement by typing the code below into the game loop section:
                             <pre><code class="plaintext">if ( myEngine->KeyHit( Key_Escape ))
                                     {
                                     myEngine->Stop();
@@ -183,27 +213,17 @@
                 <ol>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Add a cube to your scene and use the ‘KeyHeld’ method to move it right when you hold the ‘D’ key (i.e. move it along the X axis). You need to use an ‘if’ statement to check if the key is held (key code for ‘D’ is ‘Key_D’). Then move the cube using the approproate moving method (introduced in Lab 1).
+                             <p class= "instruction-item">Change the code you added in the last section for moving your cube to move the cube right when you hold the ‘D’ key (instead of the right mouse button) and move left when the key ‘A’ is held (instead of the left mouse button).
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Try using the ‘KeyHit’ method instead to move the cube - can you see the difference? Now change it back.</p>
+                             <p class= "instruction-item">Now add code to move the cube forwards and backward (Z axis) with the keys ‘W’ and ‘S’.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Next, make the cube move left when the key ‘A’ is held.
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">Now move the cube forwards and backward (Z axis) with the keys ‘W’ and ‘S’.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">Finally, move the cube up and down (Y axis) with ‘Q’ and ‘E’.</p>
+                             <p class= "instruction-item">Finally, add code to move the cube up and down (Y axis) with ‘Q’ and ‘E’.</p>
                         </div>
                     </li>
                     <li >
@@ -213,7 +233,12 @@
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Add a new “Grid.x” mesh to your scene and change the cube model from “Cube.x” to “Arrow.x”.</p>
+                             <p class= "instruction-item">Now add a new “Grid.x” mesh and display a grid in your scene.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Change your code to load “Arrow.x” instead of “Cube.x” into the cubeMesh variable. Your should now be able to see and control and arrow when you run your program.</p>
                         </div>
                     </li>
                     <li >
@@ -244,6 +269,11 @@
                                 <p class= "instruction-item">Change all the ‘Move’ methods from the previous exercises to ‘MoveLocal’ methods. Now experiment with rotation and movement together. Can you see the difference?</p>
                         </div>
                     </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">Save your project, make sure it is stored where you can access it as you will need it in the next lab.</p>
+                        </div>
+                    </li>
                 </ol>
             </div>
         </section>
@@ -253,7 +283,7 @@
                 <ol>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Load the cube mesh and then create a cube model.
+                            <p class= "instruction-item">Create a new TL-Engine project named <b>Lab2_TestingVariables_Project</b>. Load the cube mesh and then create a cube model.
                             </p>
                         </div>
                     </li>
@@ -322,36 +352,6 @@
             </div>
         </section>
     </main>
-    <script>
-divs = document.querySelectorAll(".list-div")
-console.log(divs)
-        divs.forEach(element=>{
-            let hint, link
-            let hintB = false;
-            let linkB = false;
-            element.childNodes.forEach(node=>{
-                if(node.className=="hint-link"){
-                    link = node;
-                    linkB = true
-                }
-                else if(node.className=="hint-div"){
-                    hint = node
-                    hintB = true
-                }
-            })
-            if(hintB === true && linkB === true){
-                link.addEventListener('click', function(e){
-                    e.preventDefault();
-                if(hint.style.display != "block"){
-                    hint.style.display = "block"
-                }
-                else{
-                    hint.style.display = "none"
-                }
-            });
-            }
-            }
-        )
-    </script>
+    <script src="../assets/script.js"></script>
 </body>
 </html>

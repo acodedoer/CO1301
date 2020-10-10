@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../assets/highlight/styles/default.css">
     <link rel="stylesheet" href="../assets/style.css">
     <script src="../assets/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <title>Lab 3 - Cameras and Control</title>
 </head>
 <body>
@@ -18,22 +19,22 @@
                 <ol>
                     <li>
                         <div class="list-div">
-                                <span><p class= "instruction-item">
-                                    In the previous two weeks we introduced the TL-Engine and used it to manipulate some simple 3D graphics. In this session you will create your own camera controls.
-                               </p></span>
+                                <p class= "instruction-item">
+                                    In the previous two weeks we introduced the TL-Engine and used it to manipulate some simple 3D graphics. We have also used a FPS camera which is controlled using the cursor keys and the mouse.
+                               </p>
                            </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You have used a FPS camera. The FPS camera uses the cursor keys and the mouse. It would be better if you could set up the camera controls according to your own preferences.At the same time we can set up the camera so that movement and rotation speed can be adjusted so that they suit the machine you are working.
+                                It would be better if you could set up the camera controls, speed and rotation based on your own preferences and the machine you are working on. Therefore in this session you will create your own camera controls.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You will need to keep the code that you write. For example, you will be expected to re-use the camera control code you write today for use in later weeks. You need to take a backup of your code.
+                                Remember you will need to keep the code that you write. For example, you will be expected to re-use the camera control code you write today for use in later weeks. Therefore, as always, make sure you save copies of your code and projects in secure accessible locations.
                             </p>
                         </div>
                     </li>
@@ -41,22 +42,66 @@
             </div>
         </section>
         <section>
-            <h2>2. Using the 'if' statement</h2>
-            <div class="section_introduction">
-            </div>
-            <div class="section_instrcutions">
+            <h2>2. Texture Manipulation</h2>
+            <div class="section_instrcutions"></div>
                 <ol>
-                    <li >
+                    <li>
                         <div class="list-div">
-                             <p class= "instruction-item">Last week you used the "if" statement. One of the exercises using "if" was to add the Escape key as a way of exiting from your program. Refresh your memory about this by tyoing the code belwo in the 'scene update' area:
-                                    <pre><code class="plaintext">if ( myEngine->KeyHit( Key_Escape ))
-                                        {
-                                        myEngine->Stop();
-                                        }
-                                    </code></pre>
-                            This tests if the escape key has been pressed and quits the engine (and program) if it has.
-                            You may want to add this to all your projects so you don’t need to use ‘Alt-F4’.
-                             </p>
+                                <p class= "instruction-item">Create a new porject named <b>Lab3_TextureManipulation_Project</b>. Open the project.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">It is possible to change the skin on a model (the image that is drawn on the geometry). To do so, you will need to use this method on the model:
+                                <pre><code>void SetSkin( const string& sFileName );
+                                        // Example usage: sphere->SetSkin( "Marine2.jpg" );
+                                        //only works for models that use a single texture.
+                                </code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The TL-Engine sets a default location for all of its media files. This location is set in the initialisation section as part of the template code generated by the <TL_Engine class="">                                <pre><code>myEngine->AddMediaFolder( "D:\\..." );
+                                    </code></pre></TL_Engine>
+                                The path provided as a paramter to the function above is the location of the media files. This will be on drive D in the games lab and probably C on your home computer. If you look inside the directory you can examine the media files installed with TL-Engine.<br/><br/>
+
+                                Here are some examples of textures designed to be used with the sphere:
+                                <ul>
+                                    <li>Clouds.jpg</li>
+                                    <li>EarthHi.jpg</li>
+                                    <li>EarthNight.jpg</li>
+                                    <li>EarthPlain.jpg</li>
+                                    <li>Jupiter.jpg</li>
+                                    <li>Mars.jpg</li>
+                                    <li>Saturn.jpg</li>
+                                    <li>Pluto.jpg</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add and display a sphere in your scene, then change its skin to Jupiter.jpg using:
+                                <pre><code>sphere->SetSkin( "Jupiter.jpg" );
+                                </code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add code to move the sphere left and right between X = -40 and X = 40. Make the sphere roll while it moves and change the texture of the sphere every time that it changes direction. Use textures of your choice.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Save your project.
+                            </p>
                         </div>
                     </li>
                 </ol>
@@ -64,27 +109,36 @@
         </section>
         <section>
             <div>
-                <h2>3. Mouse Input</h2>
+                <h2>3. Mouse Control</h2>
                 <ol>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">The 3D engine can provide the position and movement of the mouse cursor. The mouse cursor uses the X and Y axes of the screen, which are different than the axes in the 3D engine. The screen axes look like this:</p>
+                                <p class= "instruction-item">Last week, we used 'if' statements to check whether mouse buttons are held or pressed.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">To get mouse information from the engine use these methods:                           <pre><code class="plaintext">// Returns the X position of the mouse (horizontal position relative to
+                             <p class= "instruction-item">The 3D engine can also provide the position and movement of the mouse cursor using the X and Y axes of the screen, which are different than the axes in the 3D engine. The screen axes look like the image below:</p><br/>
+                             <img src="2D-Grid.PNG" alt="An image showing a 2 dimensional grid with the origin at the top left corner">
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">To get mouse information from the engine use these methods:                           <pre><code>// Returns the X position of the mouse (horizontal position relative to
                                 // the top-left of the 3D engine window).
                                 int GetMouseX();
+
                                 // Returns the Y position of the mouse (vertical position relative to
                                 // the top-left of the 3D engine window).
                                 int GetMouseY();
+
                                 // Returns the X mouse movement since the last call to this function
                                 int GetMouseMovementX();
+
                                 // Returns the Y mouse movement since the last call to this function
                                 int GetMouseMovementY();
                             </code></pre>
-                            The first two methods return the X and Y position of the mouse cursor in the engine window. This can be used for clicking on buttons or icons - we won’t be using thesemethods right now.
+                            The first two methods return the X and Y position of the mouse cursor in the engine window. This can be used for clicking on buttons or icons - we won’t be using these methods right now.
                             <br><br>
                             The second two methods tell you how much the mouse has been moved in the X and Y directions (since the last time you asked). This is a common way to control the rotation of 3D objects.
                             </p>
@@ -99,19 +153,25 @@
                 <ol>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">We want to use the mouse input in our program now, but the FPS camera is using the mouse - so change the camera type from ‘kFPS’ to ‘kManual’. <br/>
+                            <p class= "instruction-item">Open last week's lab project, <b>Lab2_Controls_Project</b>, so that we can add code to handle mouse input for control.
+                           </p>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">We want to use the mouse input in <b>Lab2_Controls_Project</b>, but the FPS camera is using the mouse - so change the camera type from ‘kFPS’ to ‘kManual’. <br/>
                             Note: This means we can’t move the camera any more, so remove the “Grid.x” mesh again so we can see better.
                            </p>
                        </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Remove the lines to rotate the arrow in your program including the lines to test if the keys ‘Z’ and ‘X’ are pressed. Replace them with two lines similar to these (but use your own model name):
+                            <p class= "instruction-item">Remove the lines of code that rotate the arrow in your program including the lines to test if the keys ‘Z’ and ‘X’ are pressed. Replace them with two lines similar to these (but use your own model name):
                            </p>
                            <pre><code>int mouseMoveX = myEngine->GetMouseMovementX();
                                 arrow->RotateY( mouseMoveX * 0.1 ); // the 0.1 reduces the rotation speed
                         </code></pre>
-                        This line is should not be inside an ‘if’ statement – it should always be executed.
+                        This code should not be inside an ‘if’ statement – it should always be executed.
                        </div>
                     </li>
                     <li>
@@ -128,13 +188,13 @@
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Now add a line to control the arrow’s X rotation with the mouse Y movement.
+                            <p class= "instruction-item">Now add a line fo code to control the arrow’s X rotation with the mouse Y movement.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">We now have complete control over the arrow using the mouse and keys. Save your project and start a new one.
+                            <p class= "instruction-item">We now have complete control over the arrow using the mouse and keys. Save your project.
                             </p>
                         </div>
                     </li>
@@ -143,28 +203,28 @@
         </section>
         <section>
             <div class="section_instrcutions">
-                <h2>4. Exercises - Camerawork</h2>
+                <h2>5. Exercises - Camera Control</h2>
                 <ol>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">In a new project create a simple scene with models of your own choice. Set the camera type to ‘kManual’ again - you can position, move and rotate a manual camera using exactly the same methods as you have used with models.
+                                <p class= "instruction-item">Create a new TL_Engine project named <b>Lab3_CameraControl_Project</b>
                             </p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">First, set up a value to control the speed of the camera. Declare a constant called "kCameraSpeed" at the top of your code and initialise it to a suitable value. For example:
-                            <pre><code>float kCameraSpeed = 0.001f;
-                                </code></pre>
-                             </p>
+                             <p class= "instruction-item">Create and display models of your own choice. Set the camera type to ‘kManual’ again - you can position, move and rotate a manual camera using exactly the same methods as you have used with models.
+                            </p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">This constant will be used to control the camera speed in all of the directions of movement. Constants are declared outside the main function. Declare it at the top of your program just under the statement:
-                            <pre><code>using namespace tle;
-                                </code></pre></p>
-
+                             <p class= "instruction-item">First, set up a value to control the speed of the camera. Declare a constant called "kCameraSpeed" outside the main function just under the statement:
+                                    <pre><code>using namespace tle;
+                                        </code></pre>Initialise "kCameraSpeed" to a suitable value, for example:
+                            <pre><code>float kCameraSpeed = 0.001f;
+                                </code></pre>
+                             Constants are declared outside the main function.</p>
                         </div>
                     </li>
                     <li >
@@ -174,7 +234,7 @@
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Now set up a constant called "kCameraRotation" and initialise it to a suitable value.</p>
+                             <p class= "instruction-item">Now set up another constant called "kCameraRotation" and initialise it to a suitable value.</p>
                         </div>
                     </li>
                     <li >
@@ -199,7 +259,7 @@
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Add this line in the ‘scene set up’ area:
+                             <p class= "instruction-item">Add this line in the initialisation section within the 'int main' function:
                              <pre><code>myEngine->StartMouseCapture();
                             </code></pre></p>
                             This will switch off the mouse cursor and send all mouse information to the engine. You can restore the mouse with:
@@ -209,19 +269,20 @@
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">Create a toggle button to switch between using a captured mouse (cursor invisible) and using a non-captured mouse (cursor is visible). I would suggest using the TAB key.</p>
+                                <p class= "instruction-item">Create a toggle button to switch between using a captured mouse (cursor invisible) and using a non-captured mouse (cursor is visible). I would suggest using the TAB key.</p><br/>
+                                <p>Hint: You will need to use an 'if' statement to check for the appropriate key press inside the game loop.</p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">You need to reuse the camera setup in later program you write. The two constants which have declared mean that the code is flexible. You can use it in the Games Lab, in the University labs or at home and merely adjust the constants to suit the speed of the computer you are working on.</p>
+                                <p class= "instruction-item">You will need to reuse the camera setup in later programs you write. The two constants which have declared mean that the code is flexible. You can use it in the Games Lab, in the University labs or at home and merely adjust the constants to suit the speed of the computer you are working on.</p>
                         </div>
                     </li>
                 </ol>
             </div>
         </section>
         <section>
-            <h2>5. Exercises- Advanced</h2>
+            <h2>6. Exercises- Advanced</h2>
             <div class="section_instrcutions">
                 <ol>
                     <li >
@@ -234,36 +295,6 @@
             </div>
     </section>
     </main>
-    <script>
-divs = document.querySelectorAll(".list-div")
-console.log(divs)
-        divs.forEach(element=>{
-            let hint, link
-            let hintB = false;
-            let linkB = false;
-            element.childNodes.forEach(node=>{
-                if(node.className=="hint-link"){
-                    link = node;
-                    linkB = true
-                }
-                else if(node.className=="hint-div"){
-                    hint = node
-                    hintB = true
-                }
-            })
-            if(hintB === true && linkB === true){
-                link.addEventListener('click', function(e){
-                    e.preventDefault();
-                if(hint.style.display != "block"){
-                    hint.style.display = "block"
-                }
-                else{
-                    hint.style.display = "none"
-                }
-            });
-            }
-            }
-        )
-    </script>
+    <script src="../assets/script.js"></script>
 </body>
 </html>

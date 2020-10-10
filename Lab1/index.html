@@ -14,27 +14,52 @@
     <header><h1>CO1301: Games Concepts <br> Lab 1 - Introduction to the TL-Engine</h1></header>
     <main>
         <section>
-            <h2>1. Starting a new TL-Engine project</h2>
+                <h2>1. Introduction</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                        <li>
+                            <div class="list-div">
+                                    <p class= "instruction-item">This lab worksheet will help you write your first TL-Engine program. If you have previous preogramming experience, you should find it straightforward at first. However, there will be advanced questions later on.
+                                    </p>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">There's a lot of reading in this lab sheet as we introduce concepts and tools for the first time. Later lab sheets will tend to be shorter, with more work for you to do!
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Finally, it is important that you <b>name the projects you create in each lab with the names suggested in the lab's sheet, and save them in a secure and accessible location (e.g. your UCLan provided cloud storage or Github)</b>. Refrences will be made to projects form previous labs as we progress through the module and it is important that your are able to identify them easily.
+                                </p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+        <section>
+            <h2>2. Starting a new TL-Engine project</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
-                                <span><p class= "instruction-item">
-                                    Follow the instructions provided in the <a href="">Getting Started</a> worksheet to set up the TL-Engine and create your first TL-Engine project.
-                               </p></span>
+                                <p class= "instruction-item">
+                                    Start by creating a TL-Engine project for Visual Studio 2019. This project should be named <b>Lab1_Introduction_Project</b>
+                                </p>
+                            </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    See the instructions provided in <a href="">Getting Started</a> for how to create a TL-Engine project.
+                               </p>
                            </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                If you have already completed the <a href="">Getting Started</a> worksheet, create a new TL-Engine project and open it in Visual Studio 2019.
-                            </p>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Make sure that the project you have created and all others you will create for your labs are properly named and saved in a secure and accessible location.
+                               Open the project in Visual Studio 2019.
                             </p>
                         </div>
                     </li>
@@ -43,7 +68,7 @@
         </section>
         <section>
             <div class="section_instrcutions">
-                <h2>2. Using C++ Syntax</h2>
+                <h2>3. Using C++ Syntax</h2>
                 <ol>
                     <li >
                         <div class="list-div">
@@ -143,7 +168,7 @@
             </div>
         </section>
         <section>
-            <h2>3. The TL-Engine Template Code</h2>
+            <h2>4. The TL-Engine Template Code</h2>
             <div class="section_introduction">
             </div>
             <div class="section_instrcutions">
@@ -182,7 +207,7 @@
                     <li >
                         <div class="list-div">
                                 <p class= "instruction-item">Now let us go over our template code. The first line contains a comment, followed by the inclusion of the TL-Engine file which contains all the information needed to use the engine. Following the include statement is a "using namespace" statement: all of the TL-Engine is “hidden” inside a ‘namespace’ so it does not get mixed up with standard C++ or other libraries. This statement says that we want to expose the contents of the namespace so we can use its contents easily. These opening lines must begin all programs using the TL-Engine, you do not need to understand their detail, just make sure they are there.</p>
-                                <pre><code>// Lab1.cpp: A program using the TL-Engine
+                                <pre><code>// Lab 1 - Introduction.cpp: A program using the TL-Engine
                                         #include  < TL-Engine.h > // TL-Engine include file and namespace
                                         using namespace tle;
                                 </code></pre>
@@ -255,7 +280,7 @@
             </div>
         </section>
         <section>
-            <h2>4. Adding Your Own Code</h2>
+            <h2>5. Adding Your Own Code</h2>
             <div class="section_instrcutions">
                 <ol>
                     <li >
@@ -342,7 +367,7 @@
             </div>
         </section>
         <section>
-            <h2>5. Practice Exercises</h2>
+            <h2>6. Practice Exercises</h2>
             The sections that follow contain practice exercises on loading, positioning and movement; please attemp all these exercises. You should be able to complete the first three sections with little to no difficulty, however the last section may require some independent research on a concept (selection) that has not been covered in this lab. 
             <div class="section_instrcutions">
                 <h3>Loading</h3>
@@ -553,7 +578,7 @@
                         <ol>
                             <li >
                                 <div class="list-div">
-                                    <p class= "instruction-item">Create and open a new TL-Engine project. 
+                                    <p class= "instruction-item">Create a new TL-Engine project and name it <b>Lab1_Movement_Project</b>. Open the project.
                                     </p>
                                 </div>
                             </li>
@@ -670,36 +695,6 @@
 
         </section>
     </main>
-    <script>
-divs = document.querySelectorAll(".list-div")
-console.log(divs)
-        divs.forEach(element=>{
-            let hint, link
-            let hintB = false;
-            let linkB = false;
-            element.childNodes.forEach(node=>{
-                if(node.className=="hint-link"){
-                    link = node;
-                    linkB = true
-                }
-                else if(node.className=="hint-div"){
-                    hint = node
-                    hintB = true
-                }
-            })
-            if(hintB === true && linkB === true){
-                link.addEventListener('click', function(e){
-                    e.preventDefault();
-                if(hint.style.display != "block"){
-                    hint.style.display = "block"
-                }
-                else{
-                    hint.style.display = "none"
-                }
-            });
-            }
-            }
-        )
-    </script>
+    <script src="../assets/script.js"></script>
 </body>
 </html>
