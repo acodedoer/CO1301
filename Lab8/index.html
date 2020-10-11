@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../assets/highlight/styles/default.css">
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 8 - Collision Detection</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br>Lab 8 - Collision Detection</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In games, we often need to detect when two models have collided. In this session you will see how to detect collisions using some simple mathematics.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In the real world a collision occurs when two moving objects meet. However, in a game world, a collision is often detected only when the models intersect.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Models are replaced with mathematically simple shapes that are big enough to completely surround them. These shapes are called bounding volumes because they define a boundary for the space occupied by the model. Common bounding volumes are spheres and cuboids. Bounding volumes are tested accurately for intersection against each other. 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This method will correctly find real collisions, but it will also incorrectly find collisions when the models are only close to each other. This issuecannot be elimniated, however it can be minimised by making the bounding sphere as small as possible.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Despite this drawback, this solution can be of great use. Where collision accuracy is not important and computational speed is important, then this is an excellent method. It is also very often used as an initial test in a more complex collision scheme: if a bounding sphere collision check fails then we can guarantee there is no collision and don’t need to spend time on a more accurate, complex test. 
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               Different algorithms are used to detect collisions between bounding volumes depending on the types of volumes involved. In this lab, We will examine four cases:
+                                <ul>
+                                    <li>Point – Sphere collisions</li>
+                                    <li>Sphere – Sphere collisions</li>
+                                    <li>Point – Box collisions</li>
+                                    <li>Sphere – Box collisions</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li> 
+                </ol>
+            </section>
+            <section>
+                <h2>2. Point - Sphere Collision</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                When testing for a collision between two models, sometimes it is possible to use a bounding volume for one model but only the position for the other. Effectively we are using a point as the bounding volume for the second model - this can be appropriate when the model is small. In this case we simply need to test if the point is within the sphere:
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                    The collision will occur only if the distance between the point and the sphere centre is less than the sphere radius. We can find this distance using the vector methods from our previous work. The vector V between the point and the sphere centre is:V(X2 – X1, Y2 – Y1, Z2 – Z1)
+
+                                    And the length D of this vector is:
+                                    
+                                        D =  
+                                    If D is less than the sphere radius R then we have a collision. The code for this algorithm would look something like this:
+                                    <pre><code>float x, y, z;
+                                            x = SmallModel->GetX() - LargeModel->GetX();	// Using the large model’s
+                                            y = SmallModel->GetY() - LargeModel->GetY();	// position as its
+                                            z = SmallModel->GetZ() - LargeModel->GetZ();	// bounding sphere centre
+                                        
+                                            float collisionDist = sqrt( x*x + y*y + z*z );	// need #include <math.h>
+                                        
+                                            if (collisionDist < sphereRadius)
+                                            {
+                                                // Collision occurred…
+                                            }
+                                        </code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Get the sample TL-Engine code from collisions.cpp. Create a new TL-Engine project and then copy the text from "collisons.cpp" into the freshly created soruce code file. It is a very simple program allowing you to move a sphere around.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add a “Bullet” model at (40, 10, 40) – it is small, so we will assume it is a point.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add code to check for collision between bullet (point) and the sphere. (The sphere radius here is 10 – in this case the bounding volume is exactly the right shape)      
+                            </p>
+                        </div>
+                    </li>                   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                If a collision occurs, set the bullet’s Y position to 25.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add some code to set the bullet’s Y position back to 10 if you press a key.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now test if your collision works – see how accurate it is.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>3. Sphere - Sphere Collision</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This case is easily understood with a diagram:
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The process is similar to the point-sphere case:
+                                <ul>
+                                    <li>Calculate the vector between the two sphere centres (model positions)</li>
+                                    <li>Get the length of this vector (the distance between the models)</li>
+                                    <li>If this distance is less than the sum of the sphere radiuses then there is a collision</li>
+                                </ul>  
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now update your program by adding  a “Torus” model at (-40, 10, 40).
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add code to check for collision between the sphere and torus. Use a bounding sphere with radius of 15 for the torus.
+                            </p>
+                        </div>
+                    </li>      
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Again make the torus jump up if there is a collision and make it come down on a keypress.
+                            </p>
+                        </div>
+                    </li>     
+                </ol>
+            </section>
+            <section>
+                <h2>4. Point – Box Collision</h2>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The process here is also fairly simple: there is a collision if the X, Y and Z coordinates of the point all lie within the three axis ranges defined by the bounding box. I.e. collision if:
+
+                                X > XMin && X < XMax &&
+                                Y > YMin && Y < YMax &&
+                                Z > ZMin && Z < ZMax
+
+                                (Z axis not shown)
+
+                                There is no collision in this example because X < XMin.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Start a new program (save the old one for reference later)
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Start with the week 12 sample again but change the sphere model to a “Bullet”
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add a “Box” model at (40, 10, 40).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Define a bounding box by declaring six float constants: cubeMinX, cubeMaxX, cubeMinY etc
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The box’s dimensions are 10x10x10, its centre point (model origin) is in the centre of the bottom face and you placed it at (40, 10, 40). Use this information to set the initial values for the bounding box variables you have just created (the bounding box should be perfectly accurate for this case). 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add code to check for collision between the bullet and box.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Again make the box jump if there is a collision.
+                            </p>
+                        </div>
+                    </li>     
+                </ol>
+            </section>
+            <section>
+                <h2>5. Sphere – Box Collision</h2>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                So far the algorithms have been fairly simple. However, true collisions between spheres and boxes are rather more complex. We will use a trick to simplify things:
+                    <ul>
+                        <li>Expand the bounding box outwards by the sphere’s radius, i.e. XMin becomes XMin – Radius, XMax becomes XMax + Radius etc.</li>
+                        <li>Shrink the sphere’s radius down to 0, i.e. assume it is a point.</li>
+                        <li>Now we simply have the point-box collision situation again, and we can use the formula above.</li>
+                        <li>•	This method won’t be accurate around the corners of the box, but using approximations like this is perfectly appropriate in some situations.
+                        </li>
+                    </ul>
+                    </p>
+                    </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In your program, change the bullet model back to a “Sphere” again.</p>
+                            </div>
+                            </li>
+                            <li>
+                                <div class="list-div">
+                                    <p class= "instruction-item">Update you collision code to manage a sphere – box collision, (sphere radius = 10).</p>
+                                </div>
+                                </li>
+                                <li>
+                                    <div class="list-div">
+                                        <p class= "instruction-item">
+                                    Make the cube jump on a collision. Can you spot the inaccuracies with this trick.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>6. Advanced Exercise - Collision Detection</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now create float variables to store X and Z velocity of the sphere, initialised to 0.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Change the keyboard controls so that they don’t move the sphere, but increase or decrease the velocity variables instead.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You will need to reduce the movement speeds used in your program. You may want to set maximum speeds also.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Make the sphere move by the stored velocity every frame (regardless of key presses). Remove the cube jump.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now when you detect a collision against the box try to make the sphere bounce. You will need to work out which side you hit (front/back or left/right) and then negate the appropriate velocity variable.
+                                <br/><br/>
+                                Hint: try to find which box edge (MaxX, MinX…) is nearest to the sphere position        
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+    </main>
+    <script src="../assets/script.js"></script>
+</body>
+</html>

@@ -127,147 +127,152 @@
                             </p>
                         </div>
                     </li>
+                </ol>
+            </section>
+            <section>
+                <h2>4. Calculating the Distance Between Two Points</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                A vector of movement ( 0,  -0.005, 0  ) means that the particle is advancing by:
-                                <ul>
-                                    <li>a value of 0 along the x axis</li>
-                                    <li>a value of -0.005 along the y axis</li>
-                                    <li>a value of 0 along the z axis</li>
-                                </ul>
+                                The distance between two points is the length of the vector between the two points. The length of the vector is given by:
                             </p>
                         </div>
-                    </li>  
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Use simple multiplication to derive the square of the values:
+                                <pre><code>distanceX = vectorX * vectorX; // distanceX squared</code></pre>
+                            Sum the squares of the components and then square root the result. There is a function within C++ to calculate square roots. Add the following two lines of code to the top of your program.
+                            <pre><code>#include <complex>
+                                    using namespace std;
+                                    </code></pre>
+                            This will give you access to the C++ maths library. The sqrt() function takes just one parameter
+                            <pre><code>float distance;
+                                    distance = sqrt( distance ); // the square root of distance
+                            </code></pre>
+                            Calculate the distance between the turret and the matchbox (the length of the vector). Use these variables for the calculation distance, distanceX, distanceY and distanceZ.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>5. The Direction Vector</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare three floating point variables: vectorX, vectorY and vectorZ. Set the value of vectorX to 0, the value of vectorY to 0.005 and the value of vectorZ to 0. The variables should be created outside the game loop.
+                                You have derived the vector between the turret and the car.  You have also calculated the length of the vector. In order to use these values to move the bullet towards the car you are going to have to calculate the direction vector.
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Change the MoveY() command in your code so that you are now moving the particle model by vectorY.
+                                The direction vector is independent of the distance between two points. For example, it allows you to move a model in a particular direction disregarding the speed of the movement. The vector between the two positions is
+                                V(X, Y, Z)
+                        The length of this vector is
+                                L
+                        The direction vector is
+                                VDir = (X/L, Y/L, Z/L)
+                                <pre><code>float distance = distanceX + distanceY + distanceZ;
+                                        distance = sqrt( distance ); // the square root of distance
+                                
+                                        float directionX = vectorX / distance;
+                                        float directionY = vectorY / distance;
+		                                float directionZ = vectorZ / distance;
+                                </code></pre>
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add a MoveX() command so that you are moving the particle model by vectorX.
+                                Calculate the direction vector from the turret to the matchbox. Create three new float variables to perform this calculation: directionX, directionY and directionZ. Do not use reuse the variables from previous steps.
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add a MoveZ() command so that you are moving the particle model by vectorZ.
+                                Check that you are dividing the vector by the distance and not, for example,  distanceX by distance.
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Compile and run your program. Your particle should be dropping down the screen as before.
+                                After the calculations from the previous step, use an ‘if’ statement to test:
+                                    (a)	If the distance between the turret and the matchbox is less than 250…
+                                    (b)	… and the shoot variable is equal to –1
+                                    
+                                    If both these conditions are true then:
+                                    •	Create a bullet model using the bullet model variable. Create it in the same position as the turret. Note that you are creating the model inside the game loop.
+                                    •	Initialise the bullet direction vector variables using directionX, directionY and directionZ from above.
+                                    •	Set the shoot variable to 500 – this will be the life-time of the bullet.
+                                    
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                A vector of movement (  -0.005,  -0.005, 0  ) would look something like this:
+                                Now add another ‘if’ statement to test if the ‘shoot’ variable is greater than 0. If so:
+                                Move the bullet model by the bullet direction vector. (The bullets move fast, so you may need to scale the move downwards).
+                                <pre><code>bullet->MoveX( directionX );
+                                        bullet->MoveY( directionY );
+                                        bullet->MoveZ( directionZ );
+                                </code></pre>      
                             </p>
                         </div>
                     </li>                   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Change the value of vectorX so that now the vector (  -0.005,  -0.005, 0  ) is being applied to the particle and then run the program.
+                                Decrement the shoot variable by 1 – the bullet life decreases as it travels.
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now change the vector to (  -0.002,  -0.004, 0  ).
+                                Add a final ‘if’ statement that tests if the ‘shoot’ variable is equal to 0. If so destroy the bullet model. You need a statement like:
+                                <pre><code>bulletMesh->RemoveModel( bullet );</code></pre>
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Experiment with some other values.
+                                Set the shoot variable to –1 as there is no bullet now
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                As you can see, one of the immediate advantages of using a vector is that you don't have to change any code within the game loop. All you have to consider is the direction of movement and set up the appropriate vector. This is how all movement within a graphics engine is dealt with. All models within 3D graphics are moved using vectors.
+                                You should now have a turret that tracks your matchbox car and shoots at it when it comes near. Read the code you have written paying special attention to the logic that is used to create and destroy the bullets.
                             </p>
                         </div>
                     </li>        
                 </ol>
         </section>
         <section>
-            <h2>3. Practice Exercises - Game State</h2>
+            <h2>5. Practice Exercise - COntinued Vectors</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Vectors can be combined together. This is one reason why they are so useful a tool within graphics. Imagine that there is a wind blowing across the screen from right to left. The particle is falling down but at the same time it is being pushed by the wind. This can be represented using a second vector
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Set the movement vector of the particle to (  0,  -0.005, 0  ). The particle should now be dropping slowly down the screen when you run the program.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Create a new vector for the wind. Declare three floating point variables: windX, windY and windZ. Set this new wind vector to (  -0.005,  0,  0  ).
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Within the game loop add a new MoveY() command in your code so that the particle also moves by windY each frame.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Do the same with an extra MoveX() for windX and a MoveZ() for windZ.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Run the program. As you can see the particle is falling diagonally. The net effect of applying the wind vector is as if you had one vector of value (  -0.005,  -0.005, 0  ).
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                 Vectors can be added together. Two vectors added together produce one new vector. When two vectors are added together you sum the x values of the two vectors, then the y values and finally the z values. So
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                You can verify this by experimenting with the values of the movement vector of the particle and the wind vector. You will explore vectors in a more detail in next week's worksheet.
+                                If you complete the tasks, extend your program by either:
+                                <ul>
+                                    <li>Test if the bullets have hit the car (using vector distances).</li>
+                                    <li>Having the turret shoot more than one bullet at a time.</li>
+                                    <li>Adding more turrets.</li>
+                                </ul>         
                             </p>
                         </div>
                     </li>
