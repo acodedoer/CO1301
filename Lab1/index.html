@@ -13,7 +13,7 @@
 <body>
     <main>
         <section>
-                <h2>1. Introduction</h2>
+                <h2>1. Introduction to Lab 1</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                         <li>
@@ -183,7 +183,7 @@ myEngine->DrawScene(); // DrawScene is a function ("method") of myEngine </code>
                              <p class= "instruction-item">The template follows a structure that is common to game programs known as the "game code structure". The structure provides sections to setup, run and terminate games properly. These sections are <em>initialisation</em>, <em>game loop</em>, and <em>termination</em>; they are also shown in the code snippet below.
                              </p>
                              
-<pre><code class="plaintext">#include < game engine libraries >
+<pre><code>#include < game engine libraries >
 Start game engine
 
 //initialisation 
@@ -250,14 +250,13 @@ myEngine->AddMediaFolder( "C:\\ProgramData\\TL-Engine\\Media" );
                         <div class="list-div">
                             <p class= "instruction-item">Next comes the game loop section of the template code which executes in a loop until told to stop.</p>
 
-<pre><code>	// The main game loop, repeat until engine is stopped
+<pre><code>// The main game loop, repeat until engine is stopped
 while (myEngine->IsRunning())
 {
     // Draw the scene
     myEngine->DrawScene();
 
     /**** Update your scene each frame here ****/
-
 }</code></pre>
 
                             Currently the only code inisde this game loop is code that tells the 3D engine declared in the initialisation stage (myEngine) to draw the scene. Code can be added to the game loop to check for player input and update game objects in each iteration. The game loop's ability to perform several iterations every second and display updated <em>frames</em> creates the animation seen when playing games.
@@ -267,7 +266,7 @@ while (myEngine->IsRunning())
                         <div class="list-div">
                             <p class= "instruction-item"> The final section, the termination section cleans up after the game, and releases all the memory resources used by the game. It contains a single line of code that deletes the 3D engine that you created at the beginning:
 
-<pre><code>	// Delete the 3D engine now we are finished with it
+<pre><code>// Delete the 3D engine now we are finished with it
 myEngine->Delete();</code></pre>
 
                             If we don't do this then the resources used by the 3D engine will remain in the computer's memory after the program is finished, but no other program will be able to access them. This is called a memory leak - it will affect the performance of the computer, so this line is important.
