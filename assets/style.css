@@ -5,6 +5,11 @@
             margin: auto;
             font-family: 'Open Sans', sans-serif;
         }
+
+        section{
+            margin-bottom: 2em;
+        }
+
         .video_icon{
             max-width: 2em;
         }
