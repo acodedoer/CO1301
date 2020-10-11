@@ -21,10 +21,6 @@
         .hint-link, .instruction-item{
             display: inline;
         }
-        pre { font-family: monospace; }
-        pre, code{
-            white-space:pre-line;
-        }
         p{
             margin-bottom: 0px;
             margin-top: 0px;
