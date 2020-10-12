@@ -12,39 +12,19 @@
 </head>
 <body>
     <main>
+            In this exercise you will be creating two structures "The Pyramid" and "The Giant". The purpose of this exercise is to provide you with practice on creating and positioning models using cartesian cordinates.
         <section>
             <div class="section_instrcutions">
-                <h3>Further Positioning and Movement</h3>
+                <h2>The Giant</h2>
                 <ol>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">There are more functions available for positioning and movement. Note that the Get functions calculate a float value (indicated by the word ‘float’ on the left), look carefully at the example usage:
+                            <p class= "instruction-item">Create a new TL-Engine project and name it <b>Lab1_Giant_Project</b>.
                             </p>
-                            <pre><code>// The Set functions allow you to set the X, Y or Z coordinates of a model to a given value
-                                void SetX( float ); // e.g. cube1->SetX( -20 );
-                                void SetY( float ); // e.g. cube2->SetY( 10 );
-                                void SetZ( float ); // e.g. cube2->SetZ( 7.5 );
-
-                                // Set all axes at once (as CreateModel) 
-                                void SetPosition ( float X, float Y, float Z ); // e.g. myModel->SetPosition( 20, 0, 10 );
-
-                                // The Get functions return the current X, Y or Z position of a model
-                                float GetX(); // e.g. xpos = sphere->GetX();
-                                float GetY(); // e.g. if (sphere->GetY() > 10)
-                                float GetZ(); // e.g. zpos = sphere->GetZ();
-                            </code></pre>
-                            Try to use the functions above to perform the tasks below
-                        </div>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Move a cube upwards until its Y reaches 30, then return it to its start position
-                            </p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                            <p class= "instruction-item">Bounce a sphere left and right between X=-40 and X=40
+                            <p class= "instruction-item">Add a FPS camera to your project and position it at ( 0, 0, -50 ).
                             </p>
                             <span class="hint-div">
                                 <a href="#">HINT</a>
@@ -55,7 +35,79 @@
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Can you make the sphere roll while it bounces?
+                            <p class= "instruction-item">Create an IMesh* variable and load a cube mesh ("Cube.x") into it.
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">In the lab we measured the length of the sides of the cube model using a grid. We found that it has sides of length 10. With that measurement, The Giant can be represented as a collection of cubes in a 2D grid (showing x and y axes).<br/>
+                                <img src="giant.png" alt="image of a giant stickman made of cubes">
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">You are to use the image provided above as a blueprint for creating The Giant.
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">From the image youd shoule be able, you can see that you need 16 cube models to create the structure. Therefore, declare 16 IModel* variables, name them appropriately (or you will, without doubt, confuse yourself), and create a model for each using the cube mesh.
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">The the Giant should stand at the origin, therefore, all the cubes that make it up should have 0 as their z-cordinate position.
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">However, each cube has a different x and y cordinate, and by looking at the 2D image of The Giant, you can easily identify the x and y coordinates for each cube by drawing a line form the center of each cube to the x and y axis. 
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">For example, the bottom left block is positioned at x = -10 and y = 5, therefore it should be created using CreateModel( -10, 5, 0 ); and the bottom right block is positioned at x = 10 and y = 5, therefore is should be created using CreateModel( 10, 5, 0 );
+                            </p>
+                            <span class="hint-div">
+                                <a href="#">HINT</a>
+                                <p class = "hint"></p>
+                                <img  class = "hint" src =""/>
+                            </span>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Now use the blueprint to figure out the position of all the cubes that make up The Giant, and write the code in your program to position them.
                             </p>
                             <span class="hint-div">
                                 <a href="#">HINT</a>
@@ -67,6 +119,117 @@
                 </ol>
             </div>
             </section>
+            <section>
+                    <div class="section_instrcutions">
+                        <h2>The Pyramid</h2>
+                        <ol>
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">Create a new TL-Engine project and name it <b>Lab1_Pyramid_Project</b>.
+                                    </p>
+                            </li>
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">Add a FPS camera to your project and position it at ( 0, 0, -50 ).
+                                    </p>
+                                    <span class="hint-div">
+                                        <a href="#">HINT</a>
+                                        <p class = "hint"></p>
+                                        <img  class = "hint" src =""/>
+                                    </span>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">Load a cube mesh ("Cube.x") and a sphere mesh ("Sphere.x").
+                                    </p>
+                                    <span class="hint-div">
+                                        <a href="#">HINT</a>
+                                        <p class = "hint"></p>
+                                        <img  class = "hint" src =""/>
+                                    </span>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">The Pyramid has three layers, and a sphere on the top of the top layer. Therefore you will be working with 4 y-cordinates: one for the cube(s) in each layer; and one for the sphere at the top.
+                                    </p>
+                                    <span class="hint-div">
+                                        <a href="#">HINT</a>
+                                        <p class = "hint"></p>
+                                        <img  class = "hint" src =""/>
+                                    </span>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">The bottom layer is made up of 8 cubes shown in the 2D grid below (showing x and z axes). Therefore declare 8 IModel* varaiables, create a cube model for each, and then position them using the cordinates provided by the image.<br/>
+                                        <img src="bottom layer.png"> 
+                                    </p>
+                                    <span class="hint-div">
+                                        <a href="#">HINT</a>
+                                        <p class = "hint"></p>
+                                        <img  class = "hint" src =""/>
+                                    </span>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">The middle layer is made up of 4 cubes shown in the 2D grid below (showing x and z axes). Therefore declare 4 IModel* varaiables, create a cube model for each, and then position them using the cordinates provided by the image.</p>
+                                        <img src="middle layer.png"> 
+                                    <p>    
+                                    Remember that this layer should be placed on top of the bottom layer, therefore the z-cordinate for the cubes in this layer should be above the z-cordinate of the cubes in bottom layer.
+                                    </p>
+                                    <span class="hint-div">
+                                        <a href="#">HINT</a>
+                                        <p class = "hint"></p>
+                                        <img  class = "hint" src =""/>
+                                    </span>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">The top layer is made up of a single cube shown in the 2D grid below (showing x and z axes). Therefore declare an IModel* varaiable, create a cube model for it, and then position it using the cordinates provided by the image.</p>
+                                        <img src="top.png"> 
+                                    <p>
+                                    Remember that this layer should be placed on top of the middle layer, therefore the z-cordinate for the cube in this layer should be above the z-cordinate of the cubes in middle layer.
+                                    </p>
+                                    <span class="hint-div">
+                                        <a href="#">HINT</a>
+                                        <p class = "hint"></p>
+                                        <img  class = "hint" src =""/>
+                                    </span>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">Finally, declare an IModel* varaiable, create a sphere model for it, and then position it using the cordinates provided by the image below:</p>
+                                        <img src="globe.png"> 
+                                    <p>  
+                                    Remember that this sphere should be placed on top of the top pyramid layer, therefore the z-cordinate for the sphere should be above the z-cordinate of the cube in top layer.
+                                    </p>
+                                    <span class="hint-div">
+                                        <a href="#">HINT</a>
+                                        <p class = "hint"></p>
+                                        <img  class = "hint" src =""/>
+                                    </span>
+                                </div>
+                            </li>
+                            
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">For a final touch, add code to rotate the sphere slowly along its x-axis.
+                                    </p>
+                                    <span class="hint-div">
+                                        <a href="#">HINT</a>
+                                        <p class = "hint"></p>
+                                        <img  class = "hint" src =""/>
+                                    </span>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
             </main>
             <script src="../assets/script.js"></script>
             </body>

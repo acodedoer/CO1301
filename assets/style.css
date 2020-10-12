@@ -23,9 +23,7 @@
         .hint-div{
             display:none
         }
-        .hint-link, .instruction-item{
-            display: inline;
-        }
+
         h2{
             font-size: 1.1em;
         }
