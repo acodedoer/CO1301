@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../assets/highlight/styles/default.css">
     <link rel="stylesheet" href="../assets/style.css">
-    <script src="../assets/highlight/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet"
+    href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
     <title>Lab 1 - Introduction to TL-Engine</title>
 </head>
 <body>
+    <header><h1>CO1301: Games Concepts <br> Lab 1 - Introduction to the TL-Engine</h1></header>
     <main>
         <section>
-                <h2>1. Introduction to Lab 1</h2>
+                <h2>1. Introduction</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                         <li>
@@ -127,8 +128,9 @@ name = "";    // the value of name is changed to an empty string</code></pre>
                                 <p class= "instruction-item">While using the TL-Engine you will be using standard C++ variable types as well as custom variable types. An example of a variable declaration using a custom type is shown below:</p>
 
 <pre><code>I3DEngine* myEngine; // I3Dengine is a TL-Engine specific type for storing instances of a 3D engine</code></pre>
-
-                            The type 'I3DEngine*' is not a C++ type; it is specific to the TL-Engine. Also note that it is being used with a 'pointer' – the symbol '*'. You will be introduced to both custom types and pointers later in CO1401. For now just remember that 'I3DEngine*' is a type just like an int or a float, but specific to the TL-Engine.
+                            <p>
+                                The type 'I3DEngine*' is not a C++ type; it is specific to the TL-Engine. Also note that it is being used with a 'pointer' – the symbol '*'. You will be introduced to both custom types and pointers later in CO1401. For now just remember that 'I3DEngine*' is a type just like an int or a float, but specific to the TL-Engine.
+                            </p>
                         </div>
                     </li>
                     <li >
@@ -161,7 +163,7 @@ system( "pause" ); // system() is a function that issues a special system comman
 
 <pre><code>I3DEngine* myEngine; // I3Dengine is a TL-Engine specific variable type
 myEngine->DrawScene(); // DrawScene is a function ("method") of myEngine </code></pre>
-                            
+                            <p>
                             In the above code, a variable named 'myEngine' is declared, then 'DrawScene()' is used on the variable (notice the use of the '->' symbol to indicate this usage). In plain English, the two lines of code state: "create a 3D engine and call it myEngine, then use myEngine to draw a scene". Functions like DrawScene() are called methods.</p>
                         </div>
                     </li>
@@ -238,11 +240,11 @@ myEngine->AddMediaFolder( "C:\\ProgramData\\TL-Engine\\Media" );
 /**** Set up your scene here ****/</code></pre>
 
                             <p>In the code above, a variable called 'myEngine' is declared and its type is an 'I3DEngine*'. All you need to know now is that the variable 'myEngine' will be your interface to the TL-Engine, meaning you will use the TL-Engine's features 'through' this variable.</p>
-                            <br/>
+                            
                             <p>After declaring the 'myEngine' variable, it is initialised by using a function/method: 'New3DEngine(kTLX)''. In plain English that means "I want to use a 3D engine of the TLX variety, and I will call it myEngine".</p>
-                            <br/>
+                            
                             <p>The next line is the first use of this new engine we have prepared. See how we use "myEngine->StartWindowed()" to say, "I want myEngine to start up in a window".</p>
-                            <br/>
+                            
                             <p>The next line tells the engine to look in the folder provided (the folder chosen when TL-Engine was installed) for any files (e.g. 3D objects) that you load later on. Any resources you want to load to your game, should be loaded after this line of code.</p>
                         </div>
                     </li>
@@ -258,17 +260,18 @@ while (myEngine->IsRunning())
 
     /**** Update your scene each frame here ****/
 }</code></pre>
-
+                            <p>
                             Currently the only code inisde this game loop is code that tells the 3D engine declared in the initialisation stage (myEngine) to draw the scene. Code can be added to the game loop to check for player input and update game objects in each iteration. The game loop's ability to perform several iterations every second and display updated <em>frames</em> creates the animation seen when playing games.
+                            </p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item"> The final section, the termination section cleans up after the game, and releases all the memory resources used by the game. It contains a single line of code that deletes the 3D engine that you created at the beginning:
+                            <p class= "instruction-item"> The final section, the termination section cleans up after the game, and releases all the memory resources used by the game. It contains a single line of code that deletes the 3D engine that you created at the beginning:</p>
 
 <pre><code>// Delete the 3D engine now we are finished with it
 myEngine->Delete();</code></pre>
-
+                            <p>
                             If we don't do this then the resources used by the 3D engine will remain in the computer's memory after the program is finished, but no other program will be able to access them. This is called a memory leak - it will affect the performance of the computer, so this line is important.
                             </p>
                         </div>
@@ -294,14 +297,15 @@ myEngine->Delete();</code></pre>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Start by adding the code below in the initialisation section. Place it below <code>/**** Set up your scene here ****/</code>
+                            <p class= "instruction-item">Start by adding the code below in the initialisation section. Place it below <code>/**** Set up your scene here ****/</code></p>
 
 <pre><code>IMesh* cubeMesh;
 IModel* cube;</code></pre>
-
+                            <p>
                             The above code declares two variables, a mesh variable and a model variable. Note how we use the same pointer syntax (*) as before when declaring a 3D engine variable, these variables will be used in the same way as 'myEngine'.
-                            <br>
-                            <br>
+                        </p>
+                            
+                    <p>
                             A mesh is a 3D object generated by an artist and saved in a file. A model is a single copy of a mesh in our scene. At first, this might seem similar - but remember that a single mesh can be used to create several models in your scene (e.g. we may have a single tree mesh, but make a forest in our game using 20 models created from this mesh). Consider a mesh as a 'blueprint' for creating models.</p>
                             <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
                             <div class="hint-div">
@@ -311,14 +315,15 @@ IModel* cube;</code></pre>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Next, type the code below: 
+                            <p class= "instruction-item">Next, type the code below: </p>
 
 <pre><code>cubeMesh = myEngine->LoadMesh( "Cube.x" );
 cube = cubeMesh->CreateModel();</code></pre>
-
+                            <p>
                             The first line here uses the 3D engine (myEngine) to load a file and put it into our declared mesh variable (cubeMesh). Notice how we need to go 'through' the variable 'myEngine' again using "->". Think about this as asking myEngine to perform a service for us (loading a mesh) - the 3D engine must do this job, as it needs to keep track of all new meshes. So in English, the code is saying:
                             "Use myEngine to load a mesh called 'cube.x' and put it in the variable 'cubeMesh' ".
-                            <br/><br/>
+                        </p>
+                    <p>
                             In the second line, the mesh is used as a blueprint to create a model. Note that the syntax is similar to what we used to load the mesh using the 3D engine, but this time the mesh is used to create a model. In English, the code is saying: "Use the cubeMesh blueprint to create a model in the scene and put it in the variable 'cube' ".</p>
                             <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
                             <div class="hint-div">
@@ -328,11 +333,11 @@ cube = cubeMesh->CreateModel();</code></pre>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">The last piece of code we need to add to the initialisation section is the code below:
+                            <p class= "instruction-item">The last piece of code we need to add to the initialisation section is the code below:</p>
 
 <pre><code>ICamera* myCamera;
 myCamera = myEngine->CreateCamera( kFPS );</code></pre>
-
+                            <p>
                             The first line declares a variable named 'myCamera' that will be used hold a camera. The second line of code uses a similar syntax similar to what we have used when loading a mesh and creating a model. In English the code is saying: "Use myEngine to create a camera of type FPS and put it in the variable myCamera". FPS is a "first person shooter" camera that can be moved around with the mouse and cursor keys.</p>
                             <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
                             <div class="hint-div">
@@ -374,7 +379,9 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
         </section>
         <section>
             <h2>6. Practice Exercises</h2>
+            <p>
             The sections that follow contain practice exercises on loading, positioning and movement; please attemp all these exercises. You should be able to complete the first three sections with little to no difficulty. If you finish these exercises in the lab, then move on to the advanced exercises by following the link at the end of this sheet, else try the advanced exercises in your time.
+        </p>
             <div class="section_instrcutions">
                 <h3>Loading</h3>
                 <ol>
@@ -395,7 +402,7 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
                         <div class="list-div">
                             <p class= "instruction-item">Our existing code can be updated to display a sphere instead of a cube by changing the name of the loaded mesh in 4.3 from 'Cube.x' to 'Sphere.x'.
                             </p>
-                            <br/>
+                            
                             <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
                             <div class="hint-div">
                                     <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/2065dd30-0985-4dcd-b472-2bd86615d909?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
@@ -417,7 +424,7 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
                         <div class="list-div">
                             <p class= "instruction-item">If we want to load more than one mesh at a time, we need to declare additional IMesh* variable(s) to put the new mesh in. The video hint below illustartes this by showing how a coin can be added and displayed in our existing scene. 
                             </p>
-                            <br/>
+                            
                             <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
                             <div class="hint-div">
                                     <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/6d80cbca-f40d-4373-b747-245501d048b3?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
@@ -466,58 +473,46 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
                         </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">When you run your project a grid will be displayed. The grid has lines that are marked with numbers, and each line represents a Cartesian cordsinate axis. <br/><br/>The X axis runs horizontally from left (negative) to right (positive) of the grid; the Y axis runs vertically from down (negative) to up (positive), and  the Z axis goes from the screen (negative) into the scene (positive); these are the three axes (plural form of axis, pronounced 'ack-sees') of the Caretsian cordinate system. At the center of the model is the origin, it is marked with 0 because at this point the values of X, Y and Z are all 0. <br/><br/>The figure below shows the grid viewed from an elevated FPS camera:<br/>
-                                    <img src="grid.PNG" alt="A snapshot of a grid model showing all its axes"/>
-                                </p>
-                                <span class="hint-div">
-                                    <a href="#">HINT</a>
-                                    <p class = "hint"></p>
-                                    <img  class = "hint" src =""/>
-                                </span>
+                                <p class= "instruction-item">When you run your project a grid will be displayed. The grid has lines that are marked with numbers, and each line represents a Cartesian cordsinate axis. The X axis runs horizontally from left (negative) to right (positive) of the grid; the Y axis runs vertically from down (negative) to up (positive), and  the Z axis goes from the screen (negative) into the scene (positive); these are the three axes (plural form of axis, pronounced 'ack-sees') of the Caretsian cordinate system. At the center of the model is the origin, it is marked with 0 because at this point the values of X, Y and Z are all 0. The figure below shows the grid viewed from an elevated FPS camera:</p>
+                                    <img src="grid.PNG" alt="A snapshot of a grid model showing all its axes"/>                            
+
                             </div>
                         </li>
                         <li >
                             <div class="list-div">
                                 <p class= "instruction-item">Now add code to your project to display a cube so that your project displays both the grid and the cube. Run your project.
                                 </p>
-                                <span class="hint-div">
-                                    <a href="#">HINT</a>
-                                    <p class = "hint"></p>
-                                    <img  class = "hint" src =""/>
-                                </span>
                             </div>
                         </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">You will notice that the cube is created at the center of the grid, where the 0 marking is i.e. where x = 0, y = 0, and z = 0. This is because whenever the CreateModel method is used to create a model without specifying the intial position of the model, it is created at the origin of the scene. <br/><br/>The figure below shows the position of the cube in the grid viewed from an elevated FPS camera:<br/>
+                                <p class= "instruction-item">You will notice that the cube is created at the center of the grid, where the 0 marking is i.e. where x = 0, y = 0, and z = 0. This is because whenever the CreateModel method is used to create a model without specifying the intial position of the model, it is created at the origin of the scene. The figure below shows the position of the cube in the grid viewed from an elevated FPS camera:</p>
                                     <img src="grid1.PNG" alt="A snapshot of a grid model and a cube positioned at the origin"/>
-                                </p>
-                                <span class="hint-div">
-                                    <a href="#">HINT</a>
-                                    <p class = "hint"></p>
-                                    <img  class = "hint" src =""/>
-                                </span>
                             </div>
-                        </li>
-                        
+                        </li> 
                         <li >
                             <div class="list-div">
                                 <p class= "instruction-item">Now update your code by passing three values to set the initial position of the cube  as shown below:
                                 </p>
 
 <pre><code>cube = cubeMesh->CreateModel( 10, 0, 20 );</code></pre>
-
-                                    This positions the model using 'Cartesian coordinates', with x = 10, y = 0 and z = 20. Run the project and see the new position of your cube.
-                                    <br/><br/>The figure below shows the position of the cube in the grid viewed from an elevated FPS camera:<br/>
+                                    <p>
+                                    This positions the model using 'Cartesian coordinates', with x = 10, y = 0 and z = 20. Run the project and see the new position of your cube.</p>
+                                    <p>
+                                    The figure below shows the position of the cube in the grid viewed from an elevated FPS camera:</p>
                                     <img src="grid2.PNG" alt="A snapshot of a grid model and a cube positioned at (10,0,20)"/>
                                 </p>
-                                <span class="hint-div">
-                                    <a href="#">HINT</a>
-                                    <p class = "hint"></p>
-                                    <img  class = "hint" src =""/>
-                                </span>
+                                <p>
+                                        From your scene or the images shown above, can you tell the length of each of the cube's sides?
+                                    </p>
                             </div>
-                        </li>
+                        </li>    
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">You should have noticed that the length of the sides of the cube is 10. This is clearer when you position the cube so that it sits on the floor of the grid and to the right of the origin using the code below:
+<pre><code>cube = cubeMesh->CreateModel( 5, 5, -5 );</code></pre>
+                            </div>
+                        </li> 
                         <li >
                             <div class="list-div">
                                 <p class= "instruction-item">Experiment with a few different x and z positions for the cube. Then try altering the y position. Keep all the values less than 50.
@@ -532,7 +527,7 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
                         <li >
                             <div class="list-div">
                                 <p class= "instruction-item">Add another cube to your program by declaring a new IModel* variable and putting a cube mesh model into it. Remember that you do not have to declare a new IMesh* variable and load a new cube mesh whenever you want to create an addional cube, you can create as many cube models as you want with the cube mesh you have loaded already (as long as you have the IModel* variables to put them in to).
-                                </p><br/>
+                                </p>
                                 <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
                                 <div class="hint-div">
                                         <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/ea0d858e-e4bd-4d1b-a99e-4ba5f35c7ca9?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
@@ -613,7 +608,7 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
 
 <pre><code>cube->RotateY( 0.05 );</code></pre>
 
-                                    This will make the cube rotate by a small amount each time the loop repeats. This effectively spins the cube. Notice the cube spins around its Y-axis as indicated by the name 'RotateY'.<br/>
+                                    <p>This will make the cube rotate by a small amount each time the loop repeats. This effectively spins the cube. Notice the cube spins around its Y-axis as indicated by the name 'RotateY'.</p>
                                     <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
                                     <div class="hint-div">
                                             <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/c20f29c1-4b8d-4bba-82e5-328a81cf3718?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
@@ -698,7 +693,7 @@ void MoveZ( float ); // e.g. cube->MoveZ( 0.4 ); </code></pre>
                                 <ol>
                                     <li >
                                         <div class="list-div">
-                                            <p class= "instruction-item">There are more functions available for positioning e.g. for setting the position of an object, and for getting the position of an object.
+                                            <p class= "instruction-item">There are more functions available for positioning e.g. for setting the position of an object, and for getting the position of an object.</p>
 
 <pre><code>// The Set functions allow you to set the X, Y or Z coordinates of a model to a given value
 void SetX( float ); // e.g. cube1->SetX( -20 );
@@ -713,7 +708,7 @@ float GetX(); // e.g. xpos = sphere->GetX();
 float GetY(); // e.g. if (sphere->GetY() > 10)
 float GetZ(); // e.g. zpos = sphere->GetZ();</code></pre>
 
-                                            Note that the 'Get' functions calculate a float value (indicated by the word ‘float’ on the left), look carefully at the example usage.
+                                            <p>Note that the 'Get' functions calculate a float value (indicated by the word ‘float’ on the left), look carefully at the example usage.
                                             </p>
                                         </div>
                                     </li>
@@ -730,13 +725,11 @@ float GetZ(); // e.g. zpos = sphere->GetZ();</code></pre>
         <section>
                 <h2>7. Advanced Exercises</h2>
                 <div class="section_introduction">
-                    <ul>
-                        <li><a target="_blank" href="https://portal.uclan.ac.uk/webapps/blackboard/execute/content/blankPage?cmd=view&content_id=_4213454_1&course_id=_107770_1">Attempt these exercises in the lab if you finish your tasks early, otherwise attempt these in your own time.</a></li>
-                    </ul>
+                    Lookng for extra exercises? Check out these tasks for <a target="_blank" href="https://portal.uclan.ac.uk/webapps/blackboard/execute/content/blankPage?cmd=view&content_id=_4213454_1&course_id=_107770_1"></a> creating two mega structures, The Giant and The Pyramid, using just cubes and spheres. 
                 </div>
-                <br/>
-                <br/>
-                <br/>
+                
+                
+                
         </section>
     </main>
     <script src="../assets/script.js"></script>

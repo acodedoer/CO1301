@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../assets/highlight/styles/default.css">
     <link rel="stylesheet" href="../assets/style.css">
-    <script src="../assets/highlight/highlight.pack.js"></script>
+    <link rel="stylesheet"
+    href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <title>Lab 1 - Advanced Exercises</title>
 </head>
 <body>
+    <header><h1>CO1301: Games Concepts <br> Lab 1 - Advanced Exercises</h1></header>
     <main>
             In this exercise you will be creating two structures "The Pyramid" and "The Giant". The purpose of this exercise is to provide you with practice on creating and positioning models using cartesian cordinates.
         <section>
@@ -24,7 +26,7 @@
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Add a FPS camera to your project and position it at ( 0, 0, -50 ).
+                            <p class= "instruction-item">Add a FPS camera to your project.
                             </p>
                             <span class="hint-div">
                                 <a href="#">HINT</a>
@@ -46,7 +48,7 @@
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">In the lab we measured the length of the sides of the cube model using a grid. We found that it has sides of length 10. With that measurement, The Giant can be represented as a collection of cubes in a 2D grid (showing x and y axes).<br/>
+                            <p class= "instruction-item">In the lab we measured the length of the sides of the cube model using a grid. We found that it has sides of length 10. With that measurement, The Giant can be represented as a collection of cubes in a 2D grid (showing x and y axes).</p>
                                 <img src="giant.png" alt="image of a giant stickman made of cubes">
                         </div>
                     </li>
@@ -130,7 +132,7 @@
                             </li>
                             <li >
                                 <div class="list-div">
-                                    <p class= "instruction-item">Add a FPS camera to your project and position it at ( 0, 0, -50 ).
+                                    <p class= "instruction-item">Add a FPS camera to your project.
                                     </p>
                                     <span class="hint-div">
                                         <a href="#">HINT</a>
@@ -163,14 +165,10 @@
                             </li>
                             <li >
                                 <div class="list-div">
-                                    <p class= "instruction-item">The bottom layer is made up of 8 cubes shown in the 2D grid below (showing x and z axes). Therefore declare 8 IModel* varaiables, create a cube model for each, and then position them using the cordinates provided by the image.<br/>
-                                        <img src="bottom layer.png"> 
+                                    <p class= "instruction-item">The bottom layer is made up of 8 cubes shown in the 2D grid below (showing x and z axes). Therefore declare 8 IModel* varaiables, create a cube model for each, and then position them using the cordinates provided by the image.
                                     </p>
-                                    <span class="hint-div">
-                                        <a href="#">HINT</a>
-                                        <p class = "hint"></p>
-                                        <img  class = "hint" src =""/>
-                                    </span>
+                                    <img src="bottom layer.png"> 
+                                    
                                 </div>
                             </li>
                             <li >
@@ -178,7 +176,7 @@
                                     <p class= "instruction-item">The middle layer is made up of 4 cubes shown in the 2D grid below (showing x and z axes). Therefore declare 4 IModel* varaiables, create a cube model for each, and then position them using the cordinates provided by the image.</p>
                                         <img src="middle layer.png"> 
                                     <p>    
-                                    Remember that this layer should be placed on top of the bottom layer, therefore the z-cordinate for the cubes in this layer should be above the z-cordinate of the cubes in bottom layer.
+                                    Remember that this layer should be placed on top of the bottom layer, therefore the y-cordinate for the cubes in this layer should be above the y-cordinate of the cubes in bottom layer.
                                     </p>
                                     <span class="hint-div">
                                         <a href="#">HINT</a>
@@ -192,7 +190,7 @@
                                     <p class= "instruction-item">The top layer is made up of a single cube shown in the 2D grid below (showing x and z axes). Therefore declare an IModel* varaiable, create a cube model for it, and then position it using the cordinates provided by the image.</p>
                                         <img src="top.png"> 
                                     <p>
-                                    Remember that this layer should be placed on top of the middle layer, therefore the z-cordinate for the cube in this layer should be above the z-cordinate of the cubes in middle layer.
+                                    Remember that this layer should be placed on top of the middle layer, therefore the y-cordinate for the cube in this layer should be above the y-cordinate of the cubes in middle layer.
                                     </p>
                                     <span class="hint-div">
                                         <a href="#">HINT</a>
@@ -203,10 +201,11 @@
                             </li>
                             <li >
                                 <div class="list-div">
-                                    <p class= "instruction-item">Finally, declare an IModel* varaiable, create a sphere model for it, and then position it using the cordinates provided by the image below:</p>
-                                        <img src="globe.png"> 
-                                    <p>  
-                                    Remember that this sphere should be placed on top of the top pyramid layer, therefore the z-cordinate for the sphere should be above the z-cordinate of the cube in top layer.
+                                    <p class= "instruction-item">Finally, declare an IModel* varaiable, create a sphere model for it, and then position it using the cordinates provided by the image below:</p>  
+                                    <p>
+                                            <img src="globe.png">
+                                            <p>
+                                    Remember that this sphere should be placed on top of the top pyramid layer, therefore the y-cordinate for the sphere should be above the y-cordinate of the cube in top layer.
                                     </p>
                                     <span class="hint-div">
                                         <a href="#">HINT</a>
