@@ -9,6 +9,9 @@
         section{
             margin-bottom: 2em;
         }
+        code{
+            padding:1em;
+        }
 
         .video_icon{
             max-width: 2em;

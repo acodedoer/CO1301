@@ -19,29 +19,15 @@
                 <ol>
                     <li>
                         <div class="list-div">
-                                <span><p class= "instruction-item">
-                                    Last week we introduced the TL-Engine and used it to manipulate some simple 3D graphics. In this session you will use keyboard input to move objects within the game world.
-                               </p></span>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Create a new TL-Engine project named <b>Lab2_Controls_Project</b>, open the project
-                            </p>
+                            <span><p class= "instruction-item">
+                                Last week we introduced the TL-Engine and used it to manipulate some simple 3D graphics. In this session you will learn about selection, and interacting with your program using mouse and keyboard input.
+                            </p></span>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add code to create an FPS camera, you may want to position it at ( 0, 0, -50 ). You should be able to do this without looking at the last week's lab. 
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Rememeber that it is useful for you to keep a copy of the code that you write. You can set up a working directory (folder) on your university cloud storage to contain your work.
+                                Rememeber that it is useful for you to keep a copy of the code you write so that you can reference or resue it in later programs.
                             </p>
                         </div>
                     </li>
@@ -56,16 +42,16 @@
                 <ol>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">The 3D engine monitors the keyboard and mouse input for its own window. We can ask the engine if particular keys or mouse buttons have been pressed, the methods to do this are:
-                                    <pre><code class="plaintext">// Returns true when a given key or button is first pressed down.
-                                            bool KeyHit( EKeyCode );
-                                            // Example usage:
-                                            // if (myEngine->KeyHit( Key_A )) { Do something }
-                                            // Returns true as long as a given key or button is held down.
-                                            bool KeyHeld( EKeyCode );
-                                            // Example usage:
-                                            // if (myEngine->KeyHeld( Mouse_LButton )) { Do something }
-                                    </code></pre>
+                            <p class= "instruction-item">The 3D engine monitors the keyboard and mouse input for its own window. We can ask the engine if particular keys or mouse buttons have been pressed, the methods to do this are:
+<pre><code class="plaintext">// Returns true when a given key or button is first pressed down.
+bool KeyHit( EKeyCode );
+// Example usage:
+// if (myEngine->KeyHit( Key_A )) { Do something }
+// Returns true as long as a given key or button is held down.
+bool KeyHeld( EKeyCode );
+// Example usage:
+// if (myEngine->KeyHeld( Mouse_LButton )) { Do something }
+</code></pre>
                             Note: The above code snippets show the method’s signatures – the return type of the method (bool in both cases), the method name (e.g. KeyHit), and the parameter type (EKeyCode). You should not copy the method signature into your program (otherwise the compiler will think you are trying to re-define the methods!).
 
                             When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an “if” statement, and you must pass in a parameter of the required type. The examples provided as comments show how the methods are used.
@@ -100,7 +86,7 @@
         </section>
         <section>
             <div>
-                <h2>3. Using the 'If' Statement</h2>
+                <h2>3. The 'if' Statement</h2>
                 <ol>
                     <li>
                         <div class="list-div">
@@ -111,11 +97,11 @@
                         <div class="list-div">
                             <p class= "instruction-item">In C++ you can exercise this control through the use of the word "if". The general form of an "if" statement is:
                            </p>
-                           <pre><code class="plaintext">if (conditional)
-                                {
-                                // conditional exectution
-                                }
-                        </code></pre>
+<pre><code class="plaintext">if (conditional)
+{
+    // conditional exectution
+}
+</code></pre>
                        </div>
                     </li>
                     <li>
@@ -126,86 +112,128 @@
                     </li><li >
                         <div class="list-div">
                              <p class= "instruction-item">The following are examples of the use of the if" statement: 
-                                <pre><code>if ( a == b ) //if the firstVariable is equal to the secondVariable
-                                        {
-                                        // do something
-                                        }
-                                </code></pre>
-                                <pre><code>if ( a != b ) //if the firstVariable is not equal to the secondVariable
-                                        {
-                                        // do something
-                                        }
-                                </code></pre>
-                                <pre><code>if ( a < b ) //if the firstVariable is less than the secondVariable
-                                        {
-                                        // do something
-                                        }
-                                </code></pre>
-                                <pre><code>if ( a > b ) //if the firstVariable is greater than the secondVariable
-                                        {
-                                        // do something
-                                        }
-                                </code></pre>
-                                <pre><code>if ( myEngine->KeyHit( [KeyCode] )) //if the key with the provided keycode is hit
-                                        {
-                                            //do something
-                                        }
-                                </code></pre>
-                                <pre><code>if (!myEngine->KeyHeld( [KeyCode] )) //if the key with the provided keycode is NOT held (notice the use of !)
-                                        {
-                                            //do something
-                                        }
-                                </code></pre>
-                                <pre><code>if ( a + b < c) //if the sum of the firstVariable and secondVariable is less than the thirdVariable
-                                        {
-                                        // do something
-                                        }
-                                </code></pre>
-                                <pre><code>if ( a * b > 100) //if the product of the firstVariable and secondVariable is greater than 100
-                                    {
-                                    // do something
-                                    }
-                            </code></pre>
+<pre><code>if ( a == b ) //if the firstVariable is equal to the secondVariable
+{
+    // do something
+}
+</code></pre>
+<pre><code>if ( a != b ) //if the firstVariable is not equal to the secondVariable
+{
+    // do something
+}
+</code></pre>
+<pre><code>if ( a < b ) //if the firstVariable is less than the secondVariable
+{
+    // do something
+}
+</code></pre>
+<pre><code>if ( a > b ) //if the firstVariable is greater than the secondVariable
+{
+    // do something
+}
+</code></pre>
+<pre><code>if ( myEngine->KeyHit( [KeyCode] )) //if the key with the provided keycode is hit
+{
+    //do something
+}
+</code></pre>
+<pre><code>if (!myEngine->KeyHeld( [KeyCode] )) //if the key with the provided keycode is NOT held (notice the use of !)
+{
+    //do something
+}
+</code></pre>
+<pre><code>if ( a + b < c) //if the sum of the firstVariable and secondVariable is less than the thirdVariable
+{
+    // do something
+}
+</code></pre>
+<pre><code>if ( a * b > 100) //if the product of the firstVariable and secondVariable is greater than 100
+{
+    // do something
+}
+</code></pre>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Note that a conditional statement does not execute a command, but used to make decisions about executing commands.<br/>
+                            <p class= "instruction-item">Note that a conditional statement does not execute a command, but used to make decisions about executing commands.
                            </p>
                        </div>
                     </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <div class="section_instrcutions">
+                <h2>3. Using the 'if' Statement</h2>
+                <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                            Now add and display a cube in your scene (you should be able to do this without looking at lab 1 section 5), then try using the 'if' statement by typing the code below into the game loop section:
-                            <pre><code>if ( myEngine->KeyHeld( Key_MouseRButton ))
-                                    {
-                                        cube->MoveX( 0.05 );
-                                    }
-                                    else if ( myEngine->KeyHeld( Key_MouseLButton ))
-                                    {
-                                        cube->MoveX -0.05 );
-                                    }
-                            </code></pre>
-                            This code tests if the right mouse button is held and moves the cube right, else if the left mouse button is held it moves the cube left. Run your project to test this out.
+                                Create a new TL-Engine project named <b>Lab2_Controls_Project</b>, open the project
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                                <p class= "instruction-item">Change the code you added in the previous task to use the ‘KeyHit’ method instead of 'KeyHeld' to move the cube - can you see the difference? Now change it back to 'KeyHeld'.</p>
+                            <p class= "instruction-item">
+                                Add code to create an FPS camera, you may want to position it at ( 0, 0, -50 ). You should be able to do this without looking at the last week's lab. 
+                            </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                            Add another 'if' statement by typing the code below into the game loop section:
-                            <pre><code class="plaintext">if ( myEngine->KeyHit( Key_Escape ))
-                                    {
-                                    myEngine->Stop();
-                                    }
-                            </code></pre>
+                            Now add and display a cube in your scene (you should be able to do this without looking at lab 1 section 5), then try using the 'if' statement by typing the code below into the game loop section:</p>
+<pre><code>if ( myEngine->KeyHeld( Mouse_RButton ))
+{
+    cube->MoveX( 0.05 );
+}
+else if ( myEngine->KeyHeld( Mouse_LButton ))
+{
+    cube->MoveX -0.05 );
+}
+</code></pre>
+                            <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
+                            <div class="hint-div">
+                                <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/aed31ae1-44fb-4025-bdc7-9f46192f3719?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                            </div>
+                                <p>This code tests if the right mouse button is held and moves the cube right, else if the left mouse button is held it moves the cube left. Run your project to test this out.
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                                <p class= "instruction-item">Are you finding it difficult to keep the camera still while you move the cube with your mouse? Update your program to use a 'kManual' camera instead of a 'kFPS' by changing your camera creation code to the code below:</p>
+<pre><code>ICamera* myCamera;
+myCamera = myEngine->CreateCamera(kManual);
+myCamera->SetPosition(0, 0, -50);
+</code></pre>
+                            <p>
+                                This means the camera cannot be moved with the mouse anymore, so you will be able to easily move your cube with the click of mouse buttons.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">Change the code you added to move your cube to use the ‘KeyHit’ method instead of 'KeyHeld'. Run you program - can you see the difference? Now change it back to 'KeyHeld'.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                            Add another 'if' statement by typing the code below into the game loop section:</p>
+<pre><code class="plaintext">if ( myEngine->KeyHit( Key_Escape ))
+{
+    myEngine->Stop();
+}
+</code></pre>
+                            <a class="hint-link" href="#"><img class="video_icon" src="../assets/video_icon.svg"/></a>
+                            <div class="hint-div">
+                                <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/a8db5806-22a1-4527-90d9-39c162d56cbd?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                            </div>
+                            <p>
                             This code tests if the escape key has been pressed and quits the engine (and program) if it has. You may want to add this to all your projects so you don’t need to use ‘Alt+F4’. Run your program and test quiting by pressing the escape key.
                             </p>
                         </div>
@@ -215,7 +243,7 @@
         </section>
         <section>
             <div class="section_instrcutions">
-                <h2>4. Exercises - Keyboard Control</h2>
+                <h2>5. Exercises - Keyboard Control</h2>
                 <ol>
                     <li >
                         <div class="list-div">
@@ -259,15 +287,15 @@
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">What you should notice is that the arrow always moves left and right in the same direction: in the X direction of the large grid. This is called the ‘world’ X direction. Look closely at the arrow model and you can see it has its own grid, and it has its own X direction. This is called the arrow’s ‘local’ X direction. Sometimes we want to move in the local directions, we can do this with these methods:
-                             <pre><code>// Move in the local X direction by the given amount
-                                    void MoveLocalX(const float);
-                                    // E.g arrow->MoveLocalX( 0.1 );
-                                    // Move in the local Y direction by the given amount
-                                    void MoveLocalY(const float);
-                                    // Move in the local Z direction by the given amount
-                                    void MoveLocalZ(const float);
-                            </code></pre></p>
+                             <p class= "instruction-item">What you should notice is that the arrow always moves left and right in the same direction: in the X direction of the large grid. This is called the ‘world’ X direction. Look closely at the arrow model and you can see it has its own grid, and it has its own X direction. This is called the arrow’s ‘local’ X direction. Sometimes we want to move in the local directions, we can do this with these methods:</p>
+<pre><code>// Move in the local X direction by the given amount
+void MoveLocalX(const float);
+// E.g arrow->MoveLocalX( 0.1 );
+// Move in the local Y direction by the given amount
+void MoveLocalY(const float);
+// Move in the local Z direction by the given amount
+void MoveLocalZ(const float);
+</code></pre>
                         </div>
                     </li>
                     <li >
@@ -284,12 +312,18 @@
             </div>
         </section>
         <section>
-            <h2>5. Exercises - Working with Variables</h2>
+            <h2>6. Exercises - Working with Variables</h2>
             <div class="section_instrcutions">
                 <ol>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Create a new TL-Engine project named <b>Lab2_TestingVariables_Project</b>. Load the cube mesh and then create a cube model.
+                            <p class= "instruction-item">Create a new TL-Engine project named <b>Lab2_TestingVariables_Project</b>. If you have completed week 1's Advanced Exercises II, you can resue your code in completing the tasks below.
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Load the cube mesh and then create a cube model.
                             </p>
                         </div>
                     </li>
@@ -301,38 +335,66 @@
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item"> Move the cube to the right using the variable you just created. Use the code below:
-                            <pre><code>cube->MoveX( cubeSpeed );
-                            </code></pre>
+                            <pre><code>cube->MoveX( cubeSpeed );</code></pre>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item">You can obtain the current location of a model. For instance, you can obtain the current x coordinate of the cube by using:
-                            <pre><code>xCoordinate = cube->GetX();
-                            </code></pre>
+                            <pre><code>xCoordinate = cube->GetX();</code></pre>
                             Note that I have used a new variable to store the location of the cube. This new variable is called xCoordinate. The GetX() function returns a value. In other words, it passes a value back and this value can either be used directly or assigned to a variable.
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Now get the cube to stop moving when it reaches 40 along the x axis, i.e. when GetX( ) returns a value of 40.<br/>
+                            <p class= "instruction-item">Now get the cube to stop moving when it reaches 40 along the x axis, i.e. when GetX( ) returns a value of 40.</p>
+                            <p>
                             Hint: You will have to declare a variable to store the value returned by GetX() and you will have to use the if statement to check it.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Replace the cube displayed in your program with a sphere. 
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Then update your code so that the sphere bounces from left to right between x = -40 and x = 40. Use a variable to determine the direction of movement.
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Can you make the sphere roll while it bounces?
+                            </p>
                         </div>
                     </li>
                 </ol>
             </div>
         </section>
         <section>
-            <h2>6. Advanced Exercises</h2>
-            <div class="section_introduction">
-                <ul>
-                    <li><a target="_blank" href="extra.html">Attempt these exercises in the lab if you finish your tasks early, otherwise attempt these in your own time.</a></li>
-                </ul>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-    </section>
+            <h2>7. Exercises - Advanced User Control</h2>
+            <ol>
+                <li >
+                    <div class="list-div">
+                        <p class= "instruction-item">Expand your project so you can use the keyboard in the following way:
+                            <ul>
+                                <li>Whenever the ‘R’ key is pressed, the sphere changes direction.</li>
+                                <li>The ‘P’ key acts as a pause button for your “game”.</li>
+                            </ul>
+                        </p>
+                        <p class= "instruction-item">
+                        Hints:
+                        <ul>
+                            <li>You will need a variable to implement the pause button.</li>
+                            <li>You will need to use selection to to check the state of your variable</li>
+                        </ul> 
+                        </p>
+                    </div>
+                </li>
+            </ol>
+        </section>
     </main>
     <script src="../assets/script.js"></script>
 </body>

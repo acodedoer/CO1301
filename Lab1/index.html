@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../assets/highlight/styles/default.css">
     <link rel="stylesheet" href="../assets/style.css">
-    <link rel="stylesheet"
-    href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/default.min.css">
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
+    <script src="../assets/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <title>Lab 1 - Introduction to TL-Engine</title>
 </head>
 <body>
@@ -52,7 +52,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                See <a href="">Getting Started</a> for instructions on creating a TL-Engine project.
+                                See <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4218502-dt-content-rid-7893625_1/courses/CO1301_202021_1_9/Labs/Lab1/gettingstarted.html">Getting Started</a> for instructions on creating a TL-Engine project.
                             </p>
                         </div>
                     </li>
@@ -502,20 +502,11 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
                                     The figure below shows the position of the cube in the grid viewed from an elevated FPS camera:</p>
                                     <img src="grid2.PNG" alt="A snapshot of a grid model and a cube positioned at (10,0,20)"/>
                                 </p>
-                                <p>
-                                        From your scene or the images shown above, can you tell the length of each of the cube's sides?
-                                    </p>
                             </div>
-                        </li>    
+                        </li>
                         <li >
                             <div class="list-div">
-                                <p class= "instruction-item">You should have noticed that the length of the sides of the cube is 10. This is clearer when you position the cube so that it sits on the floor of the grid and to the right of the origin using the code below:
-<pre><code>cube = cubeMesh->CreateModel( 5, 5, -5 );</code></pre>
-                            </div>
-                        </li> 
-                        <li >
-                            <div class="list-div">
-                                <p class= "instruction-item">Experiment with a few different x and z positions for the cube. Then try altering the y position. Keep all the values less than 50.
+                                <p class= "instruction-item">Experiment with a few different x and z positions for the cube. Then try altering the y position. Keep all the values less than 50. Can you tell the length of each of the cube's sides?
                                 </p>
                                 <span class="hint-div">
                                     <a href="#">HINT</a>
@@ -524,6 +515,23 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
                                 </span>
                             </div>
                         </li>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">From the scenes your program displayed and the scene snapshots shown above, can you tell the length of each of the cube's sides?
+                                </p>
+                                <span class="hint-div">
+                                    <a href="#">HINT</a>
+                                    <p class = "hint"></p>
+                                    <img  class = "hint" src =""/>
+                                </span>
+                            </div>
+                        </li>    
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">You should have noticed that the length of the sides of the cube is 10. This is clearer when you position the cube so that it sits on the floor of the grid and to the right of the origin using the code below:
+<pre><code>cube = cubeMesh->CreateModel( 5, 5, -5 );</code></pre>
+                            </div>
+                        </li> 
                         <li >
                             <div class="list-div">
                                 <p class= "instruction-item">Add another cube to your program by declaring a new IModel* variable and putting a cube mesh model into it. Remember that you do not have to declare a new IMesh* variable and load a new cube mesh whenever you want to create an addional cube, you can create as many cube models as you want with the cube mesh you have loaded already (as long as you have the IModel* variables to put them in to).
@@ -725,11 +733,8 @@ float GetZ(); // e.g. zpos = sphere->GetZ();</code></pre>
         <section>
                 <h2>7. Advanced Exercises</h2>
                 <div class="section_introduction">
-                    Lookng for extra exercises? Check out these tasks for <a target="_blank" href="https://portal.uclan.ac.uk/webapps/blackboard/execute/content/blankPage?cmd=view&content_id=_4213454_1&course_id=_107770_1"></a> creating two mega structures, The Giant and The Pyramid, using just cubes and spheres. 
+                    Are you looking for extra exercises? Why don't you <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/pid-4218502-dt-content-rid-7892883_1/courses/CO1301_202021_1_9/Labs/Lab1/extra.html">try creating mega structures using cubes and spheres.</a> 
                 </div>
-                
-                
-                
         </section>
     </main>
     <script src="../assets/script.js"></script>
