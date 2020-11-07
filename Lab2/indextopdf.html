@@ -22,7 +22,7 @@
                     <li>
                         <div class="list-div">
                             <span><p class= "instruction-item">
-                                Last week we introduced the TL-Engine and used it to manipulate some simple 3D graphics. In this session you will learn about selection using 'if' statements, and interacting with your program using mouse and keyboard input.
+                                Last week we introduced the TL-Engine and used it to manipulate some simple 3D graphics. In this session you will learn about selection using "if" statements, and interacting with your program using mouse and keyboard input.
                             </p></span>
                         </div>
                     </li>
@@ -38,48 +38,44 @@
         </section>
         <section>
             <h2>2. Checking Input</h2>
-            <div class="section_introduction">
-            </div>
             <div class="section_instrcutions">
                 <ol>
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item">The 3D engine monitors the keyboard and mouse input for its own window. We can ask the engine if particular keys or mouse buttons have been pressed, the methods to do this are:
-<pre><code class="plaintext">// Returns true when a given key or button is first pressed down.
-bool KeyHit( EKeyCode );
-// Example usage:
-// if (myEngine->KeyHit( Key_A )) { Do something }
-// Returns true as long as a given key or button is held down.
-bool KeyHeld( EKeyCode );
-// Example usage:
-// if (myEngine->KeyHeld( Mouse_LButton )) { Do something }
+<pre><code class="plaintext">bool KeyHit( EKeyCode ); // Returns true when a given key or button is first pressed down.
+// Example usage: if (myEngine->KeyHit( Key_A )) { Do something }
+
+
+bool KeyHeld( EKeyCode ); // Returns true as long as a given key or button is held down.
+// Example usage: if (myEngine->KeyHeld( Mouse_LButton )) { Do something }
 </code></pre>
                             Note: The above code snippets show the method’s signatures – the return type of the method (bool in both cases), the method name (e.g. KeyHit), and the parameter type (EKeyCode). You should not copy the method signature into your program (otherwise the compiler will think you are trying to re-define the methods!).
 
-                            When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an “if” statement, and you must pass in a parameter of the required type. The examples provided as comments show how the methods are used.
+                            When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an "if" statement, and you must pass in a parameter of the required type. The examples provided as comments show how the methods are used.
                              </p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">You must supply a special key code to indicate which key (or button) you want to test (‘Key_A’ and ‘Mouse_Lbutton’ were used in the examples above). The full list of key codes can be found at <a href=" http://www.gamesnorthwest.net/resources/tl_engine/downloads.html" target="_blank">the TL-Engine download page</a>, under Documentation -> Appendix 2: Key Codes</p>
+                             <p class= "instruction-item">You must supply a special key code to indicate which key (or button) you want to test ("Key_A" and "Mouse_Lbutton" were used in the examples above). The <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4281018-dt-content-rid-7932568_1/xid-7932568_1" target="_blank">full list of key codes can be found downloaded here.</a></p>
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Notice that mouse buttons are considered to be ‘keys’ also.
+                             <p class= "instruction-item">Notice that mouse buttons are considered to be "keys" also.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">There is a slight difference between the two input methods provided above. The first (‘KeyHit’) returns true once, when the key is first pressed, then it return false until you let go of the key and press it again.
+                            <p class= "instruction-item">There is a slight difference between the two input methods provided above. The first ("KeyHit") returns true once, when the key is first pressed, then it returns false until you let go of the key and press it again.
                            </p>
                        </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">The second method (‘KeyHeld’) will always return true as long as the key is held down. We will see how this difference is important soon.
+                            <p class= "instruction-item">The second method ("KeyHeld") will always return true as long as the key is held down. We will see how this difference is important soon.
                            </p>
                        </div>
                     </li>
@@ -88,7 +84,7 @@ bool KeyHeld( EKeyCode );
         </section>
         <section>
             <div>
-                <h2>3. The 'if' Statement</h2>
+                <h2>3. The "if" Statement</h2>
                 <ol>
                     <li>
                         <div class="list-div">
@@ -99,7 +95,7 @@ bool KeyHeld( EKeyCode );
                         <div class="list-div">
                             <p class= "instruction-item">In C++ you can exercise this control through the use of the word "if". The general form of an "if" statement is:
                            </p>
-<pre><code class="plaintext">if (conditional)
+<pre><code class="plaintext">if (condition)
 {
     // conditional exectution
 }
@@ -108,7 +104,7 @@ bool KeyHeld( EKeyCode );
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">The conditional is a programming statement which equates to either true or false. Any expression which equates to a number can also be used.
+                            <p class= "instruction-item">The condition is a programming statement which equates to either true or false. Any expression which equates to a number can also be used.
                            </p>
                        </div>
                     </li><li >
@@ -180,7 +176,7 @@ bool KeyHeld( EKeyCode );
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add code to create an FPS camera, you may want to position it at ( 0, 0, -50 ). You should be able to do this without looking at the last week's lab. 
+                                Add code to create an FPS camera, you may want to position it at ( 0, 0, -50 ). You should be able to do this without looking at last week's lab sheet. 
                             </p>
                         </div>
                     </li>
@@ -230,7 +226,6 @@ myCamera->SetPosition(0, 0, -50);
     myEngine->Stop();
 }
 </code></pre>
-                            
                             <div class="hint-div">
                                 <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/a8db5806-22a1-4527-90d9-39c162d56cbd?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
                             </div>
@@ -268,7 +263,12 @@ myCamera->SetPosition(0, 0, -50);
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Now add a new “Grid.x” mesh and display a grid in your scene.</p>
+                                <p class= "instruction-item"><b>Now change your camera type back to kFPS, and remove the code for setting its position to (0, 0, -50).</b> Moving the camera can help in the tasks to follow.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Add a new “Grid.x” mesh and display a grid in your scene.</p>
                         </div>
                     </li>
                     <li >
@@ -289,13 +289,15 @@ myCamera->SetPosition(0, 0, -50);
                     <li >
                         <div class="list-div">
                              <p class= "instruction-item">What you should notice is that the arrow always moves left and right in the same direction: in the X direction of the large grid. This is called the ‘world’ X direction. Look closely at the arrow model and you can see it has its own grid, and it has its own X direction. This is called the arrow’s ‘local’ X direction. Sometimes we want to move in the local directions, we can do this with these methods:</p>
-<pre><code>// Move in the local X direction by the given amount
-void MoveLocalX(const float);
+<pre><code>void MoveLocalX(const float);
+// Move in the local X direction by the given amount
 // E.g arrow->MoveLocalX( 0.1 );
-// Move in the local Y direction by the given amount
+
 void MoveLocalY(const float);
-// Move in the local Z direction by the given amount
+// Move in the local Y direction by the given amount
+
 void MoveLocalZ(const float);
+// Move in the local Z direction by the given amount
 </code></pre>
                         </div>
                     </li>
@@ -328,7 +330,7 @@ void MoveLocalZ(const float);
                             </p>
                         </div>
                     </li>
-                    <li >''
+                    <li >
                         <div class="list-div">
                             <p class= "instruction-item">Declare a variable of type float in the initialisation section (before the game loop) and name it cubeSpeed. Assign an appropriate value to cubeSpeed.</p>
                         </div>
