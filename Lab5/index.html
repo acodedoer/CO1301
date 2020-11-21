@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../assets/highlight/styles/default.css">
-    <link rel="stylesheet" href="../assets/style.css">
-    <script src="../assets/highlight/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+        <!-- and it&#039;s easy to individually load additional languages -->
+        <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     <title>Lab 5 - Game States</title>
 </head>
 <body>
@@ -20,87 +22,25 @@
                     <li>
                         <div class="list-div">
                                 <p class= "instruction-item">
-                               </p>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">
+                                    In this lab you will write a bouncing sphere progam that makes uses of states to handle the sphere's bouncing movements as well as removing and recreating the sphere.
                                </p>
                            </div>
                     </li>
                 </ol>
         </section>
         <section>
-            <h2>2. Setting Up</h2>
-            <div class="section_instrcutions"></div>
-                <ol>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">
-                                    Create a new working directory (folder).
-                               </p>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">
-                                    Download the model and texture files from the website and unzip them into your new working directory.
-                               </p>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">
-                                    The model you've just downloaded is called "particle.x", you also downloaded 7 of its texture files.
-                               </p>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">
-                                    In your working directory, create and start a new TL-Engine project named <b>Lab5_GameStates_Project</b>
-                               </p>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item"> In your new project, create a camera at location ( 0, 0, -40 ). You don't need to move the camera at all today so set camera type to 'kManual'.
-                               </p>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Load and create a model using "Stars.x" to serve as your skybox.
-                            </p>
-                        </div>
-                    </li>  
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Using the downloaded "particle.x" mesh, create a model called "particleModel". Place it at the origin ( 0, 0, 0 ) and run your program. If you've placed the camera correctly then you'll see a hexagonally shaped light in the middle of the screen. This model has been created using a technique called texture blending and this makes the model semi-transparent.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Include a line of code within the main game loop to make the model rotate slowly around its local Z axis.
-                            </p>
-                        </div>
-                    </li>  
-                </ol>
-        </section>     
-        <section>
-            <h2>3. Removing Models</h2>
+            <h2>2. Removing a Model from the Game Scene</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Whenever we want to create a model, we use the 'CreateModel' method of an IMesh* variable. It is also possible to remove a model using the 'RemoveModel' method of its mesh. For example, the code below will remove the 'particleModel' you created earlier:
-                                <pre><code>particleMesh->RemoveModel( particleModel );</code></pre>
+                                Whenever we want to create a model, we use the 'CreateModel' method of an IMesh* variable. 
+<pre><code>IMesh* sphereMesh = myEngine->CreateModel("Sphere.x"); //declare variable and load mesh 
+IModel* sphere = sphereMesh->CreateModel( ); //declare variable and create model
+</code></pre>
+                                It is also possible to remove a model using the 'RemoveModel' method of its mesh. For example, the code below will remove the 'sphere' created in the code above:
+<pre><code>sphereMesh->RemoveModel( sphere ); //remove model</code></pre>
                                 Note that the 'RemoveModel' method is passed the IModel* variable of the model to be removed as a paramter.
                             </p>
                         </div>
@@ -115,44 +55,58 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Get rid of the rotate statement from your program if you've got one (otherwise the program will crash after the next addition).
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Include an if block within the main game loop so that when the Return key is hit, this removes the particle model. This should generate a real-time error and cause the program to crash. The code for the Return key is Key_Return.
-                            </p>
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Although the model has been destroyed the IModel* variable still exists. This is because the IModel* variable is a particular kind of variable called a pointer, which is declared using an asterisk (*). Although the pointer still exists, the removal of the model means it no longer has anything to point at. However, the IModel variable can be re-used to point to a newly created model. For example, the code below serves no real purpose but it does show this process of removing a model and reusing its IModel* variable:
-                                <pre><code>IModel* particleModel = particleMesh->CreateModel( ); // declare variable and create model
-                                    particleMesh->RemoveModel( particleModel ); // remove model
-                                    particleModel = particleMesh->CreateModel( ); // create new model
-                                </code></pre>
+                                Although the model has been destroyed the IModel* variable still exists. This is because the IModel* variable is a particular kind of variable called a pointer, which is declared using an asterisk (*). The pointer still exists, but the removal of the model means it no longer has anything to point at. However, the IModel variable can be re-used to point to a newly created model. For example, the code below serves no real purpose but it does show this process of removing a model and reusing its IModel* variable:
+<pre><code>IModel* sphere = sphereMesh->CreateModel( ); // declare variable and create model
+sphereMesh->RemoveModel( sphere ); // remove model
+sphere = sphereMesh->CreateModel( ); // create new model
+</code></pre>
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">In the next few steps, we will modify the program so the model is removed or created when the 'Retun Key' is hit, based on the state of the game.
+                            <p class= "instruction-item">In the next section, we will create a code that removes or creates a sphere when the 'Retun Key' is hit, based on the state of the game.
                             </p>
                         </div>
                     </li> 
                 </ol>
         </section>   
         <section>
-            <h2>4. Using Variables to Store Game State</h2>
+            <h2>3. Using Variables to Store Game State</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                                 <p class= "instruction-item">
-                                    Declare an integer variable called particleState and set its value to 0. The variable should be declared outside the game loop.
+                                    Create a new TL-Engine project named <b>Lab5_SphereStates_Project</b>.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    Use Floor.x to create a floor model at the origin, then create a camera at location ( 0, 70, -100 ). You don't need to move the camera at all today so set camera type to 'kManual'.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                   Rotate the camera 20 units along the x axis so that it is facing downwards.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    Use the sphere.x mesh to create a sphere model at ( 0, 10, 0) so that it is positioned on the floor.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    Declare an integer variable called sphereState and set its value to 1. The variable should be declared outside the game loop.
                                </p>
                            </div>
                     </li>
@@ -161,8 +115,8 @@
                             <p class= "instruction-item">
                                 The logic of the program we want to code is as follows:
                                 <ul>
-                                    <li>If the Return key is hit and the particleState is 0, this means that particleModel exists, therefore the particle model is removed and the particleState is set to 1.</li>
-                                    <li>If the Return key is hit and the particleState is 1, this means that particleModel does not exist, therefore the particle model is created and the particleState is set to 0.</li>
+                                    <li>If the Return key is hit and the sphereState is 1, this means that sphere exists, therefore the sphere model is removed and the sphereState is set to 0.</li>
+                                    <li>If the Return key is hit and the sphereState is 0, this means that sphere does not exist, therefore the sphere model is created and the sphereState is set to 1.</li>
                                 </ul>
                             </p>
                         </div>
@@ -170,55 +124,104 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The code to implement this looks as follows:
-                                <pre><code>if( myEngine->KeyHit( Key_Return ) )
-                                        {
-                                            if( particleState == 0 )
-                                            {
-                                                particleMesh->RemoveModel( particleModel );
-                                                particleState = 1;
-                                            }
-                                            else
-                                            {
-                                                particleModel = particleMesh->CreateModel(  );
-                                                particleState = 0;
-                                            }
-                                        }
-                                </code></pre>
-                                In this fashion you can track the state of your program. In this particular example you are keeping track of whether or not the particle model exists. Furthermore, you are using the state of the particle to determine what action the program needs to take: whether to create the particle or to remove it. States are used extensively within game programming and throughout software engineering in general.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                In exercises that follow, use states to change the texture of the particle. The textures you have been provided with are all of different colours so changing the texture will cause the particle to change colour. Remember that in order to change the texture you use the SetSkin() method:
-                                <pre><code>particleModel->SetSkin("")</code></pre>
+                                The code to implement this looks as follows (it should be added to the game loop):
+<pre><code>if( myEngine->KeyHit( Key_Return ) )
+{
+    if( sphereState == 1 )
+    {
+        sphereMesh->RemoveModel( sphere );
+        sphereState = 0;
+    }
+    else
+    {
+        sphere = sphereMesh->CreateModel( 0, 10, 0 );
+        sphereState = 1;
+    }
+}
+</code></pre>
+                                In this fashion you can track the state of your program. In this particular example you are keeping track of whether or not the sphere model exists. Furthermore, you are using the state of the sphere to determine what action the program needs to take: whether to create the sphere or to remove it. States are used extensively within game programming and throughout software engineering in general.
                             </p>
                         </div>
                     </li>
                 </ol>
         </section>
         <section>
-            <h2>5. Practice Exercise - Game States</h2>
+            <h2>4. Using Enums to Store Game State</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Reuse the integer variable 'particleState' to change the texture of the particle model when the 'Return Key' is hit. There are seven textures provided, therefore everytime the key is hit the next texture in the sequence is used. When the last of the textures has been reached the first one should be re-used, this way the program cycles around as the key is hit.<br/><br/>
-                                Hints:
-                                <ul>
-                                    <li>Set the value of 'particleState' to 0.</li>
-                                    <li>Since there are 7 textures the value of 'particleState' will range from 0 to 6.</li>
-                                    <li>Use a sequence of "else if" commands to check the state of the game (i.e. the value of 'particleState') and then set the appropriate model skin.</li>
-                                </ul>
+                            enums are a more elegant way of defining values for states in C++. 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                            We are going to update the program so that the sphere bounces up and down between y = 50 and y = 10. But we have to make sure this only happens when the sphereState is 1 i.e. when the sphere is not removed (since attempting to move the sphere after it has been removed will cause an error).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                            Create a Enumeration named EDirectionState outside of the game loop for storing the two directions of movement we are interested in. Then create an enum variable of type EDirectionState named sphereDirection and initialise it to Up as you want the sphere to be moving Up when the game starts.
+<pre><code>enum EDirectionState {Up, Down};
+EDirectionState sphereDirection = Up;</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                            Now inside the game loop write code to check check whether the sphere exists, if it does then check the sphereDirection state and move the sphere based on its value.
+                            </p>
+
+<pre><code>if ( sphereState == 1 ) { //if sphere exists
+    if ( sphereDirection == Up ){ 
+        sphere->MoveY (0.1);      
+    }
+    else if ( sphereDirection == Down ){  
+        sphere->MoveY (-0.1);             
+    }
+}
+</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                            Finally, below the code froom the last step, add code to check for the event that should change the sphereDirection state (by checking the Y position of the sphere). This should also only happen if the sphere is not removed, otherwise an error will occur. 
+                            </p>
+
+<pre><code>if ( sphereState == 1 ) { //if sphere exists
+    if ( sphere->GetY() >= 60 ){
+        sphereDirection = Down;
+    }
+    else if ( sphere->GetY() <= 10  ){
+        sphereDirection = Up;
+    }
+}
+</code></pre>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>5. Advanced Exercise</h2>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Utilise states and parenting to create a simple platformer game in this advanced exercise sheet.
                             </p>
                         </div>
                     </li>
                 </ol>
         </section>
+
     </main>
-    <script src="../assets/script.js"></script>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
 </body>
 </html>
