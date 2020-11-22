@@ -21,10 +21,17 @@
                 <ol>
                     <li>
                         <div class="list-div">
-                                <p class= "instruction-item">
-                                    In this lab you will write a bouncing sphere progam that makes uses of states to handle the sphere's bouncing movements as well as removing and recreating the sphere.
-                               </p>
-                           </div>
+                            <p class= "instruction-item">
+                                In this lab you will practice working with states using state variables and enums.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You will be creating a simple endless platformer as part of the lab's activites.
+                            </p>
+                        </div>
                     </li>
                 </ol>
         </section>
@@ -146,7 +153,7 @@ sphere = sphereMesh->CreateModel( ); // create new model
                 </ol>
         </section>
         <section>
-                <h2>2. Setting Up A Platformer</h2>
+                <h2>4. Setting Up A Platformer</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                         <li>
@@ -166,49 +173,68 @@ sphere = sphereMesh->CreateModel( ); // create new model
                         <li>
                             <div class="list-div">
                                     <p class= "instruction-item">
-                                        Download the model and texture files from the website.
+                                        Download this project's associated models and textures from Blackboard, save them in a folder inside your project folder and use the AddMediaFolder() method to tell TL-Engine to get resources from the folder. The meshes included and their diemsions are:
+                                        <ul>
+                                            <li>
+                                                playerCube.x - 20 x 20 x 20
+                                            </li>
+                                            <li>
+                                                background.x - 260 x 140
+                                            </li>
+                                            <li>
+                                                platform.x - 260 x 20 x 20
+                                            </li>
+                                            <li>
+                                                enemyCube.x - 20 x 20 x 20
+                                            </li>
+                                        </ul>
                                    </p>
                                </div>
                         </li>
                         <li>
                             <div class="list-div">
                                     <p class= "instruction-item">
-                                        Create a kManual camera at (0, 0, -130), and use the background.x mesh to create a background model named "background1" at position (0,0, 10).
+                                        Create a kManual camera at ( 0, 0, -130 ), and use the background.x mesh to create a background model named "background1" at position ( 0, 0, 10 ).
                                    </p>
                                </div>
                         </li>
                         <li>
                             <div class="list-div">
                                     <p class= "instruction-item">
-                                        Next, we need platforms for our player to move on. Use the the Platform.x mesh to create 2 platfrom models: platform1 at (0, 60, 0) and platform2 at (0, -60, 0); the platforms should be positioned in front of the wall at the top and bottom respectively.
+                                        Next, use the the platform.x mesh to create 2 platform models: platform1 at ( 0, 60, 0 ) and platform2 at ( 0, -60, 0 ); the platforms should be positioned in front of background1 at the top and bottom respectively.
                                    </p>
                                </div>
                         </li>
                         <li>
                             <div class="list-div">
-                                    <p class= "instruction-item"> Now that we have a background and platforms to move on, it is time to add our player. Use the Player.x mesh to create a player model, the X and Z position of the player should be 0 and the Y position of the player should be such that it appears to sit on platform2, the bottom platform. Make a note of this Y position, it is the lowest position that the player should be positioned at.
+                                    <p class= "instruction-item"> Now that we have a background and platforms to move on, it is time to add our player. Use the playerCube.x mesh to create a model called "playerCube". The X and Z positions of playerCube should be 0, but the Y position playerCube should be such that it appears to sit on platform2, the bottom platform.</p>
+                                    <img src="4.1.PNG" alt="screenshot of the game scene">
+                                    <p> The Y value that you use here should be the lowest Y position that playerCube can be positioned at. if you have set your scene correctly, then it should be a negative number and its positive equivalent should be the highest position that playerCube can be positioned at. Make a note of these two values.
                                    </p>
                                </div>
                         </li>
                     </ol>
                 </section>   
                 <section>
-                    <h2>4. Using Enums to Store Game State</h2>
+                    <h2>5. Using Enums to Store Game State</h2>
                     <div class="section_instrcutions"></div>
                         <ol>
                             <li>
                                 <div class="list-div">
                                         <p class= "instruction-item">
-                                            This game should be played as follows:
+                                            The game we are creating should be played as follows:
                                             <ul>
                                                     <li>
-                                                        When the game starts the player should be positioned on the bottom platform, however when the Space Key is hit the cube should move up until it hits the top platform.
+                                                        When the game starts, playerCube should be positioned so that it appears to sit on the bottom platform.
                                                     </li> 
                                                     <li>
-                                                        Pressing the Space Key again should make the cube move down until it lands on the bottom platform.
+                                                        When the Space Key is hit playerCube should move up until it is directly beneath the top platform. It should appear as if playerCube moved up and stopped after hitting the top platform.
                                                     </li>
                                                     <li>
-                                                        Basically hitting the Space Key should make the cube move up or down continously until it hits a platform.
+                                                        Pressing the Space Key again should make the cube move down until it is positioned on the bottom platform.
+                                                    </li>
+                                                    <li>
+                                                        Basically, hitting the Space Key should make playerCube move to the opposite platform.
                                                     </li>
                                             </ul>
                                             
@@ -218,7 +244,7 @@ sphere = sphereMesh->CreateModel( ); // create new model
                             <li>
                                 <div class="list-div">
                                     <p class= "instruction-item">
-                                        To implement this logic, start by creating a Enumeration named EPositionState outside of the game loop for storing the two positions of the cube (Top and Bottom). Then create an enum variable of type EPositionState named playerPosition and initialise it to Bottom as you want the player to be positioned on the bottom platform when the game starts.
+                                        To implement this logic, start by creating a Enumeration named EPositionState outside of the game loop for storing the two possible positions of playerCube (Top and Bottom). Then create an enum variable of type EPositionState named playerPosition and initialise it to Bottom as you want playerCube to be positioned on the bottom platform when the game starts.
 <pre><code>enum EPositionState {Bottom, Top};
 EPositionState playerPosition = Bottom;</code></pre>
                                     </p>
@@ -243,88 +269,114 @@ EPositionState playerPosition = Bottom;</code></pre>
                             <li>
                                 <div class="list-div">
                                     <p class= "instruction-item">
-                                        Next, define a constant float named kGravity and give it a value of 0.5f. Then in the game loop, write code to check the positionState; if the positionState is Bottom, then the cube should be moved down using MoveY(-kGravity) unitl its Y position is such that it is sitting on the bottom platform ( use the value you noted in Task 4.6 ); if the positionState is Top, then the cube should be moved up using MoveY(kGravity) unitl its Y position is such that it is just underneath the top platform ( you may have to try a few values ). The code should look like the snipet below:
+                                        Next, define a constant float named kGravity and give it a value of 0.5f. Then in the game loop, write code to check the positionState and:
+                                        <ul>
+                                            <li>
+                                                If the positionState is Bottom, then playerCube should be moved down using <code>playerCube->MoveY(-kGravity)</code> until its Y position is such that it appears to be sitting on the bottom platform ( Hint: playerCube's Y position should not be less than the lowest Y value you noted in Task 4.6 )
+                                            </li>
+                                            <br>
+                                            <li>
+                                                If the positionState is Top, then playerCube should be moved up using <code>playerCube->MoveY(kGravity)</code>  unitl its Y position is such that it is just underneath the top platform ( Hint: playerCube's Y position should not be greater than the highest Y value you noted in Task 4.6).
+                                            </li>
+                                        </ul> 
+                                    </p>
+                                    <p>
+                                        
+                                    </p>  The code should be structured as follows:
                                     </p>
 <pre><code>if (playerPosition == Bottom) {
-    // if cube's Y is greater that the lowest Y position, move cube down some more
+    //Add another if statement here
+    //if playerCube's Y is greater that the lowest Y position, move cube down some more
 }
 else if (playerPosition == Top){
-    // if cube's Y is less that the highest Y position, move cube up some more
+    //Add another if statement here
+    // if playerCube's Y is less that the highest Y position, move cube up some more
 }
 </code></pre>
+                            <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
+                            <div class="hint-div">
+                                <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/5a6c1377-09a1-455c-ac9f-e42ab4e2a430?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                            </div>
                                 </div>
                             </li>
                         </ol>
                 </section>
                 <section>
-                    <h2>3. Infinite Platfroms</h2>
+                    <h2>6. Endless Platfroms</h2>
                     <ol>
                         <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    Our player can swicth between the top and bottom platforms, but we still don't have a platfromer until our player is going somerwherer on these platforms.
+                                    playerCube can now move vertically between the top and bottom platforms, we will now add horizontal movement on the platforms.
                                 </p>
                             </div>
                         </li>     
                         <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    Rather than moving the player on the platform, it will be more efficient to move the platforms and the background to create an illusion of the player's movement. Another advantage of this is that once the platforms and the background exit the camera's view from one side they can be recycled into view from the other side to create an endless platformer. But for this approach to work we need another set of two platorms and a background image, therefore create models for platform3 at , platform4 at and background2 at.
+                                    Rather than moving playerCube, it will be more efficient to move the platforms and the background to create the illusion of playerCube's movement. Another advantage of this is that once the platforms and the background exit the camera's view from one side they can be recycled into view from the other side to create an endless platformer. But for this approach to work we need addional models (two platforms and a background).</p>
+                                    <p>Therefore use platform.x to create models for platform3 at ( 260, 60, 0 ) and platform4 at ( 260, -60, 0 ); then use background.x to create  background2 model at ( 260, 0, 10 ).
+                                </p>
+                                <img src="6.2.PNG" alt="screenshot of the game scene">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    To have a better view of how these models and what will be created using them, change your camera type to kFPS so that you can zoom out and move around to have a better look at all the models in the scene.
                                 </p>
                             </div>
                         </li>
                         <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    To have a better view of how these models will be positioned and moved to create an endless platformer, change your camera type to kFPS so that you can zoom out and move around to have a better loook at all the models in the scene.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list-div">
-                                <p class= "instruction-item">
-                                    To improve efficieny, we are going to use parenting to create two sets of models each containg two platforms and a background. Therefore use the AttachToParent() method to attach platform1 and platform2 to background1; and attach platform3 and plantform4 o background2.
+                                    To improve efficieny, we are going to use parenting to create two sets of models each containg two platforms and a background. Therefore use the AttachToParent( ) method to attach platform1 and platform2 to background1; and attach platform3 and platform4 to background2.
                                 </p>
                             </div>
                         </li>  
                         <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    When you run your program, you should notice that the position of your platforms has changed. This is beacuse when a model is attached as a child to another model, the orign of the child model is no longer the world origin but the origin of the parent model. Therefore you will have to reposition your platforms using SetLocalPosition(), the positions you provide as parameters to this function should be relative to the parent.
-                                </p>
+                                    When you run your program, you should notice that the position of your platforms has changed. This is beacuse when a model is attached as a child to another model, the orign of the child model is no longer the world origin but the origin of the parent model. Therefore you will have to reposition your platforms relative to their parents using SetLocalPosition( ).</p>
+<pre><code>platform1->SetLocalPosition(0, 60, -10); // at the top and in front of background1 
+platform2->SetLocalPosition(0, -60, -10); //at the bottom and in front of background1 
+
+platform3->SetLocalPosition(0, 60, -10); //at the top and in front of background2
+platform4->SetLocalPosition(0, -60, -10); //at the bottom and in front of background2 </code></pre>
                             </div>
                         </li> 
                         <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    All platforms should be positioned in front of their respective backgrounds; all platforms should have the same X position as their backgrounds; platform1 should be positioned 60 units above the center of background1, platform2 should be positioned 60 units below the center of background1, platform3 should be positioned 60 units above the center of background2, and platform4 should be positioned 60 units below the center of background2. 
+                                    Next, define a constant float named kGameSpeed and initialise it to -0.05f. Then in the game loop add code to move background1 and background2 along the x axis using kGameSpeed. When you run your program, each background and its children (platforms) should be moving to the left thus creating the illusion that the cube is moving to the right.
                                 </p>
-                            </div>
-                        </li> 
-                        <li>
-                            <div class="list-div">
-                                <p class= "instruction-item">
-                                    Next, define a constant float named kGameSpeed and initialise it to -0.05f. Then in the game loop add code to move background1 and background2 along the x axis using kGameSpeed. When you run your program, the background and platforms should be moving to the left thus creating the illusion that the cube is moving to the right.
-                                </p>
+                                <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
+                                <div class="hint-div">
+                                    <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/710d3aa8-cc19-41a2-aad0-6495aa447980?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                                </div>
                             </div>
                         </li>
                         <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    Now we want to make sure that once a background and its models are out of view from the left, they ar erecycled so that they appear again from the right. Therefore, add code in the game loop that checks whether a set of models is out of view, if it is it should be repositioned to the right of the camera view so that they can reappear again.
+                                    Now we want to make sure that once a background and its attached models are out of view from the left, they are recycled so that they appear again from the right. Therefore, add code in the game loop that checks whether a background and its children are out of view, if they are then they should be repositioned to the right of the camera view so that they can move left into view.
 <pre><code>if (background1->GetX() <= -260) {
-    background1->SetPosition(260, 0, 0);
+    background1->SetPosition(260, 0, 10);
 }
-if (background2->GetX() <= -260) {
-    background2->SetPosition(260, 0, 0);
+else if (background2->GetX() <= -260) {
+    background2->SetPosition(260, 0, 10);
 }</code></pre>
                                 </p>
+                                <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
+                                <div class="hint-div">
+                                <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/9e4bfd9c-ef5f-48a5-9333-a0df5a435116?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                                </div>
                             </div>
                         </li>
                         <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    Run your program and move your camera back so you can view how the process works. Then update your code to change your camera back to kManual positioned at (0, 0, -130).
+                                    Run your program and move your camera back so you can view how the process works. Then update your code to change your camera back to kManual positioned at ( 0, 0, -130 ).
                                 </p>
                             </div>
                         </li>
@@ -337,69 +389,151 @@ if (background2->GetX() <= -260) {
                         </li> 
                     </ol>
             </section>
-            <section>
-                    <h2>5.Enemies on the Platform</h2>
-                    <div class="section_instrcutions"></div>
-                        <ol>
-                            <li>
-                                <div class="list-div">
-                                    <p class= "instruction-item">
-                                        Now that we have the infinite platform working and the the player movement also working. Let us add osme enemies.
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="list-div">
-                                    <p class= "instruction-item">
-                                       We will create two enemy models, and attache one to each set of platforms and background. Create enemy1, attach it ot background1, the use SetLocalPosition to position it so that it appears on platform 2 at the center of the p;atform. Position enemy2 so that it aapears below platform 3 at the center of platform 3.
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="list-div">
-                                    <p class= "instruction-item">
-                                        The enemies should now be moving with the platforms and the backgrounds.
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="list-div">
-                                    <p class= "instruction-item">
-                                        To make things more exciting copy the code below and add it ito the game loop, it checks fo rcollisio betwene the player and the enemies and stops the game everytime the player hits the enemy.
-                                    </p>
-                                </div>
-                            </li>
-                        </ol>
-                </section>
                 <section>
-                        <h2>5.Advanced</h2>
+                        <h2>7.Exercises - Improving the Game</h2>
                         <div class="section_instrcutions"></div>
                             <ol>
                                 <li>
                                     <div class="list-div">
                                         <p class= "instruction-item">
-                                            At the moment the player can switch between position states at any time. Add an addional state to your prgram called Midway which the playe r should be in if the cube is in the process of moving from the top platform to the bottom of vice versa. The player should not be able to swicth states wjile in this state, the player should onlyu be abale tyo swich stat while in top or bottom states.
+                                            By default, playerCube and the platform models all use "yellow.jpg" as their skin, write code that changes the skin of these models when the Return Key is hit. 
+                                            <ul>
+                                                <li>
+                                                    Define an integer variable named gameSkin to keep track of the skin used in the game. gameSkin should be initialised as 0 when the game starts and that shows the skin is "yellow.jpg".
+                                                </li>
+                                                <li>
+                                                    If Return Key is hit when gameSkin is equal to 0, then gameSkin should be changed to 1 and the skin of the models should be set to "red.jpg".
+                                                </li>
+                                                <li>
+                                                    If the return Key is hit  and gameSkin is equal to 1, then gameSKin should be changed to 2 and the skin of the models should be changed ot "green.jpg,
+                                                </li>
+                                                <li>
+                                                    If the return key is hit again and gameSkin is equal to 2, then gameSkin should be changed to 0 and the skin of the modesl should be set to "yellow.jpg".
+                                                </li>
+                                            </ul>  
+                                        </p>
+                                        <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
+                                <div class="hint-div">
+                                        <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/e47d9caf-67e9-4c71-8f33-404618715c05?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                                </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list-div">
+                                        <p class= "instruction-item">
+                                            At the moment, playerCube can switch between position states at any time meaning you can change cubePlayer's direction of movement while it is mid air, lets change that. 
+                                            <ul>
+                                                <li>
+                                                    Add two states to your program, MovingUp and MovingDown.
+                                                </li>
+                                                <li>
+                                                    If playerCube is in the Bottom state an the Space key is hit, playerCube should transition to the MovingUp state and then move up until it reaches the highest Y position then transition to the Top state
+                                                </li>
+                                                <li>
+                                                    If playerCube is in the Top state an the Space key is hit, playerCube should transition to the MovingDown state and then move down until it reaches the lowest Y position then transition to the Bottom state
+                                                </li>
+                                                <li>
+                                                    playerCube should not respond to Space key hits while in the MovingUp or MovingDown states. 
+                                                </li>
+                                            </ul> 
                                         </p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="list-div">
                                         <p class= "instruction-item">
-                                           Make the player rotater 360 units along local z while in midway state, so that the player appears to flip everytime the player swicthes paltforms.
+                                           Make playerCube complete a 90 units rotation along its local z axis while in the MovingUp or MovingDown states, so that playerCube appears to do a "half-flip" everytime it moves to the top or the bottom.
                                         </p>
+                                        <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
+                                <div class="hint-div">
+                                        <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/52c6d407-be5c-44aa-a8bd-3882bc161173?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                                </div>
+                                    </div>
+                                </li>
+                            </ol>
+                    </section>
+                    <section>
+                        <h2>8.Exercises - Advanced</h2>
+                        <div class="section_instrcutions"></div>
+                            <ol>
+                                <li>
+                                    <div class="list-div">
+                                        <p class= "instruction-item">
+                                            Use the enemyCube.x model to create two models named enemy1 and enemy2.
+                                            </p>
+                                            <p>
+                                            Attach enemy1 to background1 and enemy2 to background2. Then use SetLocalPosition( ) to position enemy1 in front of background1 and just beneath platform1. Position enemy2 in front of background2 so that it appears to sit on platform4. Use 0 as the X position when positioning both enemies.
+                                            </p>
+                                            <p>
+                                            When you run your program you should have top and bottom enemies that move with the backgrounds and platforms.
+                                            </p>
+                                            <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
+                                            <div class="hint-div">
+                                                    <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/7f1a1ab4-06ff-4ea9-916e-0c548c6d4300?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </li>
+                                
+                                <li>
+                                    <div class="list-div">
+                                        <p class= "instruction-item">
+                                            To make things more exciting copy the code below and add it to the game loop, it checks for collisions between the player and the enemies and stops the game everytime the player hits an enemy.
+                                        </p>
+<pre><code>//the code below implements sphere to sphere collision detection
+//it uses spheres of radius 20 as bounding volumes for playerCube and the enemies
+//it calculates the distance between each enemy's and playerCube's bounding spheres
+//if  any of the distances is less than 20 then there is a collision
+//20 is the sum of the raidus of the enemy's and playerCUbe's bounding spheres
+
+float x1, y1, z1, x2, y2, z2;
+    
+x1 = playerCube->GetX() - enemy1->GetX();
+y1 = playerCube->GetY() - enemy1->GetY();
+z1 = playerCube->GetZ() - enemy1->GetZ();
+
+x2 = playerCube->GetX() - enemy2->GetX();
+y2 = playerCube->GetY() - enemy2->GetY();
+z2 = playerCube->GetZ() - enemy2->GetZ();
+
+float collisionDist1 = sqrt(x1 * x1 + y1 * y1 + z1 * z1);
+float collisionDist2 = sqrt(x2 * x2 + y2 * y2 + z2 * z2); 
+
+if (collisionDist2 < 20 || collisionDist1 < 20)
+{
+    myEngine->Stop();
+}</code></pre>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="list-div">
                                         <p class= "instruction-item">
-                                            To creat ethe illusion of gravity, increase the movement speed along the way as the i sin modway so that it eappears as if gravity is pussing the player upwards or dowanlwars
+                                            Everytime a background and its attached enemy are out of view, reposition the enemy to a random position either beneath the background's attached top platform or on the background's attached bottom platform. (Hint: <a href= "https://www.cplusplus.com/reference/cstdlib/rand/" >you may want to use rand(), the C++ function for generating random numbers)</a>
                                         </p>
+                                        <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
+                                        <div class="hint-div">
+                                                <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/ae0204e1-e767-489c-891b-f23ffa0e44c8?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
+                                        </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="list-div">
                                         <p class= "instruction-item">
-                                            Rather than stoping the enfine wwhne the pplayer collides with an enemy. Restart the game by reinitialising everything to the way it was when the game started.
+                                           You can go further with this if you are having fun. You can add functionalities such as:
+                                           <ul>
+                                               <li>
+                                                   Restarting the game when playerCube collides with an enemy.
+                                               </li>
+                                               <li>
+                                                   Adding more enemies.
+                                               </li>
+                                               <li>
+                                                   Adding enemies with different behaviours.
+                                               </li>
+                                               <li>
+                                                   Keeping score
+                                               </li>
+                                           </ul>
                                         </p>
                                     </div>
                                 </li>
