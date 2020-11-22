@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+        <!-- and it&#039;s easy to individually load additional languages -->
+        <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 5 - Game States</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br> Lab 5 - Advanced</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                               </p>
+                           </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>2. Setting Up</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    Create a new TL-Engine project named <b>Lab5_GravityCube_Project</b>.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    Download the model and texture files from the website.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    To get a good view of the stage that you will be setting up, I reccomend creating a kManual camear at (0, 0, -600) so that you are able to see all the models you will place and they will be moveing.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    Using the Platform.x mesh, create a platform 2 platfrom models, platform1 at (0, 60, 0) and platform2 at (0, -60, 0).
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    Using the Wall.x mesh, create a wall model behind the platform at  (0, 0, 10).
+                                </p>
+                            </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item"> Now that we have a backbround and top and bottom platforms, it is time to add our player, who happes to be a cube. Using the Player.x mesh, create a player model and position it at (0, -40, 0) so that it sitson the bottom platform.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Rather than moving the player on the platform, it will be more efficient to move the platform underneadt the player and the background behind the platform to create an issusion o fth eplayer's movement. This way once the platform and the background are out of view they can be recyceld into view from the other side creating an endless platformer. However in additon to the set of two platforms and a background model taht we have created, we need another set so that as one set goes out of view another is brough into view.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Before creating the new set of models. First attach the two platforms as models of the background model so that they can be moved as a single entity.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                It may be a good idea to reposition your camera now so that you can view how the addional set of models will b epositioned and how the two sets will be recycled. Change your camera position to (0, 0, -600)
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add another background model named background2, and two more platform models platform3 and platform4. Background2 should be placed to the right of background1 and their borders should be in caontact (0, -260, 0).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now attach platform3 and platform4 to background2, then use SetLocalPosition() to position platform3 at the top of the background2 and platform4 at the bottom o fthe background.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Include a line of code within the main game loop to make the model rotate slowly around its local Z axis.
+                            </p>
+                        </div>
+                    </li>  
+                </ol>
+        </section>     
+        <section>
+            <h2>3. Infinite Platfroms</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               Outside the game loop define a constant float named kGameSpeed to determine the speed fo your game. Give it a value of 0.05f;
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In the game loop add code to move the two sets of models to the left along the x axis, so that an illusion of the player cubce moving to the right is created.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Next add code in the game loop that checks whether a set of models is out of view, if it is it should be repositioned to the right of the camera view so that it can reappear again.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Reposition your camera back to (0, 0, -120).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Include an if block within the main game loop so that when the Return key is hit, this removes the particle model. This should generate a real-time error and cause the program to crash. The code for the Return key is Key_Return.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Although the model has been destroyed the IModel* variable still exists. This is because the IModel* variable is a particular kind of variable called a pointer, which is declared using an asterisk (*). The pointer still exists, but the removal of the model means it no longer has anything to point at. However, the IModel variable can be re-used to point to a newly created model. For example, the code below serves no real purpose but it does show this process of removing a model and reusing its IModel* variable:
+<pre><code>IModel* particle = particleMesh->CreateModel( ); // declare variable and create model
+particleMesh->RemoveModel( particle ); // remove model
+particle = particleMesh->CreateModel( ); // create new model
+</code></pre>
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">In the next few steps, we will modify the program so the model is removed or created when the 'Retun Key' is hit, based on the state of the game.
+                            </p>
+                        </div>
+                    </li> 
+                </ol>
+        </section>   
+        <section>
+            <h2>4. Player Movement</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    The players movement should be such that when the game starts the player appears to be moving on the bottom platform, however when SpaceKey is hit the player should move up so that he appear sto be moving on the top patform, if the space key is hit again the player should move to bottom platform and so on..
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a Enumeration named EPositionState outside of the game loop for storing the two positions of the player. Then create an enum variable of type EPositionState named playerPosition and initialise it to Bottom as you want the player to be positioned on the bottom platform when the game starts.
+<pre><code>enum EPositionState {Bottom, Top};
+EPositionState playerPosition = Bottom;</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Next write code to check if the Space key i hit,if it is the code should check the state of the player and change.
+<pre><code>if (myEngine->KeyHit(Key_Space)) {
+    if (playerPosition == Bottom) {
+        playerPosition = Top;
+    }
+    else {
+        playerPosition = Bottom;
+    }
+}
+</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Next, define a constant float named kGravity and give it a value of 0.5. Then write code to check the positionState and then check whether the cube positioned whether it should be based on the state an dmove it along y using Kgraviyt or -kGravity the right position if neccessary. FOr example if the positionState is Bottom, then the cube's positon shoould be on the bottom platform i.e cube->GetY() <=-40, otherwise the cueb should be moved down along the Y axis.
+                            </p>
+<pre><code>if (playerPosition == Bottom) {
+    if (cube->GetY() > -40) {
+        cube->MoveY(-kGravity);
+    }
+}
+else if (playerPosition == Top){
+    if (cube->GetY() < 40) {
+        cube->MoveY(kGravity);
+    }
+}
+</code></pre>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>5.Enemies on the Platform</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now that we have the infinite platform working and the the player movement also working. Let us add osme enemies.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               We will create two enemy models, and attache one to each set of platforms and background. Create enemy1, attach it ot background1, the use SetLocalPosition to position it so that it appears on platform 2 at the center of the p;atform. Position enemy2 so that it aapears below platform 3 at the center of platform 3.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The enemies should now be moving with the platforms and the backgrounds.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                To make things more exciting copy the code below and add it ito the game loop, it checks fo rcollisio betwene the player and the enemies and stops the game everytime the player hits the enemy.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+                <h2>5.Advanced</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    At the moment the player can switch between position states at any time. Add an addional state to your prgram called Midway which the playe r should be in if the cube is in the process of moving from the top platform to the bottom of vice versa. The player should not be able to swicth states wjile in this state, the player should onlyu be abale tyo swich stat while in top or bottom states.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                   Make the player rotater 360 units along local z while in midway state, so that the player appears to flip everytime the player swicthes paltforms.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    To creat ethe illusion of gravity, increase the movement speed along the way as the i sin modway so that it eappears as if gravity is pussing the player upwards or dowanlwars
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    Rather than stoping the enfine wwhne the pplayer collides with an enemy. Restart the game by reinitialising everything to the way it was when the game started.
+                                </p>
+                            </div>
+                        </li>
+                    </ol>
+            </section>
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+</body>
+</html>
