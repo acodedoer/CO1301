@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../assets/highlight/styles/default.css">
-    <link rel="stylesheet" href="../assets/style.css">
-    <script src="../assets/highlight/highlight.pack.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+        <!-- and it&#039;s easy to individually load additional languages -->
+        <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 6 - Introduction To Vectors</title>
+    <title>Lab 6 - Vectors, Arrays and Loops</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br>Lab 6 - Introduction To Vectors</h1></header>
+    <header><h1>CO1301: Games Concepts <br>Lab 6 - Vectors, Arrays and Loops</h1></header>
     <main>
         <section>
             <h2>1. Introduction</h2>
@@ -20,12 +22,14 @@
                     <li>
                         <div class="list-div">
                                 <p class= "instruction-item">
+                                    In this lab, you will learn to create and use vectors to move game objects.
                                </p>
                            </div>
                     </li>
                     <li>
                         <div class="list-div">
                                 <p class= "instruction-item">
+                                    You will also learn to utilise arrays.
                                </p>
                            </div>
                     </li>
@@ -38,58 +42,71 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You are going to use the same skybox and particle model used in last weeks <b>Lab5_GamesState_Project</b>. Therefore, you can either create a new project in the working directory you created last week, or create a new working directory to download the models into and create your project. Name your created TL-Engine project <b>Lab6_Vectors1_Project</b>.
+                                Create a new TL-Engine project and name it <b>Lab6_Vectors_Project</b>.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a 'kManual' camera and position it at ( 0, 0, -50 ).
+                                <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4346011-dt-content-rid-8329845_1/xid-8329845_1" target="_blank">Download the associated media files for this lab from this link</a> and use the AttachMediaFolder() method to point TL-Engine to the folder where they are saved.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load the "particle.x" mesh and create a model at coordinates  ( 0, 20, 0 ).
+                                Load and create a model using "stars.x". This will be your skybox.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Include a line of code within the game loop to make the particle slowly moves downwards. Use movement relative to the world, not local movement. For example:
+                                Create a 'kManual' camera and position it at ( 0, 0, -60 ).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the "particle.x" mesh and use it to create a model called particleModel at (0, 30, 0).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Include a line of code within the game loop to make the particleModel slowly move downwards. Use movement relative to the world, not local movement. For example:
                                 <pre><code>particleModel->MoveY( -0.005f );</code></pre>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">When the particle reaches the bottom of the screen set its coordinates back to ( 0, 20, 0 ) using the SetPosition() method. Again note that you are using world coordinates not local coordinates.
-                            <pre><code>particleModel->SetPosition( 0, 20, 0 );</code></pre>
-                            The particle should now fall down the screen and when it hits the bottom reappear at the top of the screen. Ensure that it is falling slowly at a value of 0.005, if this is not already the case.
+                            <p class= "instruction-item">When particleModel reaches the bottom of the screen set its coordinates back to ( 0, 30, 0 ) using the SetPosition() method. Again note that you are using world coordinates not local coordinates.
+                            <pre><code>particleModel->SetPosition( 0, 30, 0 );</code></pre>
+                            particleModel should now fall down the screen and when it hits the bottom reappear at the top of the screen. Ensure that it is falling slowly at a value of 0.005, if this is not already the case.
                             </p>
                         </div>
                     </li>
+                </ol>
+            </section>
+            <section>
+                <h2>3.Introducing Vectors</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                A vector is a way of describing movement or direction. In 3D a vector is simply three numbers: x, y and z. However, these numbers now represent movement or direction instead of a location. Vectors are used throughout games development. The vector of movement for your particle is ( 0,  -0.005,  0 ).
+                                Vectors are used throughout games development as a way of describing movement or direction. In 3D, a vector is simply three numbers: x, y and z, written between round brackets and separated by commas. The first number is the x value; the second number is the y value; and the third value is the z value. However, these numbers now represent movement or direction instead of a location. 
                             </p>
                         </div>
-                    </li>  
+                    </li> 
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Vectors are written using round brackets. The values within the round brackets are separated from one by commas. The first number is the x value. The second number is the y value. The third value is the z value.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                A vector of movement ( 0,  -0.005, 0  ) means that the particle is advancing by:
+                                    The vector of movement for particleModel is ( 0,  -0.005,  0 ). This vector means that the model is advancing by:
                                 <ul>
                                     <li>a value of 0 along the x axis</li>
                                     <li>a value of -0.005 along the y axis</li>
@@ -101,63 +118,39 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare three floating point variables: vectorX, vectorY and vectorZ. Set the value of vectorX to 0, the value of vectorY to 0.005 and the value of vectorZ to 0. The variables should be created outside the game loop.
+                                Declare three floating point variables: movementX, movementY and movementZ. Set the value of movementX to 0, the value of movementY to -0.005 and the value of movementZ to 0. The variables should be created outside the game loop.
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Change the MoveY() command in your code so that you are now moving the particle model by vectorY.
+                                Replace the MoveY() command in your game loop with a Move() method that takes in vector (movementX, movementY, movementZ) as its parameter.
+                                <pre><code>particleModel->Move(movementX, movementY, movementZ);</code></pre>
+                            </p>
+                            <p>
+                                Note that the above code is equivalent to using a separate move method for each component of the vector i.e. MoveY(movementY); MoveX(movementX); MoveZ(movementZ); 
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add a MoveX() command so that you are moving the particle model by vectorX.
-                            </p>
-                        </div>
-                    </li>   
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Add a MoveZ() command so that you are moving the particle model by vectorZ.
+                                Compile and run your program, particleModel should be dropping down the screen as before.
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Compile and run your program. Your particle should be dropping down the screen as before.
+                                Change the value of movementX and movementY so that now the vector (-0.01, -0.01, 0) is being applied to particleModel and then run the program.
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                A vector of movement (  -0.005,  -0.005, 0  ) would look something like this:
-                            </p>
-                        </div>
-                    </li>                   
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Change the value of vectorX so that now the vector (  -0.005,  -0.005, 0  ) is being applied to the particle and then run the program.
-                            </p>
-                        </div>
-                    </li>  
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Now change the vector to (  -0.002,  -0.004, 0  ).
-                            </p>
-                        </div>
-                    </li>  
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Experiment with some other values.
+                                Experiment with some other values for movementX and movementY.
                             </p>
                         </div>
                     </li>  
@@ -171,68 +164,191 @@
                 </ol>
         </section>
         <section>
-            <h2>3. Practice Exercises - Game State</h2>
+            <h2>4. Adding Vectors</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Vectors can be combined together. This is one reason why they are so useful a tool within graphics. Imagine that there is a wind blowing across the screen from right to left. The particle is falling down but at the same time it is being pushed by the wind. This can be represented using a second vector
+                                Vectors can be combined together. This is one reason why they are so useful a tool within graphics. Imagine that there is a wind blowing across the screen from right to left, particleModel is falling down but at the same time it is being pushed by the wind. This can be represented using a second vector
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Set the movement vector of the particle to (  0,  -0.005, 0  ). The particle should now be dropping slowly down the screen when you run the program.
+                                Set the movement vector of particleModel back to to (0, -0.005, 0).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new vector for the wind. Declare three floating point variables: windX, windY and windZ. Set this new wind vector to (  -0.005,  0,  0  ).
+                                Create a new vector for the wind. Declare three floating point variables: windX, windY and windZ. Set this new wind vector to (-0.005, 0,  0).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Within the game loop add a new MoveY() command in your code so that the particle also moves by windY each frame.
+                                Within the game loop add a new Move() command in your code so that particleModel is also moved using the wind vector.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Do the same with an extra MoveX() for windX and a MoveZ() for windZ.
+                                Run the program. As you can see particleModel is falling diagonally. The net effect of applying the wind vector and the movement vector is as if you had one vector of value (-0.005, -0.005, 0).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Run the program. As you can see the particle is falling diagonally. The net effect of applying the wind vector is as if you had one vector of value (  -0.005,  -0.005, 0  ).
+                                 Vectors can be added together to produce one new vector. When two vectors are added together you sum the x values of the two vectors, then the y values and finally the z values.
+                            </p>
+                            <p>
+                                Use a pen and a sheet of paper to add the vetors (0, -0.005, 0) and (-0.005, 0, 0). You should get the new vector (-0.005,  -0.005, 0).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                 Vectors can be added together. Two vectors added together produce one new vector. When two vectors are added together you sum the x values of the two vectors, then the y values and finally the z values. So
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                You can verify this by experimenting with the values of the movement vector of the particle and the wind vector. You will explore vectors in a more detail in next week's worksheet.
+                                Experiment with the values of the movement vector of particleModel and the wind vector. You will explore vectors in a more detail in next week's worksheet.
                             </p>
                         </div>
                     </li>
                 </ol>
         </section>
+        <section>
+            <h2>5. An Array of Models </h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                An array is a way of referring to a group of variables by a single name. The elements of an array can be initialised when the array is declared or they can be assigned values after the array has been declared.
+<pre><code>int primeNumbers[3];//an integer array of size 3 is declared but not initialised
+primeNumbers[0] = 1;    //the first element of primeNumbers is assigned a value of 1
+primeNumbers[1] = 3;    //the second element of primeNumbers is assigned a value of 3
+primeNumbers[2] = 7;    //the third element of primeNumbers is assigned a value of 7
+
+//an integer array of size 4 is declared and initialised
+int evenNumbers[4] = {2, 4, 6, 8}; 
+
+//a string array of size 5 is declared and initialised
+string sonyConsoles[5] = {"PS1", "PS2", "PS3", "PS4", "PS5"}; 
+
+// IModel* array of size 10 declared but not initialised
+IModel* particleModels[10];
+</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The usefulness of arrays is that we can refer to the group of variables by just using their array name. The individual variables still exist and can be referenced using the array index, a number inside square brackets. For example if I wanted to reference the first element of the IModel* array given above I could write:
+                                <pre><code>IModel* particles[0] = particleMesh->CreateModel();</code></pre>
+                                The array index always starts at 0. In other words, the first element of the array is always at 0. This means that the last element of the array is one less than the size of the array. In other words, the last element of an array of size 10 is array index 9. If I wanted to reference the last element of the IModel* array given above I could write:
+                                <pre><code>IModel* particles[9] = particleMesh->CreateModel();</code></pre>
+                                If you go over the edge of an array you will cause a run-time error. 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You can loop through the elements of an array using a for loop. This is useful for assiging values to elements as well as accessing elements. For example the code below will create a model using particleMesh and assign it to each element of particleModels.
+<pre><code>for (int i = 0; i <= 9; i++)
+{
+    particleModels[i] = particleMesh->CreateModel();
+}</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In the steps that follow, you will update your program to utilise arrays.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare an integer constant called kParticles and initialise it to 5. This value will be used for the size of our array. 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare an array of IModels* called particleModels. The array should be of size kParticles, i.e. 5. It will be used to store models created using particleMesh.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               The array that will hold the models has been created, but the models have not been created and assigned to the array elements yet. When the models are created, they should be spread horizontally accross the top of the screen i.e. from x = 40 to x =-40 with 20 units between two consecutive particles. They should then move down until they reach the bottom of the screen, then they should be positioned back to their initial positions at the top of the screen. To achieve this lets begin by declaring the following:
+                                <ul>
+                                    <li>Declare a float constant kInitialY = 30.0f, to store the initial y poisiton for all models</li>
+                                    <li>Declare a float constant kFinalY = -30.0f, to store the lowest y poisiton for all models</li>
+                                    <li>Declare a float constant kMaxX = 40.0f , to store the x position for first model to be created</li>
+                                    <li>Declare a float constant kSpread = 20.0f, to store the distance between two consecutive models</li>
+                                    <li>Declare a float named particleXPos and initialise it to KMaxX, to store the x position of the model being created in the current iteration</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">        
+                                In the initialisation section, use a for loop to loop through the elements of particleModels[] and assign to each a model created using particleMesh. All the created models should be positioned at kInitialY along the y axis, and spread accross the screen horizontally by kSpread starting from kMaxX i.e. the first model should be created at (kMaxX, kInitialY, 0), the second at (kMaxX - 20, kInitialY, 0)...
+                                <img src="particles_.PNG" alt="5 particles spread horizontally accross the screen">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">        
+                                Add a for loop to your game loop that moves each element of particleModels[] in each frame using the vector (0, -0.005, 0). Within the same for loop, check if each element of particleModels[] has reached the bottom of the screen so that it can reappear at its initial position at the top of the screen.
+                                </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+                <h2>6. Exercises - States and an Additional Array</h2>
+                    <div class="section_instrcutions"></div>
+                    <ol>
+                        <li>
+                            <p>
+                                 Create a new array of strings called particleSkins. This should be an array of 5 elements and each element should store the file name (including the extension e.g. "particleSkin1.tga") of a particle skin found in the media folder you downloaded for this lab.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                In the for loop that creates models and assigns them to elements of particleModels[], add code so that in the ith iteration of the loop, the skin of the model created is set to particleSkins[i] (which will be equaivalent to the image file name stored in the ith element of the skins array).
+                            </p>
+                            <img src="particles.PNG" alt="5 differently colored particles spread horizontally accross the screen">
+                        </li>
+                        <li>
+                                <p>
+                                    Create an enumeration called MovementStates with two values: Moving and Paused. Then create an array of type MovementStates with 5 elements called particleStates. Use a for loop to initialise all the elements of particleStates to Moving. The element in each index of particleStates[] should be used to keep track of the model stored in the same index in particleModels[].
+                                    <ul>
+                                        <li>
+                                            Update your game loop so that elemenets of  particleModels[] are moved only if the particleStates[] element keeping track of their state is set to Moving. E.g. particleModels[0] should be moved only if particleStates[0] == Moving.
+                                        </li>
+                                        <li>
+                                            Add code to the game loop that responds to hitting numbers 0 to 4 by toggling the state of the particleStates[] element in the associated index between Moving and Paused. E.g. when 0 is hit and particleStates[0] is set to Moving, it should be changed to Paused (this should stop particleModels[0] from moving).
+                                        </li>
+                                    </ul>
+                                </p>
+                    </ol>
+            </section>
+
     </main>
-    <script src="../assets/script.js"></script>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
 </body>
 </html>

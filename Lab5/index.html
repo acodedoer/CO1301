@@ -10,10 +10,10 @@
         <!-- and it&#039;s easy to individually load additional languages -->
         <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 5 - Game States</title>
+    <title>Lab 5 - Game States and Platformers</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br> Lab 5 - Game States</h1></header>
+    <header><h1>CO1301: Games Concepts <br> Lab 5 - Game States and Platformers</h1></header>
     <main>
         <section>
             <h2>1. Introduction</h2>
@@ -173,7 +173,7 @@ sphere = sphereMesh->CreateModel( ); // create new model
                         <li>
                             <div class="list-div">
                                     <p class= "instruction-item">
-                                        Download this project's associated models and textures from Blackboard, save them in a folder inside your project folder and use the AddMediaFolder() method to tell TL-Engine to get resources from the folder. The meshes included and their diemsions are:
+                                        <a href= "https://portal.uclan.ac.uk/bbcswebdav/pid-4333891-dt-content-rid-8263706_1/xid-8263706_1" target="_blank">Download this project's associated models and textures from Blackboard</a>, save them in a folder inside your project folder and use the AddMediaFolder() method to tell TL-Engine to get resources from the folder. The meshes included and their diemsions are:
                                         <ul>
                                             <li>
                                                 playerCube.x - 20 x 20 x 20
@@ -208,7 +208,7 @@ sphere = sphereMesh->CreateModel( ); // create new model
                         <li>
                             <div class="list-div">
                                     <p class= "instruction-item"> Now that we have a background and platforms to move on, it is time to add our player. Use the playerCube.x mesh to create a model called "playerCube". The X and Z positions of playerCube should be 0, but the Y position playerCube should be such that it appears to sit on platform2, the bottom platform.</p>
-                                    <img src="4.1.PNG" alt="screenshot of the game scene">
+                                    <img src="https://acodedoer.github.io/CO1301/Lab5/4.1.PNG" alt="screenshot of the game scene">
                                     <p> The Y value that you use here should be the lowest Y position that playerCube can be positioned at. if you have set your scene correctly, then it should be a negative number and its positive equivalent should be the highest position that playerCube can be positioned at. Make a note of these two values.
                                    </p>
                                </div>
@@ -317,7 +317,7 @@ else if (playerPosition == Top){
                                     Rather than moving playerCube, it will be more efficient to move the platforms and the background to create the illusion of playerCube's movement. Another advantage of this is that once the platforms and the background exit the camera's view from one side they can be recycled into view from the other side to create an endless platformer. But for this approach to work we need addional models (two platforms and a background).</p>
                                     <p>Therefore use platform.x to create models for platform3 at ( 260, 60, 0 ) and platform4 at ( 260, -60, 0 ); then use background.x to create  background2 model at ( 260, 0, 10 ).
                                 </p>
-                                <img src="6.2.PNG" alt="screenshot of the game scene">
+                                <img src="https://acodedoer.github.io/CO1301/Lab5/6.2.png" alt="screenshot of the game scene">
                             </div>
                         </li>
                         <li>
@@ -508,7 +508,7 @@ if (collisionDist2 < 20 || collisionDist1 < 20)
                                 <li>
                                     <div class="list-div">
                                         <p class= "instruction-item">
-                                            Everytime a background and its attached enemy are out of view, reposition the enemy to a random position either beneath the background's attached top platform or on the background's attached bottom platform. (Hint: <a href= "https://www.cplusplus.com/reference/cstdlib/rand/" >you may want to use rand(), the C++ function for generating random numbers)</a>
+                                            Everytime a background and its attached enemy are out of view, reposition the enemy to a random position either beneath the background's attached top platform or on the background's attached bottom platform. (Hint: <a target="_blank" href= "https://www.cplusplus.com/reference/cstdlib/rand/" >you may want to use rand(), the C++ function for generating random numbers)</a>
                                         </p>
                                         <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
                                         <div class="hint-div">
