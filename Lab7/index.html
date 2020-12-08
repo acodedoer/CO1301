@@ -20,68 +20,67 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You are going to carry on with the previous matchbox racer program. You can use own version of the program if it easily available otherwise download the code from the website and use it instead. It uses the keys ‘W’, ‘S’ ‘A’ & ‘D’ to drive the matchbox, cursors and mouse to move the camera.
+                                You are going to carry on working with vectors in this lab. Before you get started on the lab sheet, <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=gpn262sDxEyyAnrrGUxQZV34rNrgJdZFknANTQP9YchUOUVIREhPNlhOUVBMUjNUT1pVVkRZV1VMNS4u">take this quiz on vectors to refamiliarise yourself with the concepts covered last week's lecture.</a>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Spend some time reading through the code and reminding yourself how it works. Note the different processes used in the ‘Game Setup’ section and the ‘Game Loop’ section
+                                If you found the quiz to be difficult, you may find the videos of solved examples in the Week 6 folder on Blackboard helpful.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                If you created a chase camera in the previous session, change it back to a ‘kFPS’ camera
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Now load and create a ‘Turret’ model. Initialise its position to be (  200, 15, 200 )
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Load a ‘Bullet’ mesh. Declare a variable for a bullet model – but don’t create it yet.
+                                Now that you have refreshed your knowledge on vectors, let's get on to the lab. The project you will be creating this week will make use of direction vectors and the length of vectors.
                             </p>
                         </div>
                     </li>
                 </ol>
         </section>
         <section>
-            <h2>2. The LookAt() Method</h2>
+            <h2>2. Setting Up</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                LookAt() is a method for models (or cameras) that points the local Z-axis towards another model. This effectively makes the first model/camera look at the second:
-                                <pre><code>model1->LookAt( sphere );</code></pre>
+                                Create a TL-Engine project called Lab7_Drones_Project.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use the new ‘LookAt’ function to make the turret always point at the matchbox. Think carefully whether to put this in the game setup or game loop section. Move the car around to test that the turret continues to point at the car.
+                                Download the associated media files for the project, save them to a folder called media inside your project folder. Now use the AddMediaFolder() method to add the folder's path to your folder.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new integer variable (in the setup area) called ‘shoot’ and initialise it to –1. You will use this variable to track a bullet fired by the turret:
+                               Use the "ground.x" mesh to create a floor model at the origin. Then scale the floor model so that it is twice its initial size.
+                            </p>
+                            <pre><code>floor->Scale(2)</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Use the "drone.x" mesh to create two drone models named "playerDrone" and "enemyDrone".
+
                                 <ul>
-                                    <li>When it is –1 there is no bullet</li>
-                                    <li>When a bullet is created we set this variable to a large value that will count down as the bullet travels – this is the life-time of the bullet</li>
-                                    <li>When the counter reaches 0 the bullet will be destroyed - then we will reset the value to -1 to indicate there is no bullet again</li>
-                                    <li>This will allow the turret to fire one bullet at a time, and the bullet will have a limited range depending on its life-time</li>
+                                    <li>
+                                        Position playerDrone at (0.0f, 60.0f, 0.0f),
+                                    </li>
+                                    <li>
+                                        Position enemyDrone at (0.0f, 60.0f, 400.0f)
+                                    </li>
+                                    <li>
+                                        Set the skin of enemyDrone to "Red_Drone.jpg".
+                                    </li>
                                 </ul>
                             </p>
                         </div>
@@ -89,48 +88,86 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create three floating points variables (in the setup area) called bulletX, bulletY and bulletZ. These will hold the direction vector used to move the bullet. These variables will be used in exactly the same way as the vector was used in the Week 9 lab to move the particle.
+                                Create a kManual camera and position it at (0.0f, 600.0f, -250.0f) and rotate it 45 units along its local X-axis so that it is tilted down.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare an IMesh* variable named "bulletMesh" and load the "bullet.x" mesh. Then declare and IModel* variable named "bullet", but don't initialise it yet (it will be used later).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a constant float called kGameSpeed and initialise it to 0.5f.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In your game loop add code that responds to holding the W key to move playerDrone forward along local Z-axis, and responds to holding A and D keys by rotating playerDrone left and right along local Y-axis. Use kDroneSpeed to determine the speed of these movements e.g. you can move playerDrone forward at a speed equivalent to kGameSpeed and rotate it at a speed equivalent to kGameSpeed/2.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                LookAt() is a method for models (or cameras) that points the local Z-axis towards another model. This effectively makes the first model/camera look at the second:
+
+	<pre><code>shooter->LookAt( target );</code></pre>
+                                Use the new ‘LookAt’ method to make enemyDrone always point at playerDrone. Think carefully whether to put this in the initialisation section or game loop. Move playerDrone around to test that enemyDrone continues to point at it.
+
                             </p>
                         </div>
                     </li>
                 </ol>
             </section>
             <section>
-                <h2>3. Representing Direction with Vectors</h2>
+                <h2>3. Getting the Vector between Two Models</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
+                         <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    Create a new integer variable (in the initialisation section) called ‘shoot’ and initialise it to –1. You will use this variable to track a bullet fired by enemyDrone:
+                                    <ul>
+                                        <li>When shoot is –1 there is no bullet and one needs to be created</li>
+                                        <li>When a bullet is created we set shoot to a large value, say 500, that will count down as the bullet travels – this is the life-time of the bullet</li>
+                                        <li>When the value of shoot reaches 0 the bullet will be destroyed - then we will reset the value of shoot to -1 to indicate there is no bullet again</li>
+                                        <li>This will allow enemyDrone to fire one bullet at a time, and the bullet will have a limited range depending on its life-time</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                    The direction of movement between two points is described by a vector. In order to fire a bullet at the car you need to know the direction of movement between the turret and the car. The vector between two points is calculated by subtracting the position of one point from the position of the second point.
-                            <pre><code>float vectorX;
-                                    float vectorY;
-                                    float vectorZ;
-                                    vectorX = Model2->GetX() – Model1->GetX();
-                                    vectorY = Model2->GetY() – Model1->GetY();
-                                    vectorZ = Model2->GetZ() – Model1->GetZ();
-                                </code></pre>
+                                    In order for enemyDrone to fire a bullet at playerDrone, the direction of movement between playerDrone and enemyDrone must be known. The direction of movement between two points is described by a vector. The vector between the two points that the two models are positioned at can be calculated by subtracting the position of one point from the position of the second point. An example of how this can be done is shown below:
+<pre><code>float vectorX;
+float vectorY;
+float vectorZ;
+vectorX = Model2->GetX() – Model1->GetX();
+vectorY = Model2->GetY() – Model1->GetY();
+vectorZ = Model2->GetZ() – Model1->GetZ();
+</code></pre>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In the game loop, (the update area), calculate the vector from the turret to the matchbox. The x, y and z coordinates of the turret and of the car can be found using GetX(), GetY() and GetZ(). The result of the calculation should be assigned to vectorX, vectorY and vectorZ.
-                            </p>
-                        </div>
-                    </li>  
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Check that you have the matchbox and turrent locations the right way around in the calculation.
+                                In the game loop, write code to calculate the vector from enemyDrone to playerDrone. The x, y and z coordinates of enemyDrone and playerDrone can be found using GetX(), GetY() and GetZ() methods. The result of the calculation each component of the vector should be assigned to vectorX, vectorY and vectorZ as shown in the code snippet above.
                             </p>
                         </div>
                     </li>
                 </ol>
             </section>
             <section>
-                <h2>4. Calculating the Distance Between Two Points</h2>
+                <h2>4. Calculating the Length of a Vector or Distance Between Two Points</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                     <li>
@@ -138,21 +175,27 @@
                             <p class= "instruction-item">
                                 The distance between two points is the length of the vector between the two points. The length of the vector is given by:
                             </p>
+                            <img src="pythagoras.png" alt="pythagoras theorem">
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Use simple multiplication to derive the square of the values:
+                            <p class= "instruction-item">Decalre three new floats named distanceX, distanceY and distanceZ for storing the squares of your vector componentes yo calculated in the last section i.e. vectorX, vectorY and vectorZ. Use simple multiplication to derive the square of any two values e.g.
                                 <pre><code>distanceX = vectorX * vectorX; // distanceX squared</code></pre>
-                            Sum the squares of the components and then square root the result. There is a function within C++ to calculate square roots. Add the following two lines of code to the top of your program.
-                            <pre><code>#include <complex>
-                                    using namespace std;
-                                    </code></pre>
-                            This will give you access to the C++ maths library. The sqrt() function takes just one parameter
-                            <pre><code>float distance;
-                                    distance = sqrt( distance ); // the square root of distance
-                            </code></pre>
-                            Calculate the distance between the turret and the matchbox (the length of the vector). Use these variables for the calculation distance, distanceX, distanceY and distanceZ.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                            Sum the squares of the components and then calculate the square root of the result to get the length of the vector. There is a function within C++ to calculate square roots called sqrt(). To use it, you need to add the following two lines of code to the top of your program.
+<pre><code>#include &ltiostream>
+using namespace std;</code></pre>
+                            This will give you access to the C++ maths library and to the sqrt() function. The function takes just one parameter e.g.
+<pre><code>float root;
+root = sqrt( 9*9 ); // the square root of 9 squared
+</code></pre>
+                            Now use the sqrt() method to caluclate the distance between enemyDrone and playerDrone (the length of the vector). Use a new float varibale called "distance" to store the distance calculated.
                             </p>
                         </div>
                     </li>
@@ -165,40 +208,38 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You have derived the vector between the turret and the car.  You have also calculated the length of the vector. In order to use these values to move the bullet towards the car you are going to have to calculate the direction vector.
+                                You have derived the vector between the enemyDrone and playerDrone. You have also calculated the length of the vector. In order to use these values to move a bullet fired by enemyDrone towards playerDrone you are going to have to calculate the direction vector between the two drones, therefore you have to normalise the vector you have derived.
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The direction vector is independent of the distance between two points. For example, it allows you to move a model in a particular direction disregarding the speed of the movement. The vector between the two positions is
-                                V(X, Y, Z)
-                        The length of this vector is
-                                L
-                        The direction vector is
+                                The direction vector is independent of the distance between two points. For example, it allows you to move a model in a particular direction disregarding the speed of the movement. If the vector between the two positions is
+                                V(X, Y, Z), and the length of this vector is
+                                L, then the direction vector is
                                 VDir = (X/L, Y/L, Z/L)
-                                <pre><code>float distance = distanceX + distanceY + distanceZ;
-                                        distance = sqrt( distance ); // the square root of distance
-                                
-                                        float directionX = vectorX / distance;
-                                        float directionY = vectorY / distance;
-		                                float directionZ = vectorZ / distance;
-                                </code></pre>
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Calculate the direction vector from the turret to the matchbox. Create three new float variables to perform this calculation: directionX, directionY and directionZ. Do not use reuse the variables from previous steps.
+                                To calculate the direction vector from enemyDrone to playerDrone, first create three new float variables: directionX, directionY and directionZ. Then use the variables to store the components of your direction vector as shown below:
                             </p>
+<pre><code>float distance = distanceX + distanceY + distanceZ; //sum of the squares of the vector's components
+distance = sqrt( distance ); // the square root of distance
+
+float directionX = vectorX / distance;
+float directionY = vectorY / distance;
+float directionZ = vectorZ / distance;
+</code></pre>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Check that you are dividing the vector by the distance and not, for example,  distanceX by distance.
+                                Check that you are dividing the each vector component by the distance and not, for example,  distanceX by distance.
                             </p>
                         </div>
                     </li>  
@@ -206,62 +247,63 @@
                         <div class="list-div">
                             <p class= "instruction-item">
                                 After the calculations from the previous step, use an ‘if’ statement to test:
-                                    (a)	If the distance between the turret and the matchbox is less than 250…
-                                    (b)	… and the shoot variable is equal to –1
-                                    
-                                    If both these conditions are true then:
-                                    •	Create a bullet model using the bullet model variable. Create it in the same position as the turret. Note that you are creating the model inside the game loop.
-                                    •	Initialise the bullet direction vector variables using directionX, directionY and directionZ from above.
-                                    •	Set the shoot variable to 500 – this will be the life-time of the bullet.
-                                    
+                                <ul>
+                                    <li>
+                                        If the distance between enemyDrone and playerDrone is less than 250 (use your float variable "distance")
+                                    </li>
+                                    <li>
+                                        and the shoot variable is equal to –1
+                                    </li>
+                                </ul>
+                                <br/>
+                                If both these conditions are true then:
+                                <ul>
+                                    <li>
+                                        Unisng the IModel* variable named bullet you declared in the initialisation section, create a bullet model using bulletMesh. Create it in the same position as enemyDrone. Note that you are creating the model inside the game loop.
+                                    </li>
+                                    <li>
+                                        Initialise the bullet direction vector variables using directionX, directionY and directionZ from above.
+                                    </li>
+                                    <li>
+                                        Set the shoot variable to 500 – this will be the life-time of the bullet.
+                                    </li>
+                                </ul>
+                                   
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now add another ‘if’ statement to test if the ‘shoot’ variable is greater than 0. If so:
-                                Move the bullet model by the bullet direction vector. (The bullets move fast, so you may need to scale the move downwards).
-                                <pre><code>bullet->MoveX( directionX );
-                                        bullet->MoveY( directionY );
-                                        bullet->MoveZ( directionZ );
-                                </code></pre>      
+                                Now add another ‘if’ statement to test if the ‘shoot’ variable is greater than 0. If so, then move the bullet model by the bullet direction vector.
+<pre><code>bullet->MoveX( directionX );
+bullet->MoveY( directionY );
+bullet->MoveZ( directionZ );
+</code></pre> 
+Also, decrement the shoot variable by 1 here so that the bullet life decreases as it travels.  
                             </p>
                         </div>
                     </li>                   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Decrement the shoot variable by 1 – the bullet life decreases as it travels.
-                            </p>
-                        </div>
-                    </li>  
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
                                 Add a final ‘if’ statement that tests if the ‘shoot’ variable is equal to 0. If so destroy the bullet model. You need a statement like:
                                 <pre><code>bulletMesh->RemoveModel( bullet );</code></pre>
+                                Then, set the shoot variable to –1 as there is no bullet now
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Set the shoot variable to –1 as there is no bullet now
-                            </p>
-                        </div>
-                    </li>  
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                You should now have a turret that tracks your matchbox car and shoots at it when it comes near. Read the code you have written paying special attention to the logic that is used to create and destroy the bullets.
+                                You should now have an enemy drone that tracks your drone and shoots at it when it comes near. Read the code you have written paying special attention to the logic that is used to create and destroy the bullets.
                             </p>
                         </div>
                     </li>        
                 </ol>
         </section>
         <section>
-            <h2>5. Practice Exercise - COntinued Vectors</h2>
+            <h2>6. Practice Exercise - Continued Vectors</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
@@ -269,9 +311,9 @@
                             <p class= "instruction-item">
                                 If you complete the tasks, extend your program by either:
                                 <ul>
-                                    <li>Test if the bullets have hit the car (using vector distances).</li>
-                                    <li>Having the turret shoot more than one bullet at a time.</li>
-                                    <li>Adding more turrets.</li>
+                                    <li>Test if the bullets have hit playerDrone (using vector distances).</li>
+                                    <li>Having enemyDrone shoot more than one bullet at a time.</li>
+                                    <li>Adding more enemy drones.</li>
                                 </ul>         
                             </p>
                         </div>
