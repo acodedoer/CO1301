@@ -24,6 +24,12 @@
                             </p>
                         </div>
                     </li>
+                </ol>
+        </section>
+        <section>
+            <h2>2. Collision in Games </h2>
+            <div class="section_instrcutions"></div>
+                <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
@@ -34,14 +40,32 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Models are replaced with mathematically simple shapes that are big enough to completely surround them. These shapes are called bounding volumes because they define a boundary for the space occupied by the model. Common bounding volumes are spheres and cuboids. Bounding volumes are tested accurately for intersection against each other. 
+                                This is because of the way we update the position of the models by a small amount on each iteration of the game loop:
                             </p>
+                                <img src="collisioncheck.jpg" alt="the position of two object checked every frame for intersection"/>
+                            <p>
+                                You cannot detect a collision by simply testing if the two models have the same position. In the diagram above, the two models above have collided even though their positions are different. However, testing if two complex objects intersect is both mathematically difficult and computationally expensive. We will look at a simple solution to this problem.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>3. Bounding Volumes </h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The most common solution to this problem is to replace the models with simpler shapes for the purpose of detecting collisions. For each model we choose a mathematically simple shape that is big enough to completely surround it. These simple shapes are tested accurately for intersection against each other. These shapes are called bounding volumes because they define a boundary for the space occupied by the model. Common bounding volumes are spheres and cuboids.
+                            </p>
+                            <img src="intersectioncheck.jpg" alt="checking whether two bounding spheres intersect"/>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This method will correctly find real collisions, but it will also incorrectly find collisions when the models are only close to each other. This issuecannot be elimniated, however it can be minimised by making the bounding sphere as small as possible.
+                                This method will correctly find real collisions, but it will also incorrectly find collisions when the models are only close to each other. This can be minimised by making the bounding volume as small as possible (as in the diagram), but this problem cannot be eliminated (unless the object being tested the same shape as the bounding volume). 
                             </p>
                         </div>
                     </li>
@@ -51,7 +75,69 @@
                                 Despite this drawback, this solution can be of great use. Where collision accuracy is not important and computational speed is important, then this is an excellent method. It is also very often used as an initial test in a more complex collision scheme: if a bounding sphere collision check fails then we can guarantee there is no collision and don’t need to spend time on a more accurate, complex test. 
                             </p>
                         </div>
-                    </li> 
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                To <em><b>define a bounding sphere</b></em> (or any sphere, for that matter), we must choose the centre point and a radius. The most convenient centre point for a model is simply the position of the model. Then we need to choose a radius so that the sphere will completely surround the model. Selecting the distance from the centre to the furthest point on the model will achieve this. Alternatively this value can simply be estimated by measuring the model.
+                            </p>
+                            <img src = "boundingsphere.jpg" alt="a sphere surrounding a star model"/>
+                            <p>This choice of sphere will not be ideal if the model origin is not perfectly centred (it isn’t in the diagram above). However it will suffice for our current examples.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                One of the main advantages of using a sphere for a bounding volume is that it remains constant under rotation. In other words, if we rotate the model, the bounding sphere does not change its profile/outline. This simplifies the mathematics immensely and makes spheres a good initial choice for models that can rotate.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Another common bounding volume is a box. The simplest form is an axis-aligned bounding box (sometimes called an AABB). The diagram below shows an example using the same model as above:
+                            </p>
+                            <img src = "boundingbox.jpg" alt="a box surrounding a star model"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The box is called axis-aligned because its edges are parallel to the axes. This is convenient because it means the edges of the box define ranges on each of the axes. E.g. the top and bottom of this box define the range from 9 to 38 on the Y-axis. This simplifies the collision algorithms.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Notice how this volume more tightly contains the model in the example. This will lead to less incorrect collision detections. Bounding boxes frequently have this advantage over bounding spheres.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                To define a bounding box we simply find the minimum and maximum X, Y and Z values for all the points in the model.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                If we rotate the model when using a bounding box we must either:
+                                <ul>
+                                    <li>
+                                        Rotate the bounding box, but then it will not be axis-aligned and will lose some of its mathematical simplicity.
+                                    </li>
+                                    <li>
+                                        Resize the box and keep it axis-aligned, but this may be computationally expensive.
+                                    </li>
+                                </ul>
+                                <img src="boundingboxrot.jpg" alt="rotating a model bounded by a box"/>                           
+                                <p>So axis-aligned bounding boxes are better suited to models that do not rotate.</p>
+                            </p>
+                        </div>
+                    </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
@@ -68,58 +154,82 @@
                 </ol>
             </section>
             <section>
-                <h2>2. Point - Sphere Collision</h2>
+                <h2>4. Point - Sphere Collision</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                When testing for a collision between two models, sometimes it is possible to use a bounding volume for one model but only the position for the other. Effectively we are using a point as the bounding volume for the second model - this can be appropriate when the model is small. In this case we simply need to test if the point is within the sphere:
+                                When testing for a collision between two models, a small model and a large model, sometimes it is possible to use a bounding volume for one model (the large model) but only the position for the other (the small model). Effectively we are using a point as the bounding volume for the small model - this can be appropriate when the model is so small we simply need to test if its position, the point, is within the sphere bounding volume of the large model.
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                    The collision will occur only if the distance between the point and the sphere centre is less than the sphere radius. We can find this distance using the vector methods from our previous work. The vector V between the point and the sphere centre is:V(X2 – X1, Y2 – Y1, Z2 – Z1)
-
-                                    And the length D of this vector is:
-                                    
-                                        D =  
-                                    If D is less than the sphere radius R then we have a collision. The code for this algorithm would look something like this:
-                                    <pre><code>float x, y, z;
-                                            x = SmallModel->GetX() - LargeModel->GetX();	// Using the large model’s
-                                            y = SmallModel->GetY() - LargeModel->GetY();	// position as its
-                                            z = SmallModel->GetZ() - LargeModel->GetZ();	// bounding sphere centre
-                                        
-                                            float collisionDist = sqrt( x*x + y*y + z*z );	// need #include <math.h>
-                                        
-                                            if (collisionDist < sphereRadius)
-                                            {
-                                                // Collision occurred…
-                                            }
-                                        </code></pre>
+                                    The collision will occur only if the distance between the point and the sphere centre is less than the sphere radius.
                             </p>
+                            <img src="boundingsphere1.jpg" alt= "image showing collision between a point and a bounding sphere"/>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">We can find this distance using the vector methods from our previous work. The vector V between the point and the sphere centre is:</p>
+                            <img src="vectorcomponents.JPG" alt="V(X2 – X1, Y2 – Y1, Z2 – Z1)"/>
+                            <p>
+                            And the length D of this vector is:
+                            </p>
+                            <img src="vectordistance.JPG" alt ="the length of the vector is the square root of the sum of the sqares of the x, y and z components of the vector"/>
+                            <p>
+                                If D is less than the sphere radius R then we have a collision. The code for this algorithm would look something like this:
+                            </p>
+                            
+<pre><code>float x, y, z;
+x = SmallModel->GetX() - LargeModel->GetX();	// Using the large model’s
+y = SmallModel->GetY() - LargeModel->GetY();	// position as its
+z = SmallModel->GetZ() - LargeModel->GetZ();	// bounding sphere centre
+
+float collisionDist = sqrt( x*x + y*y + z*z );	// need #include <math.h>
+
+if (collisionDist < sphereRadius)
+{
+    // Collision occurred…
+}
+</code></pre>
+</p>
                         </div>
                     </li>
+                </ol>
+            </section>
+            <section>
+                <h2>5. Point - Sphere Collision Exercise</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Get the sample TL-Engine code from collisions.cpp. Create a new TL-Engine project and then copy the text from "collisons.cpp" into the freshly created soruce code file. It is a very simple program allowing you to move a sphere around.
+                                Create a new TL-Engine project called "Lab8_SphereCollisions_Project".
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add a “Bullet” model at (40, 10, 40) – it is small, so we will assume it is a point.
+                                Get the sample TL-Engine code from collisions.cpp on Blackboard and copy the code into your project's .cpp file. It is a very simple program allowing you to move a sphere around.
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add code to check for collision between bullet (point) and the sphere. (The sphere radius here is 10 – in this case the bounding volume is exactly the right shape)      
+                                Using the "Bullet.x" mesh, add a bullet model at (40, 10, 40) – it is small, so we will assume it is a point.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add code to check for collision between the bullet (point) and the sphere. (The sphere radius here is 10 – in this case the bounding volume is exactly the right shape).    
                             </p>
                         </div>
                     </li>                   
@@ -147,14 +257,15 @@
                 </ol>
             </section>
             <section>
-                <h2>3. Sphere - Sphere Collision</h2>
+                <h2>6. Sphere - Sphere Collision</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This case is easily understood with a diagram:
+                                This case can be easily understood with the diagram below:
                             </p>
+                            <img src="sphere2sphere.jpg" alt="image showing sphere to sphere collision"/>
                         </div>
                     </li>   
                     <li>
@@ -164,15 +275,21 @@
                                 <ul>
                                     <li>Calculate the vector between the two sphere centres (model positions)</li>
                                     <li>Get the length of this vector (the distance between the models)</li>
-                                    <li>If this distance is less than the sum of the sphere radiuses then there is a collision</li>
+                                    <li>If this distance is less than the sum of the sphere radii then there is a collision</li>
                                 </ul>  
                             </p>
                         </div>
-                    </li>   
+                    </li> 
+                </ol>
+            </section>
+            <section>
+                <h2>7. Sphere - Sphere Collision Exercise</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now update your program by adding  a “Torus” model at (-40, 10, 40).
+                                Using the "Torus.x" mesh, update your Lab8_SphereCollisions_Project by adding a torus model at (-40, 10, 40).
                                 </ul>
                             </p>
                         </div>
@@ -194,48 +311,53 @@
                 </ol>
             </section>
             <section>
-                <h2>4. Point – Box Collision</h2>
+                <h2>8. Point – Box Collision</h2>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The process here is also fairly simple: there is a collision if the X, Y and Z coordinates of the point all lie within the three axis ranges defined by the bounding box. I.e. collision if:
+                                The process here is also fairly simple: there is a collision if the X, Y and Z coordinates of the point all lie within the three axis ranges defined by the bounding box i.e. there is a collision if:
+                                </p>
+                                <p>X > XMin && X < XMax &&</p>
+                                <p>Y > YMin && Y < YMax &&</p>
+                                <p>Z > ZMin && Z < ZMax</p></ZMax>
 
-                                X > XMin && X < XMax &&
-                                Y > YMin && Y < YMax &&
-                                Z > ZMin && Z < ZMax
+                                <img src="point2box.jpg" alt="image showing a point not colliding with a box" />
 
-                                (Z axis not shown)
-
-                                There is no collision in this example because X < XMin.
+                               <p> There is no collision in the diagram above because X < XMin. Note that the diagram is 2-dimensional and does not show the Z axis.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>9. Point – Box Collision Exercise</h2>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new TL-Engine project called "Lab8_BoxCollisions_Project".
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Start a new program (save the old one for reference later)
+                                Start with the collisions.cpp sample again but change the sphere model to a bullet model.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Start with the week 12 sample again but change the sphere model to a “Bullet”
+                                Add a box model using the "Cube.x" mesh at (40, 10, 40).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add a “Box” model at (40, 10, 40).
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Define a bounding box by declaring six float constants: cubeMinX, cubeMaxX, cubeMinY etc
+                                Define a bounding box by declaring six float constants: cubeMinX, cubeMaxX, cubeMinY etc.
                             </p>
                         </div>
                     </li>
@@ -263,7 +385,7 @@
                 </ol>
             </section>
             <section>
-                <h2>5. Sphere – Box Collision</h2>
+                <h2>10. Sphere – Box Collision</h2>
                 <ol>
                     <li>
                         <div class="list-div">
@@ -272,22 +394,27 @@
                     <ul>
                         <li>Expand the bounding box outwards by the sphere’s radius, i.e. XMin becomes XMin – Radius, XMax becomes XMax + Radius etc.</li>
                         <li>Shrink the sphere’s radius down to 0, i.e. assume it is a point.</li>
-                        <li>Now we simply have the point-box collision situation again, and we can use the formula above.</li>
-                        <li>•	This method won’t be accurate around the corners of the box, but using approximations like this is perfectly appropriate in some situations.
+                        <li>Now we simply have the point-box collision situation again, and we can use the formula from Section 8.</li>
+                        <li>This method won’t be accurate around the corners of the box, but using approximations like this is perfectly appropriate in some situations.
                         </li>
                     </ul>
                     </p>
                     </div>
                     </li>
+                </ol>
+            </section>
+            <section>
+                <h2>11. Sphere – Box Collision Exercises</h2>
+                <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In your program, change the bullet model back to a “Sphere” again.</p>
+                                In your Lab8_BoxCollisions_Project, change the bullet model back to a Sphere.</p>
                             </div>
                             </li>
                             <li>
                                 <div class="list-div">
-                                    <p class= "instruction-item">Update you collision code to manage a sphere – box collision, (sphere radius = 10).</p>
+                                    <p class= "instruction-item">Update your collision code to manage a sphere – box collision, (sphere radius = 10).</p>
                                 </div>
                                 </li>
                                 <li>
@@ -297,10 +424,17 @@
                             </p>
                         </div>
                     </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                             Can you spot the collision detection inaccuracies produced by this method?
+                            </p>
+                        </div>
+                    </li>
                 </ol>
         </section>
         <section>
-            <h2>6. Advanced Exercise - Collision Detection</h2>
+            <h2>12. Advanced Exercises - Collision Detection</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
@@ -327,7 +461,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Make the sphere move by the stored velocity every frame (regardless of key presses). Remove the cube jump.
+                                Make the sphere move by the stored velocity every frame (regardless of key presses) and remove the cube jump.
                             </p>
                         </div>
                     </li>
