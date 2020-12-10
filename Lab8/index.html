@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../assets/highlight/styles/default.css">
-    <link rel="stylesheet" href="../assets/style.css">
-    <script src="../assets/highlight/highlight.pack.js"></script>
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <!-- and it&#039;s easy to individually load additional languages -->
+    <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <title>Lab 8 - Collision Detection</title>
 </head>
@@ -42,7 +44,7 @@
                             <p class= "instruction-item">
                                 This is because of the way we update the position of the models by a small amount on each iteration of the game loop:
                             </p>
-                                <img src="collisioncheck.jpg" alt="the position of two object checked every frame for intersection"/>
+                                <img src="https://acodedoer.github.io/CO1301/Lab8/collisioncheck.jpg" alt="the position of two object checked every frame for intersection"/>
                             <p>
                                 You cannot detect a collision by simply testing if the two models have the same position. In the diagram above, the two models above have collided even though their positions are different. However, testing if two complex objects intersect is both mathematically difficult and computationally expensive. We will look at a simple solution to this problem.
                             </p>
@@ -59,7 +61,7 @@
                             <p class= "instruction-item">
                                 The most common solution to this problem is to replace the models with simpler shapes for the purpose of detecting collisions. For each model we choose a mathematically simple shape that is big enough to completely surround it. These simple shapes are tested accurately for intersection against each other. These shapes are called bounding volumes because they define a boundary for the space occupied by the model. Common bounding volumes are spheres and cuboids.
                             </p>
-                            <img src="intersectioncheck.jpg" alt="checking whether two bounding spheres intersect"/>
+                            <img src="https://acodedoer.github.io/CO1301/Lab8/intersectioncheck.jpg" alt="checking whether two bounding spheres intersect"/>
                         </div>
                     </li>
                     <li>
@@ -81,7 +83,7 @@
                             <p class= "instruction-item">
                                 To <em><b>define a bounding sphere</b></em> (or any sphere, for that matter), we must choose the centre point and a radius. The most convenient centre point for a model is simply the position of the model. Then we need to choose a radius so that the sphere will completely surround the model. Selecting the distance from the centre to the furthest point on the model will achieve this. Alternatively this value can simply be estimated by measuring the model.
                             </p>
-                            <img src = "boundingsphere.jpg" alt="a sphere surrounding a star model"/>
+                            <img src = "https://acodedoer.github.io/CO1301/Lab8/boundingsphere.jpg" alt="a sphere surrounding a star model"/>
                             <p>This choice of sphere will not be ideal if the model origin is not perfectly centred (it isn’t in the diagram above). However it will suffice for our current examples.</p>
                         </div>
                     </li>
@@ -97,7 +99,7 @@
                             <p class= "instruction-item">
                                 Another common bounding volume is a box. The simplest form is an axis-aligned bounding box (sometimes called an AABB). The diagram below shows an example using the same model as above:
                             </p>
-                            <img src = "boundingbox.jpg" alt="a box surrounding a star model"/>
+                            <img src = "https://acodedoer.github.io/CO1301/Lab8/boundingbox.jpg" alt="a box surrounding a star model"/>
                         </div>
                     </li>
                     <li>
@@ -133,7 +135,7 @@
                                         Resize the box and keep it axis-aligned, but this may be computationally expensive.
                                     </li>
                                 </ul>
-                                <img src="boundingboxrot.jpg" alt="rotating a model bounded by a box"/>                           
+                                <img src="https://acodedoer.github.io/CO1301/Lab8/boundingboxrot.jpg" alt="rotating a model bounded by a box"/>                           
                                 <p>So axis-aligned bounding boxes are better suited to models that do not rotate.</p>
                             </p>
                         </div>
@@ -169,17 +171,17 @@
                             <p class= "instruction-item">
                                     The collision will occur only if the distance between the point and the sphere centre is less than the sphere radius.
                             </p>
-                            <img src="boundingsphere1.jpg" alt= "image showing collision between a point and a bounding sphere"/>
+                            <img src="https://acodedoer.github.io/CO1301/Lab8/boundingsphere1.jpg" alt= "image showing collision between a point and a bounding sphere"/>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">We can find this distance using the vector methods from our previous work. The vector V between the point and the sphere centre is:</p>
-                            <img src="vectorcomponents.JPG" alt="V(X2 – X1, Y2 – Y1, Z2 – Z1)"/>
+                            <img src="https://acodedoer.github.io/CO1301/Lab8/vectorcomponents.JPG" alt="V(X2 – X1, Y2 – Y1, Z2 – Z1)"/>
                             <p>
                             And the length D of this vector is:
                             </p>
-                            <img src="vectordistance.JPG" alt ="the length of the vector is the square root of the sum of the sqares of the x, y and z components of the vector"/>
+                            <img src="https://acodedoer.github.io/CO1301/Lab8/vectordistance.JPG" alt ="the length of the vector is the square root of the sum of the sqares of the x, y and z components of the vector"/>
                             <p>
                                 If D is less than the sphere radius R then we have a collision. The code for this algorithm would look something like this:
                             </p>
@@ -265,7 +267,7 @@ if (collisionDist < sphereRadius)
                             <p class= "instruction-item">
                                 This case can be easily understood with the diagram below:
                             </p>
-                            <img src="sphere2sphere.jpg" alt="image showing sphere to sphere collision"/>
+                            <img src="https://acodedoer.github.io/CO1301/Lab8/sphere2sphere.jpg" alt="image showing sphere to sphere collision"/>
                         </div>
                     </li>   
                     <li>
@@ -322,7 +324,7 @@ if (collisionDist < sphereRadius)
                                 <p>Y > YMin && Y < YMax &&</p>
                                 <p>Z > ZMin && Z < ZMax</p></ZMax>
 
-                                <img src="point2box.jpg" alt="image showing a point not colliding with a box" />
+                                <img src="https://acodedoer.github.io/CO1301/Lab8/point2box.jpg" alt="image showing a point not colliding with a box" />
 
                                <p> There is no collision in the diagram above because X < XMin. Note that the diagram is 2-dimensional and does not show the Z axis.
                             </p>
@@ -477,6 +479,6 @@ if (collisionDist < sphereRadius)
                 </ol>
         </section>
     </main>
-    <script src="../assets/script.js"></script>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
 </body>
 </html>
