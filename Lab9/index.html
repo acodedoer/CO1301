@@ -126,21 +126,21 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare an integer constant called kSphere of 360. This value will be used for the size of the array.
+                                Declare an integer constant called kSphere of 180. This value will be used for the size of the array.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare an array of IModels. The array should be of size kSphere, i.e. 360.
+                                Declare an array of IModels. The array should be of size kSphere, i.e. 180.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use a for loop to create 360 spheres using the following code.
+                                Use the for loop below to create 180 models using the sphere mesh and assign them to the IModels in the spheres array.
                             </p>
 <pre><code>for( int i = 0; i < kSphere; i++ )
 {
@@ -148,12 +148,8 @@ const float kEdge = 8 * kPi;
     spheres[i]->Scale( 0.01f );
     spheres[i]->SetSkin( "RedBall.jpg" );
 }</code></pre>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
                             <p class= "instruction-item">
-                                Note the way that the loop index is being used to access each individual member of the array, place spheres in a line along the x axis, scale the models and set their textures.
+                                Note the way that the loop index is being used to access each individual member of the array, place sphere models in a line along the x axis, scale the models and set their textures.
                             </p>
                         </div>
                     </li>
