@@ -217,7 +217,7 @@ if (collisionDist < sphereRadius)
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Get the sample TL-Engine code from collisions.cpp on Blackboard and copy the code into your project's .cpp file. It is a very simple program allowing you to move a sphere around.
+                                <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/pid-4365525-dt-content-rid-8445828_1/xid-8445828_1">Get the sample TL-Engine code from collisions.cpp on Blackboard</a> and copy the code into your project's .cpp file ( to avoid errors check that the path to the default Tl-Engine media folder is correct). It is a very simple program allowing you to move a sphere around.
                             </p>
                         </div>
                     </li>  
@@ -231,7 +231,9 @@ if (collisionDist < sphereRadius)
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add code to check for collision between the bullet (point) and the sphere. (The sphere radius here is 10 – in this case the bounding volume is exactly the right shape).    
+                                In the game-loop, add code to check for collision between the bullet (point) and the sphere at every frame.</p>
+                                <p>
+                                    Use the code snippet from Section 4 to implement the collision detection. The sphere is your "LargeModel" and the bullet is your "SmallModel". The sphere radius here is 10 – in this case the bounding volume is exactly the right shape. Declare a float variable to store the radius before using it.   
                             </p>
                         </div>
                     </li>                   
@@ -252,7 +254,37 @@ if (collisionDist < sphereRadius)
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
+                               The code you have written to complete the above 3 steps should look like the code below:
+<pre><code>float x, y, z;
+float sphereRadius = 10.0f; //also serves as the boundary volume's radius
+
+//the components of the vector between the bullet and the center of the sphere
+x = bullet->GetX() - sphere->GetX();	
+y = bullet->GetY() - sphere->GetY();	
+z = bullet->GetZ() - sphere->GetZ();	
+
+float collisionDist = sqrt(x * x + y * y + z * z);	//the length of the vector i.e. the distance between the bullet and the center of the sphere
+
+if (collisionDist < sphereRadius) //check if the distance is less than sphereRaidus, then move bullet to new position
+{
+    bullet->SetY(25.0f);
+}
+
+//reset the position of the bullet after collision resolution has moved it
+if (myEngine->KeyHit(Key_R)) {
+    bullet->SetY(10.0f);
+}
+</code></pre>
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
                                 Now test if your collision works – see how accurate it is.
+                            </p>
+                            <p>
+                                Extra: try using smaller/larger values for sphereRaidus to see how that affects the precision of collision detection.
                             </p>
                         </div>
                     </li>
@@ -301,6 +333,9 @@ if (collisionDist < sphereRadius)
                             <p class= "instruction-item">
                                 Add code to check for collision between the sphere and torus. Use a bounding sphere with radius of 15 for the torus.
                             </p>
+                            <p>
+                                HINT: You will need to declare a new float to store torusRadius, calculate the vector between the torus and the sphere, calculate the length of the vector and check if the distance is less than(torusRadius + sphereRadius)
+                            </p>
                         </div>
                     </li>      
                     <li>
@@ -309,7 +344,7 @@ if (collisionDist < sphereRadius)
                                 Again make the torus jump up if there is a collision and make it come down on a keypress.
                             </p>
                         </div>
-                    </li>     
+                    </li>
                 </ol>
             </section>
             <section>
@@ -345,7 +380,7 @@ if (collisionDist < sphereRadius)
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Start with the collisions.cpp sample again but change the sphere model to a bullet model.
+                                <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/pid-4365525-dt-content-rid-8445828_1/xid-8445828_1">Get the sample TL-Engine code from collisions.cpp on Blackboard</a> again but this time change the sphere model to a bullet model.
                             </p>
                         </div>
                     </li>
@@ -380,7 +415,7 @@ if (collisionDist < sphereRadius)
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Again make the box jump if there is a collision.
+                                Again make the box jump if there is a collision. Then reposition it on a key press.
                             </p>
                         </div>
                     </li>     
