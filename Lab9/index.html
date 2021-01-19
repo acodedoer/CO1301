@@ -10,10 +10,10 @@
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 9 - Trigonometry in Practice</title>
+    <title>Lab 9 - Solar System</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br>Lab 9 - Trigonometry in Practice</h1></header>
+    <header><h1>CO1301: Games Concepts <br>Lab 9 - Solar System Prototype</h1></header>
     <main>
         <section>
             <h2>1. Introduction</h2>
@@ -22,14 +22,21 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In this lab you will be recreating the trigonometric function waves that were demonstrated in the lecture.
+                                In this lab, you will first set up the earth and the moon, and then extend your solar system prototype to include other planets and the sun.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               This lab sheet will provide practice in the use of arrays as well as the application of trigonometry.
+                                You are not expected to implement anything remotely realistic. If you attempted to create the solar system to scale them it would be impossible to see and boring to use. 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The primary purpose of this lab is to introduce the idea of a model hierarchy, the dummy model and to practice implementing collision detection.
                             </p>
                         </div>
                     </li>
@@ -42,238 +49,293 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Engine project called "Lab9_Trigonometry_Project". 
+                                Create a new TL-Engine project called "Lab9_SolarSystem_Project". 
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                We will be setting up a program that moves lots of models along wavy paths. To ensure that we are able to see our models clearly we won't be using any backdrops. 
+                                Use the "Stars.x" mesh to create a model at the origin that will serve as a skybox. It's radius is 100, and when placed in your scene it will create a background of stars. The model also has some alternative skins:
+                                <ul>
+                                    <li>“StarsHi.jpg”</li>
+                                    <li>“StarClouds.jpg”</li>
+                                    <li>“StarCloudsHi.jpg”</li>
+                                </ul>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a kManual camera and place it at location ( 13, 0, -17 ).
+                                The "Planet.x" mesh can be used create spheres with a radius of 1.0 and has several basic skins to create all the main bodies in the solar system:
+                                <table>
+                                    <tr>
+                                        <td>“Sun.jpg”</td>
+                                        <td>“Mercury.jpg”</td>
+                                        <td>“Venus.jpg”</td>
+                                        <td> “Earth.jpg”</td>
+                                    </tr>
+                                    <tr>
+                                        <td>“Moon.jpg”</td>
+                                        <td>“Mars.jpg”</td>
+                                        <td>“Jupiter.jpg”</td>
+                                        <td> “Saturn.jpg”</td>
+                                    </tr>
+                                    <tr>
+                                        <td>“Uranus.jpg”</td>
+                                        <td>“Neptune.jpg”</td>
+                                        <td>“Pluto.jpg”</td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                There are also some additional and hi-resolution skins:
+                                <table>
+                                    <tr>
+                                        <td>“EarthHi.jpg”</td>
+                                        <td>“EarthPlain.jpg”</td>
+                                    </tr>
+                                    <tr>
+                                        <td>“EarthNight.jpg”</td>
+                                        <td>“EarthPlainHi.jpg”</td>
+                                    </tr>
+                                    <tr>
+                                        <td>“EarthNightHi.jpg”</td>
+                                        <td>“MoonHi.jpg”</td>
+                                    </tr>
+                                </table>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load the sphere mesh and create a sphere model at location (0, 0, 0), then set the skin of the sphere to "RedBall.jpg".
+                                You can use TL-Engine scaling functions (Scale()) to make models larger or smaller. This will allow you to use the same planet mesh to create models for the Sun, the Earth and all the other planets - you scale each one differently to create appropriate sizes.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Scale the sphere model down by a factor of 100.
+                                There is also another engine function SetFarClip that changes how far away you can see. In a space game you can see very far so this is needed, use it when objects are “clipped” in the distance:
                             </p>
-                            <pre><code>sphere->Scale( 0.01f );</code></pre>
+                            <pre><code>myCamera->SetFarClip( 100000 ); // Now can see up to 100k distant</code></pre>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In the game-loop, add code that moves the sphere across the screen from left to right at a speed of 0.01, i.e. along the x-axis (use MoveX not MoveLocalX()).
+                                Begin by creating the Earth (at the origin) and the moon ( to the Earth's side) uisng the "Plane.x" mesh and the appropriate texture. Place them close enough together so that you can see them both comfortably (remember, this is not meant to be realistic). You will have to scale the  model down for the moon.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Define a constant called kPi for &#8508. Next define a constant called kEdge for the edge of movement. It needs to have a value of 8 * &#8508.
+                                In your game-loop add code that rotates the Earth rotates about its local y-axis. Then make the Moon revolve around the Earth by attaching it to Earth as a child.
                             </p>
-<pre><code>const float kPi = 3.1415926f;
-const float kEdge = 8 * kPi;
-</code></pre>
+                            <pre><code>moon->AttachToParent( earth );</code></pre>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Update your program so that when the x coordinate of the sphere is greater than or equal to kEdge, its x-position is reset to 0. You should now have a sphere moving continuously from left to right.
+                                This is all well and good, but what would happen if you wanted the Earth and the Moon to rotate at a different speeds? The way things are set up at the moment the Earth must rotate around its axis at the same speed that the Moon rotates around the Earth. It is possible to set up the scene so that the Earth and the Moon rotate at different speeds and this is by introducing a dummy model using the "dummy.x" mesh. You load and use the dummy model in exactly the same way as any other mesh and model. The difference is that the dummy is never rendered: it is just an invisible point in space.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a dummy model at the same location as the Earth. Attach the Moon to the dummy instead of the Earth, and in the game loop add code that rotates the dummy about its local y-axis. Now you can rotate the Earth separately from the dummy (and hence the Moon).
                             </p>
                         </div>
                     </li>
                 </ol>
             </section>
             <section>
-                <h2>3. An Array of Spheres</h2>
+                <h2>3. The Solar System</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                          <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    Remember arrays? You have done arrays in Week 6 in the programming module and also in this module. An array is a way of referring to a group of variables by a single name. For example the code below will create an array of 10 IModels.
+                                    Let us expnad what we have so far to a mini solar system.
                                 </p>
-                                <pre><code>IModel* spheres[10];</code></pre>
                             </div>
                         </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                We can refer to the group of variables in an array by just using the array name. The individual variables can be referenced using the array index, a number inside square brackets. The array index always starts at 0, this means that the last element of the array is one less than the size of the array (the last element of an array of size 10 is array index 9). The code below references the last element of the IModel* array given above:
+                                Add the sun at the origin; use the Planet.x mesh, scale to show the size of the Sun compared to plantes, and use the appropriate skin.
                             </p>
-                            <pre><code>spheres[9];</code></pre>
-                            <p>
-                                Going over the edge of an array causes a run-time error.
-                            </p>
-                    </li>
+                        </div>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare an integer constant called kSphere of 180. This value will be used for the size of the array.
+                                Change the position of your Earth, Moon and dummy models with respect to the position of the Sun (remember the moon is a child of the dummy, therefore you will need to position it relative to the position of the dummy).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare an array of IModels. The array should be of size kSphere, i.e. 180.
+                                Add a few other planets around the sun and scale them to different sizes. You don’t need to worry about getting the sizes of the planets correct, just try to make it look interesting.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use the for loop below to create 180 models using the sphere mesh and assign them to the IModels in the spheres array.
-                            </p>
-<pre><code>for( int i = 0; i < kSphere; i++ )
-{
-    spheres[i] = sphereMesh->CreateModel( i * 0.2f, 0, 0 );
-    spheres[i]->Scale( 0.01f );
-    spheres[i]->SetSkin( "RedBall.jpg" );
-}</code></pre>
-                            <p class= "instruction-item">
-                                Note the way that the loop index is being used to access each individual member of the array, place sphere models in a line along the x axis, scale the models and set their textures.
+                                Make the planets orbit in a realistic way (they rotate around the sun and spin on their own axes). You will need to think about using parenting and dummy objects.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Modify the section of code you used within the game loop to move the original sphere so that all the spheres in the spheres array get moved. You will need to use a for loop.
+                                You will need to think carefully about the scales and distances that you use. Try to make a your scene look good but feel suitably large without being impossible to navigate.
+                            </p>
+                        </div>
+                    </li>           
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                For future reference. You are formally building an animation hierarchy. Your program uses the same concepts and general form that you would to build the an animation hierarchy for a person, for example. See Frank Luna, Introduction to DirectX, Chapter 15 where he builds a similar hierarchy for the solar system but also for a robot arm.
                             </p>
                         </div>
                     </li>
                 </ol>
             </section>
             <section>
-                <h2>4. Sine Wave</h2>
+                <h2>4. Space Collisions</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The next step is to create a sine wave using the line of spheres.
+                                Load up and create a spaceship. The model can be found inside "spaceship.zip" on the website. Make the spaceship big enough to be seen.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                At the moment as the spheres move across the screen only their x coordinates are being changed. The y coordinate of the spheres need to be changed in order to produce a sine wave. Therefore, you need to set the y coordinate of each sphere to sin(x), where x is simply the current x coordinate of the sphere. You will need to:
-                                <ol>
-                                    <li>Get the current x coordinate of the sphere</li>
-                                    <li>Apply sin() in order to obtain the new y value</li>
-                                    <li>Set the y coordinate of the sphere to this new value</li>
-                                </ol>
+                                Implement movement control for the spaceship. Remember to set this up local to the spaceship.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Build a chase cam for the spaceship. You can refer back to the airplane exercise for how to do this.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Implement collision detection and collision resolution for the spaceship and the Earth. Use a sphere for the spaceship and check for sphere-to-sphere collisions. Just to remind you:
                             </p>
+                            <ol>
+                                <li>
+                                    Calculate the vector between the two sphere centres (model positions)  
+                                </li>
+                                <li>
+                                    Get the length of this vector (the distance between the models)
+                                </li>
+                                <li>
+                                    If this distance is less than the sum of the sphere radii then there is a collision
+                                </li>
+                            </ol>
+                            <br/>
                             <p>
-                                In order to use the sin() function you need to include the <em>"maths.h"</em> library in your program.
+                                You can use Week 8's lecture slides or lab sheet as reference for implementing collision detection and resolution.
                             </p>
                         </div>
                     </li>
                 </ol>
             </section>
             <section>
-                <h2>5. Cosine Wave</h2>
+                <h2>5. Using Functions for Collision Detection</h2>
                 <div class="section_instrcutions"></div>
                     <ol>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Let us now update the program so that it shows both sine and cosine waves.
+                                A function is a block of code that performs a specific task. To define a method you have to specify a name for it, its return type (void if does not return a value), its paramters (type and order of its required input(s)), and the functions body i.e. its code. 
+                            </p>
+<pre><code>return_type function_name( parameter list ) {
+    body of the function
+}</code></pre>
+                            <p>You can also declare a method dirst by proving its return type, name, and paramters, and then define its code later. The function's name is used to call the function's code anytime in other parts of your code.
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               Start by changing the value of kSpheres to 360.
+                               Right now our program contains sphere to sphere collision detection between th esun and the spaceship. If we were to implement sphere to sphere collision between the spaceship and all the othe planets without using functions, our game-loop could get messy quickly. Let us, therefore, create a sphere to sphere collision detection function that we can call anytime we want to check for a collision between the spacehsip and any of the other objects in our program.  
                             </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               The sphere to sphere collision dectection function should check if there is a collision between two objects bounded by spheres. Therefore it needs to know the position of the objects and their radii of the spheres. If there is a collision it should return True, and return False is there is no collision. Use the code below to declare the function, the declaration should be placed before the start of the program's main function
+                            </p>
+                            <pre><code>bool sphere2Sphere(float s1XPos, float s1YPos, float s1Zpos, float s1Radius float s2XPos, float s2YPos, float s2Zpos,  float s1Radius); </code></pre>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Next the two for-loops that create and move the models need to be updated.
-                                <ul>
-                                    <li>
-                                        Update the for-loop that creates the sphere models so that every other model created uses the "BlackBall.jpg" skin. Therefore you will now have 360 sphere models in the array, half using the RedBall texture and the other half using the BlackBall texture.
-                                    </li>
-                                    <li>
-                                        Update the for-loop that moves the sphere models so that every other model's y position is set to its cos(x). Therefore you will now have 180 red spheres moving in sine wave and 180 black spehres moving in a cosine wave.
-                                    </li>
-                                </ul>
+                                Next, define the function by providing its body below the closing brace of the main function.
                             </p>
+<pre><code>bool sphere2Sphere(float s1XPos, float s1YPos, float s1Zpos, float s1Radius float s2XPos, float s2YPos, float s2Zpos,  float s2Radius){
+    float distX = s2XPos - s1XPos;
+    float distY = s2YPos - s1YPos;
+    float distZ = s2ZPos - s1ZPos;
+    float distance = sqrt(distX + distY + distZ);
+
+    bool collision;
+    if(distance<(s1Radius + s2Radius)){
+        collision = True;
+    }
+    else{
+        collision = False;
+    }
+
+    return collision;
+}</code></pre>
                             <p>
-                                You may have to use the modulus operator to decide the skin to apply to each model in the loop.
+                                The function's code takes the positions of two spheres and their radii, calculates the distance between the spheres, compare the distance with the sum of their radii, returns true to show there is a collision if the distance is less than the radii sum, or returns false to show there is no collision if the distance is greater than the radii sum.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                What does this say about the relationship between sine and cosine?
+                               You can now call this function inside your gameloop to check for collisions. Use the GetX(), GetY() and GetZ() functions to get the position of an object, and make sure you take scaling into consideration when providng the radius of an object (e.g. a planet that is not scaled has radius 1, a planet scaled up to 2 has radius 2, while a planet scaled down to 0.5 has radius 0.5). An example of the use of the function is shown below:
                             </p>
+<pre><code>if(sphere2Sphere(earth->GetX(), earth->GetY(), earth->GetZ(), 1.0f, ship->GetX(), ship->GetY(), ship->GetZ(), 0.3f)){
+    myEngine->Stop();
+}
+</code></pre>
                         </div>
-                    </li>         
-                </ol>
-        </section>
-        <section>
-            <h2>6. Extra</h2>
-            <div class="section_instrcutions"></div>
-                <ol>
+                    </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The current wave does not look right, doubling the size of y produces a far better effect. The height of the wave can be adjusted by scaling the y value. After you have calculated the value of y from sin(x) and cos(x) try scaling it up and down. Changing the value of y in this fashion is adjusting the amplitude of the wave.
+                                Using the sphere2sphere function, update your gameloop to check for collision between the spacehsip and all the bodies in your solar system.
                             </p>
                         </div>
-                    </li>
+                    </li> 
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Adjust the speed at which spheres move. Adjusting the speed changes the frequency of the wave.
+                                You can reuse this function in other labs anf courseworks. You should also try defining functions for other collision detection approaches so you can easily reuse them.
                             </p>
                         </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Try adjusting the value of x before calculating sin(x). What happens?
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Try increasing the number of spheres being used.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Try representing the values of the tangent function using your spheres.
-                            </p>
-                        </div>
-                    </li>
+                    </li>       
                 </ol>
         </section>
     </main>
