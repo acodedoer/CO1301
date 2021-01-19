@@ -29,7 +29,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               This labsheet will provide practice in the use of arrays as well as the application of trigonometry.
+                               This lab sheet will provide practice in the use of arrays as well as the application of trigonometry.
                             </p>
                         </div>
                     </li>
@@ -63,7 +63,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load the sphere mesh and create a sphere model at location ( 0, 0, 0 ), then set the skin of the sphere to "RedBall.jpg".
+                                Load the sphere mesh and create a sphere model at location (0, 0, 0), then set the skin of the sphere to "RedBall.jpg".
                             </p>
                         </div>
                     </li>
@@ -146,7 +146,7 @@ const float kEdge = 8 * kPi;
 {
     spheres[i] = sphereMesh->CreateModel( i * 0.2f, 0, 0 );
     spheres[i]->Scale( 0.01f );
-    spheres[x]->SetSkin( "RedBall.jpg" );
+    spheres[i]->SetSkin( "RedBall.jpg" );
 }</code></pre>
                         </div>
                     </li>
@@ -160,7 +160,7 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Modify the section of code you used within the game loop to move the original sphere so that all of the spheres in the spheres array get moved. You will need to use a for loop.
+                                Modify the section of code you used within the game loop to move the original sphere so that all the spheres in the spheres array get moved. You will need to use a for loop.
                             </p>
                         </div>
                     </li>
@@ -182,9 +182,9 @@ const float kEdge = 8 * kPi;
                             <p class= "instruction-item">
                                 At the moment as the spheres move across the screen only their x coordinates are being changed. The y coordinate of the spheres need to be changed in order to produce a sine wave. Therefore, you need to set the y coordinate of each sphere to sin(x), where x is simply the current x coordinate of the sphere. You will need to:
                                 <ol>
-                                    <li>get the current x coordinate of the sphere</li>
-                                    <li>apply sin() in order to obtain the new y value</li>
-                                    <li>set the y coordinate of the sphere to this new value</li>
+                                    <li>Get the current x coordinate of the sphere</li>
+                                    <li>Apply sin() in order to obtain the new y value</li>
+                                    <li>Set the y coordinate of the sphere to this new value</li>
                                 </ol>
                             </p>
                             <p>
@@ -201,7 +201,7 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Lets update the program so that it shows both sine and cosine waves.
+                                Let us now update the program so that it shows both sine and cosine waves.
                             </p>
                         </div>
                     </li>   
@@ -218,7 +218,7 @@ const float kEdge = 8 * kPi;
                                 Next the two for-loops that create and move the models need to be updated.
                                 <ul>
                                     <li>
-                                        Update the for-loop that creates the sphere models so that every other model created uses the "BlackBall.jpg" skin. Therefore you will now have 360 sphere models in the array, half using the RedBall tecture and the other half using the BlackBall texture.
+                                        Update the for-loop that creates the sphere models so that every other model created uses the "BlackBall.jpg" skin. Therefore you will now have 360 sphere models in the array, half using the RedBall texture and the other half using the BlackBall texture.
                                     </li>
                                     <li>
                                         Update the for-loop that moves the sphere models so that every other model's y position is set to its cos(x). Therefore you will now have 180 red spheres moving in sine wave and 180 black spehres moving in a cosine wave.
@@ -226,7 +226,7 @@ const float kEdge = 8 * kPi;
                                 </ul>
                             </p>
                             <p>
-                                You may have to use the modulus operator to decide the sking to apply to each model in the loop.
+                                You may have to use the modulus operator to decide the skin to apply to each model in the loop.
                             </p>
                         </div>
                     </li>
@@ -246,7 +246,7 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The current wave doesn't looks right, doubling the size of y produces a far better effect. The height of the wave can be adjusted by scaling the y value. After you have calculated the value of y from sin(x) and cos(x) try scaling it up and down. Changing the value of y in this fashion is adjusting the amplitude of the wave.
+                                The current wave does not look right, doubling the size of y produces a far better effect. The height of the wave can be adjusted by scaling the y value. After you have calculated the value of y from sin(x) and cos(x) try scaling it up and down. Changing the value of y in this fashion is adjusting the amplitude of the wave.
                             </p>
                         </div>
                     </li>
