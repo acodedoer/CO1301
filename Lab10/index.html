@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <!-- and it&#039;s easy to individually load additional languages -->
+    <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 10 - Trigonometry: Waves and Points</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br>Lab 10 - Trigonometry: Waves and Points</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In this lab you will be recreating the trigonometric function waves shown in the lecture.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               This lab sheet will also provide practice in the use of arrays and methods.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>2. Setting Up</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new TL-Engine project called "Lab10_Trigonometry_Project". 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                We will be setting up a program that moves lots of models along wavy paths. To ensure that we are able to see our models clearly we won't be using any backdrops. 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a kManual camera and place it at location ( 13, 0, -17 ).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the sphere mesh and create a sphere model at location (0, 0, 0), then set the skin of the sphere to "RedBall.jpg".
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Scale the sphere model down by a factor of 100.
+                            </p>
+                            <pre><code>sphere->Scale( 0.01f );</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In the game-loop, add code that moves the sphere across the screen from left to right at a speed of 0.01, i.e. along the x-axis (use MoveX not MoveLocalX()).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Define a constant called kPi for &#8508. Next define a constant called kEdge for the edge of movement. It needs to have a value of 8 * &#8508.
+                            </p>
+<pre><code>const float kPi = 3.1415926f;
+const float kEdge = 8 * kPi;
+</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Update your program so that when the x coordinate of the sphere is greater than or equal to kEdge, its x-position is reset to 0. You should now have a sphere moving continuously from left to right.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>3. An Array of Spheres</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                         <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    Remember arrays? You have done arrays in Week 6 in the programming module and also in this module. An array is a way of referring to a group of variables by a single name. For example the code below will create an array of 10 IModels.
+                                </p>
+                                <pre><code>IModel* spheres[10];</code></pre>
+                            </div>
+                        </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                We can refer to the group of variables in an array by just using the array name. The individual variables can be referenced using the array index, a number inside square brackets. The array index always starts at 0, this means that the last element of the array is one less than the size of the array (the last element of an array of size 10 is array index 9). The code below references the last element of the IModel* array given above:
+                            </p>
+                            <pre><code>spheres[9];</code></pre>
+                            <p>
+                                Going over the edge of an array causes a run-time error.
+                            </p>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare an integer constant called kSphere of 180. This value will be used for the size of the array.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare an array of IModels. The array should be of size kSphere, i.e. 180.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Use the for loop below to create 180 models using the sphere mesh and assign them to the IModels in the spheres array.
+                            </p>
+<pre><code>for( int i = 0; i < kSphere; i++ )
+{
+    spheres[i] = sphereMesh->CreateModel( i * 0.2f, 0, 0 );
+    spheres[i]->Scale( 0.01f );
+    spheres[i]->SetSkin( "RedBall.jpg" );
+}</code></pre>
+                            <p class= "instruction-item">
+                                Note the way that the loop index is being used to access each individual member of the array, place sphere models in a line along the x axis, scale the models and set their textures.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Modify the section of code you used within the game loop to move the original sphere so that all the spheres in the spheres array get moved. You will need to use a for loop.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>4. Sine Wave</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The next step is to create a sine wave using the line of spheres.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                At the moment as the spheres move across the screen only their x coordinates are being changed. The y coordinate of the spheres need to be changed in order to produce a sine wave. Therefore, you need to set the y coordinate of each sphere to sin(x), where x is simply the current x coordinate of the sphere. You will need to:
+                                <ol>
+                                    <li>Get the current x coordinate of the sphere</li>
+                                    <li>Apply sin() in order to obtain the new y value</li>
+                                    <li>Set the y coordinate of the sphere to this new value</li>
+                                </ol>
+                            </p>
+                            <p>
+                                In order to use the sin() function you need to include the <em>"maths.h"</em> library in your program.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>5. Cosine Wave</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Let us now update the program so that it shows both sine and cosine waves.
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               Start by changing the value of kSpheres to 360.
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Next the two for-loops that create and move the models need to be updated.
+                                <ul>
+                                    <li>
+                                        Update the for-loop that creates the sphere models so that every other model created uses the "BlackBall.jpg" skin. Therefore you will now have 360 sphere models in the array, half using the RedBall texture and the other half using the BlackBall texture.
+                                    </li>
+                                    <li>
+                                        Update the for-loop that moves the sphere models so that every other model's y position is set to its cos(x). Therefore you will now have 180 red spheres moving in sine wave and 180 black spehres moving in a cosine wave.
+                                    </li>
+                                </ul>
+                            </p>
+                            <p>
+                                You may have to use the modulus operator to decide the skin to apply to each model in the loop.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                What does this say about the relationship between sine and cosine?
+                            </p>
+                        </div>
+                    </li>         
+                </ol>
+        </section>
+        <section>
+            <h2>6. Extra</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The current wave does not look right, doubling the size of y produces a far better effect. The height of the wave can be adjusted by scaling the y value. After you have calculated the value of y from sin(x) and cos(x) try scaling it up and down. Changing the value of y in this fashion is adjusting the amplitude of the wave.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Adjust the speed at which spheres move. Adjusting the speed changes the frequency of the wave.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Try adjusting the value of x before calculating sin(x). What happens?
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Try increasing the number of spheres being used.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Try representing the values of the tangent function using your spheres.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+</body>
+</html>

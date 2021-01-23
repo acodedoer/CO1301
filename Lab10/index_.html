@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <!-- and it&#039;s easy to individually load additional languages -->
+    <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 11 - Trigonometry: Points of a Circle</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br>Lab 10 - Trigonometry: Points of a Circle</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In this lab you will be applying trigonometry to derive the points of a circle.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               This lab sheet will also provide practice in the use of arrays and methods.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>2. Points of a Circle</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This section will guide you through a creating a project that moves a sphere so that it traces the path of circle. This will be done by moving the sphere along points on the circumferenc of the circle.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new TL-Engine project called "Lab11_Circle_Project". 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a kManual camera and place it at location ( 0, 0, -250 ).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Define a floating point constant called kRadius with a value of 100.0f. This will be the radius of the circle which is going to be created.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the sphere mesh and create a sphere model at location (kRadius, 0, 0), then set the skin of the sphere to "RedBall.jpg".
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Define a constant called kPi for &#8508 and assign it a value of 3.1415926f.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare a floating point variable called "degrees" to hold the current angle for which the x and y points of the circle are being derived and initialise this variable to 0. Then in your game loop:
+                                <ul>
+                                    <li>Increment degrees by a small amount (e.g 0.1f) each pass of the game loop</li>
+                                    <li>Reset the value degrees back to 0 each time it reaches 360.</lli>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                However, the trigonometric functions sin(), cos() and tan() in C++ use radians and not degrees. Therefore, you will need to convert the angle stored in the variable "degrees" to radians.
+                            </p>
+                            <pre><code>float radians = kPi/180 * degrees</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now that you have the angle in radians,the x and y xordinates of the point associated with this angle can be derived by:
+<pre><code>float x = kRadius * cos ( radians )
+float y = kRadius * sin ( radians )</code></pre> 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Use the derived x and y cordinates to position your sphere (the z cordinate should be set to 0)
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The sphere should trace out the path of a circle with radius kRadius. 
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>3. Utilising Arrays</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                         <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    Declare a constant integer and assign it a value of 8.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    Declare an array of IModels and name it spheres. The array should be of size kSize, i.e. 8, and will be used to store sphere models.
+                                </p>
+                            </div>
+                        </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                    Declare another array of floating point numbers and name it "degrees", then initialise it as below: 
+                            </p>
+                            <pre><code>float degrees[kSphere] = { 0, 45, 90, 135, 180, 225, 270, 315 };</code></pre>
+                            <p>
+                                This array will be used to store the angle being used for each of the spheres in the previous array.
+                            </p>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Use a for loop to create the sphere models for the "spheres" array. Each sphere needs to be re-textured to "RedBall.jpg" and placed at its correct location based on the angle in its equivalent index in the "degrees" array. Use the sine and cosine formula given in section 1 to derive the x and y coordinates for each sphere.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Just as was done in section 1, increment the angle of each sphere by a small amount and reset it to 0 when it reaches 360. This will keep the spheres move round the circles path. Yo can do this in the for loop from the previou step or in a separate for loop.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>4. Moving the Circle</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                At present the circle is centred at the world origin. It will prove more flexible if we can define different positions for the centre for the circle. Create three floating point variables xCentre, yCentre and zCentre. Initialise them all to 0.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In order to get the sphere to rotate around the centre of the circle the x, y and z coordinates of the sphere should be offset by the position of the centre of the circle. After you have derived the x and y coordinates of the circle offset each of them by the centre coordinates. For example the y coordinate is offset in the following manner:
+                            </p>
+<pre><code>y = kRadius * sin ( degrees );
+y = y + yCentre;
+</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The circle is on the vertical plane. At present the z coordinate of the sphere is assumed to be 0. Use zCentre to set the z coordinate of the sphere.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Try modifying the initial values of xCentre, yCentre and zCentre to centre the circle at other locations.
+                            </p>
+                        </div>
+                    </li> 
+                </ol>
+            </section>
+            <section>
+                <h2>5. Utilising Functions</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Let us create a function called rotateSpheres() to perform all of the operations required to rotas ate the array of spheres. The function is a void function, i.e. it does not return any values.
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You will need to move all of the code you've been using to rotate the spheres into the function. You only need to move the code concerned with rotating the spheres and not, for example, the code used to declare the array or initialise the coordinates of the spheres.
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                When the identifier (the name) of an array is used as a parameter, the whole array is passed over. In order to pass an array over to a function, the receiving function needs:
+                            </p>
+                            <ul>
+                                <li>the data type of the array (int, char, float, etc.)</li>
+                                <li>the size of the array</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                As a starting point the function would look like this:
+                            </p>
+<pre><code>void rotateSpheres( IModel* rotationArray[kSize], float degreeArray[kSize] )
+{
+    //function body goes here
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In order to invoke the above array you would call it by name and place the name of the array of spheres inside the round brackets, e.g.
+                            </p>
+                            <pre><code>rotateSpheres( spheres, degrees );</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                I said that the above code was just the starting point. You also need to pass the three floats containing the centre of the circle over to the array. These values are also passed over within the parameter list (i.e. inside the round brackets). Modify the code accordingly.
+                            </p>
+                        </div>
+                    </li>         
+                </ol>
+        </section>
+        <section>
+            <h2>6. Advanced</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a brand new array of spheres. Set the spheres to yellow rather than red. Place the spheres in a different location to the original circle. Make both arrays rotate using the rotateSphere() function.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Apply the sine function to the spheres as they move around the circle. You should be able to create a wriggle in the circle.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Change kRadius from a constant into a normal variable. Rename it so that it is no uses the k prefix. Set up two keys so that you increase and decrease the size of the radius whilst the program is running.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+</body>
+</html>
