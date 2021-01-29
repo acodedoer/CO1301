@@ -55,14 +55,14 @@
 // Load "Comic Sans MS" font at 36 points
 </code></pre>
                             <p>
-                                As you can see, fonts are loaded in a similar way to meshes. A new data type: IFont is used for the fonts. As with meshes you need the both the data type of the variable and a name for the variable.
+                                As you can see, fonts are loaded in a similar way to meshes. A new data type: IFont is used for the fonts. As with meshes you need both the data type of the variable and a name for the variable.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Once a font has been loaded you can draw text with it. However,  the text will only be drawn for one frame. In order to keep the text permanent you must put the code for drawing the text in the game loop
+                                Once a font has been loaded you can draw text with it. However,  the text will only be drawn for one frame. In order to keep the text permanent, you must put the code for drawing the text in the game loop
                             </p>
                             <pre><code>myFont->Draw( "Hello World", 200, 100 );</code></pre>
                             <p>
@@ -73,7 +73,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You can load any system font e.g. Times New Roman, Adobe Garamond Pro, Comic Sans MS, Monotype Corsiva, stencil std, Charlemagne std etc. Not every font is guarantee to work correctly. Experiment and see what happens. If none is loaded, the font defaults to 24 point Arial.
+                                You can load any system font e.g. Times New Roman, Adobe Garamond Pro, Comic Sans MS, Monotype Corsiva, stencil std, Charlemagne std etc. Not every font is guaranteed to work correctly. Experiment and see what happens. If none is loaded, the font defaults to 24 point Arial.
                             </p>
                         </div>
                     </li>
@@ -112,14 +112,14 @@
                          <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    Unlike a model you cannot move text directly. Instead you will have to keep track of where you would like the text to be drawn.
+                                    Unlike a model, you cannot move text directly. Instead, you will have to keep track of where you would like the text to be drawn.
                                 </p>
                             </div>
                         </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare two floating point variables called fontX and fontY. Set them both initially to a value of 0.
+                                Declare two floating-point variables called fontX and fontY. Set them both initially to a value of 0.
                             </p>
                         </div>
                     </li>
@@ -153,7 +153,7 @@ myFont->Draw( "Hello Again", 100, 320, kRed, kCentre );
 //The will draw the phrase in blue in exactly the centre of the screen.
 myFont->Draw( "Hello Again", 640, 320, kBlue, kCentre, kVCentre );</code></pre>
 <p>
-    Note: that the cordinates used in the last draw method are based on the default window size of Tl-Engine projects (1280, 720). If you are using a different window size, you should take half of your custom dimensions when calculating cordinates for the centre of your screen.
+    Note: that the coordinates used in the last draw method are based on the default window size of Tl-Engine projects (1280, 720). If you are using a different window size, you should take half of your custom dimensions when calculating coordinates for the centre of your screen.
 </p>
                         </div>
                     </li>
@@ -179,7 +179,7 @@ myFont->Draw( "Hello Again", 640, 320, kBlue, kCentre, kVCentre );</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The alignment of the text can be specified in the fifth (horizontal) and sixth (vertical) parameters. Horizontal alignment refers to the horizontal positioning of the text in relation to the coordinates specified. By default the text starts at the given coordinates (i.e. it is left aligned). However, the text can be centred at the coordinates or right aligned. The constants for horizontal alignment are:
+                                The alignment of the text can be specified in the fifth (horizontal) and sixth (vertical) parameters. Horizontal alignment refers to the horizontal positioning of the text in relation to the coordinates specified. By default, the text starts at the given coordinates (i.e. it is left aligned). However, the text can be centred at the coordinates or right aligned. The constants for horizontal alignment are:
                                 <ul>
                                     <li>kLeft</li>
                                     <li>kRight</li>
@@ -191,7 +191,7 @@ myFont->Draw( "Hello Again", 640, 320, kBlue, kCentre, kVCentre );</code></pre>
                                     <li>kVCentre</li>
                                     <li>kBottom</li>
                                 </ul><br/>
-                                Using these constants, try to psotion your text in the top left, top right, bottom left, bottom right and absolute centre of the screen.
+                                Using these constants, try to position your text in the top left, top right, bottom left, bottom right and absolute centre of the screen.
                             </p>
                         </div>
                     </li>           
@@ -204,7 +204,7 @@ myFont->Draw( "Hello Again", 640, 320, kBlue, kCentre, kVCentre );</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Engine project called Lab9_KeepingScore_Project and copy the code from this file into the project's .cpp file (check the path to the default media folder to avoid erros).
+                                Create a new TL-Engine project called Lab9_KeepingScore_Project <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4437396-dt-content-rid-8866423_1/xid-8866423_1" target="_blan">and copy the code from this file</a> into the project's .cpp file (check the path to the default media folder to avoid errors).
                             </p>
                             <p>
                                 Run the project and you will see a simple game where you press space bar to shoot a sphere at moving cubes. Get familiar with the gameplay and the code, you will be adding display messages to this game in this section.
@@ -278,14 +278,14 @@ outText.str(""); // Clear myStream</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare a stringstream variable within the gameloop and assign to it the value of score (using the format - Score: 0). Then draw it using regularFont at the top right corner of your screen. Make sure you use the appropriate cordinates, align constants, and colour.
+                                Declare a stringstream variable within the game loop and assign to it the value of score (using the format - Score: 0). Then draw it using regularFont at the top right corner of your screen. Make sure you use the appropriate cordinates, align constants, and colour.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               Currently the game stops when it enters either gamewon or gameover states. Remove the lines of code that stops the game in each of these states and replace them with code that draws an approrpiate message at the center of the screen. Display "Game Over" and the current score when the game is in gameover state, and display "You Won!!!" when the game is in gamewon state.
+                               Currently, the game stops when it enters either gamewon or gameover states. Remove the lines of code that stops the game in each of these states and replace them with code that draws an appropriate message at the center of the screen. Display "Game Over" and the current score when the game is in gameover state, and display "You Won!!!" when the game is in gamewon state.
                             </p>
                         </div>
                     </li>
@@ -305,7 +305,7 @@ outText.str(""); // Clear myStream</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Sprites are 2D bitmaps. Sprites were once used to draw all of the graphics in games. However, with the introduction of 3D graphics they are no longer the centre of computer graphics.  
+                                Sprites are 2D bitmaps. Sprites were once used to draw all of the graphics in games. However, with the introduction of 3D graphics, they are no longer the centre of computer graphics.  
                             </p>
                         </div>
                     </li> 
@@ -319,7 +319,7 @@ outText.str(""); // Clear myStream</code></pre>
                                 <li>Sprites can be used to create effects such as smoke, explosions and rain.</li>
                             </ul>
                             <p>
-                                In this section you will use a sprite as backdrop for a User Interface.
+                                In this section, you will use a sprite as a backdrop for a User Interface.
                             </p>
                         </div>
                     </li>   
@@ -364,7 +364,7 @@ backdrop->moveX( 0.1f );</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The techniques described above can be used to output real time information from your game. Load the mesh for a sphere and create one sphere. Set up key controls in order to move the sphere. Use the GetX, GetY and GetZ methods and the text output technique you have just learnt to output the current X, Y, and Z coordinates of the sphere as you move it around. The values should be drawn in the User Interface area.
+                                The techniques described above can be used to output real-time information from your game. Load the mesh for a sphere and create one sphere. Set up key controls in order to move the sphere. Use the GetX, GetY and GetZ methods and the text output technique you have just learnt to output the current X, Y, and Z coordinates of the sphere as you move it around. The values should be drawn in the User Interface area.
                             </p>
                         </div>
                     </li>   

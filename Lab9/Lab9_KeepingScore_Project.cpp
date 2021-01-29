@@ -74,8 +74,8 @@ void main()
 
 		stringstream scoreText;
 		scoreText << "Score: " << score;
-
 		regularFont->Draw(scoreText.str(), 1280, 0, kBlue, kRight, kTop);
+		scoreText.str("");
 		for (int i = 0; i < kCubeArraySize; i++) {
 			cube[i]->MoveX(cubeSpeed);
 		}
@@ -119,17 +119,17 @@ void main()
 			sphereSpeed = 0;
 			cubeSpeed = 0;
 			//display game over message here
-			scoreText.str("");
 			scoreText << "Game Over, your Score is: " << score;
 			largeFont->Draw(scoreText.str(), 1280/2, 320, kRed, kCentre, kVCentre);
+			scoreText.str("");
 		}
 		else if (gameState == gamewon) {
 			sphereSpeed = 0;
 			cubeSpeed = 0;
 			//display game won message here
-			scoreText.str("");
 			scoreText << "You Won!!!";
 			largeFont->Draw(scoreText.str(), 1280 / 2, 320, kBlue, kCentre, kVCentre);
+			scoreText.str("");
 
 		}
 
