@@ -211,7 +211,7 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You can also change the frequency of the waves by changing the speed of the spheres, adjusting the value of x before calculating sin(x), and increaing the number of spheres.  
+                                You can also change the frequency of the waves by changing the speed of the spheres, adjusting the value of x before calculating sin(x), and increasing the number of spheres.  
                             </p>
                         </div>
                     </li>
@@ -285,7 +285,7 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now that you have the angle in radians,the x and y xordinates of the point associated with this angle can be derived by:
+                                Now that you have the angle in radians,the x and y coordinates of the point associated with this angle can be derived by:
 <pre><code>float x = kRadius * cos ( radians )
 float y = kRadius * sin ( radians )</code></pre> 
                             </p>
@@ -294,7 +294,7 @@ float y = kRadius * sin ( radians )</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use the derived x and y cordinates to position your sphere (the z cordinate should be set to 0)
+                                Use the derived x and y coordinates to position your sphere (the z coordinates should be set to 0)
                             </p>
                         </div>
                     </li>
@@ -338,7 +338,7 @@ float y = kRadius * sin ( radians )</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use a for-loop to create the sphere models for the "spheres" array. Each sphere needs to be re-textured to "RedBall.jpg" and placed at its correct location based on the angle in its equivalent index in the "degrees" array (i.e the potition of spheres[i] should be derived using degrees[i]). Use the sine and cosine formula given 5.9 above to derive the x and y coordinates for each sphere.
+                                Use a for-loop to create the sphere models for the "spheres" array. Each sphere needs to be re-textured to "RedBall.jpg" and placed at its correct location based on the angle in its equivalent index in the "degrees" array (i.e the position of spheres[i] should be derived using degrees[i]). Use the sine and cosine formula given 5.9 above to derive the x and y coordinates for each sphere.
                             </p>
                         </div>
                     </li>
@@ -358,19 +358,19 @@ float y = kRadius * sin ( radians )</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                A function is a block of code that performs a specific task. To define a method you have to specify a name for it, its return type (void if does not return a value), its paramters (type and order of its required input(s)), and the functions body i.e. its code. 
+                                A function is a block of code that performs a specific task. To define a method you have to specify a name for it, its return type (void if does not return a value), its parameters (type and order of its required input(s)), and the functions body i.e. its code. 
                             </p>
 <pre><code>return_type function_name( parameter list ) {
     body of the function
 }</code></pre>
-                            <p>You can also declare a method dirst by proving its return type, name, and paramters, and then define its code later. The function's name is used to call the function's code anytime in other parts of your code.
+                            <p>You can also declare a method first by proving its return type, name, and parameters, and then define its code later. The function's name is used to call the function's code anytime in other parts of your code.
                             </p>
                         </div>
                     </li>    
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Let us create a function called rotateSpheres() to perform all of the operations required to rotate the array of spheres. The function is a void function, i.e. it does not return any values.
+                                Let us create a function called rotateSpheres() to perform all the operations required to rotate the array of spheres. The function is a void function, i.e. it does not return any values.
                             </p>
                         </div>
                     </li>   
@@ -411,7 +411,7 @@ float y = kRadius * sin ( radians )</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Modify your code to include the rotateSpheres() declaration and definition, then invoke the function in your game-loop with the eapprorpiate parameters.
+                                Modify your code to include the rotateSpheres() declaration and definition, then invoke the function in your game-loop with the approrpiate parameters.
                             </p>
                         </div>
                     </li>         
@@ -438,7 +438,7 @@ float y = kRadius * sin ( radians )</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Change kRadius from a constant into a normal variable and rename it so that it no uses the k prefix. Set up two keys so that you are ablt to increase and decrease the size of the radius whilst the program is running.
+                                Change kRadius from a constant into a normal variable and rename it so that it no uses the k prefix. Set up two keys so that you are able to increase and decrease the size of the radius whilst the program is running.
                             </p>
                         </div>
                     </li>
