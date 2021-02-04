@@ -135,7 +135,7 @@
                             <p>
                                 You may want to position your models at 10.0 along the y-axis, so that they are almost centered within the camera's view.
                             </p>
-                            <img src="earthandmoon.JPG" alt="a picture of the models of earth and moon"/>
+                            <img src="https://acodedoer.github.io/CO1301/Lab11/earthandmoon.JPG" alt="a picture of the models of earth and moon"/>
                         </div>
                     </li>
                     <li>
@@ -192,7 +192,7 @@
                             <p class= "instruction-item">
                                 Change the position of your Earth, Moon and dummy models with respect to the position of the Sun (remember the moon is a child of the dummy, therefore you will need to position it relative to the position of the dummy).
                             </p>
-                            <img src="sunandearth.JPG" alt="a picture of the models of the sun, earth and moon"/>
+                            <img src="https://acodedoer.github.io/CO1301/Lab11/sunandearth.JPG" alt="a picture of the models of the sun, earth and moon"/>
                         </div>
                     </li>
                     <li>
@@ -320,12 +320,12 @@
                             <p class= "instruction-item">
                                You can now call this function inside your gameloop to check for collisions. Use the GetX() and GetZ() functions to get the position of an object, and make sure you take scaling into consideration when providng the radius of an object (e.g. a planet that is not scaled has radius 1, a planet scaled up to 2 has radius 2, while a planet scaled down to 0.5 has radius 0.5). An example of the use of the function is shown below:
                             </p>
-<pre><code>if(sphere2Sphere(earth->GetX(), earth->GetY(), earth->GetZ(), 1.0f, ship->GetX(), ship->GetY(), ship->GetZ(), 4.0f)){
+<pre><code>if(sphere2Sphere(earth->GetX(), earth->GetY(), earth->GetZ(), 1, ss->GetX(), ss->GetY(), ss->GetZ(), 4)){
     myEngine->Stop();
 }
 </code></pre>
 <p>
-    The spaceship in its default scale has a radius of about 4.0f, you can get a more exact value using its bouding box coordinates found within the mesh file.
+    The spaceship in its default scale has a radius of about 4.0f, you can get a more exact value using its bouding box coordinates found within it's mesh file.
 </p>
                         </div>
                     </li>  
