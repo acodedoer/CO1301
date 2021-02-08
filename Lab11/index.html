@@ -320,7 +320,7 @@
                             <p class= "instruction-item">
                                You can now call this function inside your gameloop to check for collisions. Use the GetX() and GetZ() functions to get the position of an object, and make sure you take scaling into consideration when providng the radius of an object (e.g. a planet that is not scaled has radius 1, a planet scaled up to 2 has radius 2, while a planet scaled down to 0.5 has radius 0.5). An example of the use of the function is shown below:
                             </p>
-<pre><code>if(sphere2Sphere(earth->GetX(), earth->GetY(), earth->GetZ(), 1, ss->GetX(), ss->GetY(), ss->GetZ(), 4)){
+<pre><code>if(sphere2Sphere(earth->GetX(), earth->GetZ(), 1.0f, spaceship->GetX(), spaceship->GetZ(), 4.0f)){
     myEngine->Stop();
 }
 </code></pre>
@@ -339,7 +339,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Try and optimise the collision detection function based on what whas covered in the lecture this week?
+                                Try and optimise the collision detection function based on what whas covered in the lecture this week.
                             </p>
                         </div>
                     </li> 

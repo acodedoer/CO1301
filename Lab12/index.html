@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <!-- and it&#039;s easy to individually load additional languages -->
+    <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+        td{
+            padding: 0.5em;
+        }
+    </style>
+    <title>Lab 12 - Dot Product</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br>Lab 12 - Dot Product</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In this lab, you will be using dot product to to calculate whether one object (player) is within the field of view of another object (drone).
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This worksheet introduces a number of new concepts. However, take it steady and you will have no problems with it.
+                            </p>
+                        </div>
+                    </li>          
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The idea of this exercise is that we want to allow the player to sneak up behind the drone. The drone cannot see the player if the player is behind it.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>2. Setting Up</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new TL-Engine project called "Lab12_DotProduct_Project". 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                A set of media files are available on BlackBoard. You need to use the Floor.x mesh to create a floor model, drone.x to create a drone model, and either sierra.x, Casual_A.x,marine.x or the Bikergirl.x to create a player model.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create models for the floor, the player and the drone. You will need to scale the drone down by a factor of 0.05 (use drone->Scale(0.05f)) and make sure it is positioned above the floor so that it appears to be hovering.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Set up the W, A, S and D keys to move the player, e.g.
+                            </p>
+<pre><code>if( myEngine->KeyHeld( Key_W ) )
+{
+    player->MoveLocalZ( kPlayerSpeed );
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You will need to calculate the vector from the drone to the player each frame. In order to do this, take the location of the player and subtract the location of the drone from it. This should be implemented in the game-loop, and the x, y and z components of the vector should be stored in appropriately named float variables e.g. drone2PlayerVx, drone2PlayerVy and drone2PlayerVz.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                We also need the drone's facing vector. In order to calculate this you have to carry out some work with its matrix. We haven't covered matrices yet, so a function that will calculate the facing vector from a given model is provided below:
+                            </p>
+<pre><code>void facingVector( IModel *model, float &x, float &y, float &z)
+{
+    float matrix[16];
+
+    model->GetMatrix( matrix );
+
+    x = matrix[8];
+    y = matrix[9];
+    z = matrix[10];
+}
+</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Assuming that the model of the drone is called "drone" and we have three floating point variables ready to store the facing vector of the guard:
+                            </p>
+<pre><code>float facingVx;
+float facingVy;
+float facingVz;</code></pre>
+                            <p>You would then call the function like this:</p>
+                            <pre><code>facingVector( drone, facingVx, facingVy, facingVz );</code></pre>
+                            <p>
+                                Note that the function does not return any value, but is able to update the values of facingVx, facingVy and facingVz as they are passed by reference.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>3. Calculating and Displaying the Dot Product</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now write a function that will calculate the dot product of two V and W, it will be used to calculate the dot product if the two vectors derived in the last section. The function should take in as parameters the componenets of V and W, and return the dot product (a float). The function declaration (or function prototype) looks like this:
+                                <pre><code>float dotProduct( float Vx, float Vy, float Yz, float Wx, float Wy, float Wz );</code></pre>
+                                Add this before your program's main function.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Below the closing brace of the main function, write the actual function. You need to:
+                            </p>
+                            <ul>
+                                <li>write the function declaration without the ending semi-colon</li>
+                                <li>add curly brackets (braces) and place the body of the code within the curly brackets.</li>
+                            </ul>
+<pre><code>float dotProduct( float Vx, float Vy, float Yz, float Wx, float Wy, float Wz )
+{
+    // body of code here
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The function prototype specifies that you need to supply the function with two vectors. The body of the function needs to calculate the dot product of the two vectors. The dot product is calculated using the following formula:
+                            </p>
+                            v&#183w = (v<sub>x</sub>w<sub>x</sub> + v<sub>y</sub>w<sub>y</sub> + v<sub>z</sub>w<sub>z</sub>)
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                To recap: in order to find out whether the drone can see the player you:
+                            </p>
+                            <ul>
+                                <li>Use the facingVector() function to find out the facing vector of the drone.</li>
+                                <li>Calculate the vector from the drone to the player.</li>
+                                <li>Calculate the dot product between these two vectors.</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Having done these steps you finally apply the following test:
+                                <ul>
+                                    <li>Assuming the facing vector (the orientation) of the drone be v and the vector from the drone to the player be w.</li>
+                                    <li>If v&#183w > 0 then the angle is less that 90 degrees, if v&#183w &lt 0 then the angle is greater that 90 degrees, and if v&#183w = 0 then the angle is exactly 90 degrees.</li>
+                                    <li>Therefore if v&#183w &lt 0 then the player is behind the guard and not visible to the guard.</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now, dsiplay the dot-product and visibility of the player on the screen:
+                                <ul>
+                                    <li>
+                                        At the top left of your screen, display the the dot product calculated at every frame in the format: "Dot-Product: 0".
+                                    </li>
+                                    <li>
+                                        At the top right corner of your screen, display the visibility status of the player. If the the dot product is less than or equal to 0, display "Visibility: Hidden" else if the dot product is greater than 0 display "Visibility: Visible".
+                                    </li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Move your player around and note how the dot product and the visibility status change.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>4. Extra (not advanced)</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                         <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    Add code in your game-loop that rotates the drone about it's local y-axis. This means you will have to keep moving the palyer to avoid being seen by the drone.
+                                </p>
+                            </div>
+                        </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Update the code in your game-loop so that both the drone to player and drone facing vectors are normalised before the dot product is caluclated. Check out Lecture 6 and Lab 7 if you need a reminder on normalising vectors.
+                            </p>
+                            <p>
+                                Can you see a difference in the values of the dot-product displayed by the program?
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Extend this program into a game; the game's objective is to deactivate the drone.
+                                <ul>
+                                    <li>The player needs to touch the drone to deactivate it, therefore implement collision detection between the drone and the player (use sphere to sphere).</li>
+                                    <li>If the player collides with the drone, display an appropriate victory message on the screen (centered vertiaclly and horizantally).</li>
+                                    <li>The player looses if seen by the drone, therefore if the player is within the drone's field of view a GameOver message should be displayed on the screen (centered vertiaclly and horizantally).</li>
+                                    <li>Right now the player is within the drone's field of view if the dot product is greater than 0. Is that realistic? Can you have a more realistic field of view?</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+</body>
+</html>
