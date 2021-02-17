@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <!-- and it&#039;s easy to individually load additional languages -->
+    <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+        td{
+            padding: 0.5em;
+        }
+    </style>
+    <title>Lab 13 - Matrices: Scaling</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br>Lab 13 - Matrices: Scaling</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This lab will introduce the idea of using matrices to manipulate models.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This lab uses floating point arrays to represent a model's matrix.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                If it is not clear what the functions and arrays used in this lab are doing, please ask your lab tutor for clarification. 
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>2. Setting Up</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new TL-Engine project called "Lab13_MatrixScaling_Project". 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the cube mesh and create a cube model at ( 0, 5, 30 ).
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the floor mesh and create a floor model at the origin.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Each model has a 4x4 matrix associated with it, this means that you can directly manipulate the matrix in order to perform graphics operations on the model.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The matrix for a model is obtained using the GetMatrix() method. The following code gets the matrix of the cube and places it into the 4x4 array:
+                            </p>
+<pre><code>float matrix[4][4];
+cube->GetMatrix( &matrix[0][0] );</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The matrix can be then be manipulated in whatever way we see fit. After the matrix has been changed the new matrix can be assigned to the model using the SetMatrix() method. The following code sets the matrix of cube:
+                            </p>
+                            <pre><code>cube->SetMatrix( &matrix[0][0] );</code></pre>
+                            <p>
+                                <b>Note:</b> The use of the ampersand (&) in this context means "obtain the address of". The matrix associated with the model is a single dimensional floating point array of size 16, i.e. float m[16]. However, I think it'll be easier for you to visual the matrix as a two-dimensional array of size 4 by 4, i.e. float n[4][4]. In practice the two array declarations are treated identically by the compiler. But in order to convert from the one format to other it is necessary to pass the base address of the 4x4 matrix over to the function and this is what the ampersand allows us to do: it states the address of the first element of the array is passed over to the function.
+                            </p>
+                        </div>
+                    </li>        
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The last row of the matrix is the position of the model:
+                                <ul>
+                                    <li>matrix[3][0] is the x-coordinate</li>
+                                    <li>matrix[3][1] is the y-coordinate</li>
+                                    <li>matrix[3][2] is the z-coordinate</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>       
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                So if the value of matrix[3][0] is changed and the matrix assigned to cube model then the cube will move along the x-axis. Note that the other elements of the matrix must be left unaltered else the cube will be transformed in other ways and not just moved along the x-axis
+                            </p>
+                        </div>
+                    </li>      
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Place the following code within the game loop to see this in operation. You should see the cube move to the right
+                            </p>
+<pre><code>//declare a 4x4 matrix
+float matrix[4][4]; 
+
+//assign the cube's matrix to the declared array 
+cube->GetMatrix(&matrix[0][0]); 
+
+//update the matrix element that stores the x-position of the cube
+matrix[3][0] += 0.001f;
+
+//assign the updated matrix to the cube
+cube->SetMatrix(&matrix[0][0]); </code></pre>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>3. Moving Models by Matrix Manipulation</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Using the code in 2.8 as the basis of your work, set up your program so that holding the D key moves the cube in the positive x (to the right), whilst holding the A key moves it in the negative x (to the left).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Extend the code so that holding the W key moves the cube in the positive y (upwards), whilst holding the S key moves it in the negative y (downwards).
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>4. Scaling Models by Matrix Manipulation</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In this section, you will use a model's matrix to scale it.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Let us start with scaling the model just along the x-axis. In other words, you will stretch the model out at the sides.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               The first row of the matrix is its local x-axis:
+                            </p>
+                            <ul>
+                                <li>matrix[0][0] is the x component of the x-axis</li>
+                                <li>matrix[0][1] is the y component of the x-axis</li>
+                                <li>matrix[0][2] is the z component of the x-axis</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In order to scale the cube along the x-axis, all three components of it's local x-axis need to be modified, for example:
+                            </p>
+<pre><code>matrix[0][0] *= 1.001f;
+matrix[0][1] *= 1.001f;
+matrix[0][2] *= 1.001f;</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Using this code set up your program so that holding the E key scales the cube upwards along its x-axis.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now set up your program so that holding the Q key scales the cube downwards along its x-axis.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                What happens if you only adjust one of the components? In other words, what happens if only matrix[0][0] is changed whilst matrix[0][1] and matrix[0][2] are left alone? Change the code so that only matrix[0][0] is modified and then run it again. You will almost certainly not notice any difference. In order to see what is going wrong you will have to rotate the cube.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Set up the O key to rotate the cube around the local y-axis. Use RotateLocalY(). Try scaling the cube in and out as the cube is rotated. You should see the model start to do strange things. Can you work out why this is happening?
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Set your scaling code back to its proper state, i.e. so that all three components of the x-axis are scaled by the same amount. If you now rotate the cube you will see that everything works fine once again.
+                            </p>
+                        </div>
+                    </li>         
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               Now set up your program so that holding the "+" key scales the cube upwards along all three axes, whilst holding the "-" key scales it downwards.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+</body>
+</html>

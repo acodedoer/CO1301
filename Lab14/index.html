@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <!-- and it&#039;s easy to individually load additional languages -->
+    <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+        td{
+            padding: 0.5em;
+        }
+    </style>
+    <title>Lab 14 - Matrices: Rotation</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br>Lab 14 - Matrices: Rotation</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This worksheet will introduce the idea of using matrices to rotate models. Make sure that you have finished the lab from Week 13 before attempting this lab since it relies upon understanding the idea of a matrix associated with each model.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This lab uses floating point arrays to represent a model's matrix.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                If it is not clear what the functions and arrays used in this lab are doing, please ask your lab tutor for clarification. 
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>2. Setting Up</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new TL-Engine project called "Lab14_RotationTransformation_Project". 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the floor mesh and create a floor model at the origin.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the cube mesh and create a cube model at the origin.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Define a constant called kPi for &#8508, assign it a value of 3.1415926f.
+                            </p>
+                        <pre><code>const float kPi = 3.1415926f;</code></pre>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>3. Rotation About the World X-Axis</h2>
+                <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Each model has a 4x4 matrix associated with it, this means that you can directly manipulate the matrix in order to perform graphics operations on the model.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The matrix for a model is obtained using the GetMatrix() method. The following code gets the matrix of the cube and places it into the 4x4 array:
+                            </p>
+<pre><code>float matrix[4][4];
+cube->GetMatrix( &matrix[0][0] );</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The matrix can be then be manipulated in whatever way we see fit. After the matrix has been changed the new matrix can be assigned to the model using the SetMatrix() method. The following code sets the matrix of cube:
+                            </p>
+                            <pre><code>cube->SetMatrix( &matrix[0][0] );</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               The first row of the matrix is its local x-axis:
+                            </p>
+                            <ul>
+                                <li>matrix[0][0] is the x component of the x-axis</li>
+                                <li>matrix[0][1] is the y component of the x-axis</li>
+                                <li>matrix[0][2] is the z component of the x-axis</li>
+                            </ul><br/>
+                            <p class= "instruction-item">
+                                The second row of the matrix is local y-axis and the third row of the matrix is local z-axis.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The following function will rotate a model around the world x-axis and the local origin of the model.
+                            </p>
+<pre><code>// Rotate around the World x-axis and the local origin.
+//  float rotation : angle to rotate in degrees
+//  matrix[4][4] : model to be rotated
+void rotateX( float matrix[4][4], float rotation )
+{
+    // convert the rotation from degrees to radians
+    float alpha = rotation * kPi / 180.0f;
+    // find the sine of the angle
+    float sinAlpha = sin( alpha );
+    // find the cosine of the angle
+    float cosAlpha = cos( alpha );
+
+    // Need to use temporary values because x and y get overwritten during the
+    // course of the calculations (only one is actually needed - see the maths
+    // classes in year 2, but the code is clearer this way)
+    float tempY;
+    float tempZ;
+
+    // Perform the minimum of calculations rather than use full matrix
+    // multiplication. A rotation around the world x-axis only causes the y
+    // and z components of each of the locals axes to be changed. See the
+    // worksheet and lecture notes.
+    // In this version of the rotation we want the coordinates of the model
+    // to be left unchanged so the final row is ignored.
+
+    // Firstly rotate the local x-axis (first row)
+    tempY = matrix[0][1] * cosAlpha - matrix[0][2] * sinAlpha;
+    tempZ = matrix[0][1] * sinAlpha + matrix[0][2] * cosAlpha;
+    matrix[0][1] = tempY;
+    matrix[0][2] = tempZ;
+
+    // Rotate the local y-axis (second row)
+    tempY = matrix[1][1] * cosAlpha - matrix[1][2] * sinAlpha;
+    tempZ = matrix[1][1] * sinAlpha + matrix[1][2] * cosAlpha;
+    matrix[1][1] = tempY;
+    matrix[1][2] = tempZ;
+
+    // Rotate the local z-axis (third row)
+    tempY = matrix[2][1] * cosAlpha - matrix[2][2] * sinAlpha;
+    tempZ = matrix[2][1] * sinAlpha + matrix[2][2] * cosAlpha;
+    matrix[2][1] = tempY;
+    matrix[2][2] = tempZ;
+}</code></pre>
+                            <p>
+                                Copy the function into your code and then use it to rotate the cube.
+                            </p>
+                        </div>
+                    </li>      
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The code uses the Euler rotation matrix:
+                            </p>
+                        </div>
+                    </li>     
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Examine the code in conjunction with the rotation matrix. What is happening is that the matrix is being applied to each of the local axes in turn: first the local x-axis, then the local y-axis, and finally the local z-axis. Remember that the rows of the first matrix are combined with the columns of the second matrix. Pair up the components and multiply them together and then sum the result.
+                            </p>
+                            <ul>
+                                <li>The result of applying the matrix to the local x-axis is that y and z components are changed.</li>
+                                <li>The result of applying the matrix to the local y-axis is that y and z components are changed.</li>
+                                <li>The result of applying the matrix to the local z-axis is that y and z components are changed.</li>
+                                <li>The net effect is that column 1 and column 2 are changed.</li>
+                                <li>We want to leave the position of the model unchanged and so the last row of the matrix can be ignored.</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>4. Rotation About the World Y-Axis</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Using the code from the previous section as your starting point, implement a rotation around the world y-axis. The rotation matrix is:
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Try to perform the matrix multiplication yourself. However, the net effect of the matrix will be:
+                            </p>
+                            <ul>
+                                <li>The x and z components of the local x-axis are changed.</li>
+                                <li>The x and z components of the local y-axis are changed.</li>
+                                <li>The x and z components of the local z-axis are changed.</li>
+                                <li>The net effect is that column 0 and column 2 are changed.</li>
+                                <li>We want to leave the position of the model unchanged and so the last row of the matrix can be ignored</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </section>       
+            <section>
+                <h2>5. Rotation About the World Z-Axis</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now, implement a rotation around the world z-axis. The rotation matrix is:
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Try to perform the matrix multiplication yourself. However, the net effect of the matrix will be:
+                            </p>
+                            <ul>
+                                <li>The x and y components of the local x-axis are changed.</li>
+                                <li>The x and y components of the local y-axis are changed.</li>
+                                <li>The x and y components of the local z-axis are changed.</li>
+                                <li>The net effect is that column 0 and column 1 are changed.</li>
+                                <li>We want to leave the position of the model unchanged and so the last row of the matrix can be ignored</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+</body>
+</html>
