@@ -27,21 +27,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                
-                            </p>
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                
-                            </p>
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                
+                                This lab introduces Tl-Engine's Timer() function and the use of variable time.
                             </p>
                         </div>
                     </li>
@@ -112,168 +98,134 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare a variable of type float called frameTime. Use Timer() to get the time taken for the last scene to be rendered:
+                                Download the zipped media folder from blackboard and unzip its content into your working directory.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The matrix for a model is obtained using the GetMatrix() method. The following code gets the matrix of the cube and places it into the 4x4 array:
+                                Load the model file: "quad.x".
                             </p>
-<pre><code>float matrix[4][4];
-cube->GetMatrix( &matrix[0][0] );</code></pre>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The matrix can be then be manipulated in whatever way we see fit. After the matrix has been changed the new matrix can be assigned to the model using the SetMatrix() method. The following code sets the matrix of cube:
+                                Move quad back and forth across the screen from -10 to 10. Use the frame time to adjust the speed of the movement by multiplying the distance moved by the frame time. The speed of movement should be 10 units. This is a lot higher than you are used to using. However, you are now using values adjusted according to the frame time
                             </p>
-                            <pre><code>cube->SetMatrix( &matrix[0][0] );</code></pre>
+                            <pre><code>code here</code></pre>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               The first row of the matrix is its local x-axis:
-                            </p>
-                            <ul>
-                                <li>matrix[0][0] is the x component of the x-axis</li>
-                                <li>matrix[0][1] is the y component of the x-axis</li>
-                                <li>matrix[0][2] is the z component of the x-axis</li>
-                            </ul><br/>
-                            <p class= "instruction-item">
-                                The second row of the matrix is local y-axis and the third row of the matrix is local z-axis.
+                                Set up the W, A, S, D keys to move the camera. Use the frame time to adjust camera movement rate in the same way that you used it to adjust the movement of the quad.
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The following function will rotate a model around the world x-axis and the local origin of the model.
+                                If you are using mouse movement to rotate the camera then you do not use the frame time to adjust rotation caused by the movement of the mouse. The movement of the mouse is independent of the frame time and so does not need adjustment
                             </p>
-<pre><code>// Rotate around the World x-axis and the local origin.
-//  float rotation : angle to rotate in degrees
-//  matrix[4][4] : model to be rotated
-void rotateX( float matrix[4][4], float rotation )
-{
-    // convert the rotation from degrees to radians
-    float alpha = rotation * kPi / 180.0f;
-    // find the sine of the angle
-    float sinAlpha = sin( alpha );
-    // find the cosine of the angle
-    float cosAlpha = cos( alpha );
-
-    // Need to use temporary values because x and y get overwritten during the
-    // course of the calculations (only one is actually needed - see the maths
-    // classes in year 2, but the code is clearer this way)
-    float tempY;
-    float tempZ;
-
-    // Perform the minimum of calculations rather than use full matrix
-    // multiplication. A rotation around the world x-axis only causes the y
-    // and z components of each of the locals axes to be changed. See the
-    // worksheet and lecture notes.
-    // In this version of the rotation we want the coordinates of the model
-    // to be left unchanged so the final row is ignored.
-
-    // Firstly rotate the local x-axis (first row)
-    tempY = matrix[0][1] * cosAlpha - matrix[0][2] * sinAlpha;
-    tempZ = matrix[0][1] * sinAlpha + matrix[0][2] * cosAlpha;
-    matrix[0][1] = tempY;
-    matrix[0][2] = tempZ;
-
-    // Rotate the local y-axis (second row)
-    tempY = matrix[1][1] * cosAlpha - matrix[1][2] * sinAlpha;
-    tempZ = matrix[1][1] * sinAlpha + matrix[1][2] * cosAlpha;
-    matrix[1][1] = tempY;
-    matrix[1][2] = tempZ;
-
-    // Rotate the local z-axis (third row)
-    tempY = matrix[2][1] * cosAlpha - matrix[2][2] * sinAlpha;
-    tempZ = matrix[2][1] * sinAlpha + matrix[2][2] * cosAlpha;
-    matrix[2][1] = tempY;
-    matrix[2][2] = tempZ;
-}</code></pre>
                             <p>
-                                Copy the function into your code and then use it to rotate the cube.
+                                In this way you will build a camera whose movement is independent of the speed of the computer
                             </p>
                         </div>
-                    </li>      
+                    </li> 
+                </ol>
+            </section>
+            <section>
+                <h2>4. Slowing the Frame Rate</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>     
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The code uses the Euler rotation matrix:
+                                In this section, you will reduce the fps significantly to demonstrate that the velocity of movement remains the same even when the fps changes radically. 
                             </p>
                         </div>
                     </li>     
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Examine the code in conjunction with the rotation matrix. What is happening is that the matrix is being applied to each of the local axes in turn: first the local x-axis, then the local y-axis, and finally the local z-axis. Remember that the rows of the first matrix are combined with the columns of the second matrix. Pair up the components and multiply them together and then sum the result.
+                                Load the cube mesh.
                             </p>
-                            <ul>
-                                <li>The result of applying the matrix to the local x-axis is that y and z components are changed.</li>
-                                <li>The result of applying the matrix to the local y-axis is that y and z components are changed.</li>
-                                <li>The result of applying the matrix to the local z-axis is that y and z components are changed.</li>
-                                <li>The net effect is that column 1 and column 2 are changed.</li>
-                                <li>We want to leave the position of the model unchanged and so the last row of the matrix can be ignored.</li>
-                            </ul>
+                        </div>
+                    </li>     
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a wall of cubes. The wall should be 100 cubes by 100 cubes, i.e. 10,000 cubes in total
+                            </p>
+                            <p>
+                                The size of a cube is 10 by 10. Use an array of type IModel, with a size of 10000. Create the wall of cubes outside the game loop. You will need to use a nested loop to make the wall: the outside loop for columns of the wall and the inside loop for the rows of the wall.
+                            </p>
+                            <p>
+                                If you cannot see how to do this then you can get the code here. <b>However, I would strongly suggest trying it out yourself first.</b>
+                            </p>
                         </div>
                     </li>
                 </ol>
             </section>
             <section>
-                <h2>4. Rotation About the World Y-Axis</h2>
+                <h2>5. Advanced: Pulse</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Using the code from the previous section as your starting point, implement a rotation around the world y-axis. The rotation matrix is:
+                                The velocity of the particles is 5 units.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Try to perform the matrix multiplication yourself. However, the net effect of the matrix will be:
+                                Each quads should move out from the origin in one of the cardinal directions at a velocity of 5 units.
                             </p>
-                            <ul>
-                                <li>The x and z components of the local x-axis are changed.</li>
-                                <li>The x and z components of the local y-axis are changed.</li>
-                                <li>The x and z components of the local z-axis are changed.</li>
-                                <li>The net effect is that column 0 and column 2 are changed.</li>
-                                <li>We want to leave the position of the model unchanged and so the last row of the matrix can be ignored</li>
-                            </ul>
+                            <img src="https://acodedoer.github.io/CO1301/Lab15/directions.PNG" alt="an image showing the 8 cardinal directions i.e north (N), northeast (NE), east (E), southeast (SE), south (S),southwest (SW), west (W), and northwest (NW)">
+                        
                         </div>
                     </li>
-                </ol>
-            </section>       
-            <section>
-                <h2>5. Rotation About the World Z-Axis</h2>
-                <div class="section_instrcutions"></div>
-                    <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now, implement a rotation around the world z-axis. The rotation matrix is:
+                                The movement of the particles going vertically or horizontally is straightforward since they are moving along a single axis.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Try to perform the matrix multiplication yourself. However, the net effect of the matrix will be:
+                                Those particles which are moving along the diagonal require movement along both x and y axes. The velocity of movement along these axes can be found by using Pythagoras' Theorem to calulcate the length of the two equal sides of a right angle traingle with a hypotenuse of length 5.
                             </p>
-                            <ul>
-                                <li>The x and y components of the local x-axis are changed.</li>
-                                <li>The x and y components of the local y-axis are changed.</li>
-                                <li>The x and y components of the local z-axis are changed.</li>
-                                <li>The net effect is that column 0 and column 1 are changed.</li>
-                                <li>We want to leave the position of the model unchanged and so the last row of the matrix can be ignored</li>
-                            </ul>
+                            <img src="https://acodedoer.github.io/CO1301/Lab15/traingle.PNG" alt="an image showing a right angle triangle with hypotenuse of length 5 and two other sides of equal length 3.5355">
+                            <p>
+                                The x and y components will each be 3.5355 units respectively. <b>Note that the sign of the velocity or the component will change depending on the direction of movement.</b>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The effect of doing this is that the quads will pulse out from a centre point once every 3 seconds.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare a timePassed variable. Start the quads moving out, each in their own direction. Use timePassed to store how much time has passed since the quads first started moving out. After 3 seconds have passed place all of the quads back at the centre point. Reset timePassed to 0, the quads then continue moving out as before, the timePassed variable is increased and so on
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The effect of doing this is that the quads will pulse out from a centre point once every 3 seconds.
+                            </p>
                         </div>
                     </li>
                 </ol>
