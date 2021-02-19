@@ -15,10 +15,10 @@
             padding: 0.5em;
         }
     </style>
-    <title>Lab 15 - Timing</title>
+    <title>Lab 16 - Particles</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br>Lab 15 - Timing</h1></header>
+    <header><h1>CO1301: Games Concepts <br>Lab 16 - Particles</h1></header>
     <main>
         <section>
             <h2>1. Introduction</h2>
@@ -27,7 +27,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This lab introduces Tl-Engine's Timer() function and the use of variable time.
+                                
                             </p>
                         </div>
                     </li>
@@ -40,21 +40,21 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Engine project called "Lab15_Timing_Project". 
+                                Create a new TL-Engine project called "Lab15_ParticleSystem_Project". 
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load and create a model using "stars.x". This will be your skybox.
+                                Load and create a skybox and floor model using "stars.x" and "floor.x" respectively. 
                             </p>
                         </div>
                     </li> 
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a 'kManual' camera and position it at ( 0, 0, -60 ).
+                                Create a 'kManual' camera and position it at ( 0, 60, -180 ).
                             </p>
                         </div>
                     </li> 
@@ -69,15 +69,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You then need to call Timer() once per frame, at the beginning of the game loop, immediately after:
-                            </p>
-                            <pre><code>myEngine->DrawScene();</code></pre>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Declare a variable of type float called frameTime. Use Timer() to get the time taken for the last scene to be rendered:
+                                You then need to call Timer() once per frame, at the beginning of the game loop, immediately after <code>myEngine->DrawScene();</code>. Declare a variable of type float called frameTime to store the time taken for the last scene to be rendered:
                             </p>
                             <pre><code>float frameTime = myEngine->Timer();</code></pre>
                         </div>
@@ -92,45 +84,51 @@
                 </ol>
             </section>
             <section>
-                <h2>3. Adjusting Movement by Time</h2>
+                <h2>3. One Particle</h2>
                 <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Download the zipped media folder from blackboard and unzip its content into your working directory.
+                                Load the model file: "quad.x" from the media folder on Blackboard, and implement particle movement as set out in the instructions below.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load the mesh file: "particle.x", and create a particle model.
+                                The particle should start at the world origin ( 0, 0, 0 ), and should move vertically with a starting velocity of 110 units. <b>Remember to adjust the velocity using the frame time. </b>                               
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Move particle back and forth across the screen from -10 to 10. Use the frame time to adjust the speed of the movement by multiplying the distance moved by the frame time. The speed of movement should be 10 units. This is a lot higher than you are used to using. However, you are now using values adjusted according to the frame time
+                                The particle will, of course, shoot off the screen when you run the program.
                             </p>
-                            <pre><code>particle->MoveX(kSpeed * frameTime);</code></pre>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Set up the W, A, S, D keys to move the camera. Use the frame time to adjust camera movement rate in the same way that you used it to adjust the movement of the particle.
+                                Now apply gravity to the particle. A reasonable value for gravity is -50 units. Gravity is acceleration. Use the equation given in the lecture to apply the accelerative force of gravity
+                            </p>
+                            <p>
+                                equation here
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                If you are using mouse movement to rotate the camera then you do not use the frame time to adjust rotation caused by the movement of the mouse. The movement of the mouse is independent of the frame time and so does not need adjustment
+                                The effect of gravity is downwards. Each frame you need to calculate the new velocity of the particle according to the effect of gravity. Note that gravity has a negative value. Use the frame time for delta-t ( ).
                             </p>
-                            <p>
-                                In this way you will build a camera whose movement is independent of the speed of the computer
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You then move the particle using the new velocity (adjusted still by the frame time). The effect is  the particle will rise up into the air and then fall downwards.
                             </p>
                         </div>
                     </li> 
