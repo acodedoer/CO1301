@@ -68,7 +68,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load the cube mesh and create a cube model at the origin.
+                                Load the cube mesh and create a cube model at the (0,10,30).
                             </p>
                         </div>
                     </li> 
@@ -89,7 +89,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Each model has a 4x4 matrix associated with it, this means that you can directly manipulate the matrix in order to perform graphics operations on the model.
+                                Each model has a 4x4 matrix associated with it, this means that you can directly manipulate the matrix in order to perform transformation operations on the model.
                             </p>
                         </div>
                     </li>
@@ -150,8 +150,8 @@ void rotateX( float matrix[4][4], float rotation )
 
     // Perform the minimum of calculations rather than use full matrix
     // multiplication. A rotation around the world x-axis only causes the y
-    // and z components of each of the locals axes to be changed. See the
-    // worksheet and lecture notes.
+    // and z components of each of the locals axes to be changed. 
+    // See the lecture slides.
     // In this version of the rotation we want the coordinates of the model
     // to be left unchanged so the final row is ignored.
 
@@ -181,7 +181,7 @@ void rotateX( float matrix[4][4], float rotation )
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The code uses the Euler rotation matrix:
+                                The code uses the rotation matrix (RotateAboutX) provided in lecture slides.
                             </p>
                         </div>
                     </li>     
@@ -208,14 +208,14 @@ void rotateX( float matrix[4][4], float rotation )
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Using the code from the previous section as your starting point, implement a rotation around the world y-axis. The rotation matrix is:
+                                Using the code from the previous section as your starting point, implement a rotation around the world y-axis. Use the rotation matrix (RotateAboutY) provided in lecture slides.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Try to perform the matrix multiplication yourself. However, the net effect of the matrix will be:
+                                Try to perform the matrix multiplication yourself. The net effect of the matrix multiplication will be:
                             </p>
                             <ul>
                                 <li>The x and z components of the local x-axis are changed.</li>
@@ -235,14 +235,14 @@ void rotateX( float matrix[4][4], float rotation )
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now, implement a rotation around the world z-axis. The rotation matrix is:
+                                Now, implement a rotation around the world z-axis.  Use the rotation matrix (RotateAboutZ) provided in lecture slides.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Try to perform the matrix multiplication yourself. However, the net effect of the matrix will be:
+                                Try to perform the matrix multiplication yourself. The net effect of the matrix multiplication will be:
                             </p>
                             <ul>
                                 <li>The x and y components of the local x-axis are changed.</li>
