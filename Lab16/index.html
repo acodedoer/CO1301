@@ -27,14 +27,14 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This lab intorudces particles and particle systems.
+                                This lab introduces particles and particle systems.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                A particle is an object with properties such as size, velocity and position. A particle system defines and controls the behavior of several particles to produce special effects  such as sparts, smoke, fire, explosions etc.
+                                A particle is an object with properties such as size, velocity and position. A particle system defines and controls the behavior of several particles to produce special effects  such as sparks, smoke, fire, explosions etc.
                             </p>
                         </div>
                     </li>
@@ -84,7 +84,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use the draw command to output the frame time and FPS (frames per second can be caluclated by  1/frameTime) to the screen.
+                                Use the draw command to output the frame time and FPS (frames per second can be calculated by  1/frameTime) to the screen.
                             </p>
                         </div>
                     </li>  
@@ -118,11 +118,14 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now apply gravity to the particle. A reasonable value for gravity is -50 units. Gravity is acceleration. Use the equation given in the lecture to apply the accelerative force of gravity
+                                Now apply gravity to the particle. A reasonable value for gravity is -50 units. Gravity is acceleration. Use the equation given in the lecture to apply the acceleration (force of gravity).
                             </p>
-                            <p>
-                                equation here
-                            </p>
+                            <pre>
+                                v = v' + a &times; &Delta;
+                                where new velocity  = v
+                                previous velocity = v'      
+                                gravity = a                     
+                            </pre>
                         </div>
                     </li>  
                     <li>
@@ -130,11 +133,6 @@
                             <p class= "instruction-item">
                                 The effect of gravity is downwards. Each frame you need to calculate the new velocity of the particle according to the effect of gravity. Note that gravity has a negative value. Use the frame time for delta-t ( &Delta;t).
                             </p>
-                            <pre>
-                                v = v' + a &times; &Delta;
-                                where new velocity  = v
-                                previous velocity = v'                           
-                            </pre>
                         </div>
                     </li>  
                     <li>
@@ -183,7 +181,7 @@
                                 Define a structure to hold the movement vector of your particle. I would suggest the following:
                             </p>
                         </div>
-<pre><code>struct particle
+<pre><code>struct Particle
 {
     IModel *model;
     float moveVector[3];
