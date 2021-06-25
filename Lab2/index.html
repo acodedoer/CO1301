@@ -11,10 +11,10 @@
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 2 - Input and Control</title>
+    <title>Lab 2 - Conditionals and Player Input</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br> Lab 2 - Input and Control</h1></header>
+    <header><h1>CO1301: Games Concepts <br> Lab 2 - Conditionals and Player Input</h1></header>
     <main>
         <section>
             <h2>1. Introduction</h2>
@@ -38,56 +38,8 @@
             </div>
         </section>
         <section>
-            <h2>2. Checking Input</h2>
-            <div class="section_introduction">
-            </div>
-            <div class="section_instrcutions">
-                <ol>
-                    <li >
-                        <div class="list-div">
-                            <p class= "instruction-item">The 3D engine monitors the keyboard and mouse input for its own window. We can ask the engine if particular keys or mouse buttons have been pressed, the methods to do this are:
-<pre><code class="plaintext">bool KeyHit( EKeyCode ); // Returns true when a given key or button is first pressed down.
-// Example usage: if (myEngine->KeyHit( Key_A )) { Do something }
-
-
-bool KeyHeld( EKeyCode ); // Returns true as long as a given key or button is held down.
-// Example usage: if (myEngine->KeyHeld( Mouse_LButton )) { Do something }
-</code></pre>
-                            Note: The above code snippets show the method’s signatures – the return type of the method (bool in both cases), the method name (e.g. KeyHit), and the parameter type (EKeyCode). You should not copy the method signature into your program (otherwise the compiler will think you are trying to re-define the methods!).
-
-                            When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an "if" statement, and you must pass in a parameter of the required type. The examples provided as comments show how the methods are used.
-                             </p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">You must supply a special key code to indicate which key (or button) you want to test ("Key_A" and "Mouse_Lbutton" were used in the examples above). The <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4281018-dt-content-rid-7932568_1/xid-7932568_1" target="_blank">full list of key codes can be found downloaded here.</a></p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
-                             <p class= "instruction-item">Notice that mouse buttons are considered to be "keys" also.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">There is a slight difference between the two input methods provided above. The first ("KeyHit") returns true once, when the key is first pressed, then it returns false until you let go of the key and press it again.
-                           </p>
-                       </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">The second method ("KeyHeld") will always return true as long as the key is held down. We will see how this difference is important soon.
-                           </p>
-                       </div>
-                    </li>
-                </ol>
-            </div>
-        </section>
-        <section>
             <div>
-                <h2>3. The "if" Statement</h2>
+                <h2>2. The "if" Statement</h2>
                 <ol>
                     <li>
                         <div class="list-div">
@@ -166,9 +118,50 @@ bool KeyHeld( EKeyCode ); // Returns true as long as a given key or button is he
             </div>
         </section>
         <section>
+            <h2>3. Checking for Player Input</h2>
+            <div class="section_introduction">
+            </div>
             <div class="section_instrcutions">
-                <h2>3. Using the 'if' Statement</h2>
                 <ol>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">The 3D engine monitors the keyboard and mouse input for its own window. We can ask the engine if particular keys or mouse buttons have been pressed, the methods to do this are:
+<pre><code class="plaintext">bool KeyHit( EKeyCode ); // Returns true when a given key or button is first pressed down.
+// Example usage: if (myEngine->KeyHit( Key_A )) { Do something }
+
+
+bool KeyHeld( EKeyCode ); // Returns true as long as a given key or button is held down.
+// Example usage: if (myEngine->KeyHeld( Mouse_LButton )) { Do something }
+</code></pre>
+                            Note: The above code snippets show the method’s signatures – the return type of the method (bool in both cases), the method name (e.g. KeyHit), and the parameter type (EKeyCode). You should not copy the method signature into your program (otherwise the compiler will think you are trying to re-define the methods!).
+
+                            When you call the methods, you can assign the result to a variable of the correct return type or, since the return type is bool, use the method call as the condition in an "if" statement, and you must pass in a parameter of the required type. The examples provided as comments show how the methods are used.
+                             </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">You must supply a special key code to indicate which key (or button) you want to test ("Key_A" and "Mouse_Lbutton" were used in the examples above). The <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4281018-dt-content-rid-7932568_1/xid-7932568_1" target="_blank">full list of key codes can be found downloaded here.</a></p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                             <p class= "instruction-item">Notice that mouse buttons are considered to be "keys" also.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">There is a slight difference between the two input methods provided above. The first ("KeyHit") returns true once, when the key is first pressed, then it returns false until you let go of the key and press it again.
+                           </p>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">The second method ("KeyHeld") will always return true as long as the key is held down. We will see how this difference is important soon.
+                           </p>
+                       </div>
+                    </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
