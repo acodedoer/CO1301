@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+        <!-- and it&#039;s easy to individually load additional languages -->
+        <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 4 - Parenting and Models</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br> Lab 4 - Parenting and Models</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">In this lab we will look at how two objects (e.g. models and cameras) can be linked to form parent/child relationships. We will then look at how parenting operates within a model as well as between models.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">There are a huge number of possibilities to this technique: for example, attaching a gun object to a character object, allowing a character to move around on a moving boat, or making a camera to follow a character around (chase view).
+                               </p>
+                           </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>2. Parenting</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">We will start by linking two objects together to create a chase view. The method used for linking objects is:
+
+<pre><code>void AttachToParent(const ISceneNode* Parent);
+// E.g. camera->AttachToParent( character );</code></pre>
+
+                                The type 'ISceneNode' is new to you – it represents anything in the scene, including cameras and models. This simply tells you that you can attach anything to anything (although some combinations don’t work yet).
+                                </p>
+                            </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">Create a new TL-Engine project named <b>Lab4_Parenting_Project</b>. Open the project.
+                                </p>
+                            </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Load the grid mesh, the cube mesh and create a model for each of them at the origin.
+                                    
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Load the sphere mesh and create a sphere model at position (-30, 0, -10).
+                                </p>
+                            </div>
+                        </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Add code to allow you to move the cube using the keyboard (using w, a, s, and d keys).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Now attach the sphere model to the cube model. Look at the example in the beginning of this section fro the line of code to use, the code should be added in the initialisation section. Now the sphere should follow the cube when it moves.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Now add code to allow you to move the sphere (using u, h, j, and k keys). Do you understand how it moves relative to the cube? It is a similar concept to the local movement you covered in a previous lab.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Now change the camera to a "kManual" type and then attach the camera to the cube (the kFPS type of camera will not work here). You should now have a basic chase view camera.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">You can detach an object from its parent with:
+<pre><code>// Detaches this object from any parent it is attached to.
+void DetachFromParent();</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Save your project.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>3. WWI Airplane Model</h2>
+            <div class="section_instrcutions">
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">This section will walk you through building up a simple airplane scene. 
+                            </p>
+                        </div>
+                    </li>    
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Create a new TL-Engine project and name it <b>Lab4_Airplane_Project</b>.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">The models you will need for this prototype are: "Skybox 01.x", "Plane.x", "Floor.x" (and texture "ground_01.jpg"); <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4325561-dt-content-rid-8209264_1/xid-8209264_1">and they can be found in "models.zip" on Blackboard</a>. Unpack the models and place them in a folder called "media" within your project folder. Use the AddMediaFolder method to tell TL-Engine to get resources from the folder.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Open your created project, then create a FPS camera, load "Plane.x" and create a model using it.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Load and create a "Floor.x" model.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Notice how the wheels of the plane are sunk into the floor. Change the initial height of the plane so that the wheels are sitting on the floor. Remember this height - it is ground level.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Load "Skybox.x" and create a skybox model. The clouds on the skybox won't look correct when it is positioned at the origin (try it and see) so position it at (0, -940, 0) instead.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Add keyboard controls to rotate the plane clockwise and anticlockwise on the floor.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Create a variable to store the speed of the plane. Add keyboard controls to accelerate and decelerate the plane. The plane speed cannot be less than 0, i.e. stationary. Add plane movement into the game loop so that the plane now moves according to its current speed.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Using the AttachToParent command to create a chase camera. The "parent" in this case is the plane and the camera is the "child". Then use MoveLocal to position the camera behind and slightly above the plane:
+                                    <pre><code>camera->MoveLocal( 0.0f, -8.0f, 14.0f );</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">The plane is actually made up of several parts. These are the body of the plane, the  left wheel, the right wheel and the propeller. These parts are called nodes. It is possible to move the nodes independently. The data type of nodes is ISceneNode.
+<pre><code>ISceneNode* IModel::GetNode( const int iNode );
+//Example usage: ISceneNode* propNode = plane->GetNode( 4 );</code></pre>
+                            Model nodes can be manipulated with the same set of functions as models and cameras, e.g.
+<pre><code>propNode->RotateLocalZ( 1.0f );</code></pre>
+                                The above code will rotate the propeller of the plane. But you have to obtain the propeller node when you set up the scene first in order for this to work (the propeller is node number 4).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Now update your program so that the propeller of the plane starts rotating at a speed of 1.0f, but the rotating speed increases and decreases as the speed of the plane increases and decreases.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">'AttachToParent' creates a hierarchy of models. The child mirrors whatever happens to the parent. This is exactly what is happening with the nodes within a model. The nodes mirror what the parent does but can be manipulated independently. A model can be a hierarchy of nodes.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Allow the airplane to take off and to land. The plane should rise upwards when the speed is high enough (I used a value of 10). The plane should sink downwards when the speed is lower than this value. The plane should land if it reaches ground level.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>4. Advanced Exercise</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">The front wheels of the plane should rotate when the plane is on the ground. Change your program so that the front wheels of the plane rotate when the plane is on the floor, but are stationary out when the plane is in the air.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">The plane should bank when it turns. Rotate the plane model along its local Z axis in the correct direction when the plane turns.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Make the plane bounce slightly when it lands.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet"
+    href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 1 - Advanced Exercises</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br> Lab 1 - Advanced Exercises</h1></header>
+    <main>
+            The methods below were introduced in the lab, look carefully at the example usage at try writing code to implement the tasks that follow.
+<pre><code>// The Set functions allow you to set the X, Y or Z coordinates of a model to a given value
+void SetX( float ); // e.g. cube1->SetX( -20.0 );
+void SetY( float ); // e.g. cube2->SetY( 10.0 );
+void SetZ( float ); // e.g. cube2->SetZ( 7.5 );
+
+// Set all axes at once (as CreateModel)
+void SetPosition ( float X, float Y, float Z ); // e.g. myModel->SetPosition( 20, 0, 10 );
+
+// The Get functions return the current X, Y or Z position of a model
+float GetX(); // e.g. xpos = sphere->GetX();
+float GetY(); // e.g. if (sphere->GetY() > 10)
+float GetZ(); // e.g. zpos = sphere->GetZ();</code></pre> 
+        <section> 
+            <div class="section_instrcutions">
+                <ol>
+                    <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">Create a new TL-Engine project called <b>Lab1_ControlledSphere_Project</b>.
+                                </p>
+                        </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Load a sphere mesh, then create a sphere model and move it upwards until its Y reaches 30, then return it to its starting position.</b>.
+                            </p>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Update your code so that the sphere bounces left and right between X = -40 and X = 40.
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Can you make the sphere roll while it bounces?
+                            </p>
+                        </div>
+                    </li>
+                    </div>
+                </section>
+
+                You will need to use your programming skills (specifially selection using "if" statements) from The Four Week Challenge to complete these tasks.
+            </main>
+            </body>
+            </html>

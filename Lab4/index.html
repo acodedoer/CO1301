@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
-        <!-- and it&#039;s easy to individually load additional languages -->
-        <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <!-- and it&#039;s easy to individually load additional languages -->
+    <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 4 - Parenting and Models</title>
+    <title>Lab 4 - Drawing Text & Sprites</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br> Lab 4 - Parenting and Models</h1></header>
+    <header><h1>CO1301: Games Concepts <br>Lab 4 - Drawing Text & Sprites</h1></header>
     <main>
         <section>
             <h2>1. Introduction</h2>
@@ -21,212 +21,356 @@
                 <ol>
                     <li>
                         <div class="list-div">
-                                <p class= "instruction-item">In this lab we will look at how two objects (e.g. models and cameras) can be linked to form parent/child relationships. We will then look at how parenting operates within a model as well as between models.
-                               </p>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">There are a huge number of possibilities to this technique: for example, attaching a gun object to a character object, allowing a character to move around on a moving boat, or making a camera to follow a character around (chase view).
-                               </p>
-                           </div>
+                            <p class= "instruction-item">
+                                In this lab, you will learn to display text and use sprites in your TL-Engine projects.
+                            </p>
+                        </div>
                     </li>
                 </ol>
         </section>
         <section>
-            <h2>2. Parenting</h2>
+            <h2>2. Setting Up</h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
-                                <p class= "instruction-item">We will start by linking two objects together to create a chase view. The method used for linking objects is:
-
-<pre><code>void AttachToParent(const ISceneNode* Parent);
-// E.g. camera->AttachToParent( character );</code></pre>
-
-                                The type 'ISceneNode' is new to you – it represents anything in the scene, including cameras and models. This simply tells you that you can attach anything to anything (although some combinations don’t work yet).
-                                </p>
-                            </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">Create a new TL-Engine project named <b>Lab4_Parenting_Project</b>. Open the project.
-                                </p>
-                            </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Load the grid mesh, the cube mesh and create a model for each of them at the origin.
-                                    
+                            <p class= "instruction-item">
+                                Create a new TL-Engine project called Lab4_Text_Project.
                             </p>
                         </div>
                     </li>
                     <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a kManual camera at position (0, 0, 0), then implement camera control using keyboard and mouse as you did in Lab3_CameraControl_Project.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Before utilising text in the TL-Engine, you need to load a font. Add the code below in the setup area of your code in order to load a font.
+                            </p>
+<pre><code>IFont* myFont = myEngine->LoadFont( "Comic Sans MS", 36 );
+// Load "Comic Sans MS" font at 36 points
+</code></pre>
+                            <p>
+                                As you can see, fonts are loaded in a similar way to meshes. A new data type: IFont is used for the fonts. As with meshes you need both the data type of the variable and a name for the variable.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Once a font has been loaded you can draw text with it. However,  the text will only be drawn for one frame. In order to keep the text permanent, you must put the code for drawing the text in the game loop
+                            </p>
+                            <pre><code>myFont->Draw( "Hello World", 200, 100 );</code></pre>
+                            <p>
+                                Adding the code above to your game-loop should display "Hello World" on your screen.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You can load any system font e.g. Times New Roman, Adobe Garamond Pro, Comic Sans MS, Monotype Corsiva, stencil std, Charlemagne std etc. Not every font is guaranteed to work correctly. Experiment and see what happens. If none is loaded, the font defaults to 24 point Arial.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Now load the cube mesh and create a model from it.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Make sure you have implemented camera movement similar to the one in Lab3_CameraControl_Project and use to it to control your camera. Once you have done this move the camera around. What did you notice?
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Text (and Sprites as you'll see later on) use a different coordinate system to the one used to draw 3D models. Text uses the X and Y axes of the screen. This alternative coordinate system is the same as the one used by the mouse. The screen axes look like this:
+                            </p>
+                            <img src="https://acodedoer.github.io/CO1301/Lab3/2D-Grid.PNG" alt="An image showing a 2 dimensional grid with the origin at the top left corner">
+                        
+                            <p>
+                                The origin (0, 0) of the coordinate system is at the top left of the screen. Y increases as you go down the screen, whilst x increase as you go to the right.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>3. Positioning Text</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                         <li>
                             <div class="list-div">
-                                <p class= "instruction-item">Load the sphere mesh and create a sphere model at position (-30, 0, -10).
+                                <p class= "instruction-item">
+                                    Unlike a model, you cannot move text directly. Instead, you will have to keep track of where you would like the text to be drawn.
                                 </p>
                             </div>
                         </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Add code to allow you to move the cube using the keyboard (using w, a, s, and d keys).
+                            <p class= "instruction-item">
+                                Declare two floating-point variables called fontX and fontY. Set them both initially to a value of 0.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Now attach the sphere model to the cube model. Look at the example in the beginning of this section fro the line of code to use, the code should be added in the initialisation section. Now the sphere should follow the cube when it moves.
+                            <p class= "instruction-item">
+                                Draw the text using fontX and fontY.
+                            </p>
+                            <pre><code>myFont->Draw( "Hello World", fontX, fontY );</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Set up the cursor keys so that they change the values of fontX and fontY within the game loop and so move the text. The cursor keys are: Key_Up, Key_Down, Key_Right and Key_Left. You should then be able to move the location of the text around the screen.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Now add code to allow you to move the sphere (using u, h, j, and k keys). Do you understand how it moves relative to the cube? It is a similar concept to the local movement you covered in a previous lab.
+                            <p class= "instruction-item">
+                                There are a number of other things that you can do with the ‘Draw’. The Draw method is defined as:
+                            </p>
+<pre><code>Draw( const string& sText, const int iX, const int iY,
+    const unsigned int uiColour,
+    const EHorizAlignment eHorizAlign, const EVertAlignment eVertAlign )</code></pre>
+                            <p>An example of use is:</p>
+<pre><code>// This will draw red text, centre aligned at the coordinates (100, 300)
+myFont->Draw( "Hello Again", 100, 320, kRed, kCentre );
+
+//The will draw the phrase in blue in exactly the centre of the screen.
+myFont->Draw( "Hello Again", 640, 320, kBlue, kCentre, kVCentre );</code></pre>
+<p>
+    Note: that the coordinates used in the last draw method are based on the default window size of TL-Engine projects (1280, 720). If you are using a different window size, you should take half of your custom dimensions when calculating coordinates for the centre of your screen. You could also utilise the TL-Enfines GetWindowWidth and \GetWindowHeight methos.
+</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                    The colour of the text is specified in the fourth parameter of the method. The following standard colours are supported:
+                            </p>
+                            <ul>
+                                <li>kWhite</li>
+                                <li>kGreen</li>
+                                <li>kMagenta</li>
+                                <li>kDarkGrey</li>
+                                <li>kBlack</li>
+                                <li>kBlue</li>
+                                <li>kYellow</li>
+                                <li>kRed</li>
+                                <li>kCyan</li>
+                                <li>kLightGrey</td>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The alignment of the text can be specified in the fifth (horizontal) and sixth (vertical) parameters. Horizontal alignment refers to the horizontal positioning of the text in relation to the coordinates specified. By default, the text starts at the given coordinates (i.e. it is left aligned). However, the text can be centred at the coordinates or right aligned. The constants for horizontal alignment are:
+                                <ul>
+                                    <li>kLeft</li>
+                                    <li>kRight</li>
+                                    <li>kCentre</li>
+                                </ul><br/>
+                                Vertical alignment refers to the vertical positioning of the text in relation to the coordinates specified. The constants for vertical alignment are:
+                                <ul><br/>
+                                    <li>kTop</li>
+                                    <li>kVCentre</li>
+                                    <li>kBottom</li>
+                                </ul><br/>
+                                Using these constants, try to position your text in the top left, top right, bottom left, bottom right and absolute centre of the screen.
+                            </p>
+                        </div>
+                    </li>           
+                </ol>
+            </section>
+            <section>
+                <h2>4. Displaying More Complex Text</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new TL-Engine project called Lab4_KeepingScore_Project <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4437396-dt-content-rid-8866423_1/xid-8866423_1" target="_blan">and copy the code from this file</a> into the project's .cpp file (check the path to the default media folder to avoid errors).
+                            </p>
+                            <p>
+                                Run the project and you will see a simple game where you press space bar to shoot a sphere at moving cubes. Get familiar with the gameplay and the code, you will be adding display messages to this game in this section.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                To output complex text (including variables or functions/methods) you need to be introduced to a new part of C++. You may have used "cout" in this module or in CO1401 in conjunction with the double chevron "<<" to direct text output to the screen, e.g.
+                            </p>
+                            <pre><code>cout << "hello world";</code></pre>
+                            <p class= "instruction-item">
+                                However, it is also possible to use the ‘stringstream’ type, which can be used like ‘cout’ to create a string. The stringstream type is used by tL-Engine to display complex text.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The steps involved are as follows:
+                                <ul>
+                                    <li>Include the sstream library in your program
+<pre><code>#include &ltsstream&gt
+using namespace std;</code></pre>
+                                    </li>
+                                    <li>
+                                        Create a variable of type stringstream to hold the text you want to draw on the screen. Declare the variable within the game loop, otherwise you'll get problems with repeating text.
+                                        <pre><code>stringstream outText;</code></pre>
+                                    </li>
+                                    <li>Assign to it the text you wish to display (variables can be assigned), for example:
+                                    <pre><code>outText &lt&lt "Sphere Position: " &lt&lt sphere->GetX();</code></pre>
+                                    </li>
+                                    <li>Use the draw method to draw the text within the stringstream variable, make sure you use the str() command in conjunction with stringstream variable to convert its data into a string of characters to be drawn:
+<pre><code>myFont ->Draw( outText.str(), 20, 20 );
+outText.str(""); // Clear myStream</code></pre>
+                                    </li>
+                                </ul>
+                            </p>
+                            
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Although stringstream gives you access to functionality similar to "cout" do note that outputting newlines (endl or ‘\n’) has no effect in the TL-Engine - use more than one ‘Draw’ call instead.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Now change the camera to a "kManual" type and then attach the camera to the cube (the kFPS type of camera will not work here). You should now have a basic chase view camera.
+                            <p class= "instruction-item">
+                                    Back to your Lab4_KeepingScore_project. Your first task is to write code that displays the value of "score", the variable that keeps track of the number of cubes hit by the player. Take a moment to first think about where this code should be placed.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Include the stringstream library and remember that you need to use the std namespace as well.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">You can detach an object from its parent with:
-<pre><code>// Detaches this object from any parent it is attached to.
-void DetachFromParent();</code></pre>
+                                <p class= "instruction-item">
+                                Declare an IFont variable called regularFont and load a font of your choice with a font size of 36.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Save your project.
+                            <p class= "instruction-item">
+                                Declare a stringstream variable within the game loop and assign to it the value of score (using the format - Score: 0). Then draw it using regularFont at the top right corner of your screen. Make sure you use the appropriate cordinates, align constants, and colour.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               Currently, the game stops when it enters either gamewon or gameover states. Remove the lines of code that stops the game in each of these states and replace them with code that draws an appropriate message at the center of the screen. Display "Game Over" and the current score when the game is in gameover state, and display "You Won!!!" when the game is in gamewon state.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new IFont variable called largeFont and load the same font type as regularFont and a font size of 72. Use largeFont to display the game over and game won messages.
                             </p>
                         </div>
                     </li>
                 </ol>
-            </div>
-        </section>
-        <section>
-            <h2>3. WWI Airplane Model</h2>
-            <div class="section_instrcutions">
-                <ol>
+            </section>
+            <section>
+                <h2>5. Drawing Sprites</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>     
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">This section will walk you through building up a simple airplane scene. 
+                            <p class= "instruction-item">
+                                Sprites are 2D bitmaps. Sprites were once used to draw all of the graphics in games. However, with the introduction of 3D graphics, they are no longer the centre of computer graphics.  
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Whilst models have overtaken sprites as the mainstay of computer graphics, sprites are still extremely important.
+                            </p>
+                            <ul>
+                                <li>Sprites commonly used within User Interfaces, Menus and Loading Screens.</li>
+                                <li>Sprites can be used to create effects such as smoke, explosions and rain.</li>
+                            </ul>
+                            <p>
+                                In this section, you will use a sprite as a backdrop for a User Interface.
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In many ways you will find the sprite operations similar to those of models. However, sprites are simpler in as much as you only have to consider movement in 2D: up and down, or left and right. The sprites do have a Z component, but this is only used to sort the sprites, i.e. to calculate which sprite is in front, and hence visible, if two or more sprites overlap.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The naming convention follows the format you are familiar with. Essentially you can replace the word Model with the word Sprite. An important difference is that you do not need to load a Mesh.
+                            </p>
+                            <p>The data type for a sprite pointer is ISprite.</p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Sprites are created using CreateSprite(). Formally CreateSprite is a method of myEngine. There are a set of movement and positioning methods for sprites. These are: GetX, GetY, SetX, SetY, SetZ, SetPosition, MoveX, MoveY, and Move.All pixel coordinates are in *floating point* 
+                            </p>
+<pre><code>ISprite* backdrop = myEngine->CreateSprite( "backdrop.jpg", 200, 400 );
+backdrop->moveX( 0.1f );</code></pre>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new project called Lab4_Sprites_Project.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load "BlackBall.jpg" as a sprite backdrop and position it at the bottom of your screen. Then draw the phrase "User Interface" over the sprite backdrop in white.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The techniques described above can be used to output real-time information from your game. Load the mesh for a sphere and create one sphere. Set up key controls in order to move the sphere. Use the GetX, GetY and GetZ methods and the text output technique you have just learnt to output the current X, Y, and Z coordinates of the sphere as you move it around. The values should be drawn in the User Interface area.
+                            </p>
+                        </div>
+                    </li>   
                             </p>
                         </div>
                     </li>    
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Create a new TL-Engine project and name it <b>Lab4_Airplane_Project</b>.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">The models you will need for this prototype are: "Skybox 01.x", "Plane.x", "Floor.x" (and texture "ground_01.jpg"); <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4325561-dt-content-rid-8209264_1/xid-8209264_1">and they can be found in "models.zip" on Blackboard</a>. Unpack the models and place them in a folder called "media" within your project folder. Use the AddMediaFolder method to tell TL-Engine to get resources from the folder.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Open your created project, then create a FPS camera, load "Plane.x" and create a model using it.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Load and create a "Floor.x" model.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Notice how the wheels of the plane are sunk into the floor. Change the initial height of the plane so that the wheels are sitting on the floor. Remember this height - it is ground level.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Load "Skybox.x" and create a skybox model. The clouds on the skybox won't look correct when it is positioned at the origin (try it and see) so position it at (0, -940, 0) instead.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Add keyboard controls to rotate the plane clockwise and anticlockwise on the floor.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Create a variable to store the speed of the plane. Add keyboard controls to accelerate and decelerate the plane. The plane speed cannot be less than 0, i.e. stationary. Add plane movement into the game loop so that the plane now moves according to its current speed.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Using the AttachToParent command to create a chase camera. The "parent" in this case is the plane and the camera is the "child". Then use MoveLocal to position the camera behind and slightly above the plane:
-                                    <pre><code>camera->MoveLocal( 0.0f, -8.0f, 14.0f );</code></pre>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">The plane is actually made up of several parts. These are the body of the plane, the  left wheel, the right wheel and the propeller. These parts are called nodes. It is possible to move the nodes independently. The data type of nodes is ISceneNode.
-<pre><code>ISceneNode* IModel::GetNode( const int iNode );
-//Example usage: ISceneNode* propNode = plane->GetNode( 4 );</code></pre>
-                            Model nodes can be manipulated with the same set of functions as models and cameras, e.g.
-<pre><code>propNode->RotateLocalZ( 1.0f );</code></pre>
-                                The above code will rotate the propeller of the plane. But you have to obtain the propeller node when you set up the scene first in order for this to work (the propeller is node number 4).
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Now update your program so that the propeller of the plane starts rotating at a speed of 1.0f, but the rotating speed increases and decreases as the speed of the plane increases and decreases.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">'AttachToParent' creates a hierarchy of models. The child mirrors whatever happens to the parent. This is exactly what is happening with the nodes within a model. The nodes mirror what the parent does but can be manipulated independently. A model can be a hierarchy of nodes.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Allow the airplane to take off and to land. The plane should rise upwards when the speed is high enough (I used a value of 10). The plane should sink downwards when the speed is lower than this value. The plane should land if it reaches ground level.
-                            </p>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </section>
-        <section>
-            <h2>4. Advanced Exercise</h2>
-            <div class="section_instrcutions"></div>
-                <ol>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">The front wheels of the plane should rotate when the plane is on the ground. Change your program so that the front wheels of the plane rotate when the plane is on the floor, but are stationary out when the plane is in the air.
-                               </p>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">The plane should bank when it turns. Rotate the plane model along its local Z axis in the correct direction when the plane turns.
-                               </p>
-                           </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">Make the plane bounce slightly when it lands.
-                            </p>
-                        </div>
-                    </li>
                 </ol>
         </section>
     </main>
