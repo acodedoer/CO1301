@@ -477,7 +477,7 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
                             <div class="list-div">
                                 <p class= "instruction-item">When you run your project a grid will be displayed. The grid has lines that are marked with numbers, and each line represents a Cartesian cordsinate axis. The X axis runs horizontally from left (negative) to right (positive) of the grid; the Y axis runs vertically from down (negative) to up (positive), and  the Z axis goes from the screen (negative) into the scene (positive); these are the three axes (plural form of axis, pronounced 'ack-sees') of the Caretsian cordinate system. At the center of the model is the origin, it is marked with 0 because at this point the values of X, Y and Z are all 0 (you can inspect a copy of the grid model in the interactive scene below)</p>
                                 <div class="model-viewer">
-                                    <model-viewer src="../models/grid.glb"  class="model"   id="grid-model" interpolation-decay="200" alt="A 3D model of an grid" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" ></model-viewer>
+                                    <model-viewer src="https://acodedoer.github.io/CO1301/Lab1/models/grid.glb"  class="model"   id="grid-model" interpolation-decay="200" alt="A 3D model of an grid" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" ></model-viewer>
                                 </div>           
                             </div>
                         </li>
@@ -651,7 +651,7 @@ myCamera = myEngine->CreateCamera( kFPS );</code></pre>
                                     <p class= "instruction-item">Hopefully, you noticed that the cube spins around its y-axis as indicated by the name 'RotateY', and the direction of its spin is determined by the sign of the parameter passed (i.e. whether its negative or positive). Can you guess what will happen if the cube is rotated about its x-axis? What if it is rotated about its z-axis? What if the rotation method is placed outside the game loop? Verify your guesses by changing the values in the interactive scene below.</p>
                                     </div>
                                     <div class="model-viewer">
-                                        <model-viewer src="../models/cube_axis.glb" class="model" id="rotation-model"  interpolation-decay="200" alt="A 3D model of an grid" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" >
+                                        <model-viewer src="https://acodedoer.github.io/CO1301/Lab1/models/cube_axis.glb" class="model" id="rotation-model"  interpolation-decay="200" alt="A 3D model of an grid" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" >
                                             <select name="rotation-select" id="rotation-select">
                                                 <option value="x">RotateX</option>
                                                 <option value="y">RotateY</option>
@@ -818,9 +818,9 @@ float GetZ(); // e.g. zpos = sphere->GetZ();</code></pre>
         const canvas = document.querySelector('canvas.webgl')
 const loadingManager = new THREE.LoadingManager()
 const textureLoader = new THREE.TextureLoader(loadingManager);
-const planeXZTexture = textureLoader.load('../Grid.jpg')
-const planeYTexture = textureLoader.load('../Grid2.jpg')
-const boxTexture = textureLoader.load('../tiles1.jpg')
+const planeXZTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid.jpg')
+const planeYTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid2.jpg')
+const boxTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/tiles1.jpg')
 
 const scene = new THREE.Scene();
 
