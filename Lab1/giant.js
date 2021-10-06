@@ -72,11 +72,6 @@ document.getElementById("decY").addEventListener("click", ()=>{
 
 
 const tick = () =>{
-
-    // const deltaTime = clock.getElapsedTime();
-    // console.log(deltaTime)
-
-    // cube_mesh.rotation.y=Math.sin(deltaTime);
     renderer.render(scene, camera);
     window.requestAnimationFrame(tick)
 }
