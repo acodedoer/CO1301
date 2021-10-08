@@ -11,7 +11,7 @@
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 2 - Conditionals and Player Input</title>
+    <title>CO1301 - Lab 2: Conditionals and Player Input</title>
 </head>
 <body>
     <header><h1>CO1301: Games Concepts <br> Lab 2 - Conditionals and Player Input</h1></header>
@@ -186,13 +186,9 @@ bool KeyHeld( EKeyCode ); // Returns true as long as a given key or button is he
 }
 else if ( myEngine->KeyHeld( Mouse_LButton ))
 {
-    cube->MoveX -0.05 );
+    cube->MoveX ( -0.05 );
 }
 </code></pre>
-                            <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
-                            <div class="hint-div">
-                                <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/aed31ae1-44fb-4025-bdc7-9f46192f3719?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
-                            </div>
                                 <p>This code tests if the right mouse button is held and moves the cube right, else if the left mouse button is held it moves the cube left. Run your project to test this out.
                             </p>
                         </div>
@@ -223,10 +219,6 @@ myCamera->SetPosition(0, 0, -50);
     myEngine->Stop();
 }
 </code></pre>
-                            <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
-                            <div class="hint-div">
-                                <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/a8db5806-22a1-4527-90d9-39c162d56cbd?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
-                            </div>
                             <p>
                             This code tests if the escape key has been pressed and quits the engine (and program) if it has. You may want to add this to all your projects so you don’t need to use ‘Alt+F4’. Run your program and test quiting by pressing the escape key.
                             </p>
@@ -237,7 +229,7 @@ myCamera->SetPosition(0, 0, -50);
         </section>
         <section>
             <div class="section_instrcutions">
-                <h2>5. Exercises - Keyboard Control</h2>
+                <h2>5. Keyboard Control</h2>
                 <ol>
                     <li >
                         <div class="list-div">
@@ -271,7 +263,7 @@ myCamera->SetPosition(0, 0, -50);
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">Change your code to load “Arrow.x” instead of “Cube.x” into the cubeMesh variable. Your should now be able to see and control and arrow when you run your program.</p>
+                             <p class= "instruction-item">Change your code to load “Arrow.x” instead of “Cube.x” into the cubeMesh variable. You should now be able to see and control and arrow when you run your program.</p>
                         </div>
                     </li>
                     <li >
@@ -313,12 +305,12 @@ void MoveLocalZ(const float);
             </div>
         </section>
         <section>
-            <h2>6. Exercises - Working with Variables</h2>
+            <h2>6. Working with Variables</h2>
             <div class="section_instrcutions">
                 <ol>
                     <li >
                         <div class="list-div">
-                            <p class= "instruction-item">Create a new TL-Engine project named <b>Lab2_TestingVariables_Project</b>. If you have completed week 1's Advanced Exercises II, you can resue your code in completing the tasks below.
+                            <p class= "instruction-item">Create a new TL-Engine project named <b>Lab2_TestingVariables_Project</b>. If you have completed week 1's Advanced Movement exercise, you can resue your code in completing the tasks below.
                             </p>
                         </div>
                     </li>
@@ -375,7 +367,7 @@ void MoveLocalZ(const float);
             </div>
         </section>
         <section>
-            <h2>7. Exercises - Advanced User Control</h2>
+            <h2>7. Pause and Reverse</h2>
             <ol>
                 <li >
                     <div class="list-div">
@@ -397,6 +389,6 @@ void MoveLocalZ(const float);
             </ol>
         </section>
     </main>
-    <script src="../assets/script.js"></script>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
 </body>
 </html>

@@ -9,8 +9,37 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script>
+    
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 3 - Textures + Mouse and Camera Controls</title>
+    <style>
+        .webgl {
+            height: 30%;
+        }
+        #click-position{
+            color:red;
+            font-size: 1.5em;
+            margin: 0;
+        }
+        .model{
+            height: 360px;
+        }
+        .model-viewer{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            border: 0.5em dashed black;
+            padding: 0.5em;
+            text-align: center;
+        }
+        
+        .interactive-scene{
+            border: 0.5em dashed black;
+            padding: 0.5em;
+            text-align: center;
+        }
+    </style>
+    <title>CO1301 - Lab 3: Textures + Mouse and Camera Controls</title>
 </head>
 <body>
     <header><h1>CO1301: Games Concepts <br> Lab 3 - Textures + Mouse and Camera Controls </h1></header>
@@ -36,7 +65,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               But first, you will learn to change the texxtures/skin on a model in the Tl-Engine.
+                               But first, you will learn to change the textures/skin on a model in the Tl-Engine.
                             </p>
                         </div>
                     </li>
@@ -129,7 +158,13 @@
                         <div class="list-div">
                              <p class= "instruction-item">The 3D engine can also provide the position and movement of the mouse cursor using the X and Y axes of the screen, which are different than the axes in the 3D engine. The screen axes look like the image below:</p><br/>
                              <img src="https://acodedoer.github.io/CO1301/Lab3/2D-Grid.PNG" alt="An image showing a 2 dimensional grid with the origin at the top left corner">
+                             <p>To better understand the screen axes, click on any part of your browser window and you should see the corresponding x an y values shown below. Try clicking on the corners of the page (top righ and left, bottom right and left), then try resizing the browser window into different shapes and see if the values change if you click around the page.</p>
+                        <div class ="interactive-scene">
+                            <canvas style="display: none" id="2dgrid-webgl"></canvas>
+                            <p id="click-position">Click anywhere within this page to view the X and Y position of the point.</p>
                         </div>
+                    </div>
+
                     </li>
                     <li >
                         <div class="list-div">
@@ -153,13 +188,6 @@ int GetMouseMovementY();</code></pre>
                             </p>
                         </div>
                     </li>
-                </ol>
-            </div>
-        </section>
-        <section>
-            <div>
-                <h2>4. Exercises - Mouse Control</h2>
-                <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">Open last week's lab project, <b> <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202021_1_9/Labs/Lab2/Lab2_Controls_Project.cpp">Lab2_Controls_Project</a></b>, so that we can add code to handle mouse input for control.
@@ -210,7 +238,7 @@ arrow->RotateY( mouseMoveX * 0.1 ); // the 0.1 reduces the rotation speed</code>
         </section>
         <section>
             <div class="section_instrcutions">
-                <h2>5. Exercises - Camera Control</h2>
+                <h2>4. Custom Camera Control</h2>
                 <ol>
                     <li >
                         <div class="list-div">
@@ -285,12 +313,12 @@ arrow->RotateY( mouseMoveX * 0.1 ); // the 0.1 reduces the rotation speed</code>
             </div>
         </section>
         <section>
-            <h2>6. Exercises - Controlled Rotation</h2>
+            <h2>5. Controlled Camera Rotation</h2>
             <div class="section_instrcutions">
                 <ol>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">Add another constant to control your FPS camera called "kMouseRotation". Use mouse input to control the rotation of the camera.
+                                <p class= "instruction-item">Add another constant to control your custom FPS camera called "kMouseRotation". Use mouse input to control the rotation of the camera.
                                 </p>
                         </div>
                     </li>
@@ -299,5 +327,50 @@ arrow->RotateY( mouseMoveX * 0.1 ); // the 0.1 reduces the rotation speed</code>
     </section>
     </main>
     <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+    <script>
+        
+const canvas = document.getElementById('2dgrid-webgl')
+const loadingManager = new THREE.LoadingManager()
+const textureLoader = new THREE.TextureLoader(loadingManager);
+
+const scene = new THREE.Scene();
+const size_ = 10;
+const divisions = 50;
+
+const gridHelper = new THREE.GridHelper( size_, divisions );
+gridHelper.rotation.set(3.14/2, 0, 0);
+scene.add( gridHelper );
+
+const size = {
+    width: window.innerWidth/3,
+    height: window.innerWidth/3
+}
+const camera = new THREE.PerspectiveCamera(75, size.width/size.height);
+camera.position.set(0, 0, 6.5);
+
+const renderer = new THREE.WebGLRenderer(
+    {canvas: canvas}
+);
+renderer.setSize(size.width, size.height)
+renderer.setClearColor("")
+
+const parameters = {
+    color: 0xff0000,
+    toRight: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:4})},
+    toLeft: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:-4})},
+}
+
+document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
+function onDocumentMouseDown( event ) {
+    document.getElementById("click-position").innerText=`You last clicked at X:${event.clientX} , Y:${event.clientY}`
+}
+const tick = () =>{
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(tick)
+}
+
+tick()
+    </script>
 </body>
 </html>
