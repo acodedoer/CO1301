@@ -12,33 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
-    <style>
-        .webgl {
-            height: 30%;
-        }
-        #click-position{
-            color:red;
-            font-size: 1.5em;
-            margin: 0;
-        }
-        .model{
-            height: 360px;
-        }
-        .model-viewer{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            border: 0.5em dashed black;
-            padding: 0.5em;
-            text-align: center;
-        }
-        
-        .interactive-scene{
-            border: 0.5em dashed black;
-            padding: 0.5em;
-            text-align: center;
-        }
-    </style>
     <title>CO1301 - Lab 3: Textures + Mouse and Camera Controls</title>
 </head>
 <body>
@@ -327,50 +300,6 @@ arrow->RotateY( mouseMoveX * 0.1 ); // the 0.1 reduces the rotation speed</code>
     </section>
     </main>
     <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
-    <script>
-        
-const canvas = document.getElementById('2dgrid-webgl')
-const loadingManager = new THREE.LoadingManager()
-const textureLoader = new THREE.TextureLoader(loadingManager);
-
-const scene = new THREE.Scene();
-const size_ = 10;
-const divisions = 50;
-
-const gridHelper = new THREE.GridHelper( size_, divisions );
-gridHelper.rotation.set(3.14/2, 0, 0);
-scene.add( gridHelper );
-
-const size = {
-    width: window.innerWidth/3,
-    height: window.innerWidth/3
-}
-const camera = new THREE.PerspectiveCamera(75, size.width/size.height);
-camera.position.set(0, 0, 6.5);
-
-const renderer = new THREE.WebGLRenderer(
-    {canvas: canvas}
-);
-renderer.setSize(size.width, size.height)
-renderer.setClearColor("")
-
-const parameters = {
-    color: 0xff0000,
-    toRight: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:4})},
-    toLeft: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:-4})},
-}
-
-document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-
-function onDocumentMouseDown( event ) {
-    document.getElementById("click-position").innerText=`You last clicked at X:${event.clientX} , Y:${event.clientY}`
-}
-const tick = () =>{
-    renderer.render(scene, camera);
-    window.requestAnimationFrame(tick)
-}
-
-tick()
-    </script>
+    <script src="https://acodedoer.github.io/CO1301/Lab3/interactive-2dgrid.js"></script>
 </body>
 </html>

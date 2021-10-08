@@ -9,6 +9,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script>
+    
     <script>hljs.initHighlightingOnLoad();</script>
     <title>Lab 4 - Drawing Text & Sprites</title>
 </head>
@@ -99,8 +101,12 @@
                             <img src="https://acodedoer.github.io/CO1301/Lab3/2D-Grid.PNG" alt="An image showing a 2 dimensional grid with the origin at the top left corner">
                         
                             <p>
-                                The origin (0, 0) of the coordinate system is at the top left of the screen. Y increases as you go down the screen, whilst x increase as you go to the right.
+                                The origin (0, 0) of the coordinate system is at the top left of the screen. Y increases as you go down the screen, whilst x increase as you go to the right. >To better understand the screen axes, click on any part of your browser window and you should see the corresponding x an y values shown below. Try clicking on the corners of the page (top righ and left, bottom right and left), then try resizing the browser window into different shapes and see if the values change if you click around the page.
                             </p>
+                            <div class ="interactive-scene">
+                                <canvas style="display: none" id="2dgrid-webgl"></canvas>
+                                <p id="click-position">Click anywhere within this page to view the X and Y position of the point.</p>
+                            </div>
                         </div>
                     </li>
                 </ol>
@@ -375,5 +381,6 @@ backdrop->moveX( 0.1f );</code></pre>
         </section>
     </main>
     <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+    <script src="https://acodedoer.github.io/CO1301/Lab3/interactive-2dgrid.js"></script>
 </body>
 </html>
