@@ -10,7 +10,7 @@
         <!-- and it&#039;s easy to individually load additional languages -->
         <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 5 - Game States - Extra Exercise</title>
+    <title>Lab 5 - Extra Exercise - Platformer</title>
 </head>
 <body>
     <header><h1>CO1301: Games Concepts <br> Lab 5 - Extra Exercise - Platformer </h1></header>
@@ -156,8 +156,7 @@ else if (playerPosition == Top){
 // if playerCube's Y is less that the highest Y position, move cube up some more
 }
 </code></pre>
-                        <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
-                        <div class="hint-div">
+                        <div>
                             <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/5a6c1377-09a1-455c-ac9f-e42ab4e2a430?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
                         </div>
                             </div>
@@ -165,7 +164,7 @@ else if (playerPosition == Top){
                     </ol>
             </section>
             <section>
-                <h2>3. Endless Platfroms</h2>
+                <h2>3. Infinite Side-scrolling</h2>
                 <ol>
                     <li>
                         <div class="list-div">
@@ -213,8 +212,8 @@ platform4->SetLocalPosition(0, -60, -10); //at the bottom and in front of backgr
                             <p class= "instruction-item">
                                 Next, define a constant float named kGameSpeed and initialise it to -0.05f. Then in the game loop add code to move background1 and background2 along the x axis using kGameSpeed. When you run your program, each background and its children (platforms) should be moving to the left thus creating the illusion that the cube is moving to the right.
                             </p>
-                            <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
-                            <div class="hint-div">
+
+                            <div>
                                 <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/710d3aa8-cc19-41a2-aad0-6495aa447980?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
                             </div>
                         </div>
@@ -230,8 +229,8 @@ else if (background2->GetX() <= -260) {
 background2->SetPosition(260, 0, 10);
 }</code></pre>
                             </p>
-                            <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
-                            <div class="hint-div">
+
+                            <div>
                             <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/9e4bfd9c-ef5f-48a5-9333-a0df5a435116?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
                             </div>
                         </div>
@@ -253,7 +252,7 @@ background2->SetPosition(260, 0, 10);
                 </ol>
         </section>
             <section>
-                    <h2>4.Exercises - Improving the Game</h2>
+                    <h2>4.Improving the Game</h2>
                     <div class="section_instrcutions"></div>
                         <ol>
                             <li>
@@ -275,8 +274,8 @@ background2->SetPosition(260, 0, 10);
                                             </li>
                                         </ul>  
                                     </p>
-                                    <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
-                            <div class="hint-div">
+        
+                            <div>
                                     <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/e47d9caf-67e9-4c71-8f33-404618715c05?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
                             </div>
                                 </div>
@@ -307,8 +306,8 @@ background2->SetPosition(260, 0, 10);
                                     <p class= "instruction-item">
                                        Make playerCube complete a 90 units rotation along its local z axis while in the MovingUp or MovingDown states, so that playerCube appears to do a "half-flip" everytime it moves to the top or the bottom.
                                     </p>
-                                    <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
-                            <div class="hint-div">
+        
+                            <div>
                                     <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/52c6d407-be5c-44aa-a8bd-3882bc161173?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
                             </div>
                                 </div>
@@ -316,7 +315,7 @@ background2->SetPosition(260, 0, 10);
                         </ol>
                 </section>
                 <section>
-                    <h2>5.Exercises - Advanced</h2>
+                    <h2>5. Advanced Features</h2>
                     <div class="section_instrcutions"></div>
                         <ol>
                             <li>
@@ -330,8 +329,8 @@ background2->SetPosition(260, 0, 10);
                                         <p>
                                         When you run your program you should have top and bottom enemies that move with the backgrounds and platforms.
                                         </p>
-                                        <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
-                                        <div class="hint-div">
+            
+                                        <div>
                                                 <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/7f1a1ab4-06ff-4ea9-916e-0c548c6d4300?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
                                         </div>
                                     </p>
@@ -373,8 +372,8 @@ myEngine->Stop();
                                     <p class= "instruction-item">
                                         Everytime a background and its attached enemy are out of view, reposition the enemy to a random position either beneath the background's attached top platform or on the background's attached bottom platform. (Hint: <a target="_blank" href= "https://www.cplusplus.com/reference/cstdlib/rand/" >you may want to use rand(), the C++ function for generating random numbers)</a>
                                     </p>
-                                    <a class="hint-link" href="#"><img class="video_icon" src="https://acodedoer.github.io/CO1301/assets/video_icon.svg"/></a>
-                                    <div class="hint-div">
+        
+                                    <div>
                                             <div style='max-width: 640px'><div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;'><iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/ae0204e1-e767-489c-891b-f23ffa0e44c8?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe></div></div>
                                     </div>
                                 </div>
