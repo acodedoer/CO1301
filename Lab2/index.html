@@ -7,11 +7,21 @@
     <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script>
     <script src="https://github.com/acodedoer/Test/blob/master/bundle.056cd6ff592ded82633f.js"></script>
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <title>CO1301 - Lab 2: Conditionals and Player Input</title>
+    <style>
+        .webgl {
+            height: 30%;
+        }
+
+        .active{
+           background-color: red;
+        }
+    </style>
 </head>
 <body>
     <header><h1>CO1301: Games Concepts <br> Lab 2 - Conditionals and Player Input</h1></header>
@@ -278,22 +288,70 @@ myCamera->SetPosition(0, 0, -50);
                     </li>
                     <li >
                         <div class="list-div">
-                             <p class= "instruction-item">What you should notice is that the arrow always moves left and right in the same direction: in the X direction of the large grid. This is called the ‘world’ X direction. Look closely at the arrow model and you can see it has its own grid, and it has its own X direction. This is called the arrow’s ‘local’ X direction. Sometimes we want to move in the local directions, we can do this with these methods:</p>
+                             <p class= "instruction-item">What you should notice is that the arrow always moves left and right in the same direction: in the X direction of the large grid. This is called the ‘world’ X direction. Look closely at the arrow model and you can see it has its own grid, and it has its own X direction. This is called the arrow’s ‘local’ X direction. Sometimes you may want to move in the local directions, use the interactive scene below to understand the didrence between world and local directions.</p>
+<!--         
+                            <div class ="interactive-scene">
+                                <canvas class="webgl"></canvas>
+                                <div style="border: 2px solid black; padding: 0.3em; margin: 0.2em;">
+                                    <div class="container">
+                                        speed (less than 0.1)
+                                        <input id ="speed" data-value type="number" value="0" />
+                                    </div>
+                                    <div class="container">
+                                        RotateX
+                                        <input id ="rotateX" data-value type="number" value="0" />
+                                    </div>
+                                    <div class="container">
+                                        RotateY
+                                        <input id ="rotateY" data-value type="number" value="0" />
+                                    </div>
+                                    <div class="container">
+                                        RotateZ
+                                        <input id ="rotateZ" data-value type="number" value="0" />
+                                    </div>
+                                </div>
+                                
+                                <div style="border: 2px solid black; padding: 0.3em;margin: 0.2em;">
+                                    <div class="container">
+                                        <button id="moveX">MoveX</button>
+                                    </div>
+                                    <div class="container">
+                                        <button id="moveLocalX" >MoveLocalX</button>
+                                    </div>
+                                    <div class="container">
+                                        <button id="moveY">MoveY</button>
+                                    </div>
+                                    <div class="container">
+                                        <button id="moveLocalY" >MoveLocalY</button>
+                                    </div>
+                                    <div class="container">
+                                        <button id="moveZ">MoveZ</button>
+                                    </div>                                
+                                    <div class="container">
+                                        <button id="moveLocalZ" >MoveLocalZ</button>
+                                    </div>
+                                    <div class="container">
+                                        <button id="resetPosition" >Reset Position</button>
+                                    </div>
+                                    <div class="container">
+                                        <button id="stopMovement" >Stop Movement</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br> -->
+                            <p>The TL-Engine provides methods for moving in the local x, y, and z directions:</p>
 <pre><code>void MoveLocalX(const float);
-// Move in the local X direction by the given amount
-// E.g arrow->MoveLocalX( 0.1 );
-
 void MoveLocalY(const float);
-// Move in the local Y direction by the given amount
-
 void MoveLocalZ(const float);
-// Move in the local Z direction by the given amount
 </code></pre>
+                            <p>To move an IModel named arrow along its local x for example, the code below should be used:</p>
+                            <pre><code>arrow->MoveLocalX( 0.1 );                            </code></pre>
+
                         </div>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">Change all the ‘Move’ methods from the previous exercises to ‘MoveLocal’ methods. Now experiment with rotation and movement together. Can you see the difference?</p>
+                                <p class= "instruction-item">Change all the ‘Move’ methods from the previous exercises to ‘MoveLocal’ methods (see above example). Now experiment with rotation and movement together. Can you see the difference?</p>
                         </div>
                     </li>
                     <li >
@@ -390,5 +448,154 @@ void MoveLocalZ(const float);
         </section>
     </main>
     <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+    <script>
+            const canvas = document.querySelector('canvas.webgl')
+            const loadingManager = new THREE.LoadingManager()
+            const textureLoader = new THREE.TextureLoader(loadingManager);
+            const planeXZTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid.jpg')
+            const planeYTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid2.jpg')
+            const boxTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/tiles1.jpg')
+
+            const scene = new THREE.Scene();
+
+            const planeYGeometry = new THREE.PlaneBufferGeometry(1,3, 1);
+            const planeYMaterial = new THREE.MeshBasicMaterial({map:planeYTexture, transparent:false});
+            const planeYMesh = new THREE.Mesh(planeYGeometry, planeYMaterial);
+            planeYMesh.position.set(0,1.5,0);
+
+
+            const planeXZGeometry = new THREE.PlaneBufferGeometry(6,6, 1);
+            const planeXZMaterial = new THREE.MeshBasicMaterial({map:planeXZTexture});
+            planeYMaterial.opacity = 0.5;
+            const planeXZMesh = new THREE.Mesh(planeXZGeometry, planeXZMaterial);
+            planeXZMesh.rotation.set(-Math.PI/2, 0, 0)
+
+            const cube = new THREE.BoxBufferGeometry(1,1, 1);
+            const cube_material = new THREE.MeshBasicMaterial({map:boxTexture, wireframe:false});
+            const cube_mesh = new THREE.Mesh(cube, cube_material);
+            cube_mesh.scale.set(0.5, 0.5, 0.5)
+            const size = {
+                width: window.innerWidth/3,
+                height: window.innerWidth/3
+            }
+            const camera = new THREE.PerspectiveCamera(75, size.width/size.height);
+            camera.position.set(5, 5, 10);
+            camera.rotation.set(0, 3.14/8, 0);
+            scene.add(cube_mesh, planeXZMesh, planeYMesh)
+            const renderer = new THREE.WebGLRenderer(
+                {canvas: canvas}
+            );
+            renderer.setSize(size.width, size.height)
+            renderer.setClearColor("")
+
+            const parameters = {
+                color: 0xff0000,
+                toRight: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:4})},
+                toLeft: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:-4})},
+            }
+            let activeBtn = undefined;
+            let btns = document.querySelector('button')
+            let movement = undefined;
+            let speed = 0;
+            let xrot = 0;
+            let yrot = 0;
+            let zrot = 0;
+
+            document.getElementById("speed").addEventListener("change", (e)=>{
+               speed=e.srcElement.value;
+            })
+
+            document.getElementById("rotateX").addEventListener("change", (e)=>{
+              xrot = e.srcElement.value * Math.PI/180;
+              setRotation()
+            })
+            document.getElementById("rotateY").addEventListener("change", (e)=>{
+              yrot = e.srcElement.value * Math.PI/180;
+              setRotation()
+            })
+            document.getElementById("rotateZ").addEventListener("change", (e)=>{
+              zrot = e.srcElement.value * Math.PI/180;
+              setRotation()
+            })
+
+            const setRotation = () =>{
+                cube_mesh.rotation.set(xrot, yrot, zrot)
+            }
+
+            document.getElementById("moveX").addEventListener("click", (e)=>{
+                updateBtn(e.srcElement, "wx")
+            })
+
+            document.getElementById("moveLocalX").addEventListener("click", (e)=>{
+                updateBtn(e.srcElement, "lx")
+            })
+
+            document.getElementById("moveY").addEventListener("click", (e)=>{
+                updateBtn(e.srcElement, "wy")
+            })
+
+            document.getElementById("moveLocalY").addEventListener("click", (e)=>{
+                updateBtn(e.srcElement, "ly")
+            })
+            document.getElementById("resetPosition").addEventListener("click", (e)=>{
+                cube_mesh.position.set(0,0,0)
+            })
+
+            document.getElementById("stopMovement").addEventListener("click", (e)=>{
+                movement=""
+                activeBtn.className=""
+                activeBtn=undefined
+            })
+
+            document.getElementById("moveZ").addEventListener("click", (e)=>{
+                updateBtn(e.srcElement, "wz")
+            })
+
+            document.getElementById("moveLocalZ").addEventListener("click", (e)=>{
+                updateBtn(e.srcElement, "lz")
+            })
+
+            updateBtn = (src, mvmt) =>{
+                console.log(src)
+                if(activeBtn!=undefined) activeBtn.className=""
+                activeBtn = src;
+                activeBtn.className = "active";
+                movement = mvmt;
+                
+            }
+            const x_axis = new THREE.Vector3( 1, 0, 0 );
+            const y_axis = new THREE.Vector3( 0, 1, 0 );
+            const z_axis = new THREE.Vector3( 0, 0, 1 );
+
+            const tick = () =>{
+                renderer.render(scene, camera);
+                window.requestAnimationFrame(tick)
+                if(activeBtn!=undefined){
+                    console.log(activeBtn)
+                    console.log(movement)
+                    if(movement=="wx"){
+                        cube_mesh.translateX(speed)
+                    }
+                    else if(movement=="lx"){
+                        cube_mesh.translateOnAxis(cube_mesh.worldToLocal(x_axis), speed)
+                    }
+                    if(movement=="wy"){
+                        cube_mesh.translateY(speed)
+                    }
+                    else if(movement=="ly"){
+                        cube_mesh.translateOnAxis(cube_mesh.worldToLocal(y_axis), speed)
+                    }
+                    if(movement=="wz"){
+                        cube_mesh.translateZ(speed)
+                    }
+                    else if(movement=="lz"){
+                        cube_mesh.translateOnAxis(cube_mesh.worldToLocal(z_axis), speed)
+                    }
+                }
+            }
+
+            tick()
+
+        </script>
 </body>
 </html>

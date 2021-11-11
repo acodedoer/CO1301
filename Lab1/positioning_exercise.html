@@ -148,8 +148,8 @@
 </section>
 </main>
 <script src="https://acodedoer.github.io/CO1301/assets/script.js" type="text/javascript"></script>
-<script>
-    
+<script  type="module">
+     import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
 const canvas = document.getElementById('giant-webgl')
 const loadingManager = new THREE.LoadingManager()
 const textureLoader = new THREE.TextureLoader(loadingManager);
@@ -167,6 +167,13 @@ for(let i =0; i<15; i++){
     cubes[i].position.set(positions[i]['x'],positions[i]['y'],0 );
     scene.add(cubes[i])
 }
+
+const map = new THREE.TextureLoader().load( 'glow.png' );
+const material = new THREE.SpriteMaterial( { map: map, color: 0x0000ff, transparent: false, blending: THREE.AdditiveBlending } );
+
+const sprite = new THREE.Sprite( material );
+sprite.scale.set(3, 3, 1)
+scene.add( sprite );
 
 const cube = new THREE.BoxBufferGeometry(1,1, 1);
 const cube_material = new THREE.MeshBasicMaterial({map:boxTexture, wireframe:false});
@@ -221,6 +228,8 @@ document.getElementById("decY").addEventListener("click", ()=>{
     cube_mesh.position.set(cube_mesh.position.x, parseInt( document.getElementById("valY").value)/10,  cube_mesh.position.z)
 })
 
+const controls = new OrbitControls( camera, renderer.domElement );
+controls.update();
 
 const tick = () =>{
     renderer.render(scene, camera);

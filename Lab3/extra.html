@@ -10,20 +10,20 @@
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 3 Extra - The Field of Spikes</title>
+    <title>CO1301 - Lab 3: The Field of Spikes</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br> Lab 3 Extra - The Field of Spikes</h1></header>
+    <header><h1>CO1301: Games Concepts <br> Lab 3 - The Field of Spikes</h1></header>
     <main>
         <section>
             <h2>1. Introduction</h2>
             <div class="section_instrcutions"></div>
                 <div class="list-div">
                     <p class= "instruction-item">
-                        The instrucions in this lab sheet will guide through creating a game (most of a game if I'm being honest) called "The Field of Spikes". The game is played by flying a plane and shooting at giant spiky spikes that have mysteriously applied all over the world. This guide will walk you through buidling most of the game, and other features can be added in the coming weeks as they are introduced in the labs, or even better you can try adding them even before then.
+                        The instrucions in this lab sheet will guide through creating  (most of) a game called "The Field of Spikes". The game is played by flying a plane and shooting at giant spiky spikes that have mysteriously appeared all over the world. This guide will walk you through buidling most of the game, and other features can be added in the coming weeks as they are introduced in the labs, or even better you can try adding them even before then.
                     </p>
                     <p>
-                        You will be require the following: programming skills and concepts previous labs and CO1404, 3D manipulation skills from previous labs, the controls from this week's lab, and even a bit of your own creativity. Lets get started!!!
+                        You will require the following: programming skills and concepts previous CO1301 and CO1404 labs, 3D manipulation skills from previous labs, the controls from this week's lab, and even a bit of your own creativity. Lets get started!!!
                     </p>
                 </div>
             </div>
@@ -34,20 +34,20 @@
                 <ol>
                     <li>
                         <div class="list-div">
-                                <p class= "instruction-item">Create a new project named <b>FieldOfSpikes</b>. Open the project.
+                                <p class= "instruction-item">Create a new project named <b>Lab3_FieldOfSpikes_Project</b> and open the project.
                                </p>
                            </div>
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">This project requires models that are not installed with the TL-Engine.<a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4314514-dt-content-rid-8175091_1/xid-8175091_1"> Download the zipped folder container the models from this link</a>, it should contain a folder named "media" which contains the models you need. Copy the "media" folder and place it in your projects folder. 
+                            <p class= "instruction-item">This project requires models that are not installed with the TL-Engine.<a href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab3/Lab3_extramedia.zip"> Download the zipped folder containing the models from this link</a>, it should contain a folder named "media" which contains the models you need. Copy the "media" folder and place it in your project's folder. 
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               In the .cpp file of your project, change the default location for the project's media files using the code below so that it points to the "media" folder in your project folder.     
+                               In the .cpp file of your project, change the default location for the project's media files using the code below so that it points to the "media" folder in your project's folder.     
 <pre><code>myEngine->AddMediaFolder(".\\media"); </code></pre></TL_Engine>
                         </div>
                     </li>
@@ -97,14 +97,14 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                When you run you program and move the camera around, the camera is directly behind the plan and does not provide a great view, the plane then speeds away from the camera and when you move the camera it is very easy to loose sight of the plane as it is a tiny model (can fit in cube with sides of 10 units) on a floor that 2000 x 2000 units. You can solve these issues in the next few steps.
+                                When you run you program and move the camera around, the camera is directly behind the plan and does not provide a great view, the plane then speeds away from the camera and when you move the camera it is very easy to loose sight of the plane as it is a small model that is less than 10 units long on a floor that is 2000 x 2000 units. You can solve these issues in the next few steps.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Change your camera from "kFPS" to "kManual". Sets its position to (0, 40, -50) so that it is placed above and behind the plane. Then rotate it 40 units along the x axis so that it looking down at the plane.</p>
+                                Change your camera from "kFPS" to "kManual". Sets its position to (0, 40, -50) so that it is placed above and behind the plane. Then rotate it 40 units about the x axis so that it is looking down at the plane.</p>
 <pre><code>myCamera->SetPosition(0, 40, -50);
 myCamera->RotateX(20);</code></pre>
                             <p>
@@ -128,7 +128,7 @@ myCamera->RotateX(20);</code></pre>
 <pre><code>int mouseMoveX = myEngine->GetMouseMovementX();
 plane->RotateY(mouseMoveX * 0.1);</code></pre>
                             <p>
-                                On running you program you should note that although the plne rotates with mouse movements, it does not change its direction of movement. That is because it moved along the world-z not local-z, therefore change the code that moves your plane to:
+                                On running you program you should note that although the plane rotates with mouse movements, it does not change its direction of movement. That is because it moved along the world-z not local-z, therefore change the code that moves your plane to:
 <pre><code>plane->MoveLocalZ( 0.05 );</code></pre>
                             </p>
                         </div>
@@ -151,7 +151,7 @@ plane->RotateY(mouseMoveX * 0.1);</code></pre>
                 <ol>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">You now have a flying plane that you can control to some extend, but its a bit boring. So lets give the plane the ability to shoot out a ball when space key is hit.</p>
+                                <p class= "instruction-item">You now have a flying plane that you can control to some extent. Let us give the plane the ability to shoot out a ball when the space key is hit.</p>
                         </div>
                     </li>
                     <li >
@@ -161,13 +161,8 @@ plane->RotateY(mouseMoveX * 0.1);</code></pre>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">Also in the initialisation section create a boolena variable called "ballFired" and initialise it to false. This variable will be used to check if a ball has been fired or not.</p>
-                        </div>
-                    </li>
-                    <li >
-                        <div class="list-div">
                             <p class= "instruction-item">
-                                In the game loop, write code to check if the space key is hit, if it is then create a ball model at the plane's position, assign it to the ball variable created earlier.
+                                In the game loop, write code to check if the space key is hit, if it is then create a ball model at the plane's position, and assign it to the ball variable created earlier.
 <pre><code>ball = ballMesh->CreateModel(plane->GetLocalX(), plane->GetLocalY(), plane->GetLocalZ());
 </code></pre>
 
@@ -177,7 +172,7 @@ plane->RotateY(mouseMoveX * 0.1);</code></pre>
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You should now see balls being created at the plane's position everytime you press the space key. However the balls are too big, and they are not really "fired" they just sit there doing nothing. 
+                                You should now see balls being created at the plane's origin everytime you press the space key. However the balls are too big, and they are not really "fired" they just sit there doing nothing. 
                             </p>
                         </div>
                     </li>
@@ -203,17 +198,17 @@ ballFired = true</code></pre>
                     <li >
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Next create a floot variable in the initialisation section called "ballDistance" and initialise it to 0. Then belwo the if-condition that creates the ball model in the gameloop, add another if-condition that checks if ballFired is true, within it at code to move the ball forward by 3 units and then add 3 to the variable ballDistance.</p>
+                                Next create a float variable in the initialisation section called "ballDistance" and initialise it to 0. Then below the if-condition that creates the ball model in the gameloop, add another if-condition that checks if ballFired is true, within it at code to move the ball forward by 3 units and then add 3 to the variable ballDistance.</p>
 <pre><code>ball = ballMesh->CreateModel(plane->GetLocalX(), plane->GetLocalY(), plane->GetLocalZ());
 ball->Scale(0.05);</code></pre>
                             <p>
-                                ballDistance will be used to check how far a fired ball has travelled so that it can be destroyed after a certain distance. Inside the if-statement created above add the if-statement below to destroy the ball when ballDistance has exceeded 2000 (you can try out different numbers to see what works best for you), set ballFired to false so that a new ball can be fired, and reset ballDistance to 0.</p>
-<pre><code> if (ballDistance >= 2000) {
+                                ballDistance will be used to check how far a fired ball has travelled so that it can be destroyed after a certain distance. Inside the if-statement created above add the if-statement below to destroy the ball when ballDistance has exceeded 2000 (you can try out different numbers to see what works best for you), then set ballFired to false so that a new ball can be fired, and reset ballDistance to 0.</p>
+<pre><code>if (ballDistance >= 2000) {
     ballMesh->RemoveModel(ball);
     ballFired = false;
     ballDistance = 0;
 }</code></pre>
-                            <p>RemoveModel() method removes a model from a scene, but the pinter variable is still available to be reused. However trying to manipulate the variable without assigning a model to it will casue an error and crash you rprogram</p>
+                            <p>RemoveModel() method removes a model from a scene, but the pointer variable is still available to be reused. However trying to manipulate the variable without assigning a model to it will cause an error and crash your program</p>
                             </p>
                         </div>
                     </li>
@@ -232,21 +227,28 @@ ball->Scale(0.05);</code></pre>
                                 <p>Finally, in the if-statement that checks if the ball has travelled anough distance to be destroyed, add a line of code to set firedDirectionSet to false after the ball is destroyed.</p>
                             </div>
                         </li>
-                        <li >
-                                <div class="list-div">
-                                    <p class= "instruction-item">
-                                        Your game scene should look like the scene below:</p>
-                                </div>
-                            </li>
                 </ol>
             </div>
         </section>
         <section>
             <div>
                 <h2>5. Whats Next?</h2>
-                <p>
-                    The continuation of this guide will walk you through adding spikes to the scene at random positions, and adding a shadow to your plane to make the scene more realistic.
-                </p>
+                <ol>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Use the spike.x mesh to create and position spikes all over your scene.
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                A spike should dissappear if it is hit by a ball fired by the plane, but how do you know that a fired ball has hit a spike? Try different approaches and disscuss with your tutor to confirm their validity/efficiency.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
         </section>
     </section>
     </main>
