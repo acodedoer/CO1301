@@ -20,10 +20,10 @@
             <div class="section_instrcutions"></div>
                 <div class="list-div">
                     <p class= "instruction-item">
-                        The instrucions in this lab sheet will guide through creating  (most of) a game called "The Field of Spikes". The game is played by flying a plane and shooting at giant spiky spikes that have mysteriously appeared all over the world. This guide will walk you through buidling most of the game, and other features can be added in the coming weeks as they are introduced in the labs, or even better you can try adding them even before then.
+                        The instructions in this lab sheet will guide through creating  (most of) a game called "The Field of Spikes". The game is played by flying a plane and shooting at giant spiky spikes that have mysteriously appeared all over the world. This guide will walk you through building most of the game, and other features can be added in the coming weeks as they are introduced in the labs, or even better you can try adding them even before then.
                     </p>
                     <p>
-                        You will require the following: programming skills and concepts previous CO1301 and CO1404 labs, 3D manipulation skills from previous labs, the controls from this week's lab, and even a bit of your own creativity. Lets get started!!!
+                        You will require the following: programming skills and concepts previous CO1301 and CO1404 labs, 3D manipulation skills from previous labs, the controls from this week's lab, and even a bit of your own creativity. Let's get started!!!
                     </p>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                When you run you program and move the camera around, the camera is directly behind the plan and does not provide a great view, the plane then speeds away from the camera and when you move the camera it is very easy to loose sight of the plane as it is a small model that is less than 10 units long on a floor that is 2000 x 2000 units. You can solve these issues in the next few steps.
+                                When you run you program and move the camera around, the camera is directly behind the plan and does not provide a great view, the plane then speeds away from the camera and when you move the camera it is very easy to lose sight of the plane as it is a small model that is less than 10 units long on a floor that is 2000 x 2000 units. You can solve these issues in the next few steps.
                             </p>
                         </div>
                     </li>
@@ -113,7 +113,7 @@ myCamera->RotateX(20);</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Since the plane only moves forward (along the z axis) at this point, having the camera follow it means changing the z position of the camera as the z position of the plane changes, while keeping the other poisitons and rotations of the camera fixed. Therefore, below the code that moves the plane in the game loop, add a line of code that updates the z position of the camera to the z-position of the plane minus 50 (to maintain the same initial distance).
+                                Since the plane only moves forward (along the z axis) at this point, having the camera follow it means changing the z position of the camera as the z position of the plane changes, while keeping the other positions and rotations of the camera fixed. Therefore, below the code that moves the plane in the game loop, add a line of code that updates the z position of the camera to the z-position of the plane minus 50 (to maintain the same initial distance).
 <pre><code>myCamera->SetZ(plane->GetZ() - 50);</code></pre>
                                 <p>
                                     Run your program and you will see that the camera follows the plane as it moves forward.
@@ -135,7 +135,7 @@ plane->RotateY(mouseMoveX * 0.1);</code></pre>
                     </li>
                     <li >
                         <div class="list-div">
-                                <p class= "instruction-item">The plane should be moving fine now, but you also need to update the camera so that it updates its x position when the plane is rotated and moves sideways. Thefore below the code:
+                                <p class= "instruction-item">The plane should be moving fine now, but you also need to update the camera so that it updates its x position when the plane is rotated and moves sideways. Therefore, below the code:
                                         <pre><code>myCamera->SetZ(plane->GetZ() - 50);</code></pre>
                                         add the code:
                                         <pre><code>myCamera->SetX(plane->GetX());</code></pre>

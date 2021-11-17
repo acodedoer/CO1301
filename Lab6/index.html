@@ -49,8 +49,9 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4346011-dt-content-rid-8329845_1/xid-8329845_1" target="_blank">Download the associated media files for this lab from this link</a> and use the AttachMediaFolder() method to point TL-Engine to the folder where they are saved.
+                                <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4346011-dt-content-rid-8329845_1/xid-8329845_1" target="_blank">Download the associated media files for this lab from this link</a>, place the files in a folder called "Media" within your current project folder, and use the AttachMediaFolder() method to point TL-Engine to this new media folder by adding the code provided below before loading your meshes.
                             </p>
+<pre><code>myEngine->AttachMediaFolder('./Media');</code></pre>
                         </div>
                     </li>
                     <li>

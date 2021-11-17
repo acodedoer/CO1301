@@ -168,8 +168,8 @@ for(let i =0; i<15; i++){
     scene.add(cubes[i])
 }
 
-const map = new THREE.TextureLoader().load( 'glow.png' );
-const material = new THREE.SpriteMaterial( { map: map, color: 0x0000ff, transparent: false, blending: THREE.AdditiveBlending } );
+const map = new THREE.TextureLoader().load( 'squareglow.png' );
+const material = new THREE.SpriteMaterial( { map: map, color: 0x0000ff, transparent: true, blending: THREE.AdditiveBlending } );
 
 const sprite = new THREE.Sprite( material );
 sprite.scale.set(3, 3, 1)
