@@ -15,46 +15,120 @@
             padding: 0.5em;
         }
     </style>
-    <title>Lab 11 - Solar System</title>
+    <title>CO1301 Lab 9: Parenting & the Solar System</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br>Lab 11 - Solar System Prototype</h1></header>
+    <header><h1>CO1301: Games Concepts <br>Lab 9 - Parenting  & the Solar System</h1></header>
     <main>
         <section>
-            <h2>1. Introduction</h2>
-            <div class="section_instrcutions"></div>
-                <ol>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                In this lab, you will first set up the earth and the moon, and then extend your solar system prototype to include other planets and the sun.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                You are not expected to implement anything remotely realistic. If you attempted to create the solar system to scale them it would be impossible to see and boring to use. 
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                The primary purpose of this lab is to introduce the idea of a model hierarchy, the dummy model and to practice implementing collision detection.
-                            </p>
-                        </div>
-                    </li>
-                </ol>
-        </section>
+            <section>
+                <h2>1. Introduction</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                        <li>
+                            <div class="list-div">
+                                    <p class= "instruction-item">In this lab we will look at how two objects (e.g. models and cameras) can be linked to form parent/child relationships.
+                                   </p>
+                               </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                    <p class= "instruction-item">There are a huge number of possibilities to this technique: for example, attaching a gun object to a character object, allowing a character to move around on a moving boat, or making a camera to follow a character around (chase view).
+                                   </p>
+                               </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    This lab will also introduce the idea of parenting, model hierarchy, and the dummy model.
+                                </p>
+                            </div>
+                        </li>
+                    </ol>
+            </section>
+            <section>
+                <h2>2. Parenting</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                        <li>
+                            <div class="list-div">
+                                    <p class= "instruction-item">We will start by linking two objects together to create a chase view. The method used for linking objects is:
+    
+    <pre><code>void AttachToParent(const ISceneNode* Parent);
+    // E.g. camera->AttachToParent( character );</code></pre>
+    
+                                    The type 'ISceneNode' is new to you – it represents anything in the scene, including cameras and models. This simply tells you that you can attach anything to anything (although some combinations don’t work yet).
+                                    </p>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                    <p class= "instruction-item">Create a new TL-Engine project named <b>Lab9_Parenting_Project</b>. Open the project.
+                                    </p>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Load the grid mesh, the cube mesh and create a model for each of them at the origin.
+                                        
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                                <div class="list-div">
+                                    <p class= "instruction-item">Load the sphere mesh and create a sphere model at position (-30, 0, -10).
+                                    </p>
+                                </div>
+                            </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Add code to allow you to move the cube using the keyboard (using w, a, s, and d keys).
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Now attach the sphere model to the cube model. Look at the example in the beginning of this section fro the line of code to use, the code should be added in the initialisation section. Now the sphere should follow the cube when it moves.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Now add code to allow you to move the sphere (using u, h, j, and k keys). Do you understand how it moves relative to the cube? It is a similar concept to the local movement you covered in a previous lab.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Now change the camera to a "kManual" type and then attach the camera to the cube (the kFPS type of camera will not work here). You should now have a basic chase view camera.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">You can detach an object from its parent with:
+    <pre><code>// Detaches this object from any parent it is attached to.
+    void DetachFromParent();</code></pre>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Save your project.
+                                </p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+                </section>
         <section>
-            <h2>2. Setting Up</h2>
+            <h2>3. Solar System Project </h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Engine project called "Lab11_SolarSystem_Project". 
+                                Let's use the what we have introduced in th efirst part of this lab to create a mini solar system. Start by creating a new TL-Engine project called "Lab9_SolarSystem_Project". 
                             </p>
                         </div>
                     </li>
@@ -148,10 +222,10 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Then make the Moon revolve around the Earth by attaching it to Earth as a child.
+                                Attach the Moon as a child of the Earth using the AttachToParentMethod() as shown below:
                             </p>
                             <pre><code>moon->AttachToParent( earth );</code></pre>
-                            <p>Remember, this means that the moon's position is now relative to the position of earth. Therefore, you may need to adjust the coordinates used to position it.</p>
+                            <p>This means that the Earth model is now a parent of the Moon model, and the moon's position is now relative to the position of earth (therefore, you may need to adjust the coordinates used to position the moon beside the earth). You should now see the moon revolving around the earth when you run your program.</p>
                         </div>
                     </li>
                     <li>
@@ -171,7 +245,7 @@
                 </ol>
             </section>
             <section>
-                <h2>3. The Solar System</h2>
+                <h2>4. Adding Bodies</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                          <li>
@@ -226,7 +300,7 @@
                 </ol>
             </section>
             <section>
-                <h2>4. Space Collisions</h2>
+                <h2>5. Space Collisions</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                     <li>
@@ -273,7 +347,7 @@
                 </ol>
             </section>
             <section>
-                <h2>5. Using Functions for Collision Detection</h2>
+                <h2>6. Using Functions for Collision Detection</h2>
                 <div class="section_instrcutions"></div>
                     <ol> 
                     <li>
@@ -294,7 +368,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Next, define the function below the closing brace of the main function.
+                                Next, use the code provided below to define a sphere2sphere collision detection function below the closing brace of the main function.
                             </p>
 <pre><code>bool sphere2Sphere(float s1XPos, float s1ZPos, float s1Radius, float s2XPos, float s2ZPos, float s2Radius) {
         float distX = s2XPos - s1XPos;

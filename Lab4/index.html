@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script>
     
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 4 - Drawing Text & Sprites</title>
+    <title>CO1301 - Lab 4: Drawing Text & Sprites</title>
 </head>
 <body>
     <header><h1>CO1301: Games Concepts <br>Lab 4 - Drawing Text & Sprites</h1></header>
@@ -101,7 +101,7 @@
                             <img src="https://acodedoer.github.io/CO1301/Lab3/2D-Grid.PNG" alt="An image showing a 2 dimensional grid with the origin at the top left corner">
                         
                             <p>
-                                The origin (0, 0) of the coordinate system is at the top left of the screen. Y increases as you go down the screen, whilst x increase as you go to the right. >To better understand the screen axes, click on any part of your browser window and you should see the corresponding x an y values shown below. Try clicking on the corners of the page (top righ and left, bottom right and left), then try resizing the browser window into different shapes and see if the values change if you click around the page.
+                                The origin (0, 0) of the coordinate system is at the top left of the screen. Y increases as you go down the screen, whilst x increase as you go to the right. To better understand the screen axes, click on any part of your browser window and you should see the corresponding x and y values shown below. Try clicking on the corners of the page (top right and left, bottom right and left), then try resizing the browser window into different shapes and see if the values change if you click around the page.
                             </p>
                             <div class ="interactive-scene">
                                 <canvas style="display: none" id="2dgrid-webgl"></canvas>
@@ -147,19 +147,15 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                There are a number of other things that you can do with the ‘Draw’. The Draw method is defined as:
+                                There are a number of other things that you can do with the ‘Draw’ as shown in the examples below:
                             </p>
-<pre><code>Draw( const string& sText, const int iX, const int iY,
-    const unsigned int uiColour,
-    const EHorizAlignment eHorizAlign, const EVertAlignment eVertAlign )</code></pre>
-                            <p>An example of use is:</p>
 <pre><code>// This will draw red text, centre aligned at the coordinates (100, 300)
 myFont->Draw( "Hello Again", 100, 320, kRed, kCentre );
 
 //The will draw the phrase in blue in exactly the centre of the screen.
 myFont->Draw( "Hello Again", 640, 320, kBlue, kCentre, kVCentre );</code></pre>
 <p>
-    Note: that the coordinates used in the last draw method are based on the default window size of TL-Engine projects (1280, 720). If you are using a different window size, you should take half of your custom dimensions when calculating coordinates for the centre of your screen. You could also utilise the TL-Enfines GetWindowWidth and \GetWindowHeight methos.
+    Note: that the coordinates used in the last draw method are based on the default window size of TL-Engine projects (1280, 720). If you are using a different window size, you should take half of your custom dimensions when calculating coordinates for the centre of your screen. You could also utilise the TL-Engine's GetWidth() and GetHeight() methods. For the definition of the Draw() method, see the appendix at the end of this document.
 </p>
                         </div>
                     </li>
@@ -210,7 +206,7 @@ myFont->Draw( "Hello Again", 640, 320, kBlue, kCentre, kVCentre );</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Engine project called Lab4_KeepingScore_Project <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4437396-dt-content-rid-8866423_1/xid-8866423_1" target="_blan">and copy the code from this file</a> into the project's .cpp file (check the path to the default media folder to avoid errors).
+                                Create a new TL-Engine project called Lab4_KeepingScore_Project <a href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab4/Lab4_KeepingScore_Project.cpp" target="_blank">and copy the code from this file</a> into the project's .cpp file (check the path to the default media folder to avoid errors).
                             </p>
                             <p>
                                 Run the project and you will see a simple game where you press space bar to shoot a sphere at moving cubes. Get familiar with the gameplay and the code, you will be adding display messages to this game in this section.
@@ -284,7 +280,7 @@ outText.str(""); // Clear myStream</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare a stringstream variable within the game loop and assign to it the value of score (using the format - Score: 0). Then draw it using regularFont at the top right corner of your screen. Make sure you use the appropriate cordinates, align constants, and colour.
+                                Declare a stringstream variable within the game loop and assign to it the value of score (using the format - Score: 0). Then draw it using regularFont at the top right corner of your screen. Make sure you use the appropriate coordinates, align constants, and colour.
                             </p>
                         </div>
                     </li>
@@ -378,6 +374,20 @@ backdrop->moveX( 0.1f );</code></pre>
                         </div>
                     </li>    
                 </ol>
+        </section>
+        <section>
+            <h2>APPENDIX</h2>
+            <div class="section_instrcutions"></div>
+                <ol>     
+                <li>
+                    <div class="list-div">
+                        Draw() method definition:
+<pre><code>Draw( const string& sText, const int iX, const int iY,
+    const unsigned int uiColour,const EHorizAlignment eHorizAlign, 
+    const EVertAlignment eVertAlign )</code></pre>
+                    </div>
+                </li> 
+            </ol>
         </section>
     </main>
     <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
