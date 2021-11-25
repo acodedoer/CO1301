@@ -443,15 +443,22 @@ IModel* particleModels[10];
         const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
         sphere_mesh = new THREE.Mesh( geometry, material );
         let x, y, z;
-        if(rand==1){
-            x = Math.floor(Math.random() * 10) - 4;
-            y = 0;
-            z = Math.floor(Math.random() * 10) - 4;
+        const createRand=()=>{
+            if(rand==1){
+                x = Math.floor(Math.random() * 10) - 4;
+                y = 0;
+                z = Math.floor(Math.random() * 10) - 4;
+                }
+            else{
+                x = 0;
+                y = Math.floor(Math.random() * 6) + 1;
+                z = 0;
+            }
         }
-        else{
-            x = 0;
-            y = Math.floor(Math.random() * 6) + 1;
-            z = 0;
+        createRand();
+        while(x == cords.gX && y == cords.gY && z == cords.gZ)
+        {
+            createRand();
         }
         cords.pX =x;
         cords.pY = y;

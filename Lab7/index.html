@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js"></script>
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -22,15 +24,30 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You are going to carry on working with vectors in this lab. Before you get started on the lab sheet, <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=gpn262sDxEyyAnrrGUxQZV34rNrgJdZFknANTQP9YchUOUVIREhPNlhOUVBMUjNUT1pVVkRZV1VMNS4u">take this quiz on vectors to refamiliarise yourself with the concepts covered last week's lecture.</a>
+                                You are going to carry on working with vectors in this lab, you will be working in particular with direction vectors.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                If you found the quiz to be difficult, you may find the videos of solved examples in the Week 6 section on Blackboard helpful.
+                                Before you start working on this lab's tasks, use the interactive scene below to refresh your knowledge on direction vectors (answer at least three questions correctly). You may also find last week's slides/lecture-recording useful. 
                             </p>
+                            <div class ="interactive-scene">
+                                <h2>Calculating  Direction Vectors</h2>
+                                <canvas id="vector-point-webgl"></canvas>
+                                <div class="container">
+                                    Calculate the direction vector between the <span style=" color:red;"><b>red cube</b></span> and the <span style=" color:blue;"><b>blue cube</b></span> in three steps: Calculate the vector, v,  between the <span style=" color:red;"><b>red cube</b></span> and the <span style=" color:blue;"><b>blue cube</b></span>; Calculate the length of the vector, ||v||; Normalise the vector v by dividing each of it's component by its length to get the direction vector. Round up your answer to two decimal places.
+                                </div> 
+                                    
+                                <br/>
+                                <div class="container">
+                                    v<sub>dir</sub> = (<input id ="valX" data-value type="text" maxlength="5" size="1" value="0" />,  <input id ="valY" data-value type="text" value="0" maxlength="5" size="1" />, <input id ="valZ" data-value  type="text" value="0" maxlength="5" size="1"/>) <span class="feedback" style=" color:aqua; display: none;" id="correct">&#10004</span> <span  class="feedback" id="wrong" style=" color:red; display: none;">&#10060;</span>
+                                </div>
+                                <br/>
+                                <button id="confirmBtn">Submit</button>
+                                <button disabled id="nextBtn">Next</button>
+                            </div>
                         </div>
                     </li>
                     <li>
@@ -56,7 +73,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Download the associated media files for the project, save them to a folder called media inside your project folder. Now use the AddMediaFolder() method to add the folder's path to your folder.
+                                <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4874700-dt-content-rid-14883076_1/xid-14883076_1">Download the associated media files for the project</a>, save them to a folder called media inside your project folder. Now use the AddMediaFolder() method to add the folder's path to your folder.
                             </p>
                         </div>
                     </li>
@@ -132,19 +149,19 @@
                 <h2>3. Getting the Vector between Two Models</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
-                         <li>
+                         <!-- <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    Create a new integer variable (in the initialisation section) called ‘shoot’ and initialise it to –1. You will use this variable to track a bullet fired by enemyDrone:
+                                    Create a new boolean variable (in the initialisation section) called ‘bulletShot’ and initialise it to false. You will use this variable to check whether a bullet has been fired by enemyDrone:
                                     <ul>
-                                        <li>When shoot is –1 there is no bullet and one needs to be created</li>
-                                        <li>When a bullet is created we set shoot to a large value, say 500, that will count down as the bullet travels – this is the life-time of the bullet</li>
-                                        <li>When the value of shoot reaches 0 the bullet will be destroyed - then we will reset the value of shoot to -1 to indicate there is no bullet again</li>
-                                        <li>This will allow enemyDrone to fire one bullet at a time, and the bullet will have a limited range depending on its life-time</li>
+                                        <li>When playerDrone is close to the enemyDrone and bulletShot is false, a bullet model needs to be created</li>
+                                        <li>When a bullet is created bulletShot should be set to true.</li>
+                                        <li>If bulletShot is true, this means a bullet model exists and it should be moved every frame until it is about 250 units away from the enemyDrone, then it should be destroyed and bulletShot should be set to false.</li>
+                                        <li>This will allow enemyDrone to fire one bullet at a time, and the bullet will travel a limioted distance before getting destroyed.</li>
                                     </ul>
                                 </p>
                             </div>
-                        </li>
+                        </li> -->
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
@@ -185,7 +202,7 @@ vectorZ = Model2->GetZ() – Model1->GetZ();
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Decalre three new floats named distanceX, distanceY and distanceZ for storing the squares of your vector componentes yo calculated in the last section i.e. vectorX, vectorY and vectorZ. Use simple multiplication to derive the square of any two values e.g.
+                            <p class= "instruction-item">Decalre three new floats named distanceX, distanceY and distanceZ for storing the squares of your vector components you calculated in the last section i.e. vectorX, vectorY and vectorZ. Use simple multiplication to derive the square of any two values e.g.
                                 <pre><code>distanceX = vectorX * vectorX; // distanceX squared</code></pre>
                             </p>
                         </div>
@@ -220,10 +237,7 @@ root = sqrt( 9*9 ); // the square root of 9 squared
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The direction vector is independent of the distance between two points. For example, it allows you to move a model in a particular direction disregarding the speed of the movement. If the vector between the two positions is
-                                V(X, Y, Z), and the length of this vector is
-                                L, then the direction vector is
-                                VDir = (X/L, Y/L, Z/L)
+                                The direction vector is independent of the distance between two points. For example, it allows you to move a model in a particular direction disregarding the speed of the movement. If the vector between the two positions is v(x, y, z), and the length of this vector is len, then the direction vector is (x/len, y/len, z/len)
                             </p>
                         </div>
                     </li>   
@@ -251,17 +265,13 @@ float directionZ = vectorZ / distance;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                After the calculations from the previous step, use an ‘if’ statement to test:
+                                Next, create a new boolean variable (in the initialisation section) called ‘bulletShot’ and initialise it to false. You will use this variable to check whether a bullet has been fired by enemyDrone.
                                 <ul>
                                     <li>
-                                        If the distance between enemyDrone and playerDrone is less than 250 (use your float variable "distance")
+                                        Check if the distance between enemyDrone and playerDrone is less than 250 (use your float variable "distance") and bulletShot is false.
                                     </li>
                                     <li>
-                                        and the shoot variable is equal to –1
-                                    </li>
-                                </ul>
-                                <br/>
-                                If both these conditions are true then:
+                                         If both these conditions are true then:
                                 <ul>
                                     <li>
                                         Using the IModel* variable named bullet you declared in the initialisation section, create a bullet model using bulletMesh. Create it in the same position as enemyDrone. Note that you are creating the model inside the game loop.
@@ -270,7 +280,7 @@ float directionZ = vectorZ / distance;
                                         Initialise the bullet direction vector variables using directionX, directionY and directionZ from above.
                                     </li>
                                     <li>
-                                        Set the shoot variable to 500 – this will be the life-time of the bullet.
+                                        Set bulletShot to true, so that another bullet is not created.
                                     </li>
                                 </ul>
                                    
@@ -280,21 +290,18 @@ float directionZ = vectorZ / distance;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now add another ‘if’ statement to test if the ‘shoot’ variable is greater than 0. If so, then move the bullet model by the bullet direction vector.
+                                Now add another ‘if’ statement to test if the ‘bulletShot’ variable is ture, if so, then move the bullet model by the bullet direction vector.
 <pre><code>bullet->MoveX( directionX );
 bullet->MoveY( directionY );
 bullet->MoveZ( directionZ );
 </code></pre> 
-Also, decrement the shoot variable by 1 here so that the bullet life decreases as it travels.  
                             </p>
                         </div>
                     </li>                   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add a final ‘if’ statement that tests if the ‘shoot’ variable is equal to 0. If so destroy the bullet model. You need a statement like:
-                                <pre><code>bulletMesh->RemoveModel( bullet );</code></pre>
-                                Then, set the shoot variable to –1 as there is no bullet now
+                                Finally, inside the "if" statement created in 6-above, calculate the distance between the bullet and enemyDrone, if it is greater than 150 then remove the bullet model and set bulletShot to false. This will allow bullets to disappear after travelling a certain distance and allow enemy Drone to fire new bullets.
                             </p>
                         </div>
                     </li>  
@@ -307,7 +314,253 @@ Also, decrement the shoot variable by 1 here so that the bullet life decreases a
                     </li>        
                 </ol>
         </section>
+        <section>
+            <h2>6. Introducing Variable Timing</h2>
+            <div class="section_instrcutions"></div>
+                <ol>  
+                <li>
+                    <div class="list-div">
+                        <p class= "instruction-item">
+                            You may have noticed that the speed of the objects in your game reduces when you introduce additional models or perform complex operations every frame, you may have also noticed that the same program runs at different speeds when executed on different machines e.g. the games lab PC vs your PC. This is because so far, you have been moving models every frame by a given amount of units, and the number of frames per second rate of your program depens on the type of machine you have as well as the complexity of the program. In this section you will learn to create consistent programs using variable timing.
+                        </p>
+                    </div>
+                </li>   
+                <li>
+                    <div class="list-div">
+                        <p class= "instruction-item">
+                            The first step is to initialise the timer by adding the code below in the initialisation section of your program.
+                            <pre><code>myEngine->Timer();</code></pre>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <div class="list-div">
+                        <p class= "instruction-item">
+                            You then need to call Timer() once per frame, at the beginning of the game loop, immediately after:
+                        </p>
+                        <pre><code>myEngine->DrawScene();</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <div class="list-div">
+                        <p class= "instruction-item">
+                            Declare a variable of type float called frameTime. Use Timer() to get the time taken in ms for the last scene to be rendered:
+                        </p>
+                        <pre><code>float frameTime = myEngine->Timer();</code></pre>
+                    </div>
+                </li>
+                <li>
+                    <div class="list-div">
+                        <p class= "instruction-item">
+                            Next, change the value of kGameSpeed to 50, and update your gameloop so that the speed used by all move and rotate methods is multipled by frameTime.
+                        <pre><code>if (myEngine->KeyHeld(Key_W)) {
+    playerDrone->MoveLocalZ(kGameSpeed * frameTime);
+}
+
+if (myEngine->KeyHeld(Key_A)) {
+    playerDrone->RotateLocalY(-kGameSpeed * frameTime / 2);
+}
+else if (myEngine->KeyHeld(Key_D)) {
+    playerDrone->RotateLocalY(kGameSpeed* frameTime / 2);
+}</code></pre>
+This essentially means that your objects now have a velocity of units/second, for example the playerDrone is now moving at a speed of 50 units/second regardless of the machine type or complexity of the program.
+                    </div>
+                </li>    
+                <li>
+                    <div class="list-div">
+                        <p class= "instruction-item">
+                            Create an initialise another variable called kBulletSpeed, and assign it a value of 100.0f. Then update the bullet's move methods as shown below:
+                        </p>
+                        <pre><code>bullet->MoveX( directionX * kBulletSpeed * frameTime );
+bullet->MoveY( directionY * kBulletSpeed * frameTime );
+bullet->MoveZ( directionZ * kBulletSpeed * frameTime );</code></pre>
+                    </div>
+                </li>    
+            </ol>
+    </section>
     </main>
     <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+    <script type="module">
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+    const canvas = document.getElementById('vector-point-webgl')
+    const loadingManager = new THREE.LoadingManager()
+    const textureLoader = new THREE.TextureLoader(loadingManager);
+    const planeXZTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid.jpg')
+    const planeYTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid2.jpg')
+    
+    const scene = new THREE.Scene();
+    let displayPlayer = true;
+    let displayGem = true;
+
+    const planeYGeometry = new THREE.PlaneBufferGeometry(1,3, 1);
+    const planeYMaterial = new THREE.MeshBasicMaterial({map:planeYTexture, transparent:false, side:THREE.DoubleSide});
+    const planeYMesh = new THREE.Mesh(planeYGeometry, planeYMaterial);
+    
+    planeYMesh.position.set(0,3,0);
+    planeYMesh.scale.set(1, 2,2)
+    
+    const planeXZGeometry = new THREE.PlaneBufferGeometry(6,6, 1);
+    const planeXZMaterial = new THREE.MeshBasicMaterial({map:planeXZTexture, side:THREE.DoubleSide});
+    planeYMaterial.opacity = 0.5;
+    const planeXZMesh = new THREE.Mesh(planeXZGeometry, planeXZMaterial);
+    planeXZMesh.rotation.set(-Math.PI/2, 0, 0)
+    planeXZMesh.scale.set(2, 2,2)
+    
+     scene.add(planeXZMesh, planeYMesh)
+    
+    let cords={pX:0, pY:0, pZ:0,gX:0, gY:0, gZ:0,}
+    
+        
+    
+    const size = {
+        width: window.innerWidth/3,
+        height: window.innerWidth/3
+    }
+    const camera = new THREE.PerspectiveCamera(75, size.width/size.height);
+    camera.position.set(0, 5, 10);
+    camera.rotation.x=Math.PI/2.0;
+    let cube_mesh= null, sphere_mesh =null;
+    const createPlayer = () =>{
+        if(sphere_mesh!=null){
+            scene.remove(sphere_mesh)
+        }
+        const rand = Math.floor(Math.random() * 2);
+        const geometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+        const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+        sphere_mesh = new THREE.Mesh( geometry, material );
+        let x, y, z;
+        const createRand=()=>{
+            if(rand==1){
+                x = Math.floor(Math.random() * 10) - 4;
+                y = 0;
+                z = Math.floor(Math.random() * 10) - 4;
+                }
+            else{
+                x = 0;
+                y = Math.floor(Math.random() * 6) + 1;
+                z = 0;
+            }
+        }
+        createRand();
+        while(x == cords.gX && y == cords.gY && z == cords.gZ)
+        {
+            createRand();
+        }
+        cords.pX =x;
+        cords.pY = y;
+        cords.pZ = -z;
+        sphere_mesh.position.set(x, y,z)
+        scene.add( sphere_mesh );
+    }
+
+    const createGem = ()=>{
+        const colors = [0x000000]
+        if(cube_mesh!=null){
+            scene.remove(cube_mesh)
+        }
+        const cube = new THREE.BoxBufferGeometry(1,1, 1);
+        const cube_material = new THREE.MeshBasicMaterial({color:0x0000ff, wireframe:false});
+        cube_mesh = new THREE.Mesh(cube, cube_material);
+        cube_mesh.scale.set(0.4, 0.4, 0.4)
+        const rand = Math.floor(Math.random() * 2);
+        let x, y, z;
+        if(rand==1){
+            x = Math.floor(Math.random() * 10) - 4;
+            y = 0;
+            z = Math.floor(Math.random() * 10) - 4;
+        }
+        else{
+            x = Math.floor(Math.random() * (1-(-1)) - 1);
+            y = Math.floor(Math.random() * 6) + 1;
+            z = 0;  
+        }
+        cords.gX =x;
+        cords.gY = y;
+        cords.gZ = -z;
+        cube_mesh.position.set(x, y,z)
+        scene.add(cube_mesh)
+    }
+
+    createGem()
+    createPlayer();
+    const renderer = new THREE.WebGLRenderer(
+        {canvas: canvas}
+    );
+    renderer.setSize(size.width, size.height)
+    renderer.setClearColor("#ffffff")
+    
+    const controls = new OrbitControls( camera, renderer.domElement );
+    controls.update();
+    const parameters = {
+        color: 0xff0000,
+        toRight: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:4})},
+        toLeft: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:-4})},
+    }
+    let moveCube = false;
+    const wrong = document.getElementById("wrong");
+    const correct = document.getElementById("correct");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const xForm = document.getElementById("valX");
+    const yForm = document.getElementById("valY");
+    const zForm = document.getElementById("valZ");
+    let ansX, ansY, ansZ;
+    document.getElementById('confirmBtn').addEventListener('click', ()=>{
+        const x = parseFloat( document.getElementById("valX").value)
+        const y = parseFloat( document.getElementById("valY").value)
+        const z = parseFloat( document.getElementById("valZ").value)
+        ansX =x;
+        ansY = y;
+        ansZ =z;
+        const vecX = (cords.gX - cords.pX) *10;
+        const vecY = (cords.gY - cords.pY) * 10;
+        const vecZ = (cords.gZ - cords.pZ) * 10;
+        const v = new THREE.Vector3(vecX, vecY, vecZ);
+        v.normalize();
+        if( Math.abs(v.x - x) <= 0.03 && Math.abs(v.y - y) <=0.03 &&Math.abs(v.z - z) <=0.03){
+            confirmBtn.setAttribute("disabled", "");
+            nextBtn.removeAttribute("disabled");
+            wrong.style.display="none"
+            xForm.setAttribute("disabled", "");
+            yForm.setAttribute("disabled", "");
+            zForm.setAttribute("disabled", "");
+       }
+        else{
+            wrong.style.display="inline"
+            correct.style.display="none"
+        }
+        moveCube= true;
+    })
+    
+    nextBtn.addEventListener("click",()=>{
+        createGem()
+        createPlayer()
+        confirmBtn.removeAttribute("disabled");
+        nextBtn.setAttribute("disabled","");
+        correct.style.display="none"
+        xForm.removeAttribute("disabled");
+        yForm.removeAttribute("disabled");
+        zForm.removeAttribute("disabled");
+    
+        xForm.value=0;
+        yForm.value=0;
+        zForm.value=0;
+    })
+    const tick = () =>{
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(tick)
+        if(moveCube){
+            sphere_mesh.position.x+=ansX/10;
+            sphere_mesh.position.y+=ansY/10;
+            sphere_mesh.position.z-=ansZ/10;
+            if(sphere_mesh.position.x>=7 ||sphere_mesh.position.y>=7 ||sphere_mesh.position.z>=7 || sphere_mesh.position.x<=-7 ||sphere_mesh.position.y<=-7 ||sphere_mesh.position.z<=-7){
+                moveCube=false;
+                sphere_mesh.position.set(cords.pX, cords.pY, -cords.pZ)
+            }
+        }
+    }
+    
+    tick()
+    </script>
 </body>
 </html>
