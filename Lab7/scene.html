@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js"></script>
+        <!-- and it&#039;s easy to individually load additional languages -->
+        <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 6 - Vectors, Arrays and Loops</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br>Lab 6 - Vectors, Arrays and Loops</h1></header>
+    <main>
+        
+                                                
+                    <div class ="interactive-scene">
+                        <h2>Calculating  Direction Vector</h2>
+                        <canvas id="vector-point-webgl"></canvas>
+                        <div class="container">
+                            Calculate the direction vector between the <span style=" color:red;"><b>red cube</b></span> and the <span style=" color:blue;"><b>blue cube</b></span> in three steps: Calculate the vector, v,  between the <span style=" color:red;"><b>red cube</b></span> and the <span style=" color:blue;"><b>blue cube</b></span>; Calculate the length of the vector, ||v||; Normalise the vector v by dividing each of it's component by its length to get the direction vector. Round up your answer to two decimal places.
+                        </div> 
+                            
+                        <br/>
+                        <div class="container">
+                            v<sub>dir</sub> = (<input id ="valX" data-value type="text" maxlength="5" size="1" value="0" />,  <input id ="valY" data-value type="text" value="0" maxlength="5" size="1" />, <input id ="valZ" data-value  type="text" value="0" maxlength="5" size="1"/>) <span class="feedback" style=" color:aqua; display: none;" id="correct">&#10004</span> <span  class="feedback" id="wrong" style=" color:red; display: none;">&#10060;</span>
+                        </div>
+                        <br/>
+                        <button id="confirmBtn">Submit</button>
+                        <button disabled id="nextBtn">Next</button>
+                    </div>
+                    
+
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+    <script type="module">
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+    const canvas = document.getElementById('vector-point-webgl')
+    const loadingManager = new THREE.LoadingManager()
+    const textureLoader = new THREE.TextureLoader(loadingManager);
+    const planeXZTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid.jpg')
+    const planeYTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid2.jpg')
+    
+    const scene = new THREE.Scene();
+    let displayPlayer = true;
+    let displayGem = true;
+
+    const planeYGeometry = new THREE.PlaneBufferGeometry(1,3, 1);
+    const planeYMaterial = new THREE.MeshBasicMaterial({map:planeYTexture, transparent:false, side:THREE.DoubleSide});
+    const planeYMesh = new THREE.Mesh(planeYGeometry, planeYMaterial);
+    
+    planeYMesh.position.set(0,3,0);
+    planeYMesh.scale.set(1, 2,2)
+    
+    const planeXZGeometry = new THREE.PlaneBufferGeometry(6,6, 1);
+    const planeXZMaterial = new THREE.MeshBasicMaterial({map:planeXZTexture, side:THREE.DoubleSide});
+    planeYMaterial.opacity = 0.5;
+    const planeXZMesh = new THREE.Mesh(planeXZGeometry, planeXZMaterial);
+    planeXZMesh.rotation.set(-Math.PI/2, 0, 0)
+    planeXZMesh.scale.set(2, 2,2)
+    
+     scene.add(planeXZMesh, planeYMesh)
+    
+    let cords={pX:0, pY:0, pZ:0,gX:0, gY:0, gZ:0,}
+    
+        
+    
+    const size = {
+        width: window.innerWidth/3,
+        height: window.innerWidth/3
+    }
+    const camera = new THREE.PerspectiveCamera(75, size.width/size.height);
+    camera.position.set(0, 5, 10);
+    camera.rotation.x=Math.PI/2.0;
+    let cube_mesh= null, sphere_mesh =null;
+    const createPlayer = () =>{
+        if(sphere_mesh!=null){
+            scene.remove(sphere_mesh)
+        }
+        const rand = Math.floor(Math.random() * 2);
+        const geometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+        const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+        sphere_mesh = new THREE.Mesh( geometry, material );
+        let x, y, z;
+        const createRand=()=>{
+            if(rand==1){
+                x = Math.floor(Math.random() * 10) - 4;
+                y = 0;
+                z = Math.floor(Math.random() * 10) - 4;
+                }
+            else{
+                x = 0;
+                y = Math.floor(Math.random() * 6) + 1;
+                z = 0;
+            }
+        }
+        createRand();
+        while(x == cords.gX && y == cords.gY && z == cords.gZ)
+        {
+            createRand();
+        }
+        cords.pX =x;
+        cords.pY = y;
+        cords.pZ = -z;
+        sphere_mesh.position.set(x, y,z)
+        scene.add( sphere_mesh );
+    }
+
+    const createGem = ()=>{
+        const colors = [0x000000]
+        if(cube_mesh!=null){
+            scene.remove(cube_mesh)
+        }
+        const cube = new THREE.BoxBufferGeometry(1,1, 1);
+        const cube_material = new THREE.MeshBasicMaterial({color:0x0000ff, wireframe:false});
+        cube_mesh = new THREE.Mesh(cube, cube_material);
+        cube_mesh.scale.set(0.4, 0.4, 0.4)
+        const rand = Math.floor(Math.random() * 2);
+        let x, y, z;
+        if(rand==1){
+            x = Math.floor(Math.random() * 10) - 4;
+            y = 0;
+            z = Math.floor(Math.random() * 10) - 4;
+        }
+        else{
+            x = Math.floor(Math.random() * (1-(-1)) - 1);
+            y = Math.floor(Math.random() * 6) + 1;
+            z = 0;  
+        }
+        cords.gX =x;
+        cords.gY = y;
+        cords.gZ = -z;
+        cube_mesh.position.set(x, y,z)
+        scene.add(cube_mesh)
+    }
+
+    createGem()
+    createPlayer();
+    const renderer = new THREE.WebGLRenderer(
+        {canvas: canvas}
+    );
+    renderer.setSize(size.width, size.height)
+    renderer.setClearColor("#ffffff")
+    
+    const controls = new OrbitControls( camera, renderer.domElement );
+    controls.update();
+    const parameters = {
+        color: 0xff0000,
+        toRight: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:4})},
+        toLeft: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:-4})},
+    }
+    let moveCube = false;
+    const wrong = document.getElementById("wrong");
+    const correct = document.getElementById("correct");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const xForm = document.getElementById("valX");
+    const yForm = document.getElementById("valY");
+    const zForm = document.getElementById("valZ");
+    let ansX, ansY, ansZ;
+    document.getElementById('confirmBtn').addEventListener('click', ()=>{
+        const x = parseFloat( document.getElementById("valX").value)
+        const y = parseFloat( document.getElementById("valY").value)
+        const z = parseFloat( document.getElementById("valZ").value)
+        ansX =x;
+        ansY = y;
+        ansZ =z;
+        const vecX = (cords.gX - cords.pX) *10;
+        const vecY = (cords.gY - cords.pY) * 10;
+        const vecZ = (cords.gZ - cords.pZ) * 10;
+        const v = new THREE.Vector3(vecX, vecY, vecZ);
+        v.normalize();
+        console.log(v.x.toFixed(2) +" " +v.y.toFixed(2)+ " "+ v.z.toFixed(2))
+        console.log(Math.abs(v.x - x) +" " +Math.abs(v.y - y)+ " "+ Math.abs(v.z - z))
+        console.log(x +" " +y+ " "+ z)
+        if( Math.abs(v.x - x) <= 0.03 && Math.abs(v.y - y) <=0.03 &&Math.abs(v.z - z) <=0.03){
+            confirmBtn.setAttribute("disabled", "");
+            nextBtn.removeAttribute("disabled");
+            correct.style.display="inline"
+            wrong.style.display="none"
+            xForm.setAttribute("disabled", "");
+            yForm.setAttribute("disabled", "");
+            zForm.setAttribute("disabled", "");
+       }
+        else{
+            wrong.style.display="inline"
+            correct.style.display="none"
+        }
+        moveCube= true;
+    })
+    
+    nextBtn.addEventListener("click",()=>{
+        createGem()
+        createPlayer()
+        confirmBtn.removeAttribute("disabled");
+        nextBtn.setAttribute("disabled","");
+        correct.style.display="none"
+        xForm.removeAttribute("disabled");
+        yForm.removeAttribute("disabled");
+        zForm.removeAttribute("disabled");
+    
+        xForm.value=0;
+        yForm.value=0;
+        zForm.value=0;
+    })
+    const tick = () =>{
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(tick)
+        if(moveCube){
+            sphere_mesh.position.x+=ansX/10;
+            sphere_mesh.position.y+=ansY/10;
+            sphere_mesh.position.z-=ansZ/10;
+            if(sphere_mesh.position.x>=7 ||sphere_mesh.position.y>=7 ||sphere_mesh.position.z>=7 || sphere_mesh.position.x<=-7 ||sphere_mesh.position.y<=-7 ||sphere_mesh.position.z<=-7){
+                moveCube=false;
+                sphere_mesh.position.set(cords.pX, cords.pY, -cords.pZ)
+            }
+        }
+    }
+    
+    tick()
+    </script>
+</body>
+</html>

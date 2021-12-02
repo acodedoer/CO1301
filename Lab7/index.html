@@ -31,13 +31,13 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Before you start working on this lab's tasks, use the interactive scene below to refresh your knowledge on direction vectors (answer at least three questions correctly). You may also find last week's slides/lecture-recording useful. 
+                                Before you start working on this lab's tasks, use the interactive scene below to refresh your knowledge on direction vectors (answer at least three questions correctly). You may also find last week's slides/lecture recording useful. 
                             </p>
                             <div class ="interactive-scene">
                                 <h2>Calculating  Direction Vectors</h2>
                                 <canvas id="vector-point-webgl"></canvas>
                                 <div class="container">
-                                    Calculate the direction vector between the <span style=" color:red;"><b>red cube</b></span> and the <span style=" color:blue;"><b>blue cube</b></span> in three steps: Calculate the vector, v,  between the <span style=" color:red;"><b>red cube</b></span> and the <span style=" color:blue;"><b>blue cube</b></span>; Calculate the length of the vector, ||v||; Normalise the vector v by dividing each of it's component by its length to get the direction vector. Round up your answer to two decimal places.
+                                    Calculate the direction vector between the <span style=" color:red;"><b>red cube</b></span> and the <span style=" color:blue;"><b>blue cube</b></span> in three steps: Calculate the vector, v,  between the <span style=" color:red;"><b>red cube</b></span> and the <span style=" color:blue;"><b>blue cube</b></span>; Calculate the length of the vector, ||v||; Normalise the vector v by dividing each of its components by its length to get the direction vector. Round up your answer to two decimal places.
                                 </div> 
                                     
                                 <br/>
@@ -53,7 +53,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now that you have refreshed your knowledge on vectors, let's get on to the lab. The project you will be creating this week will make use of direction vectors and the length of vectors.
+                                Now that you have refreshed your knowledge of vectors, let's get on to the lab. The project you will be creating this week will make use of direction vectors and the length of vectors.
                             </p>
                         </div>
                     </li>
@@ -82,7 +82,7 @@
                             <p class= "instruction-item">
                                Use the "ground.x" mesh to create a floor model at the origin. Then scale the floor model so that it is twice its initial size.
                             </p>
-                            <pre><code>floor->Scale(2)</code></pre>
+                            <pre><code>floor->Scale(2);</code></pre>
                         </div>
                     </li>
                     <li>
@@ -107,40 +107,41 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a kManual camera and position it at (0.0f, 600.0f, -250.0f) and rotate it 45 units along its local X-axis so that it is tilted down.
+                                Create a kManual camera and position it at (0.0f, 600.0f, -250.0f) and rotate it 45 degrees about its local X-axis so that it is tilted down.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare an IMesh* variable named "bulletMesh" and load the "bullet.x" mesh. Then declare and IModel* variable named "bullet", but don't initialise it yet (it will be used later).
+                                Declare an IMesh* variable named "bulletMesh" and load the "bullet.x" mesh. Then declare an IModel* variable named "bullet", but don't initialise it yet (it will be used later).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a constant float called kGameSpeed and initialise it to 0.5f.
+                                Create a constant float called kGameSpeed and initialise it to 0.05f (reduce or increase this value if it is too fast or too slow on your machine).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In your game loop add code that responds to holding the W key to move playerDrone forward along local Z-axis, and responds to holding A and D keys by rotating playerDrone left and right along local Y-axis. Use kDroneSpeed to determine the speed of these movements e.g. you can move playerDrone forward at a speed equivalent to kGameSpeed and rotate it at a speed equivalent to kGameSpeed/2.
+                                In your game loop add code that responds to holding the W key to move playerDrone forward along its local z-axis, and responds to holding A and D keys by rotating playerDrone left and right along its local y-axis. Use kDroneSpeed to determine the speed of these movements e.g. you can move playerDrone forward at a speed equivalent to kGameSpeed and rotate it at a speed equivalent to kGameSpeed/2.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                LookAt() is a method for models (or cameras) that points the local Z-axis towards another model. This effectively makes the first model/camera look at the second:
+                                LookAt() is a method for models (or cameras) that points the local Z-axis towards another model. This effectively makes the first model/camera look at the second, see an example of the method's use below (do not copy this code into your project).
 
 	<pre><code>shooter->LookAt( target );</code></pre>
-                                Use the new ‘LookAt’ method to make enemyDrone always point at playerDrone. Think carefully whether to put this in the initialisation section or game loop. Move playerDrone around to test that enemyDrone continues to point at it.
+                                Use the new ‘LookAt’ method to make enemyDrone always point at playerDrone. Think carefully about whether to put this in the initialisation section or the game loop. Move playerDrone around to test that enemyDrone continues to point at it.
 
                             </p>
+                            <img src="https://acodedoer.github.io/CO1301/Lab7/lab7_1.gif" alt="enemy drone looking at playerdrone">
                         </div>
                     </li>
                 </ol>
@@ -149,23 +150,10 @@
                 <h2>3. Getting the Vector between Two Models</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
-                         <!-- <li>
-                            <div class="list-div">
-                                <p class= "instruction-item">
-                                    Create a new boolean variable (in the initialisation section) called ‘bulletShot’ and initialise it to false. You will use this variable to check whether a bullet has been fired by enemyDrone:
-                                    <ul>
-                                        <li>When playerDrone is close to the enemyDrone and bulletShot is false, a bullet model needs to be created</li>
-                                        <li>When a bullet is created bulletShot should be set to true.</li>
-                                        <li>If bulletShot is true, this means a bullet model exists and it should be moved every frame until it is about 250 units away from the enemyDrone, then it should be destroyed and bulletShot should be set to false.</li>
-                                        <li>This will allow enemyDrone to fire one bullet at a time, and the bullet will travel a limioted distance before getting destroyed.</li>
-                                    </ul>
-                                </p>
-                            </div>
-                        </li> -->
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                    In order for enemyDrone to fire a bullet at playerDrone, the direction of movement between playerDrone and enemyDrone must be known. The direction of movement between two points is described by a vector. The vector between the two points that the two models are positioned at can be calculated by subtracting the position of one point from the position of the second point. An example of how this can be done is shown below:
+                                    For enemyDrone to fire a bullet at playerDrone, the direction of movement between playerDrone and enemyDrone must be known. The direction of movement between two points is described by a vector. The vector between the two points that the two models are positioned at can be calculated by subtracting the position of one point from the position of the second point. An example of how this can be done is shown below:
 <pre><code>float vectorX;
 float vectorY;
 float vectorZ;
@@ -175,7 +163,7 @@ vectorZ = Model2->GetZ() – Model1->GetZ();
 </code></pre>
                             </p>
                             <p>
-                                Note: the order in which you perform the subtraction above will affect the direction of your vector.
+                                Note: the order in which you perform the subtraction above will affect the direction of your vector, since the direction of the vector from Model1 to Model2 is opposite to that of the vector from Model2 to Model1.
                             </p>
                         </div>
                     </li>
@@ -202,7 +190,7 @@ vectorZ = Model2->GetZ() – Model1->GetZ();
                     </li>
                     <li>
                         <div class="list-div">
-                            <p class= "instruction-item">Decalre three new floats named distanceX, distanceY and distanceZ for storing the squares of your vector components you calculated in the last section i.e. vectorX, vectorY and vectorZ. Use simple multiplication to derive the square of any two values e.g.
+                            <p class= "instruction-item">Declare three new floats named distanceX, distanceY and distanceZ for storing the squares of the vector components you calculated in the last section i.e. vectorX, vectorY and vectorZ. Use simple multiplication to derive the square of any two values e.g.
                                 <pre><code>distanceX = vectorX * vectorX; // distanceX squared</code></pre>
                             </p>
                         </div>
@@ -213,11 +201,11 @@ vectorZ = Model2->GetZ() – Model1->GetZ();
                             Sum the squares of the components and then calculate the square root of the result to get the length of the vector. There is a function within C++ to calculate square roots called sqrt(). To use it, you need to add the following two lines of code to the top of your program.
 <pre><code>#include &ltiostream>
 using namespace std;</code></pre>
-                            This will give you access to the C++ maths library and to the sqrt() function. The function takes just one parameter e.g.
+                            This will give you access to the C++ maths library and the sqrt() function. The function takes just one parameter e.g.
 <pre><code>float root;
 root = sqrt( 9*9 ); // the square root of 9 squared
 </code></pre>
-                            Now use the sqrt() method to caluclate the distance between enemyDrone and playerDrone (the length of the vector). Use a new float varibale called "distance" to store the distance calculated.
+                            Now use the sqrt() method to calculate the distance between enemyDrone and playerDrone (the length of the vector). Use a new float variable called "distance" to store the distance calculated.
                             </p>
                         </div>
                     </li>
@@ -230,14 +218,14 @@ root = sqrt( 9*9 ); // the square root of 9 squared
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You have derived the vector between the enemyDrone and playerDrone. You have also calculated the length of the vector. In order to use these values to move a bullet fired by enemyDrone towards playerDrone you are going to have to calculate the direction vector between the two drones, therefore you have to normalise the vector you have derived.
+                                You have derived the vector between the enemyDrone and playerDrone. You have also calculated the length of the vector. To use these values to move a bullet fired by enemyDrone towards playerDrone you are going to have to calculate the direction vector between the two drones, therefore you have to normalise the vector you have derived.
                             </p>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The direction vector is independent of the distance between two points. For example, it allows you to move a model in a particular direction disregarding the speed of the movement. If the vector between the two positions is v(x, y, z), and the length of this vector is len, then the direction vector is (x/len, y/len, z/len)
+                                The direction vector is independent of the distance between two points. For example, it allows you to move a model in a particular direction disregarding the speed of the movement. If the vector between the two positions is v(x, y, z), and the length of this vector is "len", then the direction vector is (x/len, y/len, z/len)
                             </p>
                         </div>
                     </li>   
@@ -258,7 +246,7 @@ float directionZ = vectorZ / distance;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Check that you are dividing the each vector component by the distance and not, for example,  distanceX by distance.
+                                Check that you are dividing each vector component by the distance and not, for example,  distanceX by distance.
                             </p>
                         </div>
                     </li>  
@@ -290,7 +278,7 @@ float directionZ = vectorZ / distance;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now add another ‘if’ statement to test if the ‘bulletShot’ variable is ture, if so, then move the bullet model by the bullet direction vector.
+                                Now add another ‘if’ statement to test if the ‘bulletShot’ variable is true, if so, then move the bullet model by the bullet direction vector.
 <pre><code>bullet->MoveX( directionX );
 bullet->MoveY( directionY );
 bullet->MoveZ( directionZ );
@@ -301,15 +289,16 @@ bullet->MoveZ( directionZ );
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Finally, inside the "if" statement created in 6-above, calculate the distance between the bullet and enemyDrone, if it is greater than 150 then remove the bullet model and set bulletShot to false. This will allow bullets to disappear after travelling a certain distance and allow enemy Drone to fire new bullets.
+                                Finally, inside the "if" statement created in 6-above, calculate the distance between the bullet and enemyDrone, i.e. the length of the vector between the bullet and the enemyDrone, if it is greater than 150 then remove the bullet model and set bulletShot to false. This will allow bullets to disappear after travelling a certain distance and allow enemy Drone to fire new bullets.
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You should now have an enemy drone that tracks your drone and shoots at it when it comes near. Read the code you have written paying special attention to the logic that is used to create and destroy the bullets.
+                                You should now have an enemy drone that tracks your drone and shoots at it when it comes near. Read the code you have written paying special attention to the logic that is used to create, move and destroy the bullets.
                             </p>
+                            <img src="https://acodedoer.github.io/CO1301/Lab7/lab7_2.gif" alt="enemy drone firing at player drone as it gets close">
                         </div>
                     </li>        
                 </ol>
@@ -321,14 +310,14 @@ bullet->MoveZ( directionZ );
                 <li>
                     <div class="list-div">
                         <p class= "instruction-item">
-                            You may have noticed that the speed of the objects in your game reduces when you introduce additional models or perform complex operations every frame, you may have also noticed that the same program runs at different speeds when executed on different machines e.g. the games lab PC vs your PC. This is because so far, you have been moving models every frame by a given amount of units, and the number of frames per second rate of your program depens on the type of machine you have as well as the complexity of the program. In this section you will learn to create consistent programs using variable timing.
+                            You may have noticed that the speed of the objects in your game reduces when you introduce additional models or perform complex operations every frame, you may have also noticed that the same program runs at different speeds when executed on different machines e.g. the games lab PC vs your PC. This is because so far, you have been moving models every frame by a given amount of units, and the number of frames per second rate of your program depends on the type of machine you have as well as the complexity of the program. In this section, you will learn to create consistent programs using variable timing.
                         </p>
                     </div>
                 </li>   
                 <li>
                     <div class="list-div">
                         <p class= "instruction-item">
-                            The first step is to initialise the timer by adding the code below in the initialisation section of your program.
+                            The first step is to initialise the timer by adding the code below, in the initialisation section of your program.
                             <pre><code>myEngine->Timer();</code></pre>
                         </p>
                     </div>
@@ -336,15 +325,7 @@ bullet->MoveZ( directionZ );
                 <li>
                     <div class="list-div">
                         <p class= "instruction-item">
-                            You then need to call Timer() once per frame, at the beginning of the game loop, immediately after:
-                        </p>
-                        <pre><code>myEngine->DrawScene();</code></pre>
-                    </div>
-                </li>
-                <li>
-                    <div class="list-div">
-                        <p class= "instruction-item">
-                            Declare a variable of type float called frameTime. Use Timer() to get the time taken in ms for the last scene to be rendered:
+                            You then need to call Timer() once per frame, at the beginning of the game loop, immediately after <b>myEngine->DrawScene(); </b>. Declare a variable of type float called frameTime and assign the value returned by Timer()  to it, this value represents the time taken in ms for the last scene to be rendered.
                         </p>
                         <pre><code>float frameTime = myEngine->Timer();</code></pre>
                     </div>
@@ -363,7 +344,7 @@ if (myEngine->KeyHeld(Key_A)) {
 else if (myEngine->KeyHeld(Key_D)) {
     playerDrone->RotateLocalY(kGameSpeed* frameTime / 2);
 }</code></pre>
-This essentially means that your objects now have a velocity of units/second, for example the playerDrone is now moving at a speed of 50 units/second regardless of the machine type or complexity of the program.
+This essentially means that your objects now have a velocity of units/second, for example, the playerDrone is now moving at a speed of 50 units/second regardless of the machine type or complexity of the program.
                     </div>
                 </li>    
                 <li>
