@@ -278,7 +278,7 @@ float directionZ = vectorZ / distance;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declared a constant called kBulletSpeed in the initialisation section and set its value to "kGameSpeed * 3". Then add another ‘if’ statement to test if the ‘bulletShot’ variable is true, if so, then move the bullet model by the bullet direction vector and kBulletSpeed.
+                                Declare a constant called kBulletSpeed in the initialisation section and set its value to "kGameSpeed * 3". Then add another ‘if’ statement to test if the ‘bulletShot’ variable is true, if so, then move the bullet model by the bullet direction vector scaled by kBulletSpeed.
 <pre><code>bullet->MoveX( directionX * kBulletSpeed );
 bullet->MoveY( directionY * kBulletSpeed );
 bullet->MoveZ( directionZ * kBulletSpeed );

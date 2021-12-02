@@ -24,12 +24,12 @@
                             <p class= "instruction-item">
                                 If you have completed the main lab tasks, here are a few ideas that you can use to extend your program:
                                 <ul>
-                                    <li>Test if the bullets have hit playerDrone (using vector distances).</li>
-                                    <li>Have enemyDrone shoot more than one bullet at a time.</li>
-                                    <li>Add more enemy drones.</li>
-                                    <li>Keep track of the playerDrone's health using some visible UI element (e.g. percentage of health left) and end the game if the playerDrone has no health left</li>
+                                    <li>Test if the bullets have hit playerDrone (use vector distance to check if the bullet is very close to the player).</li>
+                                    <li>Keep track of the playerDrone's health using a health variable. The variable should be initialised as 100 at the start of the game, and each bullet hit should reduce its value by 10 points. Use the two images from this link to create a healthbar centred at the top of the screen that shows the value of the health variable. A single sprite created using "greenbox.png" should be used to represent 10 units of health, therefore at the start of the game, 10 green boxes should be centred at the top of the screen. Everytime the player gets hit by a bullet, a green box should be replaced by a red box starting from the rightmost box.</li>
+                                    <li>Display the time that has passed since the program was started in the format MM:SS at the top left corner of the screen. Hint: Timer() method returns the time that has passed since the last frame was rendered (in milliseconds).</li>
                                 </ul>         
                             </p>
+                            <img class="center" src="https://acodedoer.github.io/CO1301/Lab7/lab7_ex_1.gif">
                         </div>
                     </li>
                 </ol>
