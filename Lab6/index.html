@@ -271,7 +271,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                An array is a way of referring to a group of variables by a single name. The elements of an array can be initialised when the array is declared or they can be assigned values after the array has been declared.
+                                An array is a way of referring to a group of variables by a single name. The elements of an array can be initialised when the array is declared or they can be assigned values after the array has been declared. Examples of array declaration and initialisation are given below (do not copy this code into your project).
 <pre><code>int primeNumbers[3];//an integer array of size 3 is declared but not initialised
 primeNumbers[0] = 1;    //the first element of primeNumbers is assigned a value of 1
 primeNumbers[1] = 3;    //the second element of primeNumbers is assigned a value of 3
@@ -337,8 +337,8 @@ IModel* particleModels[10];
                             <p class= "instruction-item">
                                The array that will hold the models has been created, but the models have not been created and assigned to the array elements yet. When the models are created, they should be spread horizontally accross the top of the screen i.e. from x = 40 to x =-40 with 20 units between two consecutive particles. They should then move down until they reach the bottom of the screen, then they should be positioned back to their initial positions at the top of the screen. To achieve this lets begin by declaring the following:
                                 <ul>
-                                    <li>Declare a float constant kInitialY = 30.0f, to store the initial y poisiton for all models</li>
-                                    <li>Declare a float constant kFinalY = -30.0f, to store the lowest y poisiton for all models</li>
+                                    <li>Declare a float constant kInitialY = 20.0f, to store the initial y poisiton for all models</li>
+                                    <li>Declare a float constant kFinalY = -20.0f, to store the lowest y poisiton for all models</li>
                                     <li>Declare a float constant kMaxX = 40.0f , to store the x position for first model to be created</li>
                                     <li>Declare a float constant kSpread = 20.0f, to store the distance between two consecutive models</li>
                                     <li>Declare a float named particleXPos and initialise it to KMaxX, to store the x position of the model being created in the current iteration</li>
@@ -351,13 +351,29 @@ IModel* particleModels[10];
                             <p class= "instruction-item">        
                                 In the initialisation section, use a for loop to loop through the elements of particleModels[] and assign to each a model created using particleMesh. All the created models should be positioned at kInitialY along the y axis, and spread accross the screen horizontally by kSpread starting from kMaxX i.e. the first model should be created at (kMaxX, kInitialY, 0), the second at (kMaxX - kSpread, kInitialY, 0)...
                                 </p>
-                                <img src="https://acodedoer.github.io/CO1301/Lab6/particles_.PNG" alt="5 particles spread horizontally accross the screen">
+<pre><code>float particleXPos = kMaxX; //assign kMAxX to particleXPos
+for (int i = 0; i < kParticles; i++) {
+    particleModels[i] = particleMesh->CreateModel(particleXPos, kInitialY, 0);
+    particleXPos -= kSPread;            //subtract kSpread from particleXPos to create space between the current particle and the next
+    particleModels[i]->SetSkin(particleSkins[i]);
+    particleStates[i] = Moving;
+
+}</code></pre>
+                            <img src="https://acodedoer.github.io/CO1301/Lab6/particles_.PNG" alt="5 particles spread horizontally accross the screen">
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">        
-                                Add a for loop to your game loop that moves each element of particleModels[] in each frame using the vector (0, -0.005, 0). Within the same for loop, check if each element of particleModels[] has reached the bottom of the screen so that it can reappear at its initial position at the top of the screen.
+                                Add a for loop to your game loop that moves each element of particleModels[] in each frame using the vector (0, -0.005, 0). Within the same for loop, add an if-statement to check if the element of particleModels[]  that is moved has reached kFinalY along the y-axis, if so set its y-position to kInitialY so that it can reappear at its initial position at the top of the screen.
+                                </p>
+                                <img src="https://acodedoer.github.io/CO1301/Lab6/lab6_1.gif" alt="5 particles spread horizontally accross the screen and moving vertically">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">        
+                                Now update kInitialY to 30.0f and kFinalY to -30.0f, this will make the particles dissappear into the bottom of the screen and appear from the top.
                                 </p>
                         </div>
                     </li>
@@ -375,7 +391,7 @@ IModel* particleModels[10];
                             <p>
                                 In the for loop that creates models and assigns them to elements of particleModels[], add code so that in the ith iteration of the loop, the skin of the model created is set to particleSkins[i] (which will be equaivalent to the image file name stored in the ith element of the skins array).
                             </p>
-                            <img src="https://acodedoer.github.io/CO1301/Lab6/particles.PNG" alt="5 differently colored particles spread horizontally accross the screen">
+                            <img src="https://acodedoer.github.io/CO1301/Lab6/lab6_1.gif" alt="5 differently coloured particles spread horizontally accross the screen and moving vertically">
                         </li>
                         <li>
                                 <p>
@@ -494,9 +510,9 @@ IModel* particleModels[10];
         cube_mesh.position.set(x, y,z)
         scene.add(cube_mesh)
     }
-    
-    createPlayer();
     createGem()
+    createPlayer();
+    
     const renderer = new THREE.WebGLRenderer(
         {canvas: canvas}
     );
@@ -525,8 +541,9 @@ IModel* particleModels[10];
         const ansX = (cords.gX - cords.pX) *10;
         const ansY = (cords.gY - cords.pY) * 10;
         const ansZ = (cords.gZ - cords.pZ) * 10;
-        console.log(ansX +" " +ansY+ " "+ ansZ)
-        console.log(x +" " +y+ " "+ z)
+        console.log(ansX)
+        console.log(ansY)
+        console.log(ansZ)
         if(ansX==x && ansY==y && ansZ==z){
             confirmBtn.setAttribute("disabled", "");
             nextBtn.removeAttribute("disabled");
@@ -535,7 +552,9 @@ IModel* particleModels[10];
             xForm.setAttribute("disabled", "");
             yForm.setAttribute("disabled", "");
             zForm.setAttribute("disabled", "");
-       }
+
+
+                }
         else{
             wrong.style.display="inline"
             correct.style.display="none"

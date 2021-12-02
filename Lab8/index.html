@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
@@ -61,13 +62,47 @@
                             <p class= "instruction-item">
                                 The most common solution to this problem is to replace the models with simpler shapes for the purpose of detecting collisions. For each model we choose a mathematically simple shape that is big enough to completely surround it. These simple shapes are tested accurately for intersection against each other. These shapes are called bounding volumes because they define a boundary for the space occupied by the model. Common bounding volumes are spheres and cuboids.
                             </p>
-                            <img src="https://acodedoer.github.io/CO1301/Lab8/intersectioncheck.jpg" alt="checking whether two bounding spheres intersect"/>
+                            <div class ="interactive-scene">
+                                <h2>Bounding Volumes</h2>
+                                <canvas id="bounding-volumes-webgl"></canvas>
+                                <div class="container">
+                                    <label for="cars">Bounding Volume 1</label>
+                                    <select name="bv1" id="bv1">
+                                      <option value="box">Box</option>
+                                      <option value="sphere">Sphere</option>
+                                    </select>
+<br>
+                                    <label for="cars">Object 1</label>
+                                    <select name="obj1" id="obj1">
+                                      <option value="box">Box</option>
+                                      <option value="sphere">Sphere</option>
+                                    </select>
+                                </div>
+
+                                <div class="container">
+                                    <label for="cars">Bounding Volume 2</label>
+                                    <select name="bv2" id="bv2">
+                                      <option value="box">Box</option>
+                                      <option selected value="sphere">Sphere</option>
+                                    </select>
+<br>
+                                    <label for="cars">Object 2</label>
+                                    <select name="obj2" id="obj2">
+                                      <option value="box">Box</option>
+                                      <option selected value="sphere">Sphere</option>
+                                    </select>
+                                </div>
+                                <div class="container">
+                                    <button id ="collide">Check Collision</button>
+                                    <button id ="reset">Reset</button>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This method will correctly find real collisions, but it will also incorrectly find collisions when the models are only close to each other. This can be minimised by making the bounding volume as small as possible (as in the diagram), but this problem cannot be eliminated (unless the object being tested the same shape as the bounding volume). 
+                                This method will correctly find real collisions, but it will also incorrectly find collisions when the models are only close to each other. To see how this can happen, try using box bounding volumes with sphere objects in the interactive scene above. This can be minimised by making the bounding volume as small as possible, but this problem cannot be eliminated (unless the object being tested the same shape as the bounding volume, e.g spehre shape and a sphere volume). 
                             </p>
                         </div>
                     </li>
@@ -515,5 +550,155 @@ if (myEngine->KeyHit(Key_R)) {
         </section>
     </main>
     <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+    <script type="module">
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+        const canvas = document.getElementById('bounding-volumes-webgl')
+        const loadingManager = new THREE.LoadingManager()
+        const textureLoader = new THREE.TextureLoader(loadingManager);
+        const obj1Texture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid.jpg')
+        const sphereTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid2.jpg')
+    
+        const scene = new THREE.Scene();
+        
+        const group1 = new THREE.Group();
+      
+        const cubeGeometry = new THREE.BoxBufferGeometry(1,1,1);
+        const volumeMaterial = new THREE.MeshBasicMaterial({wireframe:true, color:"red", transparent:true, opacity:0.5});
+        const bVolume1 = new THREE.Mesh(cubeGeometry, volumeMaterial);
+        //bVolume1.position.set(-3,0,-1);
+
+        const objMaterial1 = new THREE.MeshStandardMaterial({color:"red", transparent:false});
+        const obj1 = new THREE.Mesh(cubeGeometry, objMaterial1);
+
+        
+      
+        group1.add( bVolume1 );
+        group1.add( obj1 );
+        group1.position.set(-3, -0.3, -1);
+        scene.add(group1)
+
+        let bv1Type = "box";
+        let bv2Type = "sphere";
+        let obj1Type = "box";
+        let obj2Type = "sphere";
+        const group2 = new THREE.Group();
+      
+        const sphereGeometry = new THREE.SphereBufferGeometry(0.5,32, 16);
+        const bVolume2 = new THREE.Mesh(sphereGeometry, volumeMaterial);
+        //bVolume1.position.set(-3,0,-1);
+
+        const obj2 = new THREE.Mesh(sphereGeometry, objMaterial1);
+        
+      
+        group2.add( bVolume2 );
+        group2.add( obj2 );
+        group2.position.set(3, 0.3, -1);
+        scene.add(group2)
+    
+        let collision = false;
+        const size = {
+            width: window.innerWidth/3,
+            height: window.innerWidth/3
+        }
+        const camera = new THREE.PerspectiveCamera(75, size.width/size.height);
+        camera.position.set(0, 0, 5);
+    
+        const renderer = new THREE.WebGLRenderer(
+            {canvas: canvas}
+        );
+        renderer.setSize(size.width, size.height)
+        renderer.setClearColor("#ffffff")
+    
+        const controls = new OrbitControls( camera, renderer.domElement );
+        controls.update();
+       
+        let collide = false;
+        document.getElementById("collide").addEventListener("click", ()=>{
+            collide = true;
+        })
+
+        document.getElementById("bv1").addEventListener("change", (e)=>{
+            bv1Type= e.srcElement.value;
+            if(bv1Type=="box"){
+                bVolume1.geometry = new THREE.BoxBufferGeometry(1,1);
+            }
+            else if(bv1Type=="sphere"){
+                bVolume1.geometry = new THREE.SphereBufferGeometry(0.5, 32, 16);
+            }
+            else{
+
+            }
+        })
+
+        document.getElementById("bv2").addEventListener("change", (e)=>{
+            bv2Type= e.srcElement.value;
+            console.log(bv2Type)
+            if(bv2Type=="box"){
+                bVolume2.geometry = new THREE.BoxBufferGeometry(1,1);
+            }
+            else if(bv2Type=="sphere"){
+                console.log("here")
+                bVolume2.geometry = new THREE.SphereBufferGeometry(0.5, 32, 16);
+            }
+        })
+
+        document.getElementById("obj1").addEventListener("change", (e)=>{
+            obj1Type= e.srcElement.value;
+            if(obj1Type=="box"){
+                obj1.geometry = new THREE.BoxBufferGeometry(1,1);
+            }
+            else{
+                obj1.geometry = new THREE.SphereBufferGeometry(0.5, 32, 16);
+            }
+        })
+
+        document.getElementById("obj2").addEventListener("change", (e)=>{
+            obj2Type= e.srcElement.value;
+            if(obj2Type=="box"){
+                obj2.geometry = new THREE.BoxBufferGeometry(1,1);
+            }
+            else{
+                obj2.geometry = new THREE.SphereBufferGeometry(0.5, 32, 16);
+            }
+        })
+        document.getElementById("reset").addEventListener("click", ()=>{
+            group1.position.set(-3, -0.3, -1);
+            group2.position.set(3, 0.3, -1);
+            collide = false;
+        })
+        
+        const checkCollision = ()=>{
+            let collision = false;
+            if(bv1Type == "sphere" && bv2Type == "sphere"){
+                collision = group1.position.distanceTo(group2.position)< (bVolume2.scale.x/2 + bVolume2.scale.x/2)
+            }
+            else if(bv1Type == "sphere" && bv2Type == "box"){
+                collision = (group1.position.x >group2.position.x-1 && group1.position.x <group2.position.x+1) && (group1.position.y >group2.position.y-1 && group1.position.y <group2.position.y+1) && (group1.position.z >group2.position.z-1 && group1.position.z <group2.position.z+1)
+            }
+            else if(bv1Type == "box" && bv2Type == "sphere"){
+                collision = (group2.position.x >group1.position.x-1 && group2.position.x <group1.position.x+1) && (group2.position.y >group1.position.y-1 && group2.position.y <group1.position.y+1) && (group2.position.z >group1.position.z-1 && group2.position.z <group1.position.z+1)
+            }
+            else if(bv1Type == "box" && bv2Type == "box"){
+                console.log("here")
+                collision = (group1.position.x < group2.position.x + 0.5 && group1.position.x + 0.5 >group2.position.x) && (group1.position.y < group2.position.y + 0.5 && group1.position.y + 0.5 >group2.position.y) && (group1.position.z < group2.position.z + 0.5 && group1.position.z + 0.5 >group2.position.z)
+            }
+            return collision;
+        }
+        const tick = () =>{
+            renderer.render(scene, camera);
+            window.requestAnimationFrame(tick)
+
+            if(collide){
+                collision = checkCollision();
+                console.log(collision)
+                if(!collision){
+                    group1.position.x+=0.01;
+                    group2.position.x-=0.01;
+                }
+            }
+        }
+    
+    tick()
+    </script>
 </body>
 </html>
