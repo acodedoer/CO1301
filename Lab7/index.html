@@ -278,10 +278,10 @@ float directionZ = vectorZ / distance;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now add another ‘if’ statement to test if the ‘bulletShot’ variable is true, if so, then move the bullet model by the bullet direction vector.
-<pre><code>bullet->MoveX( directionX );
-bullet->MoveY( directionY );
-bullet->MoveZ( directionZ );
+                                Declared a constant called kBulletSpeed in the initialisation section and set its value to "kGameSpeed * 3". Then add another ‘if’ statement to test if the ‘bulletShot’ variable is true, if so, then move the bullet model by the bullet direction vector and kBulletSpeed.
+<pre><code>bullet->MoveX( directionX * kBulletSpeed );
+bullet->MoveY( directionY * kBulletSpeed );
+bullet->MoveZ( directionZ * kBulletSpeed );
 </code></pre> 
                             </p>
                         </div>
@@ -298,7 +298,7 @@ bullet->MoveZ( directionZ );
                             <p class= "instruction-item">
                                 You should now have an enemy drone that tracks your drone and shoots at it when it comes near. Read the code you have written paying special attention to the logic that is used to create, move and destroy the bullets.
                             </p>
-                            <img src="https://acodedoer.github.io/CO1301/Lab7/lab7_2.gif" alt="enemy drone firing at player drone as it gets close">
+                            <img class="center" src="https://acodedoer.github.io/CO1301/Lab7/lab7_2.gif" alt="enemy drone firing at player drone as it gets close">
                         </div>
                     </li>        
                 </ol>
