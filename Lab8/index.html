@@ -23,7 +23,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In games, we often need to detect when two models have collided. In this session you will see how to detect collisions using some simple mathematics.
+                                In games, we often need to detect when two models have collided. In this session, you will see how to detect collisions using some simple mathematics.
                             </p>
                         </div>
                     </li>
@@ -36,7 +36,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In the real world a collision occurs when two moving objects meet. However, in a game world, a collision is often detected only when the models intersect.
+                                In the real world, a collision occurs when two moving objects meet. However, in a game world, a collision is often detected only when the models intersect.
                             </p>
                         </div>
                     </li>
@@ -60,12 +60,18 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The most common solution to this problem is to replace the models with simpler shapes for the purpose of detecting collisions. For each model we choose a mathematically simple shape that is big enough to completely surround it. These simple shapes are tested accurately for intersection against each other. These shapes are called bounding volumes because they define a boundary for the space occupied by the model. Common bounding volumes are spheres and cuboids.
+                                The most common solution to this problem is to replace the models with simpler shapes for the purpose of detecting collisions. For each model, we choose a mathematically simple shape that is big enough to completely surround it. These simple shapes are tested accurately for intersection against each other. These shapes are called bounding volumes because they define a boundary for the space occupied by the model. Common bounding volumes are spheres and cuboids/boxes.
                             </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Use the interactive scene below to see how the choice of bounding volumes can affect the accuracy of collision detection.</p>
                             <div class ="interactive-scene">
                                 <h2>Bounding Volumes</h2>
                                 <canvas id="bounding-volumes-webgl"></canvas>
-                                <div class="container">
+                                <div class="container" style="text-align: left;">
                                     <label for="cars">Bounding Volume 1</label>
                                     <select name="bv1" id="bv1">
                                       <option value="box">Box</option>
@@ -78,8 +84,8 @@
                                       <option value="sphere">Sphere</option>
                                     </select>
                                 </div>
-
-                                <div class="container">
+                                <br/>
+                                <div class="container"  style="text-align: left;">
                                     <label for="cars">Bounding Volume 2</label>
                                     <select name="bv2" id="bv2">
                                       <option value="box">Box</option>
@@ -92,7 +98,8 @@
                                       <option selected value="sphere">Sphere</option>
                                     </select>
                                 </div>
-                                <div class="container">
+                                <br/>
+                                <div class="container"  style="text-align: left;">
                                     <button id ="collide">Check Collision</button>
                                     <button id ="reset">Reset</button>
                                 </div>
@@ -102,7 +109,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This method will correctly find real collisions, but it will also incorrectly find collisions when the models are only close to each other. To see how this can happen, try using box bounding volumes with sphere objects in the interactive scene above. This can be minimised by making the bounding volume as small as possible, but this problem cannot be eliminated (unless the object being tested the same shape as the bounding volume, e.g spehre shape and a sphere volume). 
+                                This method will correctly find real collisions, but it will also incorrectly find collisions when the models are only close to each other. To see how this can happen, try using box bounding volumes with sphere objects in the interactive scene above. This can be minimised by making the bounding volume as small as possible, but this problem cannot be eliminated (unless the object being tested is the same shape as the bounding volume, e.g sphere shape and a sphere volume). 
                             </p>
                         </div>
                     </li>
@@ -116,10 +123,10 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                To <em><b>define a bounding sphere</b></em> (or any sphere, for that matter), we must choose the centre point and a radius. The most convenient centre point for a model is simply the position of the model. Then we need to choose a radius so that the sphere will completely surround the model. Selecting the distance from the centre to the furthest point on the model will achieve this. Alternatively this value can simply be estimated by measuring the model.
+                                To <em><b>define a bounding sphere</b></em> (or any sphere, for that matter), we must choose the centre point and a radius. The most convenient centre point for a model is simply the position of the model. Then we need to choose a radius so that the sphere will completely surround the model. Selecting the distance from the centre to the furthest point on the model will achieve this. Alternatively, this value can simply be estimated by measuring the model.
                             </p>
                             <img src = "https://acodedoer.github.io/CO1301/Lab8/boundingsphere.jpg" alt="a sphere surrounding a star model"/>
-                            <p>This choice of sphere will not be ideal if the model origin is not perfectly centred (it isn’t in the diagram above). However it will suffice for our current examples.</p>
+                            <p>This choice of a sphere will not be ideal if the model origin is not perfectly centred (it isn’t in the diagram above). However, it will suffice for our current examples.</p>
                         </div>
                     </li>
                     <li>
@@ -147,7 +154,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Notice how this volume more tightly contains the model in the example. This will lead to less incorrect collision detections. Bounding boxes frequently have this advantage over bounding spheres.
+                                Notice how this volume more tightly contains the model in the example. This will lead to fewer incorrect collision detections. Bounding boxes frequently have this advantage over bounding spheres.
                             </p>
                         </div>
                     </li>
@@ -252,7 +259,7 @@ if (collisionDist < sphereRadius)
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/pid-4365525-dt-content-rid-8445828_1/xid-8445828_1">Get the sample TL-Engine code from collisions.cpp on Blackboard</a> and copy the code into your project's .cpp file ( to avoid errors check that the path to the default Tl-Engine media folder is correct). It is a very simple program allowing you to move a sphere around.
+                                <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab8/Collisions.cpp">Get the sample TL-Engine code from this link</a> and copy the code into your project's .cpp file ( to avoid errors check that the path to the default TL-Engine media folder is correct). It is a very simple program allowing you to move a sphere around.
                             </p>
                         </div>
                     </li>  
@@ -268,7 +275,7 @@ if (collisionDist < sphereRadius)
                             <p class= "instruction-item">
                                 In the game-loop, add code to check for collision between the bullet (point) and the sphere at every frame.</p>
                                 <p>
-                                    Use the code snippet from Section 4 to implement the collision detection. The sphere is your "LargeModel" and the bullet is your "SmallModel". The sphere radius here is 10 – in this case the bounding volume is exactly the right shape. Declare a float variable to store the radius before using it.   
+                                    Use the code snippet from Section 4 to implement the collision detection. The sphere is your "LargeModel" and the bullet is your "SmallModel". The sphere radius here is 10 – in this case, the bounding volume is exactly the right shape. Declare a float variable to store the radius before using it.   
                             </p>
                         </div>
                     </li>                   
@@ -300,7 +307,7 @@ z = bullet->GetZ() - sphere->GetZ();
 
 float collisionDist = sqrt(x * x + y * y + z * z);	//the length of the vector i.e. the distance between the bullet and the center of the sphere
 
-if (collisionDist < sphereRadius) //check if the distance is less than sphereRaidus, then move bullet to new position
+if (collisionDist < sphereRadius) //check if the distance is less than sphereRadius, then move bullet to new position
 {
     bullet->SetY(25.0f);
 }
@@ -366,10 +373,10 @@ if (myEngine->KeyHit(Key_R)) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add code to check for collision between the sphere and torus. Use a bounding sphere with radius of 15 for the torus.
+                                Add code to check for collision between the sphere and torus. Use a bounding sphere with a radius of 15 for the torus.
                             </p>
                             <p>
-                                HINT: You will need to declare a new float to store torusRadius, calculate the vector between the torus and the sphere, calculate the length of the vector and check if the distance is less than(torusRadius + sphereRadius)
+                                HINT: You will need to declare a new float to store torusRadius, calculate the vector between the torus and the sphere, calculate the length of the vector and check if the distance is less than (torusRadius + sphereRadius)
                             </p>
                         </div>
                     </li>      
@@ -415,7 +422,7 @@ if (myEngine->KeyHit(Key_R)) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/pid-4365525-dt-content-rid-8445828_1/xid-8445828_1">Get the sample TL-Engine code from collisions.cpp on Blackboard</a> again but this time change the sphere model to a bullet model.
+                                <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab8/Collisions.cpp">Get the sample TL-Engine code from collisions.cpp on Blackboard</a> again but this time change the sphere model to a bullet model.
                             </p>
                         </div>
                     </li>
@@ -450,7 +457,7 @@ if (myEngine->KeyHit(Key_R)) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Again make the box jump if there is a collision. Then reposition it on a key press.
+                                Again make the box jump if there is a collision. Then reposition it on a keypress.
                             </p>
                         </div>
                     </li>     
@@ -492,7 +499,7 @@ if (myEngine->KeyHit(Key_R)) {
                                 <li>
                                     <div class="list-div">
                                         <p class= "instruction-item">
-                                    Make the cube jump on a collision. Can you spot the inaccuracies with this trick.
+                                    Make the cube jump on a collision. Can you spot the inaccuracies with this trick?
                             </p>
                         </div>
                     </li>
@@ -533,7 +540,7 @@ if (myEngine->KeyHit(Key_R)) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Make the sphere move by the stored velocity every frame (regardless of key presses) and remove the cube jump.
+                                Make the sphere move by the stored velocity every frame (regardless of keypresses) and remove the cube jump.
                             </p>
                         </div>
                     </li>
@@ -680,7 +687,7 @@ if (myEngine->KeyHit(Key_R)) {
             }
             else if(bv1Type == "box" && bv2Type == "box"){
                 console.log("here")
-                collision = (group1.position.x < group2.position.x + 0.5 && group1.position.x + 0.5 >group2.position.x) && (group1.position.y < group2.position.y + 0.5 && group1.position.y + 0.5 >group2.position.y) && (group1.position.z < group2.position.z + 0.5 && group1.position.z + 0.5 >group2.position.z)
+                collision = (group1.position.x < group2.position.x + 1 && group1.position.x + 1 >group2.position.x) && (group1.position.y < group2.position.y + 1 && group1.position.y + 1 >group2.position.y) && (group1.position.z < group2.position.z + 1 && group1.position.z + 1 >group2.position.z)
             }
             return collision;
         }

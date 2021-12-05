@@ -52,17 +52,6 @@
                     <ol>
                         <li>
                             <div class="list-div">
-                                    <p class= "instruction-item">We will start by linking two objects together to create a chase view. The method used for linking objects is:
-    
-    <pre><code>void AttachToParent(const ISceneNode* Parent);
-    // E.g. camera->AttachToParent( character );</code></pre>
-    
-                                    The type 'ISceneNode' is new to you – it represents anything in the scene, including cameras and models. This simply tells you that you can attach anything to anything (although some combinations don’t work yet).
-                                    </p>
-                                </div>
-                        </li>
-                        <li>
-                            <div class="list-div">
                                     <p class= "instruction-item">Create a new TL-Engine project named <b>Lab9_Parenting_Project</b>. Open the project.
                                     </p>
                                 </div>
@@ -88,8 +77,11 @@
                         </li>
                         <li>
                             <div class="list-div">
-                                <p class= "instruction-item">Now attach the sphere model to the cube model. Look at the example in the beginning of this section fro the line of code to use, the code should be added in the initialisation section. Now the sphere should follow the cube when it moves.
+                                <p class= "instruction-item">Now attach the sphere model to the cube model using the AttachToParent() method as shown below, the code should be added in the initialisation section. The sphere should then follow the cube when it moves.
+                                    <pre><code>sphere->AttachToParent(cube);</code></pre>
+                                You can view the method's definition in the appendix section at the end of this document.
                                 </p>
+
                             </div>
                         </li>
                         <li>
@@ -107,8 +99,7 @@
                         <li>
                             <div class="list-div">
                                 <p class= "instruction-item">You can detach an object from its parent with:
-    <pre><code>// Detaches this object from any parent it is attached to.
-    void DetachFromParent();</code></pre>
+    <pre><code>object->DetachFromParent();  // Detaches this object from any parent it is attached to</code></pre>
                                 </p>
                             </div>
                         </li>
@@ -128,7 +119,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Let's use the what we have introduced in th efirst part of this lab to create a mini solar system. Start by creating a new TL-Engine project called "Lab9_SolarSystem_Project". 
+                                Let's use the what we have introduced in th efirst part of this lab to create a mini solar system. Start by creating a new TL-Engine project called <b>Lab9_SolarSystem_Project</b>. 
                             </p>
                         </div>
                     </li>
@@ -424,6 +415,24 @@
                             </p>
                         </div>
                     </li>       
+                </ol>
+            </section>
+            <section>
+                <h2>APPENDIX</h2>
+            <div class="section_instrcutions"></div>
+                <ol>     
+    
+                <li>
+                    <div class="list-div">
+                            <p class= "instruction-item">AttachToParent() definition:
+
+<pre><code>void AttachToParent(const ISceneNode* Parent);
+// E.g. camera->AttachToParent( character );</code></pre>
+
+                            The type 'ISceneNode' is new to you – it represents anything in the scene, including cameras and models. This simply tells you that you can attach anything to anything (although some combinations don’t work yet).
+                            </p>
+                        </div>
+                </li>
                 </ol>
         </section>
     </main>

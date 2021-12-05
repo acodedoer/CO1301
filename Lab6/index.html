@@ -359,7 +359,7 @@ for (int i = 0; i < kParticles; i++) {
     particleStates[i] = Moving;
 
 }</code></pre>
-                            <img src="https://acodedoer.github.io/CO1301/Lab6/particles_.PNG" alt="5 particles spread horizontally accross the screen">
+                            <img class="center" src="https://acodedoer.github.io/CO1301/Lab6/particles_.PNG" alt="5 particles spread horizontally accross the screen">
                         </div>
                     </li>
                     <li>
@@ -367,7 +367,7 @@ for (int i = 0; i < kParticles; i++) {
                             <p class= "instruction-item">        
                                 Add a for loop to your game loop that moves each element of particleModels[] in each frame using the vector (0, -0.005, 0). Within the same for loop, add an if-statement to check if the element of particleModels[]  that is moved has reached kFinalY along the y-axis, if so set its y-position to kInitialY so that it can reappear at its initial position at the top of the screen.
                                 </p>
-                                <img src="https://acodedoer.github.io/CO1301/Lab6/lab6_1.gif" alt="5 particles spread horizontally accross the screen and moving vertically">
+                                <img class="center" src="https://acodedoer.github.io/CO1301/Lab6/lab6_1.gif" alt="5 particles spread horizontally accross the screen and moving vertically">
                         </div>
                     </li>
                     <li>
@@ -383,17 +383,21 @@ for (int i = 0; i < kParticles; i++) {
                     <div class="section_instrcutions"></div>
                     <ol>
                         <li>
+                            <div class="list-div">
                             <p>
                                  Create a new array of strings called particleSkins. This should be an array of 5 elements and each element should store the file name (including the extension e.g. "particleSkin1.tga") of a particle skin found in the media folder you downloaded for this lab.
                             </p>
+                            </div>
                         </li>
-                        <li>
+                        <li><div class="list-div">
                             <p>
                                 In the for loop that creates models and assigns them to elements of particleModels[], add a line code that sets the skin of the model created at each iteration of the loop to the image stored in particleSkins[i]. This means that particleModels[0] will have particleSkins[0] as its skin, particleModels[1] will have particleSkins[1] as its skin, particleModels[2] will have particleSkins[2] as its skin, and so on.
                             </p>
-                            <img src="https://acodedoer.github.io/CO1301/Lab6/lab6_2.gif" alt="5 differently coloured particles spread horizontally accross the screen and moving vertically">
+                            <img class="center" src="https://acodedoer.github.io/CO1301/Lab6/lab6_2.gif" alt="5 differently coloured particles spread horizontally accross the screen and moving vertically">
+                        </div>
                         </li>
                         <li>
+                            <div class="list-div">
                                 <p>
                                     Create an enumeration called MovementStates with two values: Moving and Paused. Then create an array of type MovementStates with 5 elements called particleStates. Use a for loop to initialise all the elements of particleStates to Moving. The element in each index of particleStates[] should be used to keep track of the model stored in the same index in particleModels[].
                                     <ul>
@@ -405,6 +409,8 @@ for (int i = 0; i < kParticles; i++) {
                                         </li>
                                     </ul>
                                 </p>
+                                </div>
+                                </li>
                     </ol>
             </section>
 

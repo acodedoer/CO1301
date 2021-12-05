@@ -10,367 +10,422 @@
     <!-- and it&#039;s easy to individually load additional languages -->
     <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Lab 9 - Drawing Text & Sprites</title>
+    <title>CO1301 Lab 9: Parenting & the Solar System</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br>Lab 9 - Drawing Text & Sprites</h1></header>
+    <header><h1>CO1301: Games Concepts <br>Lab 9 - Parenting  & the Solar System</h1></header>
     <main>
         <section>
-            <h2>1. Introduction</h2>
-            <div class="section_instrcutions"></div>
-                <ol>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                In this lab, you will learn to display text and use sprites in your TL-Engine projects.
-                            </p>
-                        </div>
-                    </li>
-                </ol>
-        </section>
+            <section>
+                <h2>1. Introduction</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                        <li>
+                            <div class="list-div">
+                                    <p class= "instruction-item">In this lab, we will look at how two objects (e.g. models and cameras) can be linked to form parent/child relationships.
+                                   </p>
+                               </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                    <p class= "instruction-item">There are a huge number of possibilities to this technique: for example, attaching a gun object to a character object, allowing a character to move around on a moving boat, or making a camera follow a character around (chase view).
+                                   </p>
+                               </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    This lab will also introduce the idea of parenting, model hierarchy, and the dummy model.
+                                </p>
+                            </div>
+                        </li>
+                    </ol>
+            </section>
+            <section>
+                <h2>2. Parenting</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                        <li>
+                            <div class="list-div">
+                                    <p class= "instruction-item">Create a new TL-Engine project named <b>Lab9_Parenting_Project</b>. Open the project.
+                                    </p>
+                                </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Load the grid mesh, the cube mesh and create a model for each of them at the origin.
+                                        
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                                <div class="list-div">
+                                    <p class= "instruction-item">Load the sphere mesh and create a sphere model at position (-30, 0, -10).
+                                    </p>
+                                </div>
+                            </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Add code to allow you to move the cube using the keyboard (using w, a, s, and d keys).
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Now attach the sphere model to the cube model using the AttachToParent() method as shown below, the code should be added in the initialisation section. The sphere should then follow the cube when it moves.
+                                    <pre><code>sphere->AttachToParent(cube);</code></pre>
+                                You can view the method's definition in the appendix section at the end of this document.
+                                </p>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Now add code to allow you to move the sphere (using u, h, j, and k keys). Do you understand how it moves relative to the cube?
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Now change the camera to a "kManual" type and then attach the camera to the cube (the kFPS type of camera will not work here).
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Next change the position of the camera, using the SetLocalPosition() method, to (0.0f, -30.0f, 50.0f); and rotate the camera about its local x-axis by 30 degrees. You should now have a basic chase view camera.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">You can detach an object from its parent with:
+    <pre><code>object->DetachFromParent();  // Detaches object from any parent it is attached to</code></pre>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">Save your project.
+                                </p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+                </section>
         <section>
-            <h2>2. Setting Up</h2>
+            <h2>3. Solar System Project </h2>
             <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Engine project called Lab9_Text_Project.
+                                Let's use what we have introduced in the first part of this lab to create a mini solar system. Start by creating a new TL-Engine project called <b>Lab9_SolarSystem_Project</b>. 
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a kManual camera at position (0, 0, 0), then implement camera control using keyboard and mouse as you did in Lab3_CameraControl_Project.
+                                Use the "Stars.x" mesh to create a model at the origin that will serve as a skybox. Its radius is 100, and when placed in your scene it will create a background of stars. The model also has some alternative skins:
+                                <ul>
+                                    <li>“StarsHi.jpg”</li>
+                                    <li>“StarClouds.jpg”</li>
+                                    <li>“StarCloudsHi.jpg”</li>
+                                </ul>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Before utilising text in the TL-Engine, you need to load a font. Add the code below in the setup area of your code in order to load a font.
+                                The "Planet.x" mesh can be used to create spheres with a radius of 1.0 and has several basic skins to create all the main bodies in the solar system:
+                                <ul>
+                                    <li>“Sun.jpg”</li>
+                                    <li>“Mercury.jpg”</li>
+                                    <li>“Venus.jpg”</li>
+                                    <li> “Earth.jpg”</li>
+                                    <li>“Moon.jpg”</li>
+                                    <li>“Mars.jpg”</li>
+                                    <li>“Jupiter.jpg”</li>
+                                    <li> “Saturn.jpg”</li>
+                                    <li>“Uranus.jpg”</li>
+                                    <li>“Neptune.jpg”</li>
+                                    <li>“Pluto.jpg”</li>
+                                </ul>
+                             <br>
+                                <p>There are also some additional and hi-resolution skins:</p>
+  
+                                <ul>
+                                    <li>“EarthHi.jpg”</li>
+                                    <li>“EarthPlain.jpg”</li>
+                                    <li>“EarthNight.jpg”</li>
+                                    <li>“EarthPlainHi.jpg”</li>
+                                    <li>“EarthNightHi.jpg”</li>
+                                    <li>“MoonHi.jpg”</li>
+                                </ul>
                             </p>
-<pre><code>IFont* myFont = myEngine->LoadFont( "Comic Sans MS", 36 );
-// Load "Comic Sans MS" font at 36 points
-</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You can use TL-Engine scaling functions ( Scale() ) to make models larger or smaller. This will allow you to use the same planet mesh to create models for the Sun, the Earth and all the other planets - you scale each one differently to create appropriate sizes.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                There is also another engine function SetFarClip that changes how far away you can see. In a space game you can see very far so this is needed, use it when objects are “clipped” in the distance:
+                            </p>
+                            <pre><code>myCamera->SetFarClip( 100000 ); // Now can see up to 100k distant</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Begin by creating the earth (at the origin) and the moon (to the earth's side) using the "Planet.x" mesh and the appropriate texture for each body. Place them close enough together so that you can see them both comfortably (remember, this is not meant to be realistic). You will have to scale the  model down for the moon.
+                            </p>
                             <p>
-                                As you can see, fonts are loaded in a similar way to meshes. A new data type: IFont is used for the fonts. As with meshes you need both the data type of the variable and a name for the variable.
+                                You may want to set the y-position of your camera to 0 so that the models are centred within the camera's view.
+                            </p>
+                            <img src="https://acodedoer.github.io/CO1301/Lab9/earthandmoon.JPG" alt="a picture of the models of earth and moon"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In your game-loop add code that rotates the Earth about its local y-axis.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Once a font has been loaded you can draw text with it. However,  the text will only be drawn for one frame. In order to keep the text permanent, you must put the code for drawing the text in the game loop
+                                Attach the moon as a child of the earth using the AttachToParentMethod() as shown below:
                             </p>
-                            <pre><code>myFont->Draw( "Hello World", 200, 100 );</code></pre>
-                            <p>
-                                Adding the code above to your game-loop should display "Hello World" on your screen.
+                            <pre><code>moon->AttachToParent( earth );</code></pre>
+                            <p>This means that the earth model is now a parent of the moon model, and the moon's position is now relative to the position of the earth (therefore, you may need to adjust the coordinates used to position the moon beside the earth). You should now see the moon revolving around the earth when you run your program.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This is all well and good, but what would happen if you wanted the earth and the moon to rotate at different speeds? The way things are set up at the moment the earth must rotate around its axis at the same speed that the moon rotates around the earth. It is possible to set up the scene so that the earth and the moon rotate at different speeds and this is by introducing a dummy model using the "Dummy.x" mesh. You load and use the dummy model in exactly the same way as any other mesh and model. The difference is that the dummy is never rendered: it is just an invisible point in space.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You can load any system font e.g. Times New Roman, Adobe Garamond Pro, Comic Sans MS, Monotype Corsiva, stencil std, Charlemagne std etc. Not every font is guaranteed to work correctly. Experiment and see what happens. If none is loaded, the font defaults to 24 point Arial.
+                                Create a dummy model at the same location as the earth. Attach the moon to the dummy instead of the earth.
+<pre><code>IMesh* dummyMesh = myEngine->LoadMesh("Dummy.x");
+IModel* dummy = dummyMesh->CreateModel(earth->GetX(), earth->GetY(), earth->GetZ());
+moon->AttachToParen(dummy);</code></pre>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now load the cube mesh and create a model from it.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Make sure you have implemented camera movement similar to the one in Lab3_CameraControl_Project and use to it to control your camera. Once you have done this move the camera around. What did you notice?
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Text (and Sprites as you'll see later on) use a different coordinate system to the one used to draw 3D models. Text uses the X and Y axes of the screen. This alternative coordinate system is the same as the one used by the mouse. The screen axes look like this:
-                            </p>
-                            <img src="https://acodedoer.github.io/CO1301/Lab3/2D-Grid.PNG" alt="An image showing a 2 dimensional grid with the origin at the top left corner">
-                        
-                            <p>
-                                The origin (0, 0) of the coordinate system is at the top left of the screen. Y increases as you go down the screen, whilst x increase as you go to the right.
+                                In the game loop add code that rotates the dummy about its local y-axis. Now you can rotate the Earth separately from the dummy (and hence the moon).
                             </p>
                         </div>
                     </li>
                 </ol>
             </section>
             <section>
-                <h2>3. Moving Text</h2>
+                <h2>4. Adding Bodies</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                          <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    Unlike a model, you cannot move text directly. Instead, you will have to keep track of where you would like the text to be drawn.
+                                    Let us expand what we have so far to a mini solar system.
                                 </p>
                             </div>
                         </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare two floating-point variables called fontX and fontY. Set them both initially to a value of 0.
+                                Create a model for the sun using the Planet.x mesh, scale to show the size of the sun compared to the earth (again it should just be bigger, not realistic), and use the appropriate skin.
+                            </p>
+                        </div>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Change the position of your earth, moon and dummy models with respect to the position of the sun. Remember the dummy should be in the same position as the earth; and the moon is a child of the dummy, therefore you will need to position it relative to the position of the dummy.
+                            </p>
+                            <img src="https://acodedoer.github.io/CO1301/Lab11/sunandearth.JPG" alt="a picture of the models of the sun, earth and moon"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add a few other planets around the sun and scale them to different sizes. You don’t need to worry about getting the sizes of the planets correct, just try to make it look interesting.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Draw the text using fontX and fontY.
-                            </p>
-                            <pre><code>myFont->Draw( "Hello World", fontX, fontY );</code></pre>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Set up the cursor keys so that they change the values of fontX and fontY within the game loop and so move the text. The cursor keys are: Key_Up, Key_Down, Key_Right and Key-Left. You should then be able to move the location of the text around the screen.
+                                Make the planets orbit realistically (they rotate around the sun at different speeds and spin on their axes). You will need to think about using parenting and dummy objects.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                There are a number of other things that you can do with the ‘Draw’. The Draw method is defined as:
-                            </p>
-<pre><code>Draw( const string& sText, const int iX, const int iY,
-    const unsigned int uiColour,
-    const EHorizAlignment eHorizAlign, const EVertAlignment eVertAlign )</code></pre>
-                            <p>An example of use is:</p>
-<pre><code>// This will draw red text, centre aligned at the coordinates (100, 300)
-myFont->Draw( "Hello Again", 100, 320, kRed, kCentre );
-
-//The will draw the phrase in blue in exactly the centre of the screen.
-myFont->Draw( "Hello Again", 640, 320, kBlue, kCentre, kVCentre );</code></pre>
-<p>
-    Note: that the coordinates used in the last draw method are based on the default window size of Tl-Engine projects (1280, 720). If you are using a different window size, you should take half of your custom dimensions when calculating coordinates for the centre of your screen.
-</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                    The colour of the text is specified in the fourth parameter of the method. The following standard colours are supported:
-                            </p>
-                            <ul>
-                                <li>kWhite</li>
-                                <li>kGreen</li>
-                                <li>kMagenta</li>
-                                <li>kDarkGrey</li>
-                                <li>kBlack</li>
-                                <li>kBlue</li>
-                                <li>kYellow</li>
-                                <li>kRed</li>
-                                <li>kCyan</li>
-                                <li>kLightGrey</td>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                The alignment of the text can be specified in the fifth (horizontal) and sixth (vertical) parameters. Horizontal alignment refers to the horizontal positioning of the text in relation to the coordinates specified. By default, the text starts at the given coordinates (i.e. it is left aligned). However, the text can be centred at the coordinates or right aligned. The constants for horizontal alignment are:
-                                <ul>
-                                    <li>kLeft</li>
-                                    <li>kRight</li>
-                                    <li>kCentre</li>
-                                </ul><br/>
-                                Vertical alignment refers to the vertical positioning of the text in relation to the coordinates specified. The constants for vertical alignment are:
-                                <ul><br/>
-                                    <li>kTop</li>
-                                    <li>kVCentre</li>
-                                    <li>kBottom</li>
-                                </ul><br/>
-                                Using these constants, try to position your text in the top left, top right, bottom left, bottom right and absolute centre of the screen.
+                                You will need to think carefully about the scales and distances that you use. Try to make your scene look good but feel suitably large without being impossible to navigate.
                             </p>
                         </div>
                     </li>           
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                For future reference, you are formally building an animation hierarchy. Your program uses the same concepts and general form that you would to build an animation hierarchy e.g. for a person.
+                            </p>
+                        </div>
+                    </li>
                 </ol>
             </section>
             <section>
-                <h2>4. Displaying More Complex Text</h2>
+                <h2>5. Spaceship and Chase Camera</h2>
                 <div class="section_instrcutions"></div>
                     <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Engine project called Lab9_KeepingScore_Project <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4437396-dt-content-rid-8866423_1/xid-8866423_1" target="_blan">and copy the code from this file</a> into the project's .cpp file (check the path to the default media folder to avoid errors).
+                                Load up and create a spaceship. The model can be found inside <a href="">"spaceship.zip" from this link</a>. You may have to scale this up or down depending on the size of your planets.
                             </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Implement movement control for the spaceship. Remember to set this up local to the spaceship.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a chase camera by attaching your camera to the spaceship, and then positioning the camera behind the spaceship. Make sure your camera is a kManual camera. (see section 2 task 7).
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Implement collision detection and an appropriate collision resolution for the spaceship and the sun only. Use sphere bounding volumes for both the sun and the spaceship, and check for sphere-to-sphere collisions. Remember, the steps are:
+                            </p>
+                            <ol>
+                                <li>
+                                    Calculate the vector between the two sphere-centres (same as the models' positions)  
+                                </li>
+                                <li>
+                                    Get the length of this vector (the distance between the models)
+                                </li>
+                                <li>
+                                    If this distance is less than the sum of the radii of the two bounding spheres then there is a collision
+                                </li>
+                            </ol>
+                            <br/>
                             <p>
-                                Run the project and you will see a simple game where you press space bar to shoot a sphere at moving cubes. Get familiar with the gameplay and the code, you will be adding display messages to this game in this section.
-                            </p>
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                To output complex text (including variables or functions/methods) you need to be introduced to a new part of C++. You may have used "cout" in this module or in CO1401 in conjunction with the double chevron "<<" to direct text output to the screen, e.g.
-                            </p>
-                            <pre><code>cout << "hello world";</code></pre>
-                            <p class= "instruction-item">
-                                However, it is also possible to use the ‘stringstream’ type, which can be used like ‘cout’ to create a string. The stringstream type is used by tL-Engine to display complex text.
-                            </p>
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                The steps involved are as follows:
-                                <ul>
-                                    <li>Include the sstream library in your program
-<pre><code>#include &ltsstream&gt
-using namespace std;</code></pre>
-                                    </li>
-                                    <li>
-                                        Create a variable of type stringstream to hold the text you want to draw on the screen. Declare the variable within the game loop, otherwise you'll get problems with repeating text.
-                                        <pre><code>stringstream outText;</code></pre>
-                                    </li>
-                                    <li>Assign to it the text you wish to display (variables can be assigned), for example:
-                                    <pre><code>outText &lt&lt "Sphere Position: " &lt&lt sphere->GetX();</code></pre>
-                                    </li>
-                                    <li>Use the draw method to draw the text within the stringstream variable, make sure you use the str() command in conjunction with stringstream variable to convert its data into a string of characters to be drawn:
-<pre><code>myFont ->Draw( outText.str(), 20, 20 );
-outText.str(""); // Clear myStream</code></pre>
-                                    </li>
-                                </ul>
-                            </p>
-                            
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Although stringstream gives you access to functionality similar to "cout" do note that outputting newlines (endl or ‘\n’) has no effect in the TL-Engine - use more than one ‘Draw’ call instead.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                    Back to your Lab9_KeepingScore_project. Your first task is to write code that displays the value of "score", the variable that keeps track of the number of cubes hit by the player. Take a moment to first think about where this code should be placed.
-                            </p>
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Include the stringstream library and remember that you need to use the std namespace as well.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                                <p class= "instruction-item">
-                                Declare an IFont variable called regularFont and load a font of your choice with a font size of 36.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Declare a stringstream variable within the game loop and assign to it the value of score (using the format - Score: 0). Then draw it using regularFont at the top right corner of your screen. Make sure you use the appropriate cordinates, align constants, and colour.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                               Currently, the game stops when it enters either gamewon or gameover states. Remove the lines of code that stops the game in each of these states and replace them with code that draws an appropriate message at the center of the screen. Display "Game Over" and the current score when the game is in gameover state, and display "You Won!!!" when the game is in gamewon state.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Create a new IFont variable called largeFont and load the same font type as regularFont and a font size of 72. Use largeFont to display the game over and game won messages.
+                                You can use Week 8's lecture slides or lab sheet as a reference for implementing collision detection and resolution.
                             </p>
                         </div>
                     </li>
                 </ol>
             </section>
             <section>
-                <h2>5. Drawing Sprites</h2>
+                <h2>6. Using Functions for Collision Detection</h2>
                 <div class="section_instrcutions"></div>
-                    <ol>     
+                    <ol> 
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Sprites are 2D bitmaps. Sprites were once used to draw all of the graphics in games. However, with the introduction of 3D graphics, they are no longer the centre of computer graphics.  
+                               Right now our program contains sphere to sphere collision detection between the sun and the spaceship. If we were to implement sphere to sphere collision between the spaceship and all the other bodies without using functions, our game-loop could get messy quickly. Let us, therefore, create a sphere to sphere collision detection function that we can call anytime we want to check for a collision between the spaceship and any of the other bodies in our program.  
                             </p>
                         </div>
                     </li> 
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Whilst models have overtaken sprites as the mainstay of computer graphics, sprites are still extremely important.
+                               The sphere to sphere collision dectection function should check if there is a collision between two objects bounded by spheres. Therefore it needs to know the position of the objects and their radii of the spheres. If there is a collision it should return True, and return False is there is no collision. Use the code below to declare the function, the declaration should be placed before the start of the program's main function
                             </p>
-                            <ul>
-                                <li>Sprites commonly used within User Interfaces, Menus and Loading Screens.</li>
-                                <li>Sprites can be used to create effects such as smoke, explosions and rain.</li>
-                            </ul>
-                            <p>
-                                In this section, you will use a sprite as a backdrop for a User Interface.
-                            </p>
+                            <pre><code>bool sphere2Sphere(float s1XPos,  float s1ZPos, float s1Radius, float s2XPos, float s2ZPos, float s2Radius);</code></pre>
                         </div>
                     </li>   
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In many ways you will find the sprite operations similar to those of models. However, sprites are simpler in as much as you only have to consider movement in 2D: up and down, or left and right. The sprites do have a Z component, but this is only used to sort the sprites, i.e. to calculate which sprite is in front, and hence visible, if two or more sprites overlap.
+                                Next, use the code provided below to define a sphere2sphere collision detection function below the closing brace of the main function.
+                            </p>
+<pre><code>bool sphere2Sphere(float s1XPos, float s1ZPos, float s1Radius, float s2XPos, float s2ZPos, float s2Radius) {
+        float distX = s2XPos - s1XPos;
+        float distZ = s2ZPos - s1ZPos;
+        float distance = sqrt(distX*distX + distZ*distZ);
+        bool collision;
+        if (distance < (s1Radius + s2Radius)) {
+            collision = true;
+        }
+        else {
+            collision = false;
+        }
+    
+        return collision;
+}</code></pre>
+                            <p>
+                                The function takes in the x and z positions of two sphere volumes (why do you think the Y position is ignored in this case?) and their radii, calculates the distance between the spheres, compare the distance with the sum of their radii, returns true to show there is a collision if the distance is less than the radii sum, or returns false to show there is no collision if the distance is greater than the radii sum.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The naming convention follows the format you are familiar with. Essentially you can replace the word Model with the word Sprite. An important difference is that you do not need to load a Mesh.
+                               You can now call this function inside your game loop to check for collisions. Use the GetX() and GetZ() functions to get the position of an object, and make sure you take scaling into consideration when providing the radius of an object (e.g. a planet that is not scaled has radius 1, a planet scaled up to 2 has radius 2, while a planet scaled down to 0.5 has radius 0.5). An example of the use of the function is shown below:
                             </p>
-                            <p>The data type for a sprite pointer is ISprite.</p>
+<pre><code>if(sphere2Sphere(earth->GetX(), earth->GetZ(), 1.0f, spaceship->GetX(), spaceship->GetZ(), 4.0f)){
+    myEngine->Stop();
+}
+</code></pre>
+<p>
+    The spaceship in its default scale has a radius of about 4.0f, you can get a more exact value using its bounding box coordinates found within its mesh file.
+</p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Sprites are created using CreateSprite(). Formally CreateSprite is a method of myEngine. There are a set of movement and positioning methods for sprites. These are: GetX, GetY, SetX, SetY, SetZ, SetPosition, MoveX, MoveY, and Move.All pixel coordinates are in *floating point* 
+                                Using the sphere2sphere function, update your game loop to check for collision between the spaceship and all the bodies in your solar system.
                             </p>
-<pre><code>ISprite* backdrop = myEngine->CreateSprite( "backdrop.jpg", 200, 400 );
-backdrop->moveX( 0.1f );</code></pre>
                         </div>
-                    </li> 
+                    </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new project called Lab9_Sprites_Project.
+                                You can reuse this function in other programs. You should also try defining functions for other collision detection approaches so you can easily reuse them.
                             </p>
                         </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Load "BlackBall.jpg" as a sprite backdrop and position it at the bottom of your screen. Then draw the phrase "User Interface" over the sprite backdrop in white.
+                    </li>       
+                </ol>
+            </section>
+            <section>
+                <h2>APPENDIX</h2>
+            <div class="section_instrcutions"></div>
+                <ol>     
+    
+                <li>
+                    <div class="list-div">
+                            <p class= "instruction-item">AttachToParent() definition:
+
+<pre><code>void AttachToParent(const ISceneNode* Parent);
+// E.g. camera->AttachToParent( character );</code></pre>
+
+                            The type 'ISceneNode' is new to you – it represents anything in the scene, including cameras and models. This simply tells you that you can attach anything to anything (although some combinations don’t work yet).
                             </p>
                         </div>
-                    </li>  
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                The techniques described above can be used to output real-time information from your game. Load the mesh for a sphere and create one sphere. Set up key controls in order to move the sphere. Use the GetX, GetY and GetZ methods and the text output technique you have just learnt to output the current X, Y, and Z coordinates of the sphere as you move it around. The values should be drawn in the User Interface area.
-                            </p>
-                        </div>
-                    </li>   
-                            </p>
-                        </div>
-                    </li>    
+                </li>
                 </ol>
         </section>
     </main>
