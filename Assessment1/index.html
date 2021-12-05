@@ -10,6 +10,11 @@
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <title>CO1301 Assessment 1 - Spheres.io Implementation Guide</title>
+    <style>
+        div{
+            margin-bottom: 2em;
+        }
+    </style>
 </head>
 <body>
     <header><h1>CO1301: Games Concepts <br> Assessment 1 - Spheres.io Implementation Guide</h1></header>
@@ -21,33 +26,104 @@
                 <img class="center" src="https://acodedoer.github.io/CO1301/Assessment1/basiclayout.png">
             </div>
 
-            <div class="section_instrcutions">
-                <ol>
-                    <li >
-                            <div class="list-div">
-                                <p class= "instruction-item">Create a new TL-Engine project called <b>Lab1_ControlledSphere_Project</b>.
-                                </p>
+            <div>
+                <b>2. MILESTONE 1: THIRD CLASS (UPTO 49%)</b>
+                <p>You must have implemented the basic scene as specified by the brief to get full marks for implementing features in this section. The features in this milestone can be implemented as describe below, and on completion the game should look similar to the video that follows.
+                    <ul>
+                        <li>
+                            To implement WASD controls for moving the sphere and arrow controls for the camera use <b>Lab2_Controls_Project</b> and <b>Lab3_CameraControl_Project</b> as references.
                         </li>
-                    <li >
-                        <div class="list-div">
-                            <p class= "instruction-item">Load a sphere mesh, then create a sphere model and move it upwards until its Y reaches 30, then return it to its starting position.</b>.
-                            </p>
+                        <li>
+                            To check whether the sphere has moved into the water, use <b>Lab2_TestingVariables_Project</b> as a reference.
+                        </li>
+                        <li>
+                            To implement Paused and Playing states, you can use a boolean variable to store this binary state (use <b>Lab2_TestingVariables_Project</b> as a reference). However if you are implementing features up to MILESTONE 3 you must utilise an enumeration to track the states of the game i.e. Playing, Paused and GameOver, you cuse <b>Lab5_SphereStates_Project</b> as a reference. For this milestone, the game should just end when the it enters GameOver state.
+                        </li>
+                        
+                        <li>
+                            To implement box pickup by the sphere, you have to calculate the calculate the distance between the sphere and the all the cubes in the scene at every frame by doing the following for each cube in the scene:
+                            <ol>
+                                <li>
+                                    Calculate the vector betwene the sphere and the cube
+                                </li>
+                                <li>
+                                    Calculate the length of the vector, this is the distance betwene the sphere and the cube
+                                </li>
+                                <li>
+                                    If the distance is less than the sum of the sphere radius (10) and half of the cube's side length (2.5), then the cube should be picked up.
+                                </li>
+                                <li>
+                                    Make the cube invisible, you can do that by changing its position to be out of view.
+                                </li>
+                            </ol>
+                            Vectors are inbtroduced in Lecture 6- Vectors, you can use the formula introcuded to calculate the vector between the sphere and each cube, and their lengths. You can also use <b>Lab7_Drone_Project</b> as a referenc, however note that <b>Lab7_Drone_Project</b> goes on to calculate direction vectors, for this assessment you are only interested in calculating the length of a vector and comparing it to some distance.
+                        </li>
+                    </ul>
+                </p>
+                <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/fa759196-bdde-48e9-87f9-2de00b946eff?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+            </div>
+    
+            <div>
+                <b>3. MILESTONE 2: LOWER SECOND CLASS (UPTO 59%)</b>
+                <p>You must have implemented the basic scene as specified by the brief, and <b>MILESTONE 1</b> to get full marks for implementing features in this section. The features in this milestone can be implemented as describe below, and on completion the game should look similar to the video that follows.
+                <ul>
+                    <li>
+                        To implement an isometric camera on pressing "2", listen for a key hit on the 2 key, and update the position and rotation of the camera as the specified by the brief. It is important that you first reset theorintation of the camera before making these updates (use <b>camera->ResetOrientation()</b>). If the isometric camera is active, listen for key hit on the 1 key to update the position and rotation back to the top-down camera specified in the basic scene spec, again remember to reset the orientation before making the updates. Also remebe rthta the arrow controls should not work on the camera if it is isometric, therefore you may have to use states to track the active camera, <b>Lab5_SphereStates_Project</b> can be used as a refrence for this.
                     </li>
-                    <li >
-                        <div class="list-div">
-                            <p class= "instruction-item">Update your code so that the sphere bounces left and right between X = -40 and X = 40.
-                        </div>
+                    <li>
+                        To implement scroing, declare a variable for storing points and increment its value everitime a box is picked up i.e. everytim eth edistance between the sphere and a box is small enough. To display the points on the screen, use <b>Lab4_KeepingScore_Project</b> as a refernce
                     </li>
-                    <li >
-                        <div class="list-div">
-                            <p class= "instruction-item">Can you make the sphere roll while it bounces?
-                            </p>
-                        </div>
+                    <li>
+                        TO implement sphere resize, you need to keep track of how many cube sthe player has picked up (e.g. using a cpounter or even using the score), if 4 spheres are picked use the <b>sphere->Scale(x)</b> increase the scale of the sphere to 1.2 ints initalise size, remeber to make sure parts of the sphere are not below the floor, the y position of the floor aslo have to be scaled by 1.2
                     </li>
-                    </div>
-                </section>
+                </ul>
+                <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/bdc34a3e-a54f-4414-a813-7d174a447ee4?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+            </div>
 
-                You will need to use your programming skills (specifially selection using "if" statements) from The Four Week Challenge to complete these tasks.
-            </main>
-            </body>
-            </html>
+            <div>
+                <b>4. MILESTONE 3: UPPER SECOND CLASS (UPTO 59%)</b>
+                <p>You must have implemented the basic scene as specified by the brief, <b>MILESTONE 1</b> and <b>MILESTONE 2</b> to get full marks for implementing features in this section. The features in this milestone can be implemented as describe below, and on completion the game should look similar to the video that follows.
+                <ul>
+                    <li>
+                        To implement an array for storing 12 cube models, use <b>Lab6_Vectors_Project</b> as reference. Remember you now need to scale the cube to 1.2 its intial size every time it picks 4 cubes. You may alos notice a redcution in the speed of your game due to the additional cubes and the increased number of collision check calcultions, to fix this start tuilise variable timig to move your sphere, use <b> Lab7_Drones_Project</b> as a reference.
+                    </li>
+                    <li>
+                        To implement random positions for the cubes, you must utilise some random function to generate random x and z positions for each cube (y-position should be the same for all cubes), these values should be generated and used to position the cubes in the same loop that creates them and stores them in the array implemented above. You can use <b>CO1404's Lab 3 </b> as a reference for generating random numbers, or look up C++'s rand() function.
+                    </li>
+                    <li>
+                        To implement sphere to box collision detection, use <b>Lab8_BoxCollisions_Project</b>.
+                    </li>
+                    <li>
+                        Your should now have 4 game states, Playing, Paused, GameOver and GameWon. For this milestone, you must track these states using an enumeration, use <b>Lab5_SphereStates_Project</b> as a reference. Movement should only be allowed in the Playing state, everything should be paused in the Pause state, and approproate messages sgould be displaye in GameOver and GameWon states.
+                    </li>
+                </ul>
+                <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/1991bc6e-dbf1-4f81-bea0-929967854e22?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+            </div>
+
+            <div>
+                <b>5. MILESTONES 4 & 5:  FIRST CLASS ( 70%+)</b>
+                <p>You must have implemented the basic scene as specified by the brief, <b>MILESTONE 1</b>, <b>MILESTONE 2</b> and <b>MILESTONE 3</b> to get full marks for implementing features in this section. The features in this milestone can be implemented as describe below, and on IMPLEMTING , <b>MILESTONE 4</b> features the game should look similar to the video that follows. No video is provided for <b>MILESTONE 5</b> as the milestone allows creative flexibility. 
+                <ul>
+                    <li>
+                        To implement separation between spawned cubes, use a while loop to keep generating random positions for each cube to be spawned ubtil the ootition generated for is more than 10 units away from all other cubes spawned adn the sphere. This means that for each cube to be spawned, you need to: generate a random position to crete a random point, cacluate the vector betwen the random point and the position of all cubes that have been spawned, calculat ethe length of the vector, while thelengthi sless than 10 repeat the process. Revisit <b>CO1404's Lab4 and Lab5</b> sheets and solutions for a reminder on while loops, you can think of this task as using a while loop to validate the random point generated.
+                    </li>
+                    <li>
+                        To implement random respanw, you will have to use the same proceess descibed above to find create a new position for a cube that is picked up by the sphere (Instead of hiding it as done in previous milestones)
+                    </li>
+                    <li>
+                        To implement "HYper Mode", you will need to utlise states to track whethe rthe game is in regular or hyper mode. In hypermode, the sohere skin should change, and in addition to sphere to box collision detection for box pikup, you also need to perform distanc echeks between all cuves and the sphere so that everycube within 50 units of the shere  moved towards the sphete (you may want to use a state variable for each cube to check it should stay fixed or move towards the sphere each grame). A cube moving towards the sohere does not get picked up until it gets close enough to the shere for the sphere to box collision to come into effect.
+                    </li>
+                    <li>
+                        HYper Mode shoul last five seconds, and the game should return to its regulaar state.To implement this, remember that the Timer() method returns the time that has passed since the last frame was rendered (in milliseconds).
+                    </li>
+                    <li>
+                        The NPC sphere should move in some intelligent or at least random manner, be able to pick up cubes like the player sphere, increase in size after every 4 pickups, should not move off the floor, and should be able to enter Hyper Mode. Use sphere to sphere collision detection to check for collisions between the two spheres and determine the resolution based on their individual points, as specified by the brief. 
+                    </li>
+                </ul>
+                <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/a3d59a78-b317-4a7c-81c6-f83dda9ce5df?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>
