@@ -259,14 +259,14 @@ if (collisionDist < sphereRadius)
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab8/Collisions.cpp">Get the sample TL-Engine code from this link</a> and copy the code into your project's .cpp file ( to avoid errors check that the path to the default TL-Engine media folder is correct). It is a very simple program allowing you to move a sphere around.
+                                <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab8/Collisions.cpp">Get the sample TL-Engine code from this link</a> and copy the code into your project's .cpp file ( to avoid errors check that the path to the default TL-Engine media folder is correct). It is a very simple program allowing you to move a sphere using WASD keys, and the camera using mouse movement and arrow keys.
                             </p>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Using the "Bullet.x" mesh, add a bullet model at (40, 10, 40) – it is small, so we will assume it is a point.
+                                Using the "Bullet.x" mesh, add a bullet model at (40, 10, 0) – it is small, so we will assume it is a point.
                             </p>
                         </div>
                     </li>  
@@ -282,7 +282,7 @@ if (collisionDist < sphereRadius)
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                If a collision occurs, set the bullet’s Y position to 25.
+                                If a collision occurs, set the bullet’s Y position to 30.
                             </p>
                         </div>
                     </li>  
@@ -323,7 +323,7 @@ if (myEngine->KeyHit(Key_R)) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now test if your collision works – see how accurate it is.
+                                Now test if your collision works by using WASD keys to move the sphere towards the bullet– see how accurate it is.
                             </p>
                             <p>
                                 Extra: try using smaller/larger values for sphereRaidus to see how that affects the precision of collision detection.
@@ -365,7 +365,7 @@ if (myEngine->KeyHit(Key_R)) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Using the "Torus.x" mesh, update your Lab8_SphereCollisions_Project by adding a torus model at (-40, 10, 40).
+                                Using the "Torus.x" mesh, update your Lab8_SphereCollisions_Project by adding a torus model at (-40, 10, 0).
                                 </ul>
                             </p>
                         </div>
@@ -429,28 +429,28 @@ if (myEngine->KeyHit(Key_R)) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add a box model using the "Cube.x" mesh at (40, 10, 40).
+                                Add a box model using the "Cube.x" mesh at (40, 10, 0).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Define a bounding box by declaring six float constants: cubeMinX, cubeMaxX, cubeMinY etc.
+                                Define a bounding box by declaring six float constants: kCubeMinX, kCubeMaxX, kCubeMinY,kCubeMaxY, kCubeMinZ, kCubeMaxZ.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The box’s dimensions are 10x10x10, its centre point (model origin) is in the centre of the bottom face and you placed it at (40, 10, 40). Use this information to set the initial values for the bounding box variables you have just created (the bounding box should be perfectly accurate for this case). 
+                                The box’s dimensions are 10x10x10, its centre point (model origin) is in the centre of the cube and you placed it at (40, 10, 0). Use this information to set the initial values for the bounding box variables you have just created (the bounding box should be perfectly accurate for this case). For example kCubeMinX = 35.0f (the cube's x-coordinate(40) minus half the width of the cube(5)), kCubeMaxY = 15.0f (the cube's y-coordinate minus half the cube's height (5)).
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add code to check for collision between the bullet and box.
+                                Add code to check for collision between the bullet and box using the condition provided in 8.1.
                             </p>
                         </div>
                     </li>
@@ -493,13 +493,13 @@ if (myEngine->KeyHit(Key_R)) {
                             </li>
                             <li>
                                 <div class="list-div">
-                                    <p class= "instruction-item">Update your collision code to manage a sphere – box collision, (sphere radius = 10).</p>
+                                    <p class= "instruction-item">Update your collision code to manage a sphere – box collision, (sphere radius = 10). Look at the lecture slides if your are still unsure how to implement this.</p>
                                 </div>
                                 </li>
                                 <li>
                                     <div class="list-div">
                                         <p class= "instruction-item">
-                                    Make the cube jump on a collision. Can you spot the inaccuracies with this trick?
+                                    Make the cube jump on a collision.
                             </p>
                         </div>
                     </li>

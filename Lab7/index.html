@@ -73,7 +73,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                <a href="https://portal.uclan.ac.uk/bbcswebdav/pid-4874700-dt-content-rid-14883076_1/xid-14883076_1">Download the associated media files for the project</a>, save them to a folder called media inside your project folder. Now use the AddMediaFolder() method to add the folder's path to your folder.
+                                <a href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab7/media_lab7.zip">Download the associated media files for the project</a>, save them to a folder called media inside your project folder. Now use the AddMediaFolder() method to add the folder's path to your folder.
                             </p>
                         </div>
                     </li>
@@ -153,13 +153,13 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                    For enemyDrone to fire a bullet at playerDrone, the direction of movement between playerDrone and enemyDrone must be known. The direction of movement between two points is described by a vector. The vector between the two points that the two models are positioned at can be calculated by subtracting the position of one point from the position of the second point. An example of how this can be done is shown below:
+                                    For enemyDrone to fire a bullet at playerDrone, the direction of movement between playerDrone and enemyDrone must be known. The direction of movement between two points is described by a vector. The vector between the two points that the two models are positioned at can be calculated by subtracting the position of one point from the position of the second point. An example of how this can be done is shown below (do not copy this code):
 <pre><code>float vectorX;
 float vectorY;
 float vectorZ;
-vectorX = Model2->GetX() – Model1->GetX();
-vectorY = Model2->GetY() – Model1->GetY();
-vectorZ = Model2->GetZ() – Model1->GetZ();
+vectorX = Model2->GetX() - Model1->GetX();
+vectorY = Model2->GetY() - Model1->GetY();
+vectorZ = Model2->GetZ() - Model1->GetZ();
 </code></pre>
                             </p>
                             <p>
@@ -333,16 +333,16 @@ bullet->MoveZ( directionZ * kBulletSpeed );
                 <li>
                     <div class="list-div">
                         <p class= "instruction-item">
-                            Next, change the value of kGameSpeed to 50, and update your gameloop so that the speed used by all move and rotate methods is multipled by frameTime.
+                            Next, change the value of kGameSpeed to 50, this should automatically update the constants initialised using kGameSpeed i.e. kDroneSpeed and kBulletSpeed. Then update your game loop so that the speed used by all the move and rotate methods is multipled by frameTime.
                         <pre><code>if (myEngine->KeyHeld(Key_W)) {
-    playerDrone->MoveLocalZ(kGameSpeed * frameTime);
+    playerDrone->MoveLocalZ(kDroneSpeed * frameTime);
 }
 
 if (myEngine->KeyHeld(Key_A)) {
-    playerDrone->RotateLocalY(-kGameSpeed * frameTime / 2);
+    playerDrone->RotateLocalY(-kDroneSpeed * frameTime / 2);
 }
 else if (myEngine->KeyHeld(Key_D)) {
-    playerDrone->RotateLocalY(kGameSpeed* frameTime / 2);
+    playerDrone->RotateLocalY(kDroneSpeed* frameTime / 2);
 }</code></pre>
 This essentially means that your objects now have a velocity of units/second, for example, the playerDrone is now moving at a speed of 50 units/second regardless of the machine type or complexity of the program.
                     </div>
@@ -350,7 +350,7 @@ This essentially means that your objects now have a velocity of units/second, fo
                 <li>
                     <div class="list-div">
                         <p class= "instruction-item">
-                            Create an initialise another variable called kBulletSpeed, and assign it a value of 100.0f. Then update the bullet's move methods as shown below:
+                            Make sure to update the bullet's move methods as shown below:
                         </p>
                         <pre><code>bullet->MoveX( directionX * kBulletSpeed * frameTime );
 bullet->MoveY( directionY * kBulletSpeed * frameTime );

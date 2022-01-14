@@ -354,9 +354,7 @@ IModel* particleModels[10];
 <pre><code>float particleXPos = kMaxX; //assign kMAxX to particleXPos
 for (int i = 0; i < kParticles; i++) {
     particleModels[i] = particleMesh->CreateModel(particleXPos, kInitialY, 0);
-    particleXPos -= kSPread;            //subtract kSpread from particleXPos to create space between the current particle and the next
-    particleModels[i]->SetSkin(particleSkins[i]);
-    particleStates[i] = Moving;
+    particleXPos -= kSPread; //subtract kSpread from particleXPos to create space between the current particle and the next
 
 }</code></pre>
                             <img class="center" src="https://acodedoer.github.io/CO1301/Lab6/particles_.PNG" alt="5 particles spread horizontally accross the screen">
@@ -402,7 +400,7 @@ for (int i = 0; i < kParticles; i++) {
                                     Create an enumeration called MovementStates with two values: Moving and Paused. Then create an array of type MovementStates with 5 elements called particleStates. Use a for loop to initialise all the elements of particleStates to Moving. The element in each index of particleStates[] should be used to keep track of the model stored in the same index in particleModels[].
                                     <ul>
                                         <li>
-                                            Update your game loop so that elemenets of  particleModels[] are moved only if the particleStates[] element keeping track of their state is set to Moving. E.g. particleModels[0] should be moved only if particleStates[0] == Moving.
+                                            Update your game loop so that elements of  particleModels[] are moved only if the particleStates[] element keeping track of their state is set to Moving. E.g. particleModels[0] should be moved only if particleStates[0] == Moving.
                                         </li>
                                         <li>
                                             Add code to the game loop that responds to hitting numbers 0 to 4 by toggling the state of the particleStates[] element in the associated index between Moving and Paused. E.g. when 0 is hit and particleStates[0] is set to Moving, it should be changed to Paused (this should stop particleModels[0] from moving).
