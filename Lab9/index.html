@@ -99,8 +99,10 @@
                         </li>
                         <li>
                             <div class="list-div">
-                                <p class= "instruction-item">You can detach an object from its parent with:
-    <pre><code>object->DetachFromParent();  // Detaches object from any parent it is attached to</code></pre>
+                                <p class= "instruction-item">Finally, implement functionality to detach the sphere from the cube when the Space key is hit, or attach the sphere to the cube (if the sphere is detached when the Space Key is hit). The code for attaching the sphere to the cube has already been introduced in 2.5, below is the code for detaching an object from its parent.</p>
+                                <pre><code>object->DetachFromParent();  // DetachFromParent() detaches object from any parent it is attached to</code></pre>
+                                <p>You will need to declare a boolean or an enumeration to keep track of the state of the shere (attached or detached).</p>
+  
                                 </p>
                             </div>
                         </li>
@@ -310,7 +312,7 @@ moon->AttachToParen(dummy);</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a chase camera by attaching your camera to the spaceship, and then positioning the camera behind the spaceship. Make sure your camera is a kManual camera. (see section 2 task 7).
+                                Create a chase camera by attaching your camera to the spaceship, and then positioning the camera behind the spaceship. Make sure your camera is a kManual camera (see section 2 for a reminder on how to do this).
                         </div>
                     </li>
                     <li>
