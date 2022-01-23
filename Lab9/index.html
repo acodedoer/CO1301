@@ -251,7 +251,7 @@ moon->AttachToParen(dummy);</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a model for the sun using the Planet.x mesh, scale to show the size of the sun compared to the earth (again it should just be bigger, not realistic), and use the appropriate skin.
+                                Create a model for the sun using the Planet.x mesh, place it at the origin (you will need to reposition the earth in the next step), scale the sun to show its size compared to the earth (again it should just be bigger, not realistic), and use the appropriate skin.
                             </p>
                         </div>
                     <li>
@@ -279,7 +279,7 @@ moon->AttachToParen(dummy);</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You will need to think carefully about the scales and distances that you use. Try to make your scene look good but feel suitably large without being impossible to navigate.
+                                You will need to think carefully about the scales and distances that you use. Try to make your scene look good but feel suitably large without being impossible to navigate. Note that your solar system does not have to look like what is shown in the images in this lab sheet.
                             </p>
                         </div>
                     </li>           
@@ -299,14 +299,14 @@ moon->AttachToParen(dummy);</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load up and create a spaceship. The model can be found inside <a href="">"spaceship.zip" from this link</a>. You may have to scale this up or down depending on the size of your planets.
+                                Load up and create a spaceship. The model can be found inside <a href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab9/spaceship.zip">"spaceship.zip" from this link</a>. You may have to scale this up or down depending on the size of your planets.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Implement movement control for the spaceship. Remember to set this up local to the spaceship.
+                                Implement movement control for the spaceship using W for forward movement (local z-axis), and A and D for rotation about its local y-axis.
                         </div>
                     </li>
                     <li>
@@ -330,10 +330,13 @@ moon->AttachToParen(dummy);</code></pre>
                                 <li>
                                     If this distance is less than the sum of the radii of the two bounding spheres then there is a collision
                                 </li>
+                                <li>
+                                    If a collision is detected, simply resolve it by moving the spaceship to its last known position before the collision occured (lab 8's walkthrough shows how to do this). 
+                                </li>
                             </ol>
                             <br/>
                             <p>
-                                You can use Week 8's lecture slides or lab sheet as a reference for implementing collision detection and resolution.
+                                You can use Week 8's lecture slides, lab sheet or walkthrough as a reference for implementing collision detection and resolution.
                             </p>
                         </div>
                     </li>
