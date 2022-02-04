@@ -81,19 +81,7 @@
                         </li>
                         <li>
                             <div class="list-div">
-                                <p class= "instruction-item">Now add code to allow you to move the sphere (using u, h, j, and k keys). Do you understand how it moves relative to the cube?
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list-div">
-                                <p class= "instruction-item">Now change the camera to a "kManual" type and then attach the camera to the cube (the kFPS type of camera will not work here).
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list-div">
-                                <p class= "instruction-item">Next change the position of the camera, using the SetLocalPosition() method, to (0.0f, -30.0f, 50.0f); and rotate the camera about its local x-axis by 30 degrees. You should now have a basic chase view camera.
+                                <p class= "instruction-item">Now add code to allow you to move the sphere (using u, h, j, and k keys), and try moving the sphere then the cube. Do you understand how the sphere moves relative to the cube?
                                 </p>
                             </div>
                         </li>
@@ -224,7 +212,7 @@
                                 Create a dummy model at the same location as the earth. Attach the moon to the dummy instead of the earth.
 <pre><code>IMesh* dummyMesh = myEngine->LoadMesh("Dummy.x");
 IModel* dummy = dummyMesh->CreateModel(earth->GetX(), earth->GetY(), earth->GetZ());
-moon->AttachToParen(dummy);</code></pre>
+moon->AttachToParent(dummy);</code></pre>
                             </p>
                         </div>
                     </li>

@@ -29,7 +29,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               This lab sheet will also provide practice in the use of arrays and methods.
+                               This lab sheet will also provide further practice in the use of arrays and methods.
                             </p>
                         </div>
                     </li>
@@ -49,7 +49,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                We will be setting up a program that moves lots of models along wavy paths. To ensure that we are able to see our models clearly we won't be using any backdrops. 
+                                We will be creating a program that moves lots of small models along wavy paths. To ensure that we are able to see our models clearly we won't be using any backdrops. 
                             </p>
                         </div>
                     </li>
@@ -75,28 +75,38 @@
                             <pre><code>sphere->Scale( 0.01f );</code></pre>
                         </div>
                     </li>
+
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In the game-loop, add code that moves the sphere across the screen from left to right at a speed of 0.01, i.e. along the x-axis (use MoveX not MoveLocalX()).
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Define a constant called kPi for &#8508, assign it a value of 3.1415926f. Next define a constant called kEdge for the edge of movement i.e. the end if the wave. It needs to have a value of 8 * &#8508.
+                                Define a constant float called kPi for &#8508, assign it a value of 3.1415926f. Next define a constant float called kEdge for the edge of movement, it should have a value of 8 * &#8508. Finally define a constant float called kSphereSpeed at assign it a value of 10.0f.
                             </p>
 <pre><code>const float kPi = 3.1415926f;
 const float kEdge = 8 * kPi;
+const float kSphereSpeed = 10.0f;
 </code></pre>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Update your program so that when the x coordinate of the sphere is greater than or equal to kEdge, its x-position is reset to 0. You should now have a sphere moving continuously from left to right.
+                                Write code to move your sphere along the x-axis by kGameSpeed per second. To do this, you need to first add myEngine->Timer() in the initialisation section of your code. Then in the game-loop, immediately after myEngine->DrawScene(), add the following code:
+<pre><code>float deltaTime = myEngine->Timer();
+sphere->MoveX(kSphereSpeed * deltaTime);
+</code></pre>
                             </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               Next, write code in the game-loop to check if the sphere's x-coordinate is greater than or equal to kEdge, if it is then reset it to 0.
+                            </p>
+<pre><code>if (sphere->GetX() >= kEdge) {
+    sphere->SetX(0);
+}
+</code></pre>
+<p>You should now have a sphere moving continuously from left to right.</p>
                         </div>
                     </li>
                 </ol>
@@ -122,7 +132,7 @@ const float kEdge = 8 * kPi;
                          <li>
                             <div class="list-div">
                                 <p class= "instruction-item">
-                                    Remember arrays? In the setup area of your program, remove the code that creates the single sphere model, then declare an array of IModels named "spheres", use kSpheres to specify the size of the array.
+                                    Remember arrays? In the initialisation section of your program, remove the code that creates the single sphere model (including the code for scaling it and setting its skin), then declare an array of IModels named "spheres", use kSpheres to specify the size of the array.
                                 </p>
                                 <pre><code>IModel* spheres[kSpheres];</code></pre>
                             </div>
@@ -146,7 +156,11 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Update the code in your game loop to move each sphere in the spheres array along the x-axis by a small amount (e.g. 0.01f), and reposition it to 0 along it x-axis if its x position is  greater than or equal to kEdge. You will need to use a for-loop.
+                                Update the code in your game-loop by removing the code that moves and resets a single sphere, and adding code to move each sphere in the spheres array along the x-axis by kGameSpeed per second, and reposition it to 0 along the x-axis if its x-coordinate is greater than or equal to kEdge. You will need to use a for-loop.
+                            </p>
+
+                            <p>
+                                Try writing the code yourself, if (and only if) you are struggling to get it right, have a look at the solution at the end of this page.
                             </p>
                         </div>
                     </li>
@@ -166,29 +180,69 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                At the moment as the spheres move across the screen only their x coordinates are being changed, which is why they move in a straight line. The y coordinate of the spheres need to be changed in order to produce a sine wave. Therefore, you need to set the y coordinate of each sphere to sin(x), where x is simply the current x coordinate of the sphere. You will need to:
+                               Start by adding this include statement at the top of your cpp file:
+                            </p>
+                            <pre><code>#include &ltcmath&gt</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Set the y-coordinate of each sphere to sin(x), where x is simply the current x-coordinate of the sphere. At the moment as the spheres move across the screen only their x-coordinates are being changed, which is why they move in a straight line. Updating the y-coordinate should produce a sine wave. </p>
+                                <p>You will need to update the loop that moves and resets your spheres, so that for each sphere you:
                                 <ol>
-                                    <li>Get the current x coordinate of the sphere</li>
-                                    <li>Apply sin() in order to obtain the new y value</li>
-                                    <li>Set the y coordinate of the sphere to this new value</li>
+                                    <li>get the current x-coordinate of the sphere</li>
+                                    <li>calulcate sin(x) and set it as the y-coordinate of the sphere </li>
                                 </ol>
                             </p>
                             <p>
                                 Your spheres should now be moving along the path of a sine wave.
+                            </p>
+                            <p>
+                                Try writing the code yourself, if (and only if) you are struggling to get it right, have a look at the updated for loop at the end of this page.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                To shows both sine and cosine waves using the spheres in the array, the two for-loops that create and move the sphere models need to be updated (the modulus operator will be useful for the tasks below).
+                                To show both sine and cosine waves using the spheres in the array, the two for-loops that create and move the sphere models need to be updated (the modulus operator will be useful for the tasks below).
                             </p>
                                 <ul>
                                     <li>
                                         Update the for-loop that creates the sphere models so that every other model created uses the "BlackBall.jpg" skin. Therefore, half the spheres in the array will use the RedBall texture and the other half will use the BlackBall texture.
+<pre><code>for (int i = 0; i < kSpheres; i++)
+{
+    spheres[i] = sphereMesh->CreateModel(i * 0.2f, 0, 0);
+    spheres[i]->Scale(0.01f);
+    if (i % 2 == 0) {
+        spheres[i]->SetSkin("RedBall.jpg");
+    }
+    else {
+        spheres[i]->SetSkin("BlackBall.jpg");
+    }
+}
+</code></pre>
                                     </li>
                                     <li>
-                                        Update the for-loop that moves the sphere models so that every other model's y position is set to its cos(x). Therefore you will now have 63 red spheres moving in sine wave and 63 black spehres moving in a cosine wave.
+                                        Update the for-loop that moves the sphere models so that every other model's y-coordinate is set to the cosine of its x-coordinate. Therefore you will now have 63 red spheres moving in a sine wave and 63 black spheres moving in a cosine wave.
+<pre><code>for (int i = 0; i < kSpheres; i++)
+{
+    spheres[i]->MoveX(kSphereSpeed * deltaTime);
+    float currentX = spheres[i]->GetX();
+    float newY = 0;
+    if (i % 2 == 0) {
+        newY=sin(currentX);
+    }
+    else {
+        newY=cos(currentX);
+    }
+    spheres[i]->SetY(newY);
+    if (spheres[i]->GetX() >= kEdge) {
+        spheres[i]->SetX(0);
+    }
+}
+</code></pre>
                                     </li>
                                 </ul>
                             </p>
@@ -204,14 +258,21 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The height of the waves can be adjusted by scaling the y value, try scaling it up and down after you have calculated the value of y from sin(x) and cos(x). Changing the value of y in this fashion is adjusting the amplitude of the wave.
+                                Try changing the value of kSphereSpeed to a low value e.g. 1 and a high value, see how that affects your waves.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You can also change the frequency of the waves by changing the speed of the spheres, adjusting the value of x before calculating sin(x), and increasing the number of spheres.  
+                                The height of the waves can be adjusted by scaling the y value, try scaling it up and down after you have calculated the value of y from sin(x) and cos(x) (by multiplying with a scaler e.g newY *= 2). Changing the value of y in this fashion is adjusting the amplitude of the wave.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You can also change the frequency of the waves by changing scaling (up or down) the value of x before calculating sin(x).
                             </p>
                         </div>
                     </li>
@@ -266,9 +327,9 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In the setup area, declare a floating point variable called "degrees" to hold the current angle for which the x and y points of the circle are being derived and initialise this variable to 0. Then in your game loop:
+                                In the initialisation setion, declare a float called "degrees" to hold the current angle for which the x and y points of the circle are being derived and initialise this variable to 0. Then in your game loop:
                                 <ul>
-                                    <li>Increment degrees by a small amount (e.g 0.1f) each pass of the game loop</li>
+                                    <li>Increment degrees by a small amount (e.g 0.01f) each pass of the game loop</li>
                                     <li>Reset the value degrees back to 0 each time it reaches 360.</lli>
                                 </ul>
                             </p>
@@ -277,24 +338,24 @@ const float kEdge = 8 * kPi;
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                However, the trigonometric functions sin(), cos() and tan() in C++ use radians and not degrees. Therefore, you will need to convert the angle stored in the variable "degrees" to radians.
+                                However, the trigonometric functions sin(), cos() and tan() in C++ use radians and not degrees. Therefore, you will need to convert the angle stored in the variable "degrees" to radians. Add the code below in the game loop after the code you added in the 5.7
                             </p>
-                            <pre><code>float radians = kPi/180 * degrees</code></pre>
+                            <pre><code>float radians = kPi/180 * degrees;</code></pre>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
                                 Now that you have the angle in radians,the x and y coordinates of the point associated with this angle can be derived by:
-<pre><code>float x = kRadius * cos ( radians )
-float y = kRadius * sin ( radians )</code></pre> 
+<pre><code>float x = kRadius * cos ( radians );
+float y = kRadius * sin ( radians );</code></pre> 
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use the derived x and y coordinates to position your sphere (the z coordinates should be set to 0)
+                                Use the derived x and y coordinates to update the position your sphere each frame (the z coordinates should be set to 0)
                             </p>
                         </div>
                     </li>
@@ -328,9 +389,9 @@ float y = kRadius * sin ( radians )</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                    Declare another array of floating point numbers also of size kSpheres and name it "degrees", then initialise it as below: 
+                                    Declare another array of floating point numbers also of size kSpheres and name it "initialAngles", then initialise it as below: 
                             </p>
-                            <pre><code>float degrees[kSpheres] = { 0, 45, 90, 135, 180, 225, 270, 315 };</code></pre>
+                            <pre><code>float initialAngles[kSpheres] = { 0, 45, 90, 135, 180, 225, 270, 315 };</code></pre>
                             <p>
                                 This array will be used to store the initial angle to be used for each of the spheres in the previous array.
                             </p>
@@ -338,14 +399,14 @@ float y = kRadius * sin ( radians )</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use a for-loop to create the sphere models for the "spheres" array. Each sphere needs to be re-textured to "RedBall.jpg" and placed at its correct location based on the angle in its equivalent index in the "degrees" array (i.e the position of spheres[i] should be derived using degrees[i]). Use the sine and cosine formula given 5.9 above to derive the x and y coordinates for each sphere.
+                                Use a for-loop to create the sphere models for the "spheres" array. Each sphere needs to be re-textured to "RedBall.jpg". 
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Just as was done in section 5, increment the angle of each sphere by a small amount and reset it to 0 when it reaches 360. This will make the spheres move round the circles path. You can do this in the for-loop from the previous step or in a separate for-loop.
+                                Just as was done in section 5, increment the angle of each sphere by a small amount in the game loop and reset it to 0 when it reaches 360, then update the position of each sphere so that its x-coordinate is the cosine of the angle in its equivalent index in the "initialAngles" array and its y-coordinate is the sine of the angle in its equivalent index in the "initialAngles" (note that the angles are in degrees and must be converted to radians first). This will make the spheres move round the circles path. 
                             </p>
                         </div>
                     </li>
@@ -354,19 +415,7 @@ float y = kRadius * sin ( radians )</code></pre>
             <section>
                 <h2>7. Utilising Functions</h2>
                 <div class="section_instrcutions"></div>
-                    <ol>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                A function is a block of code that performs a specific task. To define a method you have to specify a name for it, its return type (void if does not return a value), its parameters (type and order of its required input(s)), and the functions body i.e. its code. 
-                            </p>
-<pre><code>return_type function_name( parameter list ) {
-    body of the function
-}</code></pre>
-                            <p>You can also declare a method first by proving its return type, name, and parameters, and then define its code later. The function's name is used to call the function's code anytime in other parts of your code.
-                            </p>
-                        </div>
-                    </li>    
+                    <ol> 
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
@@ -393,7 +442,7 @@ float y = kRadius * sin ( radians )</code></pre>
                             <p>
                                 Therefore your function definition should be similar to the code below:
                             </p>
-<pre><code>void rotateSpheres( IModel* rotationArray[], float degreeArray[], int sizeOfArrays )
+<pre><code>void rotateSpheres( IModel* spheresArray[], float degreesArray[], int sizeOfArrays )
 {
 //function body goes here
 }</code></pre>
@@ -414,36 +463,56 @@ float y = kRadius * sin ( radians )</code></pre>
                                 Modify your code to include the rotateSpheres() declaration and definition, then invoke the function in your game-loop with the approrpiate parameters.
                             </p>
                         </div>
-                    </li>         
-                </ol>
-        </section>
-        <section>
-            <h2>8. Advanced</h2>
-            <div class="section_instrcutions"></div>
-                <ol>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Create a brand new array of spheres. Set the spheres to yellow rather than red. Place the spheres in a different location to the original circle. Make both arrays rotate using the rotateSphere() function.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Apply the sine function to the spheres as they move around the circle. You should be able to create a wriggle in the circle.
-                            </p>
-                        </div>
-                    </li>
+                    </li>        
+                    
+                    
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
                                 Change kRadius from a constant into a normal variable and rename it so that it no longer uses the k prefix. Set up two keys so that you are able to increase and decrease the size of the radius whilst the program is running.
                             </p>
                         </div>
-                    </li>
+                    </li>      
                 </ol>
         </section>
+        <section>
+            <h2>8. Solution Code</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Code for 3.5
+                            </p>
+<pre><code>for (int i = 0; i < kSpheres; i++)
+{
+    spheres[i]->MoveX(kSphereSpeed * deltaTime);
+    if (spheres[i]->GetX() >= kEdge) {
+        spheres[i]->SetX(0);
+    }
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Code for 4.3
+                            </p>
+<pre><code>for (int i = 0; i < kSpheres; i++)
+    {
+        spheres[i]->MoveX(kSphereSpeed * deltaTime);
+        float currentX = spheres[i]->GetX();
+        float newY = sin(currentX);
+        spheres[i]->SetY(newY);
+        if (spheres[i]->GetX() >= kEdge) {
+            spheres[i]->SetX(0);
+        }
+    }</code></pre>
+                        </div>
+                    </li>
+            </ol>
+        </section>
+
     </main>
     <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
 </body>

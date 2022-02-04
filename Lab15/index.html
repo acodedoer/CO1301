@@ -15,10 +15,10 @@
             padding: 0.5em;
         }
     </style>
-    <title>Lab 15 - Timing</title>
+    <title>Lab 11 - Timing and Structures</title>
 </head>
 <body>
-    <header><h1>CO1301: Games Concepts <br>Lab 15 - Timing</h1></header>
+    <header><h1>CO1301: Games Concepts <br>Lab 11 - Timing and Structures</h1></header>
     <main>
         <section>
             <h2>1. Introduction</h2>
@@ -40,7 +40,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Engine project called "Lab15_Timing_Project". 
+                                Create a new TL-Engine project called "Lab11_Timing_Project". 
                             </p>
                         </div>
                     </li>
@@ -99,7 +99,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use the draw command to output the frame time and FPS (frames per second can be caluclated by  1/frameTime) to the screen.
+                                Use the draw command to output the frame time and FPS (frames per second can be calculated by  1/frameTime) to the screen.
                             </p>
                         </div>
                     </li>  
@@ -112,7 +112,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Move particle back and forth across the screen from -10 to 10. Use the frame time to adjust the speed of the movement by multiplying the distance moved by the frame time. The speed of movement should be 10 units. This is a lot higher than you are used to using. However, you are now using values adjusted according to the frame time
+                                Move the particle back and forth across the screen from -10 to 10. Use the frame time to adjust the speed of the movement by multiplying the distance moved by the frame time. The speed of movement should be 10 units. This is a lot higher than you are used to using. However, you are now using values adjusted according to the frame time
                             </p>
                             <pre><code>particle->MoveX(kSpeed * frameTime);</code></pre>
                         </div>
@@ -160,10 +160,10 @@
                                 Create a wall of cubes. The wall should be 100 cubes by 100 cubes, i.e. 10,000 cubes in total
                             </p>
                             <p>
-                                The size of a cube is 10 by 10. Use an array of type IModel, with a size of 10000. Create the wall of cubes outside the game loop. You will need to use a nested loop to make the wall: the outside loop for columns of the wall and the inside loop for the rows of the wall.
+                                The size of a cube is 10 by 10. Use a two dimensional array i.e IModel* cubes[100][100], therefore its has a total size of 10000. Create the wall of cubes outside the game loop, you will need to use a nested loop to make the wall: the outside loop for columns of the wall and the inside loop for the rows of the wall.
                             </p>
                             <p>
-                                If you cannot see how to do this then you can get the code here. <b>However, I would strongly suggest trying it out yourself first.</b>
+                                <a href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab11/wallofcubes.txt" target="_blank">If you cannot see how to do this then you can get the code here.</a> <b>However, I would strongly suggest trying it out yourself first.</b>
                             </p>
                         </div>
                     </li>
@@ -176,62 +176,117 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Enegine project called Lab15_TimedPulse_Project. Download the zipped media folder from blackboard and unzip its content into your working directory.
+                                Create a new TL-Enegine project called Lab11_TimedPulse_Project. Download the zipped media folder from blackboard and unzip its content into your working directory.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               Add a stars skybox, a camera at (0, 0, -60), establish the first base time before the game loop and call Timer() once per frame and assign its value to <code>float frameTime</code> as you did in Lab15_Timing_Project.
+                               Add a stars.x skybox, load particle.x into an IMesh* variable called particleMesh, add a camera at (0, 0, -60.0f), establish the first base time before the game loop and call Timer() once per frame and assign its value to <code>float frameTime</code> as you did in Lab11_Timing_Project.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load the particle.x mesh and create an array of 8 particle models.
+                                This project involves moving 8 particles from the origin in one of the cardinal directions at a velocity of 1 unit per second; then back to the center after 3 seconds.</p>
+                                <img src="https://acodedoer.github.io/CO1301/Lab15/directions.png" alt="an image showing the 8 cardinal directions i.e north (N), northeast (NE), east (E), southeast (SE), south (S),southwest (SW), west (W), and northwest (NW)">
+                                <p>Implementing it the way previous labs have been implemented would involve declaring 8 IModels, then variables for 8 vectors (one for moving each particle in its associated direction), note that each vector requires three separate variables for x, y and z. Using arrays will reduce the number of variables to deal with, but there will still be multiple arrays. Structures can be very helpful in situations like this, and you will see how by completing the steps that follow.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Each particle should move out from the origin in one of the cardinal directions at a velocity of 5 units per second;
-                            </p>
-                            <img src="https://acodedoer.github.io/CO1301/Lab15/directions.png" alt="an image showing the 8 cardinal directions i.e north (N), northeast (NE), east (E), southeast (SE), south (S),southwest (SW), west (W), and northwest (NW)">
-                        
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                The movement of the particles going vertically or horizontally is straightforward since they are moving along a single axis.
+                                Using structures, related data can be stored together. In this project, each particle should have a model and a vector that stores its direction. A structure can be created to hold just that. However, a vector itself contains components, and thus can be represented using a structure rather than separate variables. Therefore, start by defining a 3D Vector structure in the initialising section:
+<pre><code>struct Vector3{
+    float x = 0.0f;
+    float y = 0.0f;
+    float z = 0.0f;
+};
+</code></pre>
+
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Those particles which are moving along the diagonal require movement along both x and y axes. The velocity of movement along these axes can be found by using Pythagoras' Theorem to calculate the length of the two equal sides of a right angle triangle with a hypotenuse of length 5.
+                                Below the Vector3 struct, define a Particle struct with 2 properties, an IModel* called model and a Vector3 called direction.
+<pre><code>struct Particle{
+    IModel* model;
+    Vector3 direction;
+};
+</code></pre>
+
                             </p>
-                            <img src="https://acodedoer.github.io/CO1301/Lab15/triangle.png" alt="an image showing a right angle triangle with hypotenuse of length 5 and two other sides of equal length 3.5355">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                A particle can be created using the particle structure created and assigned a particle model to its model property, and a direction to its direction property e.g.:
+<pre><code>Particle upParticle;
+upParticle.model = particleMesh->CreateModel();
+upParticle.direction = { 0, 1.0f, 0 };
+</code></pre>
+                                But since we need 8 particles, creating an array using the Particle structure will be more efficient. Create a Particle array of size 8, then use a for loop to initialise the model property of each of the array's elements with a model created using particleMesh. Leave the vector property as its default value for now, it will be updated in the next step
+<pre><code>Particle Particles[8];
+for(int i = 0; i<8;i++){
+    Particles[i].model = particleMesh->CreateModel();
+}
+</code></pre>         
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                To set the vector propert for each particle, the direction of movement needs to be understood. The movement of the particles going vertically or horizontally is straightforward since they are moving along a single axis e.g the particle moving up should use the vector (0,1,0) and the particle moving left should use the vector (-1, 0, 0). But those particles which are moving along the diagonal require movement along both x and y axes. The velocity of movement along these axes can be found by using Pythagoras' Theorem to calculate the length of the two equal sides of a right angle triangle with a hypotenuse of length 1.
+                            </p>
+                            <img src="https://acodedoer.github.io/CO1301/Lab15/triangle.png" alt="an image showing a right angle triangle with hypotenuse of length 5 and two other sides of equal length 0.707">
                             <p>
-                                The x and y components will each be 3.5355 units respectively. <b>Note that the sign of the velocity or the component will change depending on the direction of movement.</b>
+                                The x and y components will each be 0.707 units respectively. <b>Note that the sign of the velocity or the component will change depending on the direction of movement.</b>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Declare a timePassed variable. Start the particles moving out, each in their own direction. Use timePassed to store how much time has passed since the particles first started moving out. After 3 seconds have passed place all the particles back at the centre point. Reset timePassed to 0, the particles then continue moving out as before, the timePassed variable is increased and so on
+                               Next, in the initialisation section, assign the appropriate direction to each particles direction property.
+<pre><code>Particles[0].direction = { 1.0f, 0, 0 };	        //east direction
+Particles[1].direction = { 0.707f, -0.707f, 0 };	//south-east direction
+Particles[2].direction = { 0, -1.0f, 0 };		//soth direction
+Particles[3].direction = { -0.707f, -0.707f, 0 };	//soth-west direction
+Particles[4].direction = { -1.0f, 0, 0 };		//west direction
+Particles[5].direction = { -0.707f, 0.707f, 0 };	//north-west direction
+Particles[6].direction = { 0, 1.0f, 0 };		//north direction
+Particles[7].direction = { 0.707f, 0.707f, 0 };		//north-east direction</code></pre>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The effect of doing this is that the particles will pulse out from a centre point once every 3 seconds.
+                              In the game loop, move each particle's model using its direction, remember to multiple by frametime. 
+                            </p>
+<pre><code>for (int i = 0; i < 8; i++) {
+    Particles[i].model->Move(Particles[i].direction.x* frameTime, Particles[i].direction.y* frameTime, 0);
+}</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                To make the particles move back to the center after an elapsed period, declare a float called timePassed in the initialisation section. Use timePassed to store how much time has passed since the particles first started moving out by incrementing it by frameTime every iteration of the game-loop. If 5 seconds have passed (timePassed is greater than 5.0f), place all the particles back at the centre point, reset timePassed to 0, have the particles continue moving out as before, and start incrementing timePassed again.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The effect of doing this is that the particles will pulse out from a centre point once every 5 seconds. How can you increase the speed of movement so that each particle moves 5 times the current speed? This will create a better effect. Remember how to scale direction vectors?
                             </p>
                         </div>
                     </li>
