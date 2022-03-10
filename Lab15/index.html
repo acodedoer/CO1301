@@ -23,15 +23,13 @@
         <section>
             <h2>1. Introduction</h2>
             <div class="section_instrcutions"></div>
-                <ol>
-                    <li>
+
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This lab introduces Tl-Engine's Timer() function and the use of variable time.
+                                This lab introduces Tl-Engine's Timer() function, the use of variable time, and structures.
                             </p>
                         </div>
-                    </li>
-                </ol>
+
         </section>
         <section>
             <h2>2. Setting Up</h2>
@@ -47,7 +45,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Download the zipped media folder from blackboard and unzip its content into your working directory.
+                                <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab11/media_lab11.zip">Download the zipped media folder and unzip its content into your working directory.</a>
                             </p>
                         </div>
                     </li>
@@ -83,15 +81,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You then need to call Timer() once per frame, at the beginning of the game loop, immediately after:
-                            </p>
-                            <pre><code>myEngine->DrawScene();</code></pre>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Declare a variable of type float called frameTime. Use Timer() to get the time taken for the last scene to be rendered:
+                                You then need to call Timer() once per frame, at the beginning of the game loop, immediately after <code>myEngine->DrawScene();</code> and store its value inside a float called frameTime
                             </p>
                             <pre><code>float frameTime = myEngine->Timer();</code></pre>
                         </div>
@@ -176,7 +166,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Enegine project called Lab11_TimedPulse_Project. Download the zipped media folder from blackboard and unzip its content into your working directory.
+                                Create a new TL-Enegine project called Lab11_TimedPulse_Project. <a target="_blank" href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab11/media_lab11.zip">Download the zipped media folder and unzip its content into your working directory.</a>
                             </p>
                         </div>
                     </li>
@@ -190,7 +180,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This project involves moving 8 particles from the origin in one of the cardinal directions at a velocity of 1 unit per second; then back to the center after 3 seconds.</p>
+                                This project involves moving 8 particles from the origin in one of the cardinal directions at a velocity of 1 unit per second; then back to the center after 5 seconds.</p>
                                 <img src="https://acodedoer.github.io/CO1301/Lab15/directions.png" alt="an image showing the 8 cardinal directions i.e north (N), northeast (NE), east (E), southeast (SE), south (S),southwest (SW), west (W), and northwest (NW)">
                                 <p>Implementing it the way previous labs have been implemented would involve declaring 8 IModels, then variables for 8 vectors (one for moving each particle in its associated direction), note that each vector requires three separate variables for x, y and z. Using arrays will reduce the number of variables to deal with, but there will still be multiple arrays. Structures can be very helpful in situations like this, and you will see how by completing the steps that follow.
                             </p>
@@ -213,7 +203,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Below the Vector3 struct, define a Particle struct with 2 properties, an IModel* called model and a Vector3 called direction.
+                                Below the Vector3 struct, define a Particle struct with 2 members, an IModel* called model and a Vector3 called direction.
 <pre><code>struct Particle{
     IModel* model;
     Vector3 direction;
@@ -226,12 +216,12 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                A particle can be created using the particle structure created and assigned a particle model to its model property, and a direction to its direction property e.g.:
+                                A particle can be created using the particle structure created and assigned a particle model to its model member, and a direction to its direction member e.g.:
 <pre><code>Particle upParticle;
 upParticle.model = particleMesh->CreateModel();
 upParticle.direction = { 0, 1.0f, 0 };
 </code></pre>
-                                But since we need 8 particles, creating an array using the Particle structure will be more efficient. Create a Particle array of size 8, then use a for loop to initialise the model property of each of the array's elements with a model created using particleMesh. Leave the vector property as its default value for now, it will be updated in the next step
+                                But since we need 8 particles, creating an array using the Particle structure will be more efficient. Create a Particle array of size 8, then use a for loop to initialise the model member of each of the array's elements with a model created using particleMesh. Leave the vector member as its default value for now, it will be updated in the next step
 <pre><code>Particle Particles[8];
 for(int i = 0; i<8;i++){
     Particles[i].model = particleMesh->CreateModel();
@@ -243,7 +233,7 @@ for(int i = 0; i<8;i++){
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                To set the vector propert for each particle, the direction of movement needs to be understood. The movement of the particles going vertically or horizontally is straightforward since they are moving along a single axis e.g the particle moving up should use the vector (0,1,0) and the particle moving left should use the vector (-1, 0, 0). But those particles which are moving along the diagonal require movement along both x and y axes. The velocity of movement along these axes can be found by using Pythagoras' Theorem to calculate the length of the two equal sides of a right angle triangle with a hypotenuse of length 1.
+                                To set the vector member for each particle, the direction of movement needs to be understood. The movement of the particles going vertically or horizontally is straightforward since they are moving along a single axis e.g the particle moving up should use the vector (0,1,0) and the particle moving left should use the vector (-1, 0, 0). But those particles which are moving along the diagonal require movement along both x and y axes. The velocity of movement along these axes can be found by using Pythagoras' Theorem to calculate the length of the two equal sides of a right angle triangle with a hypotenuse of length 1.
                             </p>
                             <img src="https://acodedoer.github.io/CO1301/Lab15/triangle.png" alt="an image showing a right angle triangle with hypotenuse of length 5 and two other sides of equal length 0.707">
                             <p>
@@ -254,7 +244,7 @@ for(int i = 0; i<8;i++){
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               Next, in the initialisation section, assign the appropriate direction to each particles direction property.
+                               Next, in the initialisation section, assign the appropriate direction to each particles direction member.
 <pre><code>Particles[0].direction = { 1.0f, 0, 0 };	        //east direction
 Particles[1].direction = { 0.707f, -0.707f, 0 };	//south-east direction
 Particles[2].direction = { 0, -1.0f, 0 };		//soth direction

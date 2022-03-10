@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <!-- and it&#039;s easy to individually load additional languages -->
+    <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+        td{
+            padding: 0.5em;
+        }
+    </style>
+    <title>Lab 15 - Optimisation Patterns</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br>Lab 15 - Optimisation Patterns</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                This worksheet will introduce optimisation techniques for improving the effeieincy of programs.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You will need to access code and functions from previous labs for:
+                                <ol>
+                                    <li>Displaying FPS rate (Lab 11)</li>
+                                    <li>Checking for sphere to sphere collisions (Lab 9)</li>
+                                </ol>
+                            </p>
+                        </div>
+                    </li> 
+                </ol>
+        </section>
+        <section>
+            <h2>2. Setting Up</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new TL-Engine project called "Lab15_Optimsation_Project". 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               Add a kManual camera.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the floor mesh and create a floor model at the origin.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a 100 by 100 grid of spheres:
+                                <ol>
+                                    <li>Declare a const int called kSphereGridSize and assign it a value of 100</li>
+                                    <li>Declare a const float called kSpawnOffset and assign it a value of 6.0f</li>
+                                    <li>Declare a const float called kFirstSpherePosX and assign it a value of 3.0f</li>
+                                    <li>Load the sphere mesh and create a two dimensional IModel array of szie 100 by 100 called spheresGrid</li>
+                                    <li>Then copy the provided nested loop and paste it below the two dimensional array declaration, make sure you understand what the code does by reading the comments</li>
+                                </ol>
+                                <br/>
+                                Note that the spheres are scaled down by a factor of 0.1, therefore they have a radius of 1.0f.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add code to display the FPS rate of your program at the top of your screen, you can copy the code you wrote in Lab 11 for the same purpose.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               Run your program, and note the FPS displayed.
+                            </p>
+                        <pre><code>const float kPi = 3.1415926f;</code></pre>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the cube.x mesh and create a cube at (300, 0.5, -10). Scale it by a factor of 0.1, and attach the camera as a child of the cube.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add code to move the cube forward when the W key is held, and rotate if clockwise and anti-clockwise when D and A keys are held respectively. Make sure you use variable timing, otherwise your cube will be very slow (try and see). Have the cube move 50 units pers second and rotate 60 degrees per second. 
+                            </p>
+                        </div>
+                    </li>  
+                </ol>
+            </section>
+            <section>
+                <h2>3. Adding Collision Detection</h2>
+                <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Check for collisions between the cube and all 1000 cubes:
+                                <ol>
+                                    <li>Copy the sphere to sphere collision detection function provided in Lab 9 and paste it below the main function.</li>
+                                    <li>Delcare two const floats called kSPhereRadius and kCubeRadius and assign them the values 1.0f and 0.5f respectively.</li>
+                                    <li>Add the function's prototype before the start of the main function.</li>
+                                    <li>In the initialisation section, declare two floats callled oldCubeX and oldCubeZ, then in th the game loop, before the code that moves the sphere on key press, assign the current x-position of the cube to oldCubeX and the current z-position of the cube to oldCubeZ.</li>
+                                    <li>In the game loop, add the nested loop below for checking collisons between the cube and the spheres</li>
+                                    <li>Update the nested loop copied above so that if collision is detected, the cube's x and z positions should be set to olCubeX and oldCubeZ respectively.</li>
+                                </ol>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Run your program to test that collision detectiona nd simple resolution are working, then note the current FPS. You should see that the FPS has droped consderably, and that is becuase the program now has to perform the complex xalulations needed to perform a collision check 1000 times every frame.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>4. Optimising Calculations</h2>
+                <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The complexity of the calculations performed every frame can be reduced by elimintaing the need to take squareroot (which is an expensive calculation) and the need to repeatedly calculate values that do not change over time.
+                            </p>
+                            <p class= "instruction-item">
+                                To eliminate the need to claulcuate square root, square both sides of any expression in your code that requires square root to be caluclated, therefore update your sphere to sphere calculation function:
+                                <ol>
+                                    <li>Replace <b>float distance = sqrt(distX * distX + distZ * distZ);</b> with a line of code that calculates <b>distX * distX + distZ * distZ</b> and stores it in a float called <b>distanceSquared</b> </li>
+                                    <li>
+                                        Next update the line of code that checks if <b>distance</b> is less than <b>(s1Radius + s2Radius)</b> with code that checks if <b>distanceSquared</b> is less than <b>(s1Radius + s2Radius)*(s1Radius + s2Radius)</b>
+                                    </li>
+                                </ol>
+                            </p>
+                            <p>
+                                Run you rprogram, collisions should be detected and resolved as before.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Look at your the collision detection function once again, the funtion requires the square of the sum of the radii of two spheres to be calculated every time it is called. But do wee need this to be calculated everyframe? The two models that are checked for collision in this proggram are the cube and a sphere, both their radii are known from the start of the program and do not change throughout, therefore we can easily calculate the saqaure of their sum, and pass that value to the collision detection function.
+                                <ul>
+                                    <li>In th einitialisation section, declare a float called radiiSumSquared and assign it a value of (cubeRadius + sphereRadius)*(cubeRadius + sphereRadius)</li>
+                                    <li>Update the collision detection definitiona dn prototype so that they noe take in a single float paramter called radiiSumSquared in place of s1Radius and s2RAdius</li>
+                                    <li>
+                                        Next update the line of code in th ecollision detection function that checks if <b>distanceSquared</b> is less than <b>(s1Radius + s2Radius)*(s1Radius + s2Radius)</b> with code that checks if <b>distanceSquared</b> is less than <b>radiiSumSquared</b>
+                                    </li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Run you rprogram, collisions should be detected and resolved as before. Note the program's current FPS. You have successfully reduce the number and complexity of the calculateions that need to be perforemed every time a collision is checked, but there are still a a thousand collision checks, amongst other things (e.e. rendering 1000 cubes), done every frame. In the next section we will try to reduce the number of collision checks in away that will not affect the player's experience.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+    <section>
+        <h2>5. Spatial Partitioning</h2>
+        <div class="section_instrcutions"></div>
+            <ol>
+            <li>
+                <div class="list-div">
+                    <p class= "instruction-item">
+                      If we can figure out the spheres closest to the cube, we can ignore all other spheres when checking for collisions i.e. if the cube is inside a grid then we only need to check for collisions between the cube an dthe sphere within the grid (since it is impossible for the cube to collide with other spheres that are far away).
+                       <ul>
+                           <li>Below the code that moves the cube, declare an int called cubeColumnPosition, and assign it the value returned by divding the x-position of the cube by kSpwanOffset. This will calculate the column in which the cube is located by returning how many spheres are exist along the x-axis between the origin and the x-position of the cube. 
+                           </li>
+                           <li>Next, declare an int called cubeRowPosition, and assign it the value returned by divding the z-position of the cube by kSpwanOffset. This will calculate the row in which the cube is located by returning how many spheres exist between the origin and the z-position of the cube. </li>
+                           <li>
+                               Finally update the nested loop that checks for collision between the cube and all 1000 spheres by removing the nested loop and perfomig a single collision check between the cube and the sphere with index [cubeRowPosition][cubeColumnPosition]
+                           </li>                       
+                        </ul>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="list-div">
+                    <p class= "instruction-item">
+                Run you rprogram, move through the field and try colliding with spheres, collisions should be detected and resolved as before. Note the program's current FPS, you should see a significant increase as a result of the reductionin the number of collision chedks performed every frame from 1000 - 1. 
+                            </p>
+                        </div>
+                    </li>  
+                    </ol>
+            
+            </section>
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+</body>
+</html>

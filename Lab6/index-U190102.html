@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js"></script>
+        <!-- and it&#039;s easy to individually load additional languages -->
+        <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 6 - Vectors, Arrays and Loops</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br>Lab 6 - Vectors, Arrays and Loops</h1></header>
+    <main>
+        <section>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    In this lab, you will learn to create and use vectors to move game objects.
+                               </p>
+                           </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                                <p class= "instruction-item">
+                                    You will also learn to utilise arrays.
+                               </p>
+                           </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>2. Vectors in Games Development</h2>
+                <div class="section_instrcutions"></div>
+                    <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Vectors are used throughout games development as a way of describing movement or direction. In 3D, a vector is simply three numbers: x, y and z, written between round brackets and separated by commas. The first number is the x value; the second number is the y value; the third value is the z value. However, these numbers now represent movement or direction instead of a location.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                To calculate the vector between two points at position P1 and P2, you must subtract the x, y and z components of P1 from the x, y and z components of P2. Note that this is not the same as the vector from P2 to P1, to calculate this second vector you will need to subtract the x, y and z components of P2 from the x, y and z components of P1. Use the interactive scene below to practice calculating the vector between two points.
+                            </p>
+                                                
+                    <div class ="interactive-scene">
+                        <h2>Calculating the Vector Between Two Points</h2>
+                        <canvas id="vector-point-webgl"></canvas>
+                        <div class="container">
+                            Calculate the vector between the <span style=" color:red;"><b>red cube</b></span> and the <span style=" color:blue;"><b>blue cube</b></span>, and type in the components of the vector in the form below:
+                        </div>
+                        <br/>
+                        <div class="container">
+                            v = (<input id ="valX" data-value type="text" maxlength="3" size="1" value="0" />,  <input id ="valY" data-value type="text" value="0" maxlength="3" size="1" />, <input id ="valZ" data-value  type="text" value="0" maxlength="3" size="1"/>) <span class="feedback" style=" color:aqua; display: none;" id="correct">&#10004</span> <span  class="feedback" id="wrong" style=" color:red; display: none;">&#10060;</span>
+                        </div>
+                        <br/>
+                        <button id="confirmBtn">Submit</button>
+                        <button disabled id="nextBtn">Next</button>
+                    </div>
+                    </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               As mentioned earlier, vectors can also be used to represent movement. A vector used for moving an object specifies the units along x, y, and z that the object should be moved every frame. Use the interactive scene below to practice movement using vectors.
+                            </p>
+                        
+                        <div class ="interactive-scene">
+                            <h2>Using Vectors for Movement</h2>
+                            <canvas id="vector-movement-webgl"></canvas>
+                            <div class="container">
+                                Practice movement using vectors by providing a movement vector to move the red cube e.g (0, 0.01, 0) to move up. Try making the cube move in different directions e.g. down, sideways, diagonally etc. You can also change the initial position of the cube.
+                            </div>
+                            <br/>
+                            <div class="container">
+                                Initial Position = (<input id ="posX" data-value type="text" maxlength="2" size="1" value="0" />,  <input id ="posY" data-value type="text" value="0" maxlength="2" size="1" />, <input id ="posZ" data-value  type="text" value="0" maxlength="2" size="1"/>) <span class="feedback" style=" color:aqua; display: none;" id="correct">&#10004</span> <span  class="feedback" id="wrong" style=" color:red; display: none;">&#10060;</span>
+                            </div>
+                            <div class="container">
+                                Movment Vector = (<input id ="vecX" data-value type="text" maxlength="4" size="1" value="0" />,  <input id ="vecY" data-value type="text" value="0" maxlength="4" size="1" />, <input id ="vecZ" data-value  type="text" value="0" maxlength="4" size="1"/>) <span class="feedback" style=" color:aqua; display: none;" id="correct">&#10004</span> <span  class="feedback" id="wrong" style=" color:red; display: none;">&#10060;</span>
+                            </div>
+                            <br/>
+                            <button id="movesBtn">RePosition & Move</button>
+                            <button disabled id="resetBtn">Reset</button>
+                        </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Let's now put vectors into practice in a TL-Engine project. Create a new TL-Engine project and name it <b>Lab6_Vectors_Project</b>.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                <a href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab6/media_lab6.zip" target="_blank">Download the associated media files for this lab from this link</a>, place the files in a folder called "Media" within your current project folder, and use the AddMediaFolder() method to point TL-Engine to this new media folder by adding the code provided below before loading your meshes.
+                            </p>
+<pre><code>myEngine->AddMediaFolder('./Media');</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load and create a model using "stars.x". This will be your skybox.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a 'kManual' camera and position it at ( 0, 0, -60 ).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Load the "particle.x" mesh and use it to create a model called particleModel at (0, 20, 0).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Include a line of code within the game loop to make the particleModel slowly move downwards. Use movement relative to the world, not local movement. For example:
+                                <pre><code>particleModel->MoveY( -0.005f );</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">When particleModel reaches the bottom of the screen set its coordinates back to ( 0, 20, 0 ) using the SetPosition() method. Again note that you are using world coordinates not local coordinates.
+                            <pre><code>particleModel->SetPosition( 0, 20, 0 );</code></pre>
+                            particleModel should now fall down the screen and when it hits the bottom reappear at the top of the screen. Ensure that it is falling slowly at a value of 0.005, if this is not already the case.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                11.	Currently, the vector of movement for particleModel is ( 0,  -0.005,  0 ), meaning that the model is advancing by:
+                                <ul>
+                                    <li>a value of 0 along the x-axis</li>
+                                    <li>a value of -0.005 along the y-axis</li>
+                                    <li>a value of 0 along the z-axis</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare three floating-point variables: movementX, movementY and movementZ. Set the value of movementX to 0, the value of movementY to -0.005 and the value of movementZ to 0. The variables should be created outside the game loop.
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Replace the MoveY() command in your game loop with a Move() method that takes in vector (movementX, movementY, movementZ) as its parameter.
+                                <pre><code>particleModel->Move(movementX, movementY, movementZ);</code></pre>
+                            </p>
+                            <p>
+                                Note that the above code is equivalent to using a separate move method for each component of the vector i.e. MoveY(movementY); MoveX(movementX); MoveZ(movementZ); 
+                            </p>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Compile and run your program, particleModel should be dropping down the screen as before.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Change the value of movementX and movementY so that now the vector (-0.01, -0.01, 0) is being applied to particleModel and then run the program.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Experiment with some other values for movementX and movementY.
+                            </p>
+                        </div>
+                    </li>  
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                As you can see, one of the immediate advantages of using a vector is that you don't have to change any code within the game loop. All you have to consider is the direction of movement and set up the appropriate vector. This is how all movement within a graphics engine is dealt with. All models within 3D graphics are moved using vectors.
+                            </p>
+                        </div>
+                    </li>        
+                </ol>
+        </section>
+        <section>
+            <h2>3. Adding Vectors</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Vectors can be combined, this is one reason why they are so useful a tool within graphics. Imagine that there is a wind blowing across the screen from right to left, particleModel is falling down but at the same time, it is being pushed by the wind. This can be represented using a second vector
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Set the movement vector of particleModel back to to (0, -0.005, 0).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a new vector for the wind. Declare three floating point variables: windX, windY and windZ. Set this new wind vector to (-0.005, 0,  0).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Within the game loop add a new Move() command in your code so that particleModel is also moved using the wind vector.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Run the program. As you can see particleModel is falling diagonally. The net effect of applying the wind vector and the movement vector is as if you had one vector of value (-0.005, -0.005, 0).
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                 Vectors can be added together to produce one new vector. When two vectors are added together you sum the x values of the two vectors, then the y values and finally the z values.
+                            </p>
+                            <p>
+                                A set of exercises for practising vector arithmetic are available on Blackboard, attempt to solve them when you complete this lab.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Experiment with the values of the movement vector of particleModel and the wind vector. You will explore vectors in more detail in next week's lab.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+        </section>
+        <section>
+            <h2>4. An Array of Models </h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                An array is a way of referring to a group of variables by a single name. The elements of an array can be initialised when the array is declared or they can be assigned values after the array has been declared. Examples of array declaration and initialisation are given below (do not copy this code into your project).
+<pre><code>int primeNumbers[3];//an integer array of size 3 is declared but not initialised
+primeNumbers[0] = 1;    //the first element of primeNumbers is assigned a value of 1
+primeNumbers[1] = 3;    //the second element of primeNumbers is assigned a value of 3
+primeNumbers[2] = 7;    //the third element of primeNumbers is assigned a value of 7
+
+//an integer array of size 4 is declared and initialised
+int evenNumbers[4] = {2, 4, 6, 8}; 
+
+//a string array of size 5 is declared and initialised
+string sonyConsoles[5] = {"PS1", "PS2", "PS3", "PS4", "PS5"}; 
+
+// IModel* array of size 10 declared but not initialised
+IModel* particleModels[10];
+</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The usefulness of arrays is that we can refer to the group of variables by just using their array name. The individual variables still exist and can be referenced using the array index, a number inside square brackets. For example, if I wanted to reference the first element of the IModel* array given above I could write:
+                                <pre><code>IModel* particles[0] = particleMesh->CreateModel();</code></pre>
+                                The array index always starts at 0. In other words, the first element of the array is always at 0. This means that the last element of the array is one less than the size of the array. In other words, the last element of an array of size 10 is array index 9. If I wanted to reference the last element of the IModel* array given above I could write:
+                                <pre><code>IModel* particles[9] = particleMesh->CreateModel();</code></pre>
+                                If you go over the edge of an array you will cause a run-time error. 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You can loop through the elements of an array using a for-loop. This is useful for assigning values to elements as well as accessing elements. For example, the code below will create a model using particleMesh and assign it to each element of particleModels.
+<pre><code>for (int i = 0; i <= 9; i++)
+{
+    particleModels[i] = particleMesh->CreateModel();
+}</code></pre>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In the steps that follow, you will update your program to utilise arrays.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare an integer constant called kParticles and initialise it to 5. This value will be used for the size of our array. 
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Declare an array of IModels* called particleModels. The array should be of size kParticles, i.e. 5. It will be used to store models created using particleMesh.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                               The array that will hold the models has been created, but the models have not been created and assigned to the array elements yet. When the models are created, they should be spread horizontally across the top of the screen i.e. from x = 40 to x =-40 with 20 units between two consecutive particles. They should then move down until they reach the bottom of the screen, then they should be positioned back to their initial positions at the top of the screen. To achieve this, begin by declaring the following:
+                                <ul>
+                                    <li>Declare a float constant kInitialY = 20.0f, to store the initial y position for all models</li>
+                                    <li>Declare a float constant kFinalY = -20.0f, to store the lowest y position for all models</li>
+                                    <li>Declare a float constant kMaxX = 40.0f , to store the x position for the first model to be created</li>
+                                    <li>Declare a float constant kSpread = 20.0f, to store the distance between two consecutive models</li>
+                                    <li>Declare a float named particleXPos and initialise it to KMaxX, to store the x position of the model being created in the current iteration</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">        
+                                In the initialisation section, use a for loop to loop through the elements of particleModels[] and assign to each a model created using particleMesh. All the created models should be positioned at kInitialY along the y-axis, and spread across the screen horizontally by kSpread starting from kMaxX i.e. the first model should be created at (kMaxX, kInitialY, 0), the second at (kMaxX - kSpread, kInitialY, 0)...
+                                </p>
+<pre><code>float particleXPos = kMaxX; //assign kMAxX to particleXPos
+for (int i = 0; i < kParticles; i++) {
+    particleModels[i] = particleMesh->CreateModel(particleXPos, kInitialY, 0);
+    particleXPos -= kSPread;   //subtract kSpread from particleXPos to create space between the current particle and the next
+}</code></pre>
+                            <img class="center" src="https://acodedoer.github.io/CO1301/Lab6/particles_.PNG" alt="5 particles spread horizontally accross the screen">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">        
+                                Add a for loop to your game loop that moves each element of particleModels[] in each frame using the vector (0, -0.005, 0). Within the same for loop, add an if-statement to check if the element of particleModels[]  that is moved has reached kFinalY along the y-axis, if so set its y-position to kInitialY so that it can reappear at its initial position at the top of the screen.
+                                </p>
+                                <img class="center" src="https://acodedoer.github.io/CO1301/Lab6/lab6_1.gif" alt="5 particles spread horizontally accross the screen and moving vertically">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">        
+                                Now update kInitialY to 30.0f and kFinalY to -30.0f, this will make the particles disappear into the bottom of the screen and appear from the top.
+                                </p>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+                <h2>5. States and an Additional Array</h2>
+                    <div class="section_instrcutions"></div>
+                    <ol>
+                        <li>
+                            <div class="list-div">
+                            <p>
+                                 Create a new array of strings called particleSkins. This should be an array of 5 elements and each element should store the file name (including the extension e.g. "particleSkin1.tga") of a particle skin found in the media folder you downloaded for this lab.
+                            </p>
+                            </div>
+                        </li>
+                        <li><div class="list-div">
+                            <p>
+                                In the for loop that creates models and assigns them to elements of particleModels[], add a line code that sets the skin of the model created at each iteration of the loop to the image stored in particleSkins[i]. This means that particleModels[0] will have particleSkins[0] as its skin, particleModels[1] will have particleSkins[1] as its skin, particleModels[2] will have particleSkins[2] as its skin, and so on.
+                            </p>
+                            <img class="center" src="https://acodedoer.github.io/CO1301/Lab6/lab6_2.gif" alt="5 differently coloured particles spread horizontally accross the screen and moving vertically">
+                        </div>
+                        </li>
+                        <li>
+                            <div class="list-div">
+                                <p>
+                                    Create an enumeration called MovementStates with two values: Moving and Paused. Then create an array of type MovementStates with 5 elements called particleStates. Use a for loop to initialise all the elements of particleStates to Moving. The element in each index of particleStates[] should be used to keep track of the model stored in the same index in particleModels[].
+                                    <ul>
+                                        <li>
+                                            Update your game loop so that elements of  particleModels[] are moved only if the particleStates[] element keeping track of their state is set to Moving. E.g. particleModels[0] should be moved only if particleStates[0] == Moving.
+                                        </li>
+                                        <li>
+                                            Add code to the game loop that responds to hitting numbers 0 to 4 by toggling the state of the particleStates[] element in the associated index between Moving and Paused. E.g. when 0 is hit and particleStates[0] is set to Moving, it should be changed to Paused (this should stop particleModels[0] from moving).
+                                        </li>
+                                    </ul>
+                                </p>
+                                </div>
+                                </li>
+                    </ol>
+            </section>
+
+    </main>
+    <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
+    <script type="module">
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+    const canvas = document.getElementById('vector-point-webgl')
+    const loadingManager = new THREE.LoadingManager()
+    const textureLoader = new THREE.TextureLoader(loadingManager);
+    const planeXZTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid.jpg')
+    const planeYTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid2.jpg')
+    
+    const scene = new THREE.Scene();
+    let displayPlayer = true;
+    let displayGem = true;
+
+    const planeYGeometry = new THREE.PlaneBufferGeometry(1,3, 1);
+    const planeYMaterial = new THREE.MeshBasicMaterial({map:planeYTexture, transparent:false, side:THREE.DoubleSide});
+    const planeYMesh = new THREE.Mesh(planeYGeometry, planeYMaterial);
+    
+    planeYMesh.position.set(0,3,0);
+    planeYMesh.scale.set(1, 2,2)
+    
+    const planeXZGeometry = new THREE.PlaneBufferGeometry(6,6, 1);
+    const planeXZMaterial = new THREE.MeshBasicMaterial({map:planeXZTexture, side:THREE.DoubleSide});
+    planeYMaterial.opacity = 0.5;
+    const planeXZMesh = new THREE.Mesh(planeXZGeometry, planeXZMaterial);
+    planeXZMesh.rotation.set(-Math.PI/2, 0, 0)
+    planeXZMesh.scale.set(2, 2,2)
+    
+     scene.add(planeXZMesh, planeYMesh)
+    
+    let cords={pX:0, pY:0, pZ:0,gX:0, gY:0, gZ:0,}
+    
+        
+    
+    const size = {
+        width: window.innerWidth/3,
+        height: window.innerWidth/3
+    }
+    const camera = new THREE.PerspectiveCamera(75, size.width/size.height);
+    camera.position.set(0, 5, 10);
+    camera.rotation.x=Math.PI/2.0;
+    let cube_mesh= null, sphere_mesh =null;
+    const createPlayer = () =>{
+        if(sphere_mesh!=null){
+            scene.remove(sphere_mesh)
+        }
+        const rand = Math.floor(Math.random() * 2);
+        const geometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+        const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+        sphere_mesh = new THREE.Mesh( geometry, material );
+        let x, y, z;
+        const createRand=()=>{
+            if(rand==1){
+                x = Math.floor(Math.random() * 10) - 4;
+                y = 0;
+                z = Math.floor(Math.random() * 10) - 4;
+                }
+            else{
+                x = 0;
+                y = Math.floor(Math.random() * 6) + 1;
+                z = 0;
+            }
+        }
+        createRand();
+        while(x == cords.gX && y == cords.gY && z == cords.gZ)
+        {
+            createRand();
+        }
+        cords.pX =x;
+        cords.pY = y;
+        cords.pZ = -z;
+        sphere_mesh.position.set(x, y,z)
+        scene.add( sphere_mesh );
+    }
+
+    const createGem = ()=>{
+        const colors = [0x000000]
+        if(cube_mesh!=null){
+            scene.remove(cube_mesh)
+        }
+        const cube = new THREE.BoxBufferGeometry(1,1, 1);
+        const cube_material = new THREE.MeshBasicMaterial({color:0x0000ff, wireframe:false});
+        cube_mesh = new THREE.Mesh(cube, cube_material);
+        cube_mesh.scale.set(0.4, 0.4, 0.4)
+        const rand = Math.floor(Math.random() * 2);
+        let x, y, z;
+        if(rand==1){
+            x = Math.floor(Math.random() * 10) - 4;
+            y = 0;
+            z = Math.floor(Math.random() * 10) - 4;
+        }
+        else{
+            x = Math.floor(Math.random() * (1-(-1)) - 1);
+            y = Math.floor(Math.random() * 6) + 1;
+            z = 0;  
+        }
+        cords.gX =x;
+        cords.gY = y;
+        cords.gZ = -z;
+        cube_mesh.position.set(x, y,z)
+        scene.add(cube_mesh)
+    }
+    createGem()
+    createPlayer();
+    
+    const renderer = new THREE.WebGLRenderer(
+        {canvas: canvas}
+    );
+    renderer.setSize(size.width, size.height)
+    renderer.setClearColor("#ffffff")
+    
+    const controls = new OrbitControls( camera, renderer.domElement );
+    controls.update();
+    const parameters = {
+        color: 0xff0000,
+        toRight: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:4})},
+        toLeft: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:-4})},
+    }
+    
+    const wrong = document.getElementById("wrong");
+    const correct = document.getElementById("correct");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const xForm = document.getElementById("valX");
+    const yForm = document.getElementById("valY");
+    const zForm = document.getElementById("valZ");
+    document.getElementById('confirmBtn').addEventListener('click', ()=>{
+        const x = parseInt( document.getElementById("valX").value)
+        const y = parseInt( document.getElementById("valY").value)
+        const z = parseInt( document.getElementById("valZ").value)
+        const ansX = (cords.gX - cords.pX) *10;
+        const ansY = (cords.gY - cords.pY) * 10;
+        const ansZ = (cords.gZ - cords.pZ) * 10;
+        console.log(ansX)
+        console.log(ansY)
+        console.log(ansZ)
+        if(ansX==x && ansY==y && ansZ==z){
+            confirmBtn.setAttribute("disabled", "");
+            nextBtn.removeAttribute("disabled");
+            correct.style.display="inline"
+            wrong.style.display="none"
+            xForm.setAttribute("disabled", "");
+            yForm.setAttribute("disabled", "");
+            zForm.setAttribute("disabled", "");
+
+
+                }
+        else{
+            wrong.style.display="inline"
+            correct.style.display="none"
+        }
+    })
+    
+    nextBtn.addEventListener("click",()=>{
+        createGem()
+        createPlayer()
+        confirmBtn.removeAttribute("disabled");
+        nextBtn.setAttribute("disabled","");
+        correct.style.display="none"
+        xForm.removeAttribute("disabled");
+        yForm.removeAttribute("disabled");
+        zForm.removeAttribute("disabled");
+    
+        xForm.value="";
+        yForm.value="";
+        zForm.value="";
+    })
+    const tick = () =>{
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(tick)
+    
+    }
+    
+    tick()
+    </script>
+    <script type="module">
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+    const canvas = document.getElementById('vector-movement-webgl')
+    const loadingManager = new THREE.LoadingManager()
+    const textureLoader = new THREE.TextureLoader(loadingManager);
+    const planeXZTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid.jpg')
+    const planeYTexture = textureLoader.load('https://acodedoer.github.io/CO1301/Lab1/Grid2.jpg')
+    
+    const scene = new THREE.Scene();
+    
+    const planeYGeometry = new THREE.PlaneBufferGeometry(1,3, 1);
+    const planeYMaterial = new THREE.MeshBasicMaterial({map:planeYTexture, transparent:false, side:THREE.DoubleSide});
+    const planeYMesh = new THREE.Mesh(planeYGeometry, planeYMaterial);
+    
+    planeYMesh.position.set(0,3,0);
+    planeYMesh.scale.set(1, 2,2)
+    
+    
+    const planeXZGeometry = new THREE.PlaneBufferGeometry(6,6, 1);
+    const planeXZMaterial = new THREE.MeshBasicMaterial({map:planeXZTexture, side:THREE.DoubleSide});
+    planeYMaterial.opacity = 0.5;
+    const planeXZMesh = new THREE.Mesh(planeXZGeometry, planeXZMaterial);
+    planeXZMesh.rotation.set(-Math.PI/2, 0, 0)
+    planeXZMesh.scale.set(2, 2,2)
+    
+    const size = {
+        width: window.innerWidth/3,
+        height: window.innerWidth/3
+    }
+    const camera = new THREE.PerspectiveCamera(75, size.width/size.height);
+    camera.position.set(0, 5, 10);
+    camera.rotation.x=Math.PI/2.0;
+    
+    const geometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+    const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+    const cubeMesh = new THREE.Mesh( geometry, material );
+    cubeMesh.position.set(0, 0, 0)
+    
+    scene.add(planeXZMesh, planeYMesh, cubeMesh)
+    
+    const renderer = new THREE.WebGLRenderer(
+        {canvas: canvas}
+    );
+    renderer.setSize(size.width, size.height)
+    renderer.setClearColor("#ffffff")
+    
+    const controls = new OrbitControls( camera, renderer.domElement );
+    controls.update();
+    const parameters = {
+        color: 0xff0000,
+        toRight: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:4})},
+        toLeft: ()=>{gsap.to(cube_mesh.position, {duration: 1, delay: 0, x:-4})},
+    }
+    
+    // var person = {CubePosition_X: 0,CubePosition_Y: 0,CubePosition_Z: 0};
+    // document.getElementById("incX").addEventListener("click", ()=>{
+    //     var x = parseInt( document.getElementById("valX").value);
+    //     if(x<60){
+    //         x+=1;
+    //         document.getElementById("valX").value= x;
+    //         cube_mesh.position.set(x/20.0,cube_mesh.position.y, cube_mesh.position.z)
+    //     }
+    // })
+    
+    // document.getElementById("incX").addEventListener("click", ()=>{ 
+    //     document.getElementById("valX").value= parseInt( document.getElementById("valX").value)+ 1;
+    //     cube_mesh.position.set(parseInt( document.getElementById("valX").value)/10,cube_mesh.position.y, cube_mesh.position.z)
+    // })
+    
+    // document.getElementById("decX").addEventListener("click", ()=>{ 
+    //     document.getElementById("valX").value= parseInt( document.getElementById("valX").value)- 1;
+    //     cube_mesh.position.set(parseInt( document.getElementById("valX").value)/10,cube_mesh.position.y, cube_mesh.position.z)
+    // })
+    
+    // document.getElementById("incY").addEventListener("click", ()=>{
+    //     document.getElementById("valY").value= parseInt( document.getElementById("valY").value)+ 1;
+    //     cube_mesh.position.set(cube_mesh.position.x, parseInt( document.getElementById("valY").value)/10, cube_mesh.position.z)
+    // })
+    
+    // document.getElementById("decY").addEventListener("click", ()=>{ 
+    //     document.getElementById("valY").value= parseInt( document.getElementById("valY").value)- 1;
+    //     cube_mesh.position.set(cube_mesh.position.x, parseInt( document.getElementById("valY").value)/10,  cube_mesh.position.z)
+    // })
+    const wrong = document.getElementById("wrong");
+    const correct = document.getElementById("correct");
+    const movesBtn = document.getElementById("movesBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const xVec = document.getElementById("vecX");
+    const yVec = document.getElementById("vecY");
+    const zVec = document.getElementById("vecZ");
+    
+    const xPos = document.getElementById("posX");
+    const yPos = document.getElementById("posY");
+    const zPos = document.getElementById("posZ");
+    
+    let xMove, yMove, zMove;
+    let moveCube = false;
+    document.getElementById('movesBtn').addEventListener('click', ()=>{
+        const x = parseInt( xPos.value)/10
+        const y = parseInt( yPos.value)/10
+        const z = -parseInt( zPos.value)/10
+    
+        xMove = parseFloat(xVec.value);
+        yMove = parseFloat(yVec.value);
+        zMove = -parseFloat(zVec.value);
+            console.log(xMove)
+        moveCube = true;
+        cubeMesh.position.set(x, y, z)
+        resetBtn.removeAttribute("disabled");
+    })
+    
+    resetBtn.addEventListener("click",()=>{
+        moveCube= false;
+        cubeMesh.position.set(0,0,0);
+        xPos.value = 0;
+        yPos.value= 0;
+        zPos.value= 0;
+        xVec.value= 0;
+        yVec.value= 0;
+        zVec.value= 0;
+        resetBtn.setAttribute("disabled", "");
+    
+    })
+    const tick = () =>{
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(tick)
+        if(moveCube){
+            cubeMesh.position.x+=xMove;
+            cubeMesh.position.y+=yMove;
+            cubeMesh.position.z+=zMove;
+        }
+    }
+    
+    tick()
+    </script>
+</body>
+</html>

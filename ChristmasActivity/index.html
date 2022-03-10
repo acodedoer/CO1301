@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script>
+    <script src="https://github.com/acodedoer/Test/blob/master/bundle.056cd6ff592ded82633f.js"></script>
+    <!-- and it&#039;s easy to individually load additional languages -->
+    <script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/languages/go.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>CO1301 - 2D Space Shooter</title>
+    <style>
+        .webgl {
+            height: 30%;
+        }
+
+        .active{
+           background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br> 2D Space Shooter</h1></header>
+    <main>
+        <section>
+            In Lab 4, you were introduced to the IFont* and ISprite* types of TL-Engine used for the creation and manipulation of 2D text and sprites. What was not covered in-depth was how these types and their associated methods could be used to create 2D games. In this lab sheet I go through creating a basic 2D Space Shooter, shown in the video below, and I hope you extend or use it as an inspiration to create your own 2D game.
+            <div style="padding:1em">
+                <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/ff02ec74-e851-4be3-a99c-d206d72867b7?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+            </div>
+            <h2>1. Introduction</h2>
+            <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <span><p class= "instruction-item">
+                                Create a TL-Engine project called SpaceShooter2D, then <a href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/SpaceShooter2D/SpaceShooter2D_Media.zip">download the assets required for this project from this link</a>, unzip and add them to your newly created project folder. If you are interested in extending this project, you can check out kenney.nl or opengameart.org for additional sprites for your extended project.
+                            </p></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                The sprites used in the basic game and their dimensions are listed below:
+                                <ul>
+                                    <li>playerShip.png -  99 x 75</li>
+                                    <li>enemyShip.png -  82 x 84</li>
+                                    <li>laser.png -  13 x 37</li>
+                                    <li>background.png -  2048 x 1536</li>
+                                    <li>explosion1.png -  41 x 41</li>
+                                    <li>explosion2.png -  60 x 60</li>
+                                    <li>explosion3.png -  74 x 74</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h2>2. Implementing the Basic Game</h2>
+                <ol><li>
+                    <div class="list-div">
+                        <p class= "instruction-item">
+                            Begin by adding a background image to your scene. Create an ISprite using background.png and position it at (0,0), the background image is large enough to cover your entire scene. To make sure all other sprites added to the scene appear on top of the background image, set the Z value of the background ISprite to 1. Although we are using 2D, we can still use the z-axis to sort our sprites and determine the order in which they are displayed.
+<pre><code class="plaintext">ISprite* background = myEngine->CreateSprite("background.png", 0, 0);
+background->SetZ(1.0f);
+</code></pre>
+                        </p>
+                    </div>
+                </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Let us create and position the playerShip next. The centre of the playerShip sprite should be at position P, where P is at the middle of the screen horizontally (x-axis), and vertically, the equivalent of the playerShip height above the bottom of the screen (y-axis). We can caluculate the centre of the screen along the x-axis using myEngine->GetWidth()/2, and calculate our required position along the y-axis using myEngine->GetWidth() - playerShipHeight (where playerShipHeight = 75.0f).
+                            </p>
+                            <p>
+                                However, the player will still be positioned to the right and below the intended position, this is because the origin of a sprite in TL-Engine is not its centre, but the sprite's top-left corner, therefore whenever you want to position the centre of a sprite at a given position, you have to offset the position by subtracting half the width of the sprite from the x-component of the position, and half the height of the sprite form the y-component of the position.
+                            </p>
+
+                            <p>
+                                Therefore, add the code below in the initialisation section to create and position the playerShip.
+<pre><code class="plaintext">const float playerShipWidth = 99.0f;
+const float playerShipHeight = 75.0f;
+
+float playerShipXPos = myEngine->GetWidth() / 2 - (playerShipWidth / 2);
+float playerShipYPos = myEngine->GetHeight() - playerShipHeight - (playerShipHeight / 2);
+
+ISprite* playerShip = myEngine->CreateSprite("playerShip.png", playerShipXPos, playerShipYPos);
+</code></pre>
+                            </p>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Next, we need to create 12 enemy ships and position them in a 4 x 3 grid. Each row should be centred horizontally on the screen (x-axis) with a space of half the width of an enemyShip between enemyships. The centre of the enemyShips on the topmost row should be below the top of the screen by the equivalent of the enemyShip's height, and there should be a space of half the height of an enemyShip between centres of the enemyShips on each row. We can use an array of ISprites to store the enemyShips, and use a nested loop to create and position the elements of the array.
+                           </p>
+                        <p>
+                            Therefore, add the code below in the initialisation section to create and position the enemyShips.
+<pre><code class="plaintext">const int kEnemyShipCount = 12;
+const int kEnemeyShipRows = 3;
+const int kEnemeyShipCols = 4;
+const float enemyShipWidth = 82;
+const float enemyShipHeight = 84;
+const float enemyShipWidthPlusSpace = enemyShipWidth * 1.5;
+const float enemyShipHeightPlusSpace = enemyShipHeight * 1.5;
+const float enemyShipStartingXPos = (myEngine->GetWidth() / 2) - (enemyShipWidthPlusSpace *kEnemeyShipCols/2) + enemyShipWidth/4;
+const float enemyShipStartingYPos = (0 + enemyShipHeight - (enemyShipHeight / 2));
+
+ISprite* enemies[kEnemyShipCount];
+
+float enemyXPos = enemyShipStartingXPos;
+float enemyYPos = enemyShipStartingYPos;
+int index = 0;
+for (int i = 0; i < kEnemeyShipRows; i++) {
+    for (int j = 0; j < kEnemeyShipCols; j++) {
+        enemies[index] = myEngine->CreateSprite("enemyShip.png", enemyXPos + j * enemyShipWidthPlusSpace, enemyYPos);
+        index++;
+    }
+    enemyYPos += enemyShipHeightPlusSpace;
+}
+</code></pre>
+                        </p>
+                       </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">Let's add direction control to allow the playerShip to be moved left or right using arrow keys. We'll be using variable timing which was introduced in Lab 7 to implement this, this will allow us to move from one end of the screen to the other in 2 seconds. Begin by initialising the timer in the initialisation section using myEngine->Timer(). Then in the game loop, right after myEngine->DrawScene, declare a float called deltaTime and assign it the value returned by myEngine->Timer(). Now that we have a variable that holds the time it takes to render each frame, we can use that to control the playerShip's movement speed. In the game loop add the code below:
+<pre><code>if (myEngine->KeyHeld(Key_Right)) {
+    playerShip->MoveX(deltaTime * myEngine->GetWidth()/2);
+}
+else if (myEngine->KeyHeld(Key_Left)) {
+    playerShip->MoveX(-deltaTime * myEngine->GetWidth()/2);
+}
+</code></pre>
+                           </p>
+                       </div>
+                    </li><li >
+                        <div class="list-div">
+                             <p class= "instruction-item">
+                                 Next, let us give the playerShip the ability to shoot lasers at enemies when the space key is hit. Begin by creating an ISprite called laser (don't initialise it yet) in the initialisation section, also in the initialisation section declare a bool called laserFired and initialise it to false, a float called laserLifeTime and initialise it to 1, a float called laserTime and initialise it to 0, and laserHeight and laserWidth to store the height and width of the laser.
+                                </p>
+<pre><code>ISprite* laser;
+bool laserFired = false;
+float laserTimer = 0;
+float laserLifeTime = 1.0f;
+float laserWidth = 13.0f;
+float laserHeight = 37.0f;
+</code></pre>
+                            </p>
+                            <p>
+                                Then in the game loop check if the Space_Key is hit and if fired is false, if the conditions are satisfied, initalise the laser ISprite using laser.png and position its centre at the centre of the playerShip, then set laserFired to true. Use the code below:
+                            </p>
+<pre><code>if (myEngine->KeyHit(Key_Space) && laserFired == false) {
+    float playerShipCentreX = playerShip->GetX() + playerShipWidth / 2;
+    float playerShipCentreY = playerShip->GetY() + playerShipHeight / 2;
+    laser = myEngine->CreateSprite("laser.png", playerShipCentreX - laserWidth/2, playerShipCentreY-laserHeight/2);
+    laserFired = true;
+}
+</code></pre>
+
+<p>
+    Next, use another if-statement in the game loop to check if laserFired is true, if it is then move the laser upwards at a speed of half the screen height per second, and increment laserTime by deltaTime, then check if laserTime is greater than or equal to laserLifeTime, meaning check if it has been at least a second since the laser was fired, if so set laserFired to false, laserTime to 0 and remove the laser sprite. 
+</p>
+<pre><code>if (laserFired) {
+    laser->MoveY(-deltaTime * myEngine->GetHeight()/2);
+    laserTimer += deltaTime;
+    if (laserTimer > laserLifeTime) {
+        laserFired = false;
+        laserTimer = 0;
+        myEngine->RemoveSprite(laser);
+    }
+}
+</code></pre>
+</div>
+</li>
+<li >
+    <div class="list-div">
+        <p class= "instruction-item">Before we check if the laser is hitting the enemy, let us make the game interesting by making the enemyShips move slowly down towards the player, and end the game if they collide with the playerShip. To do this, a for loop is needed to iterate through the enemies array, and for each enemyShip, move it at a speed of the height of an enemyShip per 3 seconds, then check if there is a collision between that ship and the player ship by calculating the distance between the two ships using vector calculations. If the distance is less than the sum of the widths of the playerShip and enemyShip then there is a collision and the game should be stopped.
+            
+<pre><code>for (int i = 0; i < kEnemyShipCount; i++) {
+    enemies[i]->MoveY(deltaTime * enemyShipHeightPlusSpace / 2);
+    float enemyCentreX = enemies[i]->GetX() + enemyShipWidth/2;
+    float enemyCentreY = enemies[i]->GetY()+enemyShipHeight/2;
+
+    float playerCentreX = playerShip->GetX() +playerShipWidth/2;
+    float playerCentreY = playerShip->GetY() +playerShipHeight/2;
+
+    float vectorX = playerCentreX - enemyCentreX;
+    float vectorY = playerCentreY - enemyCentreY;
+    float vectorXSquared = vectorX * vectorX;
+    float vectorYSquared = vectorY * vectorY;
+    float distance = sqrt(vectorXSquared + vectorYSquared);
+
+    if (distance < (playerShipWidth / 2 + enemyShipWidth/2)) {
+        myEngine->Stop();
+    }
+}
+</code></pre>
+</p>
+
+</div>
+</li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Now we can use vector distance calculations to check if a laser has hit an enemyShip. In the for-loop created above, add code to check if laserFired is true then calculate the vector between each enemyShip and the laser, calculate the length of the vector to get the distance between the two objects and check if the distance is less than the sum of the width of the enemyShip and the width of the laser, if that is true then there is a collision and the enemyShip has been hit, hide it by setting its Y position to a high number (note that removing it may cause access violation issues for your array, if you are extending this project look into using vectors to store objects rather than arrays), remove the laser from the scene, set laserFired to false and reset laserTimer. Add the code below in the for loop to achieve this.
+<pre><code>if (laserFired) {
+    float laserCentreX = laser->GetX() +laserWidth/2;
+    float laserCentreY = laser->GetY()+ laserHeight/2;
+
+    float laserVectorX = laserCentreX - enemyCentreX;
+    float laserVectorY = laserCentreY - enemyCentreY;
+    float laserVectorXSquared = laserVectorX * laserVectorX;
+    float laserVectorYSquared = laserVectorY * laserVectorY;
+    float laserDistance = sqrt(laserVectorXSquared + laserVectorYSquared);
+
+    if (laserDistance < (laserWidth / 2 + enemyShipWidth/2)) {
+        laserFired = false;
+        laserTimer = 0;
+        myEngine->RemoveSprite(laser);
+        enemies[i]->SetY(10000);
+    }
+}
+</code></pre>
+</p>
+<p>
+    You may be wondering why we are not just setting the Z value of the enemyShip to a high number in order to hide it, why don't you try it and see what happens? If you are calculating your vector length using the code I have provided then the laser will still collide with enemyShips that are invisible, can you think of a way around this? Hint: my code uses 2D vectors with only x and y components.
+</p>
+</div>
+</li>
+<li >
+    <div class="list-div">
+        <p class= "instruction-item">
+Make things more colourful by adding an explosion animation when a laser hits an enemyShip. </p>
+
+<p>
+    Start by declaring the following in your initialisation section: declare and initialise 3 variables with the dimensions of the 3 explosion images (since they are squares we don't need to store width and height), declare (but don't initialise) two floats to store the x and y position of an explosion (i.e. the position of the hit enemyShip), declare a float to time our explosion animation, declare a boolean called explode and initialise it to false, and finally declare (but don't initialise) an ISprite called explosion.
+<pre><code>float explosion1Dimension = 41;
+float explosion2Dimension = 60;
+float explosion3Dimension = 74;
+
+float explosionXPos, explosionYPos, explosionTimer;
+bool explode = false;
+ISprite* explosion;
+</code></pre>
+</p>
+<p>
+    Next, update the if-statement added in 2.7 which checks if a laser has hit an enemyShip so that before setting the Y value of the hit enemyShip to a high number, the x and y components of the centre of the enemyShip sprite are copied to explosionXPos and explosionYPos, explode is set to true, explosionTimer is set to 0, and initialise the explosion ISprite with a sprite created using explosion1.png centred at (explosionXPos, explosionYPos). The updated if-statement should look like the code below:
+<pre><code>if (laserFired) {
+    float laserCentreX = laser->GetX() +laserWidth/2;
+    float laserCentreY = laser->GetY()+ laserHeight/2;
+
+    float laserVectorX = laserCentreX - enemyCentreX;
+    float laserVectorY = laserCentreY - enemyCentreY;
+    float laserVectorXSquared = laserVectorX * laserVectorX;
+    float laserVectorYSquared = laserVectorY * laserVectorY;
+    float laserDistance = sqrt(laserVectorXSquared + laserVectorYSquared);
+
+    if (laserDistance < (laserWidth / 2 + enemyShipWidth/2)) {
+        laserFired = false;
+        laserTimer = 0;
+        myEngine->RemoveSprite(laser);
+        explosionXPos = enemies[i]->GetX() + enemyShipWidth/2;
+        explosionYPos = enemies[i]->GetY() + enemyShipHeight/2;
+        explode = true;
+        explosionTimer = 0;
+        explosion = myEngine->CreateSprite("explosion1.png", explosionXPos - explosion1Dimension/2, explosionYPos - explosion1Dimension/2);
+        enemies[i]->SetY(10000);
+    }
+}
+</code></pre>
+</p>
+<p>
+   Finally, create a new if-statement in the game loop to check if explode is true, if it is then we can create an animation by swapping (in a way) the explosion sprite every 0.05 seconds. Inside the if-statement, the float variable explosionTimer should be incremented by deltaTime every frame, used to check if it is time to swap sprites (0.05 seconds), or if it is time to destroy the explosion sprite and end the explosion by setting explode to false (0.25 seconds). The code for the if-statement is provided below:
+<pre><code>if (explode) {
+    explosionTimer += deltaTime;
+    if (explosionTimer <= 0.05) {
+        myEngine->RemoveSprite(explosion);
+        explosion = myEngine->CreateSprite("explosion1.png", explosionXPos-explosion1Dimension/2, explosionYPos - explosion1Dimension/2);
+    }
+    else if (explosionTimer <= 0.1) {
+        myEngine->RemoveSprite(explosion);
+        explosion = myEngine->CreateSprite("explosion2.png", explosionXPos - explosion2Dimension/2, explosionYPos - explosion2Dimension/2);
+    }
+    else if (explosionTimer <= 0.15) {
+        myEngine->RemoveSprite(explosion);
+        explosion = myEngine->CreateSprite("explosion3.png", explosionXPos - explosion3Dimension/2, explosionYPos - explosion3Dimension/2);
+    }
+    else if (explosionTimer <= 0.2) {
+        myEngine->RemoveSprite(explosion);
+        explosion = myEngine->CreateSprite("explosion2.png", explosionXPos - explosion2Dimension / 2, explosionYPos - explosion2Dimension / 2);
+    }
+    else if (explosionTimer <= 0.25) {
+        myEngine->RemoveSprite(explosion);
+        explosion = myEngine->CreateSprite("explosion1.png", explosionXPos - explosion1Dimension / 2, explosionYPos - explosion1Dimension / 2);
+    }
+    else {
+        explode = false;
+        myEngine->RemoveSprite(explosion);
+    }
+}
+</code></pre>
+</p>
+<p>
+    Can you improve the efficiency of the code above? Right now it removes and creates new sprites even when it does not need to.
+</p>
+</div>
+</li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">
+    How accurate do you think your collision detection method is? What if you use the heights of the objects when comparing with distance rather than the widths? Have a look at Lecture 8 slides and Lab 8 sheet on Blackboard and see if you can figure out which collision detection approach you are implementing. Can you implement a more accurate collision detection method in this case? There is a lot of repetition in the calculations done inside the for-loop, can you eliminate these repetitions, maybe by creating a vector calculation function or a collision detection function?
+</p>
+</div>
+</li>
+</ol>
+</div>
+</section>
+<section>
+    <h2>3. Extending the Game</h2>
+    There are so many things you can do to extend this game (use your own assets or <a target="_blank" href="https://www.kenney.nl/assets?q=2d">get more assets from kenney.nl</a>), I've listed a few below. This is not an exhaustive list, you can take this in any direction you want, and feel free to share your end product on the module's Team space.
+    <div class="section_instrcutions"></div>
+        <ol>
+            <li>
+                <div class="list-div">
+                    <span><p class= "instruction-item">
+                        Display the player's score.
+                    </p></span>
+                </div>
+            </li>
+            <li>
+                <div class="list-div">
+                    <span><p class= "instruction-item">
+                        Make the enemyShips move from left to right as they move down towards the player.
+                    </p></span>
+                </div>
+            </li>
+            <li>
+                <div class="list-div">
+                    <span><p class= "instruction-item">
+                        Make the enemyShips on the bottom-most row (at any given time) shoot at the playerShip
+                    </p></span>
+                </div>
+            </li>
+            <li>
+                <div class="list-div">
+                    <span><p class= "instruction-item">
+                        Introduce a boss after all enemyShips have been shot, the boss should move around and shoot at the playerShip, and it should be destroyed after being shot by 5 times by the playerShip.
+                    </p></span>
+                </div>
+            </li>
+            <li>
+                <div class="list-div">
+                    <span><p class= "instruction-item">
+                        Add a health bar for the player and the boss.
+                    </p></span>
+                </div>
+            </li>
+            <li>
+                <div class="list-div">
+                    <span><p class= "instruction-item">
+                        Add different weapons and power-ups.
+                    </p></span>
+                </div>
+            </li>
+            <li>
+                <div class="list-div">
+                    <p class= "instruction-item">
+                        Allow the game to be restarted after all enemyShips and the boss, if implemented, are destroyed. This can be done using a UI menu or asking a player to press a key e.g press R to restart. If you are implementing a menu, why don't you implement a start and restart menu.
+                    </p>
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>
+    </main>
+</body>
+</html>

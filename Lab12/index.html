@@ -27,14 +27,14 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In this lab, you will be using dot product to to calculate whether one object (player) is within the field of view of another object (drone).
+                                In this lab, you will be using dot product to calculate whether one object (player) is within the field of view of another object (drone).
                             </p>
                         </div>
                     </li> 
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This worksheet introduces a number of new concepts. However, take it steady and you will have no problems with it.
+                                This worksheet introduces some new concepts. However, take it steady and you will have no problems with it.
                             </p>
                         </div>
                     </li>          
@@ -68,33 +68,40 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                A set of media files are available on BlackBoard. You need to use the floor.x mesh to create a floor model, drone.x to create a drone model, and either sierra.x, casual_A.x or bikegirl.x to create a player model. Set up the models as follows:
+                                <a href="https://portal.uclan.ac.uk/bbcswebdav/courses/CO1301_202122_1_9/Labs_HTML/Lab12/media_lab12.zip" target="_blank">A set of media files are available on BlackBoard</a>, download, extract and add them to your project's directory. You need to use the floor.x mesh to create a floor model, drone.x to create a drone model, and either sierra.x, casual_A.x or bikegirl.x to create a player model. Set up the models as follows:
                             </p>
                             <ul>
                                 <li>Create the floor model at the origin</li>
-                                <li>Create the drone model at (0, 1, 5) and <emp><b>scale it down to 0.5 its original size (use the Scale() method)</b></emp>.</li>
+                                <li>Create the drone model at (0, 1, 5) and <emp><b>scale it down to 0.5 of its original size (use the Scale() method)</b></emp>.</li>
                                 <li>Create the player model at (0,0,-5)</li>
                             </ul>
                             <p>
-                                When you run your program you should see player near the bottom of the screen and facing the drone; the drone should be positioned around the center of your screen and facing forward.
+                                When you run your program you should see the player near the bottom of the screen and facing the drone; the drone should be positioned around the centre of your screen and facing forward.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                               Implement player movement using W, A ,S and D keys, e.g.
+                               Implement player movement using W, A, S and D keys, e.g.
                             </p>
 <pre><code>if( myEngine->KeyHeld( Key_W ) )
 {
-    player->MoveLocalZ( kPlayerSpeed );
+    player->MoveLocalZ( kPlayerSpeed * frametime ); //
 }</code></pre>
+<p>Note that you also have to declare kPlayerSpeed and use variable timing</p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                In the next section we can find out whether the drone can see the player or not by calculating a value that tells us whether the player is behind the drone or not. The value is calculated by taking the dot-product of the vector between the drone and the player, and the drone's facing vector (which tells us where the drone is facing).
+                                Create a Vector3 struct before your main function, this will make working with vectors in the remainder of the lab easier. Try doing this without looking at task 5.4 of lab 11.
+                            </p>
+                        </div>
+                    </li>                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                In the next section, we will find out whether the drone can see the player or not by calculating a value that tells us whether the player is behind the drone or not. The value is calculated by taking the dot-product of the vector between the drone and the player, and the drone's facing vector (which tells us where the drone is facing).
                             </p>
                         </div>
                     </li>
@@ -103,8 +110,6 @@
             <section>
                 <h2>3. Calculating and Displaying the Dot Product</h2>
                 <div class="section_instrcutions"></div>
-                    <ol>
-                    <li>
                         <div class="list-div">
                             <p class= "instruction-item">
                                 The steps that need to be completed to find out whether the drone can see the player are:
@@ -115,31 +120,42 @@
                                 <li>Calculate the dot product between these two vectors.</li>
                                 <li>Perform check:
                                     <ul>
-                                        <li>If the dot product is greater than 0 then the angle between the two vectors is less that 90 degrees, if the dot product is less than 0 then the angle is greater that 90 degrees, and if the dot product is 0 then the angle is exactly 90 degrees.</li>
+                                        <li>If the dot product is greater than 0 then the angle between the two vectors is less than 90 degrees, if the dot product is less than 0 then the angle is greater than 90 degrees, and if the dot product is 0 then the angle is exactly 90 degrees.</li>
                                         <li>Therefore if the dot product is less than 0 then the player is behind the drone and not visible to the drone.</li>
                                     </ul>
                             </ul>
+                            The tasks that follow describe the implementation of these steps.
                         </div>
-                    </li>
+                    <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                To calculate the vector from the drone to the player, subtract the location of the drone from the location of the player. This should be implemented in the game-loop, and the x, y and z components of the vector should be stored in appropriately named float variables e.g. drone2PlayerVx, drone2PlayerVy and drone2PlayerVz.
+                                Calculate the vector from the drone to the player by subtracting the x,y and z components of the drone's position from that of the player's position. This should be implemented in the game-loop, and the x, y and z components of the resulting vector should be stored in a vector (created from the Vector3 struct you created in 2.6) called drone2PlayerVector.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                To calculate the drone's facing vector, you have to carry out some work with the drone's matrix. We haven't covered matrices yet, so a function that will calculate the facing vector from a given model is provided below:
+                                To calculate the drone's facing vector, you have to carry out some work with the drone's matrix. But We haven't covered matrices yet, so let us use a less efficient approach. Since the facing vector is just the vector that describes the direction in which an object is facing, we can find out what that vector is if we move the drone along its local z-axis by any value, and calculate the vector between the old  and the new position of the drone (of course we will then have to move the drone back). Let's put this "trick" in a function that takes in a Vector3 and a model, calculates and assigns the components of the model's facing vector to the components of the Vector3 it received as parameters.
                             </p>
-<pre><code>void facingVector( IModel *model, float &x, float &y, float &z)
+<pre><code>void calculateFacingVector( IModel *model, Vector3 &facingVector)
 {
-    float matrix[16];
-    model->GetMatrix( matrix );
-    x = matrix[8];
-    y = matrix[9];
-    z = matrix[10];
+    float initialPosX = model->GetX();
+    float initialPosY = model->GetY();
+    float initialPosZ = model->GetZ();
+
+    model->MoveLocalZ(1.0f);
+
+    float finalPosX = model->GetX();
+    float finalPosY = model->GetY();
+    float finalPosZ = model->GetZ();
+
+    facingVector.x = finalPosX - initialPosX;
+    facingVector.y = finalPosY - initialPosY;
+    facingVector.z = finalPosZ - initialPosZ;
+
+    model->MoveLocalZ(-1.0f);
 }
 </code></pre>
                             <p>Add the function to your code so you can call it to calculate the drone's facing vector.</p>
@@ -148,23 +164,21 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Assuming that the model of the drone is called "drone" and we have three floating point variables ready to store the facing vector of the guard:
+                                Assuming that the model of the drone is called "drone" and we have a Vector3 variable ready to store the facing vector of the guard:
                             </p>
-<pre><code>float facingVx;
-float facingVy;
-float facingVz;</code></pre>
+<pre><code>Vector3 droneFacingVector;</code></pre>
                             <p>You would then call the function like this:</p>
-                            <pre><code>facingVector( drone, facingVx, facingVy, facingVz );</code></pre>
+                            <pre><code>calculateFacingVector( drone, droneFacingVector );</code></pre>
                             <p>
-                                Note that the function does not return any value, but is able to update the values of facingVx, facingVy and facingVz as they are passed by reference.
+                                Note that the function does not return any value, but can update the values of droneFacingVector.x, droneFacingVector.y and droneFacingVector.z as they are passed by reference.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now write a function that will calculate the dot product of two vectors V and W. The function should take in as parameters the componenets of V and W, and return their dot product (a float). The function declaration (or function prototype) looks like this:
-                                <pre><code>float dotProduct( float Vx, float Vy, float Vz, float Wx, float Wy, float Wz );</code></pre>
+                                Now write a function that will calculate the dot product of two vectors v and w. The function should take in as parameters two Vector3 vectors V and W, and return their dot product (a float). The function declaration (or function prototype) looks like this:
+                                <pre><code>float calculateDotProduct( Vector3 v, Vector3 w );</code></pre>
                                 Add this before your program's main function.
                             </p>
                         </div>
@@ -172,13 +186,17 @@ float facingVz;</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Below the closing brace of the main function, define the dotProduct function. You need to:
+                                The function prototype specifies that you need to supply the function with two vectors. The body of the function needs to calculate the dot product of the two vectors. The dot product is calculated using the following formula: v&#183w = (v.x * w.x + v.y * w.y + v.z * w.z)
+                            </p>
+                            
+                            <p class= "instruction-item">
+                                Below the closing brace of the main function, define the calculateDotProduct function. You need to:
                             </p>
                             <ul>
                                 <li>write the function declaration without the ending semi-colon</li>
                                 <li>add curly brackets (braces) and place the body of the code within the curly brackets.</li>
                             </ul>
-<pre><code>float dotProduct( float Vx, float Vy, float Vz, float Wx, float Wy, float Wz )
+<pre><code>float calculateDotProduct( Vector3 v, Vector3 w )
 {
     // body of code here
 }</code></pre>
@@ -187,40 +205,28 @@ float facingVz;</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The function prototype specifies that you need to supply the function with two vectors. The body of the function needs to calculate the dot product of the two vectors. The dot product is calculated using the following formula:
+                                Now pass droneFacingVector and drone2PlayerVector as parameters to the calculateDotProduct function to find the dot product of the two vectors. Assign the result to a float variable named dotProduct.
                             </p>
-                            v&#183w = (v<sub>x</sub>w<sub>x</sub> + v<sub>y</sub>w<sub>y</sub> + v<sub>z</sub>w<sub>z</sub>)
+                            <pre><code>float dotProduct = calculateDotProduct( droneFacingVector, drone2PlayerVector );</code></pre>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Assuming the facing vector of the drone be vector v and the vector from the drone to the player be vector w, use the dotProduct function to find v&#183w. Assign the result to a float variable named vDotW.
-                            </p>
-                            <pre><code>float vDotW = dotProduct( facingVx, facingVy, facingVz, drone2PlayerVx, drone2PlayerVy, drone2PlayerVz )</code></pre>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Finally apply the following test:
+                                Finally, apply the following test:
                                 <ul>
-                                    <li>If vDotW > 0 then the angle is less that 90 degrees, if vDotW &lt 0 then the angle is greater that 90 degrees, and if vDotW == 0 then the angle is exactly 90 degrees.</li>
-                                    <li>Therefore if vDotW &lt 0 then the player is behind the drone and not visible to the drone.</li>
+                                    <li>If dotProduct > 0 then the angle is less than 90 degrees, if dotProduct &lt 0 then the angle is greater than 90 degrees, and if dotProduct == 0 then the angle is exactly 90 degrees.</li>
+                                    <li>Therefore if dotProduct &lt 0 then the player is behind the drone and not visible to the drone.</li>
                                 </ul>
                             </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
                             <p class= "instruction-item">
                                 Display the dot-product and visibility of the player on the screen:
                                 <ul>
                                     <li>
-                                        At the top left of your screen, display the the dot product calculated at every frame in the format: "Dot-Product: 0".
+                                        At the top left of your screen, display the dot product calculated at every frame in the format: "Dot-Product: 0".
                                     </li>
                                     <li>
-                                        At the top right corner of your screen, display the visibility status of the player. If the the dot product is less than 0, display "Visibility: Hidden" else display "Visibility: Visible".
+                                        At the top right corner of your screen, display the visibility status of the player. If the dot product is less than 0, display "Visibility: Hidden" else display "Visibility: Visible".
                                     </li>
                                 </ul>
                             </p>
@@ -242,7 +248,7 @@ float facingVz;</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Update the code in your game-loop so that both the drone to player and drone facing vectors are normalised before the dot product is caluclated. Check out Lecture 6, Lab 6 and Lab 7 if you need a reminder on normalising vectors.
+                                Update the code in your game-loop so that both droneFacingVector and drone2PlayerVector are normalised before the dot product is calculated. Check out Lecture 6, Lab 6 and Lab 7 if you need a reminder on normalising vectors.
                             </p>
                             <p>
                                 Can you see a difference in the values of the dot-product displayed by the program?
@@ -252,7 +258,7 @@ float facingVz;</code></pre>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add code in your game-loop that rotates the drone about it's local y-axis. This means you will have to keep moving the player to avoid being seen by the drone.
+                                Add code in your game-loop that rotates the drone about its local y-axis. This means you will have to keep moving the player to avoid being seen by the drone.
                             </p>
                         </div>
                     </li>
@@ -262,8 +268,8 @@ float facingVz;</code></pre>
                                 Extend this program into a game; the game's objective is to deactivate the drone.
                                 <ul>
                                     <li>The player needs to touch the drone to deactivate it, therefore implement collision detection between the drone and the player (use sphere to sphere collision detection, you can reuse the function from last week's lab). Take the radius of the player's bounding sphere to be 0.2f, and that of the drone's bounding sphere to be 1.0f.</li>
-                                    <li>If the player collides with the drone, resolve the collision to make sure the player is not stuck inside the drone and display an appropriate victory message on the screen (centered vertiaclly and horizantally).</li>
-                                    <li>The player looses if seen by the drone, therefore if the player is within the drone's field of view a GameOver message should be displayed on the screen (centered vertiaclly and horizantally).</li>
+                                    <li>If the player collides with the drone, resolve the collision to make sure the player is not stuck inside the drone and display an appropriate victory message on the screen (centred vertically and horizontally).</li>
+                                    <li>The player loses if seen by the drone, therefore if the player is within the drone's field of view a GameOver message should be displayed on the screen (centred vertically and horizontally).</li>
                                     <li>Right now the player is within the drone's field of view if the dot product is greater than 0. Is that realistic? Can you have a more realistic field of view?</li>
                                 </ul>
                             </p>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet"
+    href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>CO1301 - Lab 2: Round a Square Path</title>
+</head>
+<body>
+    <header><h1>CO1301: Games Concepts <br> Lab 2  - Round a Square Path</h1></header>
+    <main>
+        <section> 
+            <div class="section_instrcutions">
+                <h2>1. Basic Square Path</h2>
+                <ol>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Create a new TL-Engine project called <b>Lab2_SquarePath_Project</b>.
+                            </p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Load a floor mesh using "floor.x", then create a floor model at the origin.</p>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Load a sphere mesh, then create a sphere model at position (-75, 10, 75), then follow the instcutions below to make it move continously along a square path as shown in the video below:</p>
+                            <iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/e01c1083-8ca0-46c0-be86-3414ac984fe2?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Update your code so that on starting the program, a check is performed to confirm whether the z-position of the sphere is greater than or equal to 75, if true then the sphere is moved using the MoveX() method until it's x-position is greater than or equal to 75. <b>Note that you may have to use a nested if to implement this step and the three that follow.</b>
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Update your code so that if the sphere's x-position is  greater than or equal to 75, the sphere is moved along the z-axis using the MoveZ() method until it's z-position is less than or equal to -75.
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Update your code so that if the sphere's z-position is less than or equal to -75, the sphere is moved along the x-axis moved using the MoveX() method until it's x-position is less than or equal to -75.
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Update your code so that if the sphere's x-position is less than or equal to -75, the sphere is moved along the z-axis moved using the MoveZ() method until it's z-position is greater than or equal to 75.
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">The sphere should now continously move in a square path.
+                        </div>
+                    </li>
+                    <li >
+                        <div class="list-div">
+                            <p class= "instruction-item">Can you make the sphere roll in the right direction while it moves? If you find this too complex, move to the next section and come back to this later.
+                            </p>
+                        </div>
+                    </li>
+                </div>
+            </section>
+            <section> 
+                <div class="section_instrcutions">
+                    <h2>2. Keyboard Input</h2>
+                    <ol>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">In your game-loop, add code to check for when the "W" key is hit. Whenever the key is hit, if the y-position of the sphere is less than 30 then it should be increased by 5. 
+                                </p>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">In your game-loop, add code to check for when the "S" key is hit. Whenever the key is hit, if the y-position of the sphere is greater than 10.0 then it should be decreased by 5.
+                                </p>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">In your game-loop, add code to check for when the "D" key is hit. Whenever the key is hit, speed of the sphere should be increased by 10%.
+                                </p>
+                            </div>
+                        </li>
+                        <li >
+                            <div class="list-div">
+                                <p class= "instruction-item">In your game-loop, add code to check for when the "A" key is hit. Whenever the key is hit, if the speed of the sphere is greater than 0 then it should be decreased by 10%.
+                                </p>
+                            </div>
+                        </li>
+                    </div>
+                </section>
+                <section> 
+                    <div class="section_instrcutions">
+                        <h2>3. Get Creative</h2>
+                        <ol>
+                            <li >
+                                <div class="list-div">
+                                    <p class= "instruction-item">Think of more complex path shapes, and try making the sphere move along them.
+                                    </p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+            </main>
+            </body>
+            </html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://acodedoer.github.io/CO1301/assets/style.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three-orbitcontrols@2.110.3/OrbitControls.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Lab 1 - Positioning Exercises</title>
+<style>
+    .interactive-scene{
+        border: 0.5em dashed black;
+        padding: 0.5em;
+        text-align: center;
+    }
+</style></head>
+<body>
+<div class ="interactive-scene">
+    <canvas id="giant-webgl"></canvas>
+</div>
+</main>
+<script type="module">
+    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+    
+const canvas = document.getElementById('giant-webgl')
+
+
+const scene = new THREE.Scene();
+
+PrismGeometry = function ( vertices, height ) {
+
+var Shape = new THREE.Shape();
+
+( function f( ctx ) {
+
+    ctx.moveTo( vertices[0].x, vertices[0].y );
+    for (var i=1; i < vertices.length; i++) {
+        ctx.lineTo( vertices[i].x, vertices[i].y );
+    }
+    ctx.lineTo( vertices[0].x, vertices[0].y );
+
+} )( Shape );
+
+var settings = { };
+settings.amount = height;
+settings.bevelEnabled = false;
+THREE.ExtrudeGeometry.call( this, Shape, settings );
+
+};
+
+PrismGeometry.prototype = Object.create( THREE.ExtrudeGeometry.prototype );
+
+var A = new THREE.Vector2( 0, 0 );
+var B = new THREE.Vector2( 30, 10 );
+var C = new THREE.Vector2( 20, 50 );
+
+var height = 12;                   
+var geometry = new PrismGeometry( [ A, B, C ], height ); 
+
+var material = new THREE.MeshPhongMaterial( { color: 0x00b2fc, specular: 0x00ffff, shininess: 20 } );
+
+var prism1 = new THREE.Mesh( geometry, material );
+prism1.rotation.x = -Math.PI  /  2;
+
+scene.add( prism1 );
+
+
+const size = {
+    width: window.innerWidth/3,
+    height: window.innerWidth/3
+}
+const camera = new THREE.PerspectiveCamera(75, size.width/size.height);
+
+const renderer = new THREE.WebGLRenderer(
+    {canvas: canvas}
+);
+renderer.setSize(size.width, size.height)
+renderer.setClearColor("")
+const controls = new OrbitControls( camera, renderer.domElement );
+controls.update();
+const tick = () =>{
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(tick)
+}
+
+tick()
+</script>
+</p>
+</body>
+            </html>
