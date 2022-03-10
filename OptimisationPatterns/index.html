@@ -75,10 +75,30 @@
                                 Create a 100 by 100 grid of spheres:
                                 <ol>
                                     <li>Declare a const int called kSphereGridSize and assign it a value of 100</li>
-                                    <li>Declare a const float called kSpawnOffset and assign it a value of 6.0f</li>
-                                    <li>Declare a const float called kFirstSpherePosX and assign it a value of 3.0f</li>
-                                    <li>Load the sphere mesh and create a two dimensional IModel array of szie 100 by 100 called spheresGrid</li>
+                                    <li>Declare a const float called kSpawnOffset and assign it a value of 6.0f, and const float called kScaleDownFactor and assign it a value of 0.1</li>
+                                    <li>Load the sphere mesh and declare a two dimensional IModel array of size 100 by 100 called sphereGrid</li>
                                     <li>Then copy the provided nested loop and paste it below the two dimensional array declaration, make sure you understand what the code does by reading the comments</li>
+<pre><code>float currentXSpawnPosition;
+float currentZSpawnPosition;
+for (int i = 0; i < kSphereGridSize; i++) {
+
+    //set the current row position by multiplying the i (number of rows created so far) by the offset (space between rows)
+    //then add half the offset to centre the spawn position vertically within the row
+    currentZSpawnPosition = kSpawnOffset / 2 + i * kSpawnOffset;
+
+    //set the current column spawn position to half the spawn-offset from the origin
+    //i.e. horizontally centred within the first column
+    currentXSpawnPosition = kSpawnOffset/2;
+
+    for (int j = 0; j < kSphereGridSize; j++) {
+
+        //create a sphere at the current row spawn position and updated column spawn position
+        //updated column position is equal to currentXSpawnPosition plus the space taken by spheres created so far on the current row
+        sphereGrid[i][j] = sphereMesh->CreateModel(currentXSpawnPosition + j * kSpawnOffset, 0, currentZSpawnPosition);
+        sphereGrid[i][j]->Scale(kScaleDownFactor); //scale down the sphere
+        sphereGrid[i][j]->SetSkin("mercury.jpg"); //change the skin of the sphere
+    }
+}</code></pre>
                                 </ol>
                                 <br/>
                                 Note that the spheres are scaled down by a factor of 0.1, therefore they have a radius of 1.0f.
@@ -97,16 +117,16 @@
                             <p class= "instruction-item">
                                Run your program, and note the FPS displayed.
                             </p>
-                        <pre><code>const float kPi = 3.1415926f;</code></pre>
                         </div>
                     </li>  
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load the cube.x mesh and create a cube at (300, 0.5, -10). Scale it by a factor of 0.1, and attach the camera as a child of the cube.
+                                Load the cube.x mesh and create a cube at (300, 0.5, -10). Scale it by a factor of kScaleDownFactor, and attach the scene's camera as a child of the cube.
                             </p>
                         </div>
-                    </li>  
+                    </li> 
+                    <img class="center" src="https://acodedoer.github.io/CO1301/optimisationpatterns/spheregridandcube.jpg" alt="a cube palced in front of a grid of spheres">
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
