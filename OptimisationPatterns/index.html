@@ -27,7 +27,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                This worksheet will introduce optimisation techniques for improving the effeieincy of programs.
+                                This worksheet will introduce optimisation techniques for improving the efficiency of programs.
                             </p>
                         </div>
                     </li> 
@@ -51,7 +51,7 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create a new TL-Engine project called "Lab15_Optimsation_Project". 
+                                Create a new TL-Engine project called "Lab15_Optimisation_Project". 
                             </p>
                         </div>
                     </li>
@@ -76,8 +76,8 @@
                                 <ol>
                                     <li>Declare a const int called kSphereGridSize and assign it a value of 100</li>
                                     <li>Declare a const float called kSpawnOffset and assign it a value of 6.0f, and const float called kScaleDownFactor and assign it a value of 0.1</li>
-                                    <li>Load the sphere mesh and declare a two dimensional IModel array of size 100 by 100 called sphereGrid</li>
-                                    <li>Then copy the provided nested loop and paste it below the two dimensional array declaration, make sure you understand what the code does by reading the comments</li>
+                                    <li>Load the sphere mesh and declare a two-dimensional IModel array of size 100 by 100 called sphereGrid</li>
+                                    <li>Then copy the provided nested loop and paste it below the two-dimensional array declaration, make sure you understand what the code does by reading the comments</li>
 <pre><code>float currentXSpawnPosition;
 float currentZSpawnPosition;
 for (int i = 0; i < kSphereGridSize; i++) {
@@ -122,15 +122,15 @@ for (int i = 0; i < kSphereGridSize; i++) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load the cube.x mesh and create a cube at (300, 0.5, -10). Scale it by a factor of kScaleDownFactor, and attach the scene's camera as a child of the cube.
+                                Load the cube.x mesh and create a cube at (300, 0.5, 0). Scale it by a factor of kScaleDownFactor, and attach the scene's camera as a child of the cube.
                             </p>
                         </div>
                     </li> 
-                    <img class="center" src="https://acodedoer.github.io/CO1301/optimisationpatterns/spheregridandcube.jpg" alt="a cube placed in front of a grid of spheres">
+                    <img class="center" src="https://acodedoer.github.io/CO1301/OptimisationPatterns/spheregridandcube.jpg" alt="a cube placed in front of a grid of spheres">
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Add code to move the cube forward when the W key is held, and rotate if clockwise and anti-clockwise when D and A keys are held respectively. Make sure you use variable timing, otherwise your cube will be very slow (try and see). Have the cube move 50 units pers second and rotate 60 degrees per second. 
+                                Add code to move the cube forward if the W key is held, and rotate it clockwise and anti-clockwise if D and A keys are held respectively. Make sure you use variable timing, otherwise your cube will be very slow (try and see). Have the cube move 50 units per second and rotate 60 degrees per second. 
                             </p>
                         </div>
                     </li>  
@@ -143,22 +143,30 @@ for (int i = 0; i < kSphereGridSize; i++) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Check for collisions between the cube and all 1000 cubes:
-                                <ol>
-                                    <li>Copy the sphere to sphere collision detection function provided in Lab 9 and paste it below the main function.</li>
-                                    <li>Delcare two const floats called kSPhereRadius and kCubeRadius and assign them the values 1.0f and 0.5f respectively.</li>
-                                    <li>Add the function's prototype before the start of the main function.</li>
-                                    <li>In the initialisation section, declare two floats callled oldCubeX and oldCubeZ, then in th the game loop, before the code that moves the sphere on key press, assign the current x-position of the cube to oldCubeX and the current z-position of the cube to oldCubeZ.</li>
+                                Check for collisions between the cube and all 1000 spheres:
+                                <ul>
+                                    <li>Copy the sphere to sphere collision detection function provided in Lab 9 and paste it below the main function, and add the function's prototype above the main function.</li>
+                                    <li>Declare two const floats called kSphereRadius and kCubeRadius and assign them the values 1.0f and 0.5f respectively.</li>
+                                    <li>In the initialisation section, declare two floats called oldCubeX and oldCubeZ, then in the game loop, before the code that moves the cube on keypress, assign the current x-position of the cube to oldCubeX and the current z-position of the cube to oldCubeZ.</li>
                                     <li>In the game loop, add the nested loop below for checking collisons between the cube and the spheres</li>
-                                    <li>Update the nested loop copied above so that if collision is detected, the cube's x and z positions should be set to olCubeX and oldCubeZ respectively.</li>
-                                </ol>
+<pre><code>for (int i = 0; i < kSphereGridSize; i++) {
+    for (int j = 0; j < kSphereGridSize; j++) {
+        if (sphere2Sphere(cube->GetX(), cube->GetZ(), kCubeRadius, sphereGrid[i][j]->GetX(), sphereGrid[i][j]->GetZ(), kSphereRadius)) {
+            
+            //resolve the collision here
+
+        }
+    }
+}</code></pre>
+                                    <li>Update the nested loop copied above so that the collision is resolved by setting the cube's x and z positions to oldCubeX and oldCubeZ respectively.</li>
+                                </ul>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Run your program to test that collision detectiona nd simple resolution are working, then note the current FPS. You should see that the FPS has droped consderably, and that is becuase the program now has to perform the complex xalulations needed to perform a collision check 1000 times every frame.
+                                Run your program to test that collision detection and simple resolution are working, then note the current FPS. You should see that the FPS has dropped, and that is because the program now has to perform the complex calculations needed to perform a collision check 1000 times every frame. You can try increasing/decreasing the size of kSphereGridSize to change the number of spheres and see the impact that has on the FPS.
                             </p>
                         </div>
                     </li>
@@ -171,10 +179,10 @@ for (int i = 0; i < kSphereGridSize; i++) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The complexity of the calculations performed every frame can be reduced by elimintaing the need to take squareroot (which is an expensive calculation) and the need to repeatedly calculate values that do not change over time.
+                                The complexity of the calculations performed every frame can be reduced by eliminating the need to calculate square root (which is an expensive calculation) and the need to repeatedly calculate values that do not change over time.
                             </p>
                             <p class= "instruction-item">
-                                To eliminate the need to claulcuate square root, square both sides of any expression in your code that requires square root to be caluclated, therefore update your sphere to sphere calculation function:
+                                To eliminate the need to calculate square root, square both sides of any expression in your code that requires square root to be calculated. Therefore update your sphere to sphere calculation function:
                                 <ol>
                                     <li>Replace <b>float distance = sqrt(distX * distX + distZ * distZ);</b> with a line of code that calculates <b>distX * distX + distZ * distZ</b> and stores it in a float called <b>distanceSquared</b> </li>
                                     <li>
@@ -183,19 +191,19 @@ for (int i = 0; i < kSphereGridSize; i++) {
                                 </ol>
                             </p>
                             <p>
-                                Run you rprogram, collisions should be detected and resolved as before.
+                                Run your program, collisions should be detected and resolved as before.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Look at your the collision detection function once again, the funtion requires the square of the sum of the radii of two spheres to be calculated every time it is called. But do wee need this to be calculated everyframe? The two models that are checked for collision in this proggram are the cube and a sphere, both their radii are known from the start of the program and do not change throughout, therefore we can easily calculate the saqaure of their sum, and pass that value to the collision detection function.
+                                Look at your the collision detection function once again, the function requires the square of the sum of the radii of two spheres to be calculated every time it is called. But does that need to be calculated every frame? In this program, collision is checked between the cube and a sphere from the sphere grid, both their radii are known from the start of the program and do not change throughout, therefore we can easily calculate the square of their sum, and pass that value to the collision detection function.
                                 <ul>
-                                    <li>In th einitialisation section, declare a float called radiiSumSquared and assign it a value of (cubeRadius + sphereRadius)*(cubeRadius + sphereRadius)</li>
-                                    <li>Update the collision detection definitiona dn prototype so that they noe take in a single float paramter called radiiSumSquared in place of s1Radius and s2RAdius</li>
+                                    <li>Declare a const float called kRadiiSumSquared and assign it a value of (kCubeRadius + kSphereRadius) * (kCubeRadius + kSphereRadius)</li>
+                                    <li>Update the collision detection definition and prototype so that they now take in a single float parameter called radiiSumSquared in place of s1Radius and s2Radius</li>
                                     <li>
-                                        Next update the line of code in th ecollision detection function that checks if <b>distanceSquared</b> is less than <b>(s1Radius + s2Radius)*(s1Radius + s2Radius)</b> with code that checks if <b>distanceSquared</b> is less than <b>radiiSumSquared</b>
+                                        Next update the line of code in the collision detection function that checks if <b>distanceSquared</b> is less than <b>(s1Radius + s2Radius)*(s1Radius + s2Radius)</b> with code that checks if <b>distanceSquared</b> is less than <b>radiiSumSquared</b>
                                     </li>
                                 </ul>
                             </p>
@@ -204,7 +212,7 @@ for (int i = 0; i < kSphereGridSize; i++) {
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Run you rprogram, collisions should be detected and resolved as before. Note the program's current FPS. You have successfully reduce the number and complexity of the calculateions that need to be perforemed every time a collision is checked, but there are still a a thousand collision checks, amongst other things (e.e. rendering 1000 cubes), done every frame. In the next section we will try to reduce the number of collision checks in away that will not affect the player's experience.
+                                Run your program, collisions should be detected and resolved as before. Note the program's current FPS. You have successfully reduced the number and complexity of the calculations that need to be performed every time a collision is checked, but there are still a thousand collision checks, amongst other things (e.g. rendering 1000 cubes), done every frame. In the next section, we will try to reduce the number of collision checks in a way that will not affect the player's experience.
                             </p>
                         </div>
                     </li>
@@ -217,13 +225,13 @@ for (int i = 0; i < kSphereGridSize; i++) {
             <li>
                 <div class="list-div">
                     <p class= "instruction-item">
-                      If we can figure out the spheres closest to the cube, we can ignore all other spheres when checking for collisions i.e. if the cube is inside a grid then we only need to check for collisions between the cube an dthe sphere within the grid (since it is impossible for the cube to collide with other spheres that are far away).
+                      If we can figure out the sphere(s) closest to the cube, we can ignore all other spheres when checking for collisions i.e. if the cube is inside a grid then we only need to check for collisions between the cube and the sphere within the grid (since the cube can't collide with other spheres that are outside the grid in this program).
                        <ul>
-                           <li>Below the code that moves the cube, declare an int called cubeColumnPosition, and assign it the value returned by divding the x-position of the cube by kSpwanOffset. This will calculate the column in which the cube is located by returning how many spheres are exist along the x-axis between the origin and the x-position of the cube. 
+                           <li>Below the code that moves the cube, declare an int called cubeColumnPosition, and assign it the value returned by dividing the x-position of the cube by kSpawnOffset. This will calculate the column in which the cube is located by returning how many grids (the width of kSpawnOffset) exist along the x-axis between the origin and the x-position of the cube. The answer is rounded down an int since it is stored in an int variable.
                            </li>
-                           <li>Next, declare an int called cubeRowPosition, and assign it the value returned by divding the z-position of the cube by kSpwanOffset. This will calculate the row in which the cube is located by returning how many spheres exist between the origin and the z-position of the cube. </li>
+                           <li>Next, declare an int called cubeRowPosition, and assign it the value returned by dividing the z-position of the cube by kSpawnOffset. This will calculate the row in which the cube is located by returning how many grids (the width of kSpawnOffset) exist along the z-axis between the origin and the z-position of the cube. The answer is rounded down an int since it is stored in an int variable.</li>
                            <li>
-                               Finally update the nested loop that checks for collision between the cube and all 1000 spheres by removing the nested loop and perfomig a single collision check between the cube and the sphere with index [cubeRowPosition][cubeColumnPosition]
+                               Finally, update the code that checks for collision between the cube and all 1000 spheres by removing the nested loop that wraps it and performing a single collision check between the cube and the sphere with index [cubeRowPosition][cubeColumnPosition] (i.e. the sphere in the cube's current grid)
                            </li>                       
                         </ul>
                     </p>
@@ -232,7 +240,7 @@ for (int i = 0; i < kSphereGridSize; i++) {
             <li>
                 <div class="list-div">
                     <p class= "instruction-item">
-                Run you rprogram, move through the field and try colliding with spheres, collisions should be detected and resolved as before. Note the program's current FPS, you should see a significant increase as a result of the reductionin the number of collision chedks performed every frame from 1000 - 1. 
+                Run your program, move through the field and try colliding with spheres, collisions should be detected and resolved as before. Note the program's current FPS, you should see an increase as a result of the reduction in the number of collision checks performed every frame from 1000 to 1. 
                             </p>
                         </div>
                     </li>  

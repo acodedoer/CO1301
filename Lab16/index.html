@@ -54,71 +54,75 @@
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load and create a skybox and floor model using "stars.x" and "floor.x" respectively. 
+                                Download the media file linked here, and add it's contents to your project.
                             </p>
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Create a 'kManual' camera and position it at ( 0, 60, -180 ).
-                            </p>
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                You need to call the Timer() method in order to establish the first base time. The command needs to be placed outside the game loop, but make sure to place it immediately before the game loop. Call it using the following code:
-                            </p>
-                        <pre><code>myEngine->Timer();</code></pre>
-                        </div>
-                    </li> 
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                You then need to call Timer() once per frame, at the beginning of the game loop, immediately after <code>myEngine->DrawScene();</code>. Declare a variable of type float called frameTime to store the time taken for the last scene to be rendered:
-                            </p>
-                            <pre><code>float frameTime = myEngine->Timer();</code></pre>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use the draw command to output the frame time and FPS (frames per second can be calculated by  1/frameTime) to the screen.
+                                Load and create a skybox and floor model using "skyboxmesh.x" and "ground.x" respectively. Position the skybox model at (0, -960, 0), and position the ground model at the origin.
                             </p>
                         </div>
-                    </li>  
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a 'kManual' camera at (0, 60, -180).
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Add code from your previous lab projects to display the FPS rate of your program.
+                            </p>
+                        </div>
+                    </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create a Vector2 struct (shoud have only two float memebers, x and y).
+                            </p>
+                        </div>
+                    </li>
                 </ol>
             </section>
             <section>
-                <h2>3. One Particle</h2>
+                <h2>3. Moving One Particle</h2>
                 <div class="section_instrcutions"></div>
                 <ol>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Load the model file: "quad.x" from the media folder on Blackboard, and implement particle movement as set out in the instructions below.
+                                Load the "quad.x" mesh from the downloaded media folder, create a particle model using it.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Next, define a const float called kInitialSpeed and assign it a value of 110.0f. Then, define a Vector2 for storing the particle's movement vector called movementVector, assign 0 to its x-component, and kInitialSpeed to its y-component.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The particle should start at the world origin ( 0, 0, 0 ), and should move vertically with a starting velocity of 110 units. <b>Remember to adjust the velocity using the frame time. </b>                               
+                                Use movementVector.y to move the particle vertically (y-axis) with a starting velocity of 110 units per second (remember to adjust the velocity using the frame time). The particle will, of course, shoot off the screen when you run the program.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                The particle will, of course, shoot off the screen when you run the program.
+                                Declare a const float called kGravity and assign it a value of -50.0f, then declare two floats (in the intialisation section) called previousSpeed and currentSpeed, and intialise both to kInitialSpeed.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Now apply gravity to the particle. A reasonable value for gravity is -50 units. Gravity is acceleration. Use the equation given in the lecture to apply the acceleration (force of gravity).
+                                Now, keep the particle from shooting off the screen by updating the y-component of movementVector with a new velocity calculated by taking into account the effect of gravity each frame. Using the equation given in the lecture (and provided below), write code in the game loop that applies the force of gravity to the particles's velocity. 
                             </p>
                             <pre>
                                 v = v' + a &times; &Delta;
@@ -126,76 +130,47 @@
                                 previous velocity = v'      
                                 gravity = a                     
                             </pre>
-                        </div>
-                    </li>  
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                The effect of gravity is downwards. Each frame you need to calculate the new velocity of the particle according to the effect of gravity. Note that gravity has a negative value. Use the frame time for delta-t ( &Delta;t).
-                            </p>
-                        </div>
-                    </li>  
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                You then move the particle using the new velocity (adjusted still by the frame time). The effect is  the particle will rise up into the air and then fall downwards.
-                            </p>
+                            <p>This translates to the following in code:</p>
+<pre> <code>currentSpeed = previousSpeed + (kGravity * frameTime); //update the speed with the effect of gravity
+previousSpeed = currentSpeed; //for use in the next frame
+</code></pre>
                         </div>
                     </li> 
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Then assign currentSpeed to the y-component of the movementVector. Run your program and you should see the particle rise up and then fall downwards.
+                            </p>
+                        </div>
+                    </li>   
                 </ol>
             </section>
             <section>
                 <h2>4. Rebirthing the Particle</h2>
                 <div class="section_instrcutions"></div>
                     <ol>     
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                When the particle hits the floor you need to reset its velocity. In this way the particle will be emitted, rise through the air; fall to the ground and then the process starts again
-                            </p>
-                        </div>
-                    </li>     
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Orientate the particle every frame towards the camera by using the LookAt() method.
-                            </p>
-                        </div>
-                    </li>  
+                        <li>
+                            <div class="list-div">
+                                <p class= "instruction-item">
+                                    In the gameloop add code to check if the y-position of the particle is less than -5.0f (declare this as a const float named kMinYPosition), and reset previousVelocity to 110.0f if true. This way, the particle will be emitted, rise through the air; fall to the ground and then repeat.
+                                </p>
+                            </div>
+                        </li>     
+                   
                 </ol>
             </section>
             <section>
-                <h2>5. Movement to either side</h2>
+                <h2>5. Movement to Either Side</h2>
                 <div class="section_instrcutions"></div>
                     <ol>     
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                It would be nice if the particle has a variance to its movement.
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                Define a structure to hold the movement vector of your particle. I would suggest the following:
-                            </p>
-                        </div>
-<pre><code>struct Particle
-{
-    IModel *model;
-    float moveVector[3];
-};
-</code></pre>
-                    </li>
-                    <li>
-                        <div class="list-div">
-                            <p class= "instruction-item">
-                                You also need  to define a function that returns a random value within a range of numbers:
+                                Define a function that returns a random value within a range of numbers:
                             </p>
 <pre><code>// Return a random number in the range between rangeMin and rangeMax inclusive
 // range_min <= random number <= range_max
-float random( int rangeMin, int rangeMax)
+float generateRandomInt( int rangeMin, int rangeMax)
 {
 	float result = (float)rand() / (float)(RAND_MAX + 1);
 	result *= (float) (rangeMax - rangeMin);
@@ -208,60 +183,171 @@ float random( int rangeMin, int rangeMax)
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use the random function to modify the direction of movement which the particle takes as it comes out of the emitter by assigning its result to the x-component of the particle as it leaves the emitter.
+                                Declare two constants kMinRandomRange and kMaxRandomRange, assign them -50.0f and 50.0f respectively.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                You can use right-angle triangles to calculate a new value of the y component of the particle if you want. This will ultimately produce a better particle system.
+                                Modify the direction of movement which the particle takes as it is emitted by calling <b>generateRandomInt (kMinRandomRange, kMaxRandomRange)</b> and assigning the result to the x-component of movementVector on creation (3.2),  this should also be done everytime the previousSpeed is reset (4.1) i.e. when the particle is re-emitted.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                            <p>
+                                In the game-loop, add code that moves the particle horizontally (x-axis) using movementVector.x, make sure you use frame timing. Also, make sure the x-position of the particle is reset to 0 everytime the particle is to be re-emitted (4.1).
+                            </p>
+                            <p>
+                               The particle should now have a randomised upward movement everytime it is emitted.In the next section you will simulate a water fountain using thousands of particles similar to the one you have implemented upto this point.
                             </p>
                         </div>
                     </li>
                 </ol>
             </section>
             <section>
-                <h2>6. Particle System</h2>
+                <h2>6. Particle System: Water Fountain</h2>
                 <div class="section_instrcutions"></div>
                     <ol>        
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Create an array of particles. You can safely create an array of 1000 particles.
+                                Start by defining the following structure to hold a particle model and all its properties i.e. a Vector2 representing its movement vector, two floats to store the particle's previous &
+                                current speed, and a boolean to hold the state of the particle.
+                            </p>
+<pre><code>struct Particle
+{
+    IModel* model;
+    Vector2 movementVector;
+    bool isEmitted = false;
+    float previousSpeed = 0.0f;
+    float currentSpeed = 0.0f;
+};
+</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Create an array of 1000 (declare as const int kWaterDropletsSize) Particles called waterParticles (you can try creating more or less and see how that affects your particle emmision). Then use a for loop to create models using the quad.x mesh and store them in the waterParticles, each created model should be positioned at 0 along x-axis, kMinYPosition along y-axis, and 0 along z-axis.</p>
+                                <p>You should not be able to see these models when you run your program since they are below the ground, in the next few steps these particles will be emmitted few at a time. But you should notice that the FPS rate has dropped as result of rendering 1000 particles.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Start them moving. Emit one particle very frame.
+                                Declare  the following:
+                                <ul>
+                                    <li>a const float called kEmitInterval and assign it a value of 0.02 (this is the intervaal between particle emmisions)</li>
+                                    <li>
+                                        a const int called kEmitRate and assign it a value of 1 (this will determine how many particles are emitted at a time)
+                                    </li>
+                                    <li>
+                                        an int in the initialisation section called emittedParticlesCount and assign it an initial value of 0
+                                    </li>
+                                    <li>
+                                        a float in the initialisation section called emitTimer to track the time passed since the last particles were emitted, assign it a vlaue of 0.
+                                    </li>
+                                </ul>
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                Use a loop with the array to apply gravity and move the particles
+                               Declare and define a function called emitParicle (with a void return type) that takes in a Particle named p as a parameter passed by reference, and then:
+                               <ol>
+                                   <li>
+                                    calls <b>generateRandomInt (kMinRandomRange, kMaxRandomRange)</b> and assigns the result to p.movementVector.x
+                                   </li>
+                                   <li>
+                                    assigns kInitialSpeed to p.movementVector.y and p.previousSpeed
+                                   </li>
+                                   <li>
+                                    sets p.isEmitted to true
+                                   </li>
+                                   <li>
+                                    and sets the x-position of p.model to a random number between -2 and 2 (using generateRandomInt)
+                                   </li>
+                               </ol> 
                             </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                When a particle hits the floor then reset its starting velocity as above.
-                            </p>                        
+                                In the game-loop:
+                                <ol>
+                                    <li>increment emitTimer by frameTime every frame</li>
+                                    <li>add an if-statement that checks if emitTimer is greater than or equal to kEmitInterval, if is then reset emitTimer to 0 and add the code below to emit particles:
+<pre><code>//the number of particles to emit should be at least kEmitRate, or more on a slow machine
+int particlesToEmit = emitTimer /kEmitInterval * kEmitRate; 
+
+//emit particles from waterDroplets if the index is not out of bounds, 
+//and it the particles is not already emiited
+for (int i = emittedParticlesCount; i < emittedParticlesCount + particlesToEmit; i++) {
+    if (i < kWaterDropletsSize && waterDroplets[i].isEmitted == false) {
+        emitParticle(waterDroplets[i], particleMesh);
+    }
+}
+
+//update particles count for use as first index when emitting next, reset it to 0 if it is out of bounds
+emittedParticlesCount += particlesToEmit;
+if (emittedParticlesCount >= kWaterDropletsSize) {
+    emittedParticlesCount = 0;
+}</code></pre>
+                                    </li>
+                            </p>
                         </div>
                     </li>
                     <li>
                         <div class="list-div">
                             <p class= "instruction-item">
-                                If you have implemented a variance to the initial direction of movement of the particles then you will create a "fan" and something much like a fountain.
+                               Below the if-statement created above, add a for-loop that loops through waterDroplets and uses an if-statement to check if each Particle is emitted (i.e. if waterDroplets[i].isEmitted == true), if a Particle is emitted then:
+                                <ol>
+                                    <li>
+                                       the y-componenet of its movemenVector is updated to the sum of the particle's previousSpeed and the product of kGravity and frameTime (i.e. waterDroplets[i].movementVector.y = waterDroplets[i].previousSpeed + (kGravity * frameTime).
+                                    </li>
+                                    <li>
+                                        the particle is moved using its movementVector (i.e. waterDroplets[i].model->Move(waterDroplets[i].movementVector.x * frameTime, waterDroplets[i].movementVector.y *frameTime, 0))
+                                    </li>
+                                    <li>
+                                        the particle's previouSpeed is set to the value of the y-componenet of the movementVector (i.e. waterDroplets[i].previousSpeed = waterDroplets[i].movementVector.y)
+                                    </li>
+                                    <li>
+                                        check if the y-position of the particle's model is less than kMinYPosition, if it is then set the particle's isEmitted property to false (i.e. waterDroplets[i].isEmitted = false)
+                                    </li>
+                                </ol> 
+                                Run your program and you should see the particles emitted in a similar pattern to water particles in a water fountain. You can play around with the values of kEmitRate, kWaterDropletsSize, kGravity, and kInitialSpeed to see how that affects your parfticle system.
+
                             </p>
                         </div>
                     </li>
                 </ol>
             </section>
+            <section>
+                <h2>7. Making Improvements</h2>
+                <div class="section_instrcutions"></div>
+                <ol>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                Inside the emitParticle function, rather than assigning kInitialSpeed to p.movementVector.y and p.previousSpeed everytime, caculate the value of p.movementVector.y and p.previousSpeed using pytahgoras theorem: calculate the the length of the vertical side (p.movementVector.y) if kInitialSpeed is the hypothenus and p.movementVector.x is the horizontal side. Run your and you should see an improved particle system.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-div">
+                            <p class= "instruction-item">
+                                You can improve the efficiency of your particle system by making sure a Particle's model is only created if the Particle is emitted, and the model is deleted as soon as it is out of view. Make this change and check the FPS rate.
+                            </p>
+                        </div>
+                    </li>
+                </ol>
+
     </main>
     <script src="https://acodedoer.github.io/CO1301/assets/script.js"></script>
 </body>
